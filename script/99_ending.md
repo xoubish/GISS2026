@@ -1,8 +1,10 @@
 # Ending (~2 min) — The Glorious Gradient
 
-The mirror of the opening: pays off the "we'll get the bill at the end" plant.
+The mirror of the opening: pays off the "hold that thought" plant.
 Converges all three domains (galaxy / loss / person) on one image: **the unclosed distance.**
-This is **Beat B** (paid by the slope). **Beat A** (checkpoint authority / "done for now") migrates *earlier* — to stage ④, on the "a paper is a photograph of the boulder mid-slope" beat — so the close carries one landing, not two.
+This is the thermodynamic landing. **Checkpoint authority** ("done for now") migrates *earlier* — to stage ④, on the "a paper is a photograph of the boulder mid-slope" beat — so the close carries one landing, not two.
+
+*(No money register: no "paid / payroll / paycheck / bill / laid off / jobs program" — it lowers the level. The point is thermodynamic and emotional, not economic.)*
 
 ---
 
@@ -10,11 +12,11 @@ This is **Beat B** (paid by the slope). **Beat A** (checkpoint authority / "done
 
 > **[SLIDE: horizon, receding — transitional]**
 >
-> So — here's the bill.
+> So — hold that thought.
 >
 > The galaxy kept receding. The loss never hit zero. And the person — you never fully resolve them; past a point, more pixels buy you nothing. Every descent in this talk was the same descent, and not one of them arrived.
 >
-> You'd think that's the tragedy. It's the opposite. A slope that flattens has no gradient — and no gradient means no work is even *possible*. That's not rest; that's heat death. Everything alive runs on a gradient not yet closed — the sun pouring into cold space, a thought crossing your mind. The moving target was never the punishment. **It's the payroll.**
+> You'd think that's the tragedy. It's the opposite. A slope that flattens has no gradient — and no gradient means no work is even *possible*. That's not rest; that's heat death. Everything alive runs on a gradient not yet closed — the sun pouring into cold space, a thought crossing your mind. The moving target was never the punishment. **It's the only reason anything moves at all.**
 >
 > **[SLIDE: THE GLORIOUS GRADIENT — "joy, sadness, or the joy inside the sadness."]**
 >
@@ -24,25 +26,23 @@ This is **Beat B** (paid by the slope). **Beat A** (checkpoint authority / "done
 >
 > And seven hundred years ago — in a form already a thousand years old — Hafez built the whole architecture of Persian poetry on فراق: separation, the beloved you never reach. Hafez doesn't *want* the distance closed. Union would end the poem. **The bite is the genre.**
 >
-> A stadium chant and a ghazal — seven centuries and six thousand miles apart — found the same thing the gradient already knew: the sweetness was never at the bottom. It was on the slope.
->
-> Camus told us to imagine Sisyphus happy. I think we can do better.
+> A stadium chant and a ghazal — seven centuries and six thousand miles apart — found the same thing the gradient already knew:
 >
 > **[FINAL SLIDE: THE GLORIOUS GRADIENT]**
 >
-> Imagine him *paid.*
+> the sweetness was never at the bottom. It was on the *slope.*
 
 ---
 
 ## The final slide
 
 **Title:** THE GLORIOUS GRADIENT
-**Subtitle/line (carries the "you decide"):** *joy, sadness — or the joy inside the sadness. You choose how to descend.*
+**Subtitle/line (carries the "you decide"):** *joy, sadness — or the joy inside the sadness.*
 
 Two channels, each lands one half:
-- **Slide** carries the "you choose / joy inside the sadness" (the reframe, visual).
-- **Voice** lands "imagine him *paid*" (the title payoff, the Camus callback).
-- *(Swappable — could end spoken on "the joy inside the sadness" and let the slide say "Glorious Gradient." Rehearsal decides.)*
+- **Slide** carries the "joy inside the sadness" (the reframe, visual).
+- **Voice** lands *"the sweetness was never at the bottom — it was on the slope."*
+- *(Camus bookend: opening = "Camus got the direction wrong"; the close no longer needs an explicit Camus callback — the slope line is the resolution. Optional soft callback available if wanted.)*
 
 ---
 

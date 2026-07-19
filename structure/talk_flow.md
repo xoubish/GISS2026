@@ -25,6 +25,42 @@ In words: **you pick a distance → a loss falls out of it → you descend → t
 
 ---
 
+## 1b. The causal graph — the delivered arc (matches the deck's 7 sections)
+
+Solid = the talk's forward flow. Dashed = plant → payoff (set up early, paid later). The dotted back-edge is the loop itself.
+
+```mermaid
+flowchart TD
+    OPEN["<b>OPEN</b><br/>Camus: wrong direction · boulder goes down<br/>AI's newest idea = the brain's oldest<br/>plant: <i>hold that thought</i>"]:::open
+    DIST["<b>DISTANCE</b> ①②<br/>defining the distance is itself an optimization (recursion)<br/>astro · AI · person · Nyquist: sampling→resolution→distance"]:::stage
+    DESC["<b>DESCEND</b> ③<br/>heavy ball = mass is memory<br/>gravity switches sides · <i>never careless</i>"]:::stage
+    FORG["<b>FORGET</b> ④<br/>to model is to forget · JAISP: freeze the encoder<br/>the reveal — hallucinate ↔ amnesia (honest band)"]:::shift
+    TURN["<b>THE TURN</b><br/>optimizing every second is a disorder → coast<br/>triggers: distrust · surprise · new question<br/>checkpoint: a paper = a photo mid-slope · <i>done for now</i>"]:::turn
+    TARG["<b>TARGET MOVES</b> ⑤<br/>H₀ → the valley splits · intimacy's Nyquist limit<br/>the thesis: measurement, or invention?"]:::shift
+    CLOSE["<b>CLOSE</b><br/>not the punishment · no gradient → heat death<br/>'coming home' + Hafez's فراق<br/><b>The Glorious Gradient</b> — the sweetness is on the slope"]:::close
+
+    OPEN --> DIST --> DESC --> FORG --> TURN --> TARG --> CLOSE
+    TARG -.->|"the loop / glorious gradient"| DIST
+
+    OPEN -.->|"hold that thought"| CLOSE
+    DESC -.->|"never careless → but coast"| TURN
+    DESC -.->|"the slope you live on"| CLOSE
+    FORG -.->|"freeze = go to lunch"| TURN
+    FORG -.->|"honest band"| TARG
+    DIST -.->|"Nyquist → intimacy's limit"| TARG
+    TARG -.->|"never reached"| CLOSE
+
+    classDef open fill:#1f2937,stroke:#9ca3af,color:#f9fafb;
+    classDef stage fill:#0e3a5f,stroke:#38bdf8,color:#e0f2fe;
+    classDef shift fill:#5b3a00,stroke:#f59e0b,color:#fef3c7;
+    classDef turn fill:#4a1d4a,stroke:#e879f9,color:#fae8ff;
+    classDef close fill:#3b0764,stroke:#c084fc,color:#f3e8ff;
+```
+
+**Read it for:** the spine is monotonic (Open→…→Close), but the *loop-back* (Target→Distance) is what makes it Sisyphus. The Close plants nothing — it's all harvest. **The Turn** is the new keystone: it subverts "optimize forever" and is fed by both Descend (never careless → *but* coast) and Forget (freeze the model → go to lunch).
+
+---
+
 ## 2. The examples — domains hung on the loop
 
 Three domains illustrate the same loop:

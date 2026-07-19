@@ -1,6 +1,6 @@
 # Opening (~90 sec)
 
-Re-homes carryover #1 (the Sisyphus engine) and plants: the paycheck (→ Close B), distance-needs-optimizing (recursion / loops-within-loops), targets-move (→ stage ⑤).
+Re-homes carryover #1 (the Sisyphus engine) and plants: "hold that thought" (→ the close), distance-needs-optimizing (recursion / loops-within-loops), targets-move (→ stage ⑤). *(No money/paycheck register — it lowers the level.)*
 
 ---
 
@@ -16,7 +16,7 @@ Re-homes carryover #1 (the Sisyphus engine) and plants: the paycheck (→ Close 
 >
 > So you pick a distance, you build a loss, you descend — and the moment you reach the bottom, the target moves. The landscape lifts under your feet.
 >
-> That's not the curse. That's the **paycheck.** A slope that stops moving has no gradient — and no gradient means nothing left to do. Hold that thought; we'll get the bill at the end.
+> That's not the curse. That's the **point.** A slope that stops moving has no gradient — and no gradient means nothing left to do. Hold that thought.
 
 ---
 
