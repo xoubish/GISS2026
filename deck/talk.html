@@ -198,14 +198,23 @@
     <p class="big" style="margin-top:1.2rem"><span class="red">exploding</span> → anxiety &nbsp;·&nbsp; <span class="purple">vanishing</span> → depression</p>
   </section>
 
-  <!-- 12 CHECKPOINT -->
-  <section class="slide center" data-role="checkpoint">
+  <!-- 12 CHECKPOINT + BASIN HOPPING -->
+  <section class="slide center" data-role="checkpoint · we solve things constantly">
     <p class="big" style="max-width:20ch">A paper is a photograph of the boulder <span class="amber">mid-slope.</span></p>
-    <p class="sub" style="margin-top:1.2rem">midway is the only place a paper can ever be written.</p>
-    <p class="quiet" style="margin-top:.6rem">"done — for now."</p>
+    <p class="sub" style="margin-top:1rem">midway is the only place one can be written — <em>"done, for now."</em></p>
+    <p class="sub" style="margin-top:.7rem">a real win — then you move: a new direction opens, or the well goes <span class="amber">flat.</span></p>
   </section>
 
-  <!-- 13 TARGET MOVES -->
+  <!-- 13 TANTALUS -->
+  <section class="slide" data-role="⑤ the target moves · the second prisoner">
+    <div class="kicker">⑤ the target moves</div>
+    <h2>You reach — and it <span class="amber">recedes.</span></h2>
+    <p class="sub">that isn't Sisyphus. that's <em>Tantalus</em> — water retreating from his lips, fruit the wind lifts from his hand.</p>
+    <p class="big" style="margin-top:1.1rem">the target moves <span class="amber">because</span> you reached.</p>
+    <p class="sub">Goodhart's law · reward hacking · the alignment problem</p>
+  </section>
+
+  <!-- 14 TARGET MOVES -->
   <section class="slide" data-role="⑤ the target moves">
     <div class="kicker">⑤ the target moves</div>
     <h2>You reach the bottom —<br>the valley <span class="amber">splits.</span></h2>
@@ -222,12 +231,12 @@
     <p class="sub" style="margin-top:1.4rem"><em>measurement, or invention.</em></p>
   </section>
 
-  <!-- 15 CLOSE -->
+  <!-- 16 CLOSE -->
   <section class="slide" data-role="close">
-    <h2>The moving target<br>was never the <span class="amber">punishment.</span></h2>
-    <p class="sub">no gradient → nothing moves → heat death.</p>
-    <p class="big" style="margin-top:1.2rem">"it's coming home" · <span class="quiet" style="font-style:normal">60 years</span><br><span dir="rtl">فراق</span> · Hafez · <span class="quiet" style="font-style:normal">700 years</span></p>
-    <p class="sub">the beloved never reached — <em>and the bite is the genre.</em></p>
+    <h2>The receding target<br>was never the <span class="amber">punishment.</span></h2>
+    <p class="sub">reach the fruit and the wanting ends · no gradient → nothing moves → heat death.</p>
+    <p class="big" style="margin-top:1.1rem">"it's coming home" · <span class="quiet" style="font-style:normal">60 years</span><br><span dir="rtl">فراق</span> · Hafez · <span class="quiet" style="font-style:normal">700 years</span></p>
+    <p class="sub">Tantalus, the ghazal, the stadium — <em>the distance is the wanting.</em></p>
   </section>
 
   <!-- 16 FINAL -->
@@ -259,7 +268,7 @@
   const slides=[...document.querySelectorAll('.slide')]; let i=0;
   // loop minimap: which loop node each of the 16 slides sits on
   // 0=① distance · 1=② loss · 2=③ descend · 3=④ forget · 4=⑤ target · 5=center (glorious gradient)
-  const NODEMAP=[0,0,5,0,0,1,2,3,3,3,3,3,4,4,5,5];
+  const NODEMAP=[0,0,5,0,0,1,2,3,3,3,3,3,4,4,4,5,5];
   const CAPS=["① distance","② loss","③ descend","④ forget","⑤ the target moves","the glorious gradient"];
   const mmNodes=[...document.querySelectorAll('.mm-node,.mm-grad')];
   const mmCap=document.getElementById('mmcap');

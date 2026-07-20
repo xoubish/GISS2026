@@ -22,11 +22,13 @@ This is the thermodynamic landing. **Checkpoint authority** ("done for now") mig
 >
 > Which leaves the one thing you actually get to choose: how to hold it. You can descend forever, never arrive, and call it a curse. Or you can find the joy *inside* the not-arriving.
 >
+> There was a second prisoner down there. Tantalus — chin-deep in water that fled when he bent to drink, under fruit that lifted when he reached. We pity him. But hand Tantalus the fruit and you don't free him — you *end* him. The reaching was the last thing he had.
+>
 > We're not the first to work this out. Sixty years of English football fans sing "it's coming home" — a song that is, if you read the words, a catalogue of everything they've lost, roared by eighty thousand people who know it isn't coming home, and who sing it anyway. The trophy would end the song.
 >
 > And seven hundred years ago — in a form already a thousand years old — Hafez built the whole architecture of Persian poetry on فراق: separation, the beloved you never reach. Hafez doesn't *want* the distance closed. Union would end the poem. **The bite is the genre.**
 >
-> A stadium chant and a ghazal — seven centuries and six thousand miles apart — found the same thing the gradient already knew:
+> A prisoner, a stadium chant, and a ghazal — the distance *is* the wanting. Close it and the poem, the song, the life all stop. They found the same thing the gradient already knew:
 >
 > **[FINAL SLIDE: THE GLORIOUS GRADIENT]**
 >

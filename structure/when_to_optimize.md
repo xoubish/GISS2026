@@ -35,7 +35,28 @@ Camus's Sisyphus got the walk down as rest. Ours gets **ledges** — set the bou
 - **Heavy-ball / momentum** = the explore/exploit dial itself: mass = how much you trust your direction and coast through noise vs re-evaluate every bump. Too little → jitter/anxiety; too much → dogma. The physics already encoded the point.
 - **JAISP** = the scientific instance: train once, **freeze the encoder**, just use it. The frozen model is "go to lunch"; you retrain only on a trigger.
 
-## Placement (to decide)
+## Moving on — the two drivers (basin hopping)
+
+Reconciles "you never converge" with the truth that **we solve local optima constantly** — real wins, real checkpoints. You never reach the *global* bottom (Tantalus: it recedes), but you finish local problems all the time. This is the non-bleak version: you complete things; you just always find the next. **Tone-critical.**
+
+You leave a *solved* local optimum for one of two reasons:
+
+1. **Success opens a new direction** — the answer reveals fresh gradient.
+   - *same well → finer resolution:* a sub-valley opens; you zoom in (the resolution ladder).
+   - *nearby → a new distance:* the answer points to an adjacent problem; you step sideways in the metric.
+   - → "same well vs nearby" **is** "resolution vs distance" — ties back to the core machinery.
+2. **The landscape went flat — no reward.** The gradient vanished; staying yields nothing, so you relocate. (Staying = the won't-restart pathology; the dead field; the vanishing-gradient plateau.)
+
+**AI name:** basin hopping — find a local min, perturb, hop to another basin. Simulated annealing: noise is what lets you leave.
+
+**The deep link (honest band × the flat plateau):** when the real gradient flattens you have two moves — *honestly move on*, or *fake a gradient that isn't there.* Faking it is exactly **hallucination**: manufacturing reward/detail past the point the data supports (diffusion < blur; 26% Hα). So **hallucination = refusing to accept the well went flat.** Amnesia = leaving before it did. The honest band is reading the gradient truthfully: real signal (descend) vs exhausted (move on) — never inventing slope to dodge the move.
+
+**JAISP instance:** the frozen representation is a solved well; the new heads (detection, astrometry, photometry, redshift) are new problems *in the same well* (driver 1, same well); a new survey is a *nearby* well (driver 1, nearby / retrain).
+
+## Placement
+
+- **Basin hopping / two drivers → folded into the checkpoint slide** (deck slide 12): "a real win — then you move: a new direction opens, or the well goes flat." Keeps the middle pace; hands off to Tantalus (the global target that recedes even as you win locally).
+- Below: earlier placement notes for the rest.
 
 - **Opening:** "constant optimization" may need one clause so it doesn't read as grind — or introduce the tension here and *resolve* it at the brain beat (anticipate → pay off).
 - **Middle:** the explore/exploit + two-sided pathology beat lives in the **brain/person** part of the loop.
