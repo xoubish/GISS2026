@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Georgia, serif">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05060a"/>
+      <stop offset="0.72" stop-color="#081226"/>
+      <stop offset="1" stop-color="#0c1c38"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e2c4e"/>
+      <stop offset="0.5" stop-color="#0a1e3a"/>
+      <stop offset="1" stop-color="#050d1c"/>
+    </linearGradient>
+    <radialGradient id="moonhalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f59e0b" stop-opacity="0.30"/>
+      <stop offset="0.55" stop-color="#f59e0b" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="moon" cx="0.42" cy="0.38" r="0.75">
+      <stop offset="0" stop-color="#fde9bb"/>
+      <stop offset="0.6" stop-color="#f8c15c"/>
+      <stop offset="1" stop-color="#e8940a"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.38"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect x="0" y="0" width="1600" height="524" fill="url(#sky)"/>
+
+  <!-- stars -->
+  <g fill="#e8ecf4">
+    <circle cx="90" cy="70" r="1.4" opacity="0.8"/>
+    <circle cx="210" cy="180" r="1" opacity="0.5"/>
+    <circle cx="330" cy="60" r="1.2" opacity="0.7"/>
+    <circle cx="420" cy="240" r="1" opacity="0.45"/>
+    <circle cx="520" cy="120" r="1.6" opacity="0.9"/>
+    <circle cx="600" cy="330" r="0.9" opacity="0.4"/>
+    <circle cx="680" cy="80" r="1.1" opacity="0.6"/>
+    <circle cx="760" cy="210" r="1.3" opacity="0.7"/>
+    <circle cx="150" cy="330" r="1" opacity="0.5"/>
+    <circle cx="260" cy="430" r="0.9" opacity="0.35"/>
+    <circle cx="470" cy="400" r="1.1" opacity="0.5"/>
+    <circle cx="1180" cy="90" r="1.4" opacity="0.8"/>
+    <circle cx="1290" cy="200" r="1" opacity="0.5"/>
+    <circle cx="1400" cy="120" r="1.5" opacity="0.85"/>
+    <circle cx="1500" cy="260" r="1" opacity="0.5"/>
+    <circle cx="1340" cy="350" r="1.1" opacity="0.55"/>
+    <circle cx="1460" cy="430" r="0.9" opacity="0.4"/>
+    <circle cx="1540" cy="60" r="1.1" opacity="0.6"/>
+    <circle cx="840" cy="120" r="1" opacity="0.5"/>
+    <circle cx="1100" cy="300" r="0.9" opacity="0.4"/>
+    <circle cx="40" cy="480" r="0.9" opacity="0.35"/>
+    <circle cx="960" cy="60" r="1.2" opacity="0.65"/>
+    <circle cx="1250" cy="470" r="0.9" opacity="0.35"/>
+    <circle cx="380" cy="150" r="0.9" opacity="0.45"/>
+    <circle cx="720" cy="380" r="0.9" opacity="0.4"/>
+  </g>
+
+  <!-- moon -->
+  <circle cx="1000" cy="392" r="190" fill="url(#moonhalo)"/>
+  <circle cx="1000" cy="392" r="74" fill="url(#moon)"/>
+
+  <!-- sea -->
+  <rect x="0" y="524" width="1600" height="330" fill="url(#sea)"/>
+
+  <!-- cold shimmer on open water -->
+  <g stroke="#7dd3fc" stroke-linecap="round" fill="none">
+    <line x1="120" y1="560" x2="260" y2="560" stroke-width="2.5" opacity="0.10"/>
+    <line x1="380" y1="590" x2="560" y2="590" stroke-width="3" opacity="0.12"/>
+    <line x1="200" y1="640" x2="430" y2="640" stroke-width="3.5" opacity="0.10"/>
+    <line x1="80" y1="710" x2="330" y2="710" stroke-width="4" opacity="0.08"/>
+    <line x1="480" y1="680" x2="700" y2="680" stroke-width="3.5" opacity="0.10"/>
+    <line x1="1250" y1="575" x2="1400" y2="575" stroke-width="2.5" opacity="0.12"/>
+    <line x1="1330" y1="630" x2="1540" y2="630" stroke-width="3.5" opacity="0.10"/>
+    <line x1="1200" y1="700" x2="1460" y2="700" stroke-width="4" opacity="0.08"/>
+    <line x1="620" y1="620" x2="760" y2="620" stroke-width="3" opacity="0.09"/>
+    <line x1="540" y1="545" x2="640" y2="545" stroke-width="2" opacity="0.10"/>
+  </g>
+
+  <!-- moon's path on the water: abundant, golden, undrinkable -->
+  <g stroke="#f59e0b" stroke-linecap="round" fill="none">
+    <line x1="985" y1="536" x2="1015" y2="536" stroke-width="3" opacity="0.38"/>
+    <line x1="972" y1="556" x2="1030" y2="556" stroke-width="3.5" opacity="0.34"/>
+    <line x1="958" y1="580" x2="1046" y2="580" stroke-width="4" opacity="0.30"/>
+    <line x1="944" y1="608" x2="1062" y2="608" stroke-width="4.5" opacity="0.27"/>
+    <line x1="928" y1="640" x2="1080" y2="640" stroke-width="5" opacity="0.24"/>
+    <line x1="912" y1="676" x2="1100" y2="676" stroke-width="5.5" opacity="0.21"/>
+    <line x1="896" y1="716" x2="1122" y2="716" stroke-width="6" opacity="0.18"/>
+    <line x1="880" y1="758" x2="1148" y2="758" stroke-width="6.5" opacity="0.15"/>
+    <line x1="866" y1="800" x2="1170" y2="800" stroke-width="7" opacity="0.12"/>
+  </g>
+
+  <!-- shore -->
+  <path d="M 0,900 L 0,786 C 260,768 480,776 720,802 C 950,828 1240,846 1600,838 L 1600,900 Z" fill="#04070e"/>
+  <!-- waterline sheen along the sand -->
+  <path d="M 0,790 C 260,772 480,780 720,806" stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.18"/>
+  <path d="M 1150,838 C 1320,844 1470,844 1600,840" stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.16"/>
+
+  <!-- the recession: water pulling back from his hand -->
+  <path d="M 1052,822 C 1112,808 1176,808 1236,824" stroke="#7dd3fc" stroke-width="2.5" fill="none" opacity="0.45"/>
+  <path d="M 1076,834 C 1128,824 1180,824 1230,836" stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.28"/>
+  <path d="M 1100,846 C 1142,839 1182,839 1222,847" stroke="#7dd3fc" stroke-width="1.5" fill="none" opacity="0.16"/>
+  <!-- wet sand left glistening in the gap -->
+  <ellipse cx="1120" cy="828" rx="92" ry="9" fill="#f59e0b" opacity="0.07"/>
+  <ellipse cx="1100" cy="820" rx="60" ry="6" fill="#7dd3fc" opacity="0.06"/>
+
+  <!-- Tantalus: kneeling at the waterline, reaching for water that has just pulled back -->
+  <g stroke="#01030a" fill="none" stroke-linecap="round">
+    <!-- torso, bowed forward -->
+    <path d="M 872,690 C 856,722 850,754 866,788" stroke-width="54"/>
+    <!-- hips to grounded knee -->
+    <path d="M 866,788 C 878,802 894,812 912,820" stroke-width="48"/>
+    <!-- lower leg folded back along the sand -->
+    <path d="M 912,822 C 878,830 838,833 800,830" stroke-width="28"/>
+    <!-- bracing arm on the sand -->
+    <path d="M 864,706 C 880,738 892,766 898,796" stroke-width="20"/>
+    <!-- reaching arm -->
+    <path d="M 880,700 C 928,722 978,748 1030,786" stroke-width="24"/>
+  </g>
+  <!-- head, bowed toward the water -->
+  <circle cx="899" cy="663" r="31" fill="#01030a"/>
+  <!-- reaching hand -->
+  <circle cx="1038" cy="791" r="11" fill="#01030a"/>
+  <ellipse cx="1052" cy="796" rx="14" ry="7" fill="#01030a" transform="rotate(24 1052 796)"/>
+
+  <!-- moonlit rim on his back and shoulder -->
+  <g stroke="#f59e0b" fill="none" stroke-linecap="round">
+    <path d="M 919,645 A 31,31 0 0 1 928,673" stroke-width="3.5" opacity="0.5"/>
+    <path d="M 899,692 C 886,722 882,752 894,782" stroke-width="4" opacity="0.32"/>
+    <path d="M 892,706 C 936,727 982,752 1030,786" stroke-width="3" opacity="0.22"/>
+  </g>
+
+  <!-- his shadow on the sand, away from the moon -->
+  <ellipse cx="812" cy="826" rx="120" ry="12" fill="#000000" opacity="0.5"/>
+
+  <rect x="0" y="0" width="1600" height="900" fill="url(#vignette)"/>
+</svg>

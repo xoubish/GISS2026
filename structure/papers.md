@@ -47,7 +47,9 @@ Test for relevance: **does it live in the honest band** (telling measurement fro
 - **All four concentrate on stage ④ (model = forget) and its resolution/sampling knobs.** That's not a bug — ④ is the heart of the talk (where hallucination ↔ amnesia lives). But it means we can't treat them as four separate slides; they'd be redundant.
 - **The three student/postdoc SR papers are the *same experiment in three modalities*:** image **shape** (Everetts), image **photometry** (Rezaee), **spectra** (Haghjoo). Each says: *sharper globally, but it lies in a specific, measured way.*
 
-## Decision locked ✅ — 1 pillar + 1 montage
+## Decision — 1 pillar + 1 montage — **superseded (Jul 2026)**
+
+> ⚠️ Revisited: the talk felt science-thin with the trilogy at one montage slide. New plan: the SR trilogy anchors **Act 1** (distance/resolution) and JAISP anchors **Act 2** (representation/compression) — see [science_spine.md](science_spine.md). Original reasoning kept below for history.
 
 JAISP is the pillar because it **models more things together and earlier in the pipeline** (joint cross-instrument representation, frozen for many future heads) — it reaches across stages ①/④/⑤. The other three are **more focused** (each a single-modality resolution study) → they collapse into one montage.
 

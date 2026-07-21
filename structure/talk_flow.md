@@ -2,6 +2,8 @@
 
 Start simple. The **bone** is one loop: the optimization cycle. Everything else is an example hung on it.
 
+> **⚠️ Superseded by v6 (Jul 2026):** the loop-as-spine was diagnosed as circular — every branch ended in "find more gradient," so it predicted nothing. The talk is re-founded on the proxy–target gap: [gap_thesis.md](gap_thesis.md) (*"The Loss You Can Write"*). This doc and [science_spine.md](science_spine.md) remain as parts inventory.
+
 ---
 
 ## 1. The bone — the optimization loop
