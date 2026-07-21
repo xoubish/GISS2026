@@ -14,6 +14,16 @@ Convergence is re-cast from *unreachable* (old talk) to **cheap, silent, and dan
 
 The double meaning is the title's engine: **loss** = the objective function *and* the grief. The ghazal close stops being decoration — فراق (separation) *is* the gap, and a poem is written loss. Final-line material: *"We optimize the losses we can write. Hafez wrote his."*
 
+## Register calibration — it's a science talk (final)
+
+The talk is a **methods talk with results**, organized entirely by the science narrative. Deletion test: remove every metaphor and it must still stand — cold open, trilogy, JAISP, diagnostic, close. The metaphors are seasoning, never structure.
+
+**Metaphor budget: two appearances, total.**
+1. **Tantalus by the sea** — one slide (the SVG), two spoken lines: the water retreats as he reaches (Goodhart); the sea beside him is undrinkable (the proxy). Then back to data.
+2. **Hafez** — the final ~20 seconds, one breath, and the last line.
+
+Cut by this calibration: the Sisyphus "wrong prisoner" meta-open (title → straight to the galaxy); Getig/Menog (archived below); Vesal/Feragh as an explained pair mid-talk (the close names them once, in passing); myth vocabulary on any science slide. "Seawater" may echo once, as a single clause, on the overfitting slide.
+
 ## The myth, corrected — Tantalus by the sea
 
 Sisyphus (effort) was the wrong prisoner. Tantalus is the optimizer's patron, and he has **two** punishments, which are the talk's two failure modes:
@@ -46,7 +56,7 @@ Two nested gaps, stated once so the ML crowd can't object: the **generalization 
 
 **1 · The seduction (~1 min).** Cold open, no title-slide throat-clearing: one gorgeous super-resolved galaxy, full-bleed. *"This is sharper than our telescope can see. It's beautiful. Some of it is false. In twelve minutes I'll show you how to tell which part — for a galaxy, for a neural net, and for a person."*
 
-**2 · The wrong prisoner (~1.5 min).** Sisyphus wink → Tantalus by the sea (the SVG). The two punishments = the two failure modes: recession (Goodhart) and seawater (proxy substitution). Name the thesis plainly: *every optimizer descends a loss it can write toward a thing it wants that it can't.* 
+**2 · The gap, named (~1 min).** Straight from the galaxy to the thesis, as science — no Sisyphus, no meta-open. One image while saying it: Tantalus by the sea (the SVG), two lines — the water retreats as he reaches; the sea he sits beside is undrinkable — Goodhart named in passing, then back to data. The thesis, plainly: *every optimizer descends a loss it can write toward a thing it wants that it can't.* 
 
 **3 · Act I — the gap, measured (~3 min).** The trilogy as three measurements of the same gap, loss ↓ while target ↓:
 - **shape** (Everetts): diffusion prettier, *below bilinear* on shape info; best net still 25–35% ellipticity shrinkage vs lensing's 10⁻³;
@@ -70,17 +80,17 @@ Then the law: the gap appeared **only against a second instrument** — and insi
 
 Every tell requires information **from outside the loss** — the law, again. Worked example for the astronomers: the Hubble tension — two converged losses, immaculate residuals, incompatible answers; the entire debate is *which row are we in* (new-physics landscape vs systematics-as-proxy-error). A century of work, and the frontier is a gap diagnosis.
 
-**5b · Engineered Feragh (one beat, inside slide 6 or 11).** The text's mysticism, made technically true: early stopping, dropout, weight decay — **every regularizer is engineered separation.** We deliberately hold the model back from union with its training data *because union with the proxy betrays the target.* The field rediscovered Hafez's discipline and named it regularization. (This is the twist that makes the ML audience sit up: the Persian close is planted mid-talk as an optimizer setting.)
+**5b · Regularization admits the gap (one beat, inside slide 6 or 11).** Stated as pure ML — no Persian on stage here: early stopping, dropout, weight decay — **every regularizer deliberately underfits the proxy to protect the target.** Push to perfect union with the training data and you get a mirror: memorization, a model that reflects only what it has already seen. The optimizer's own toolbox concedes the thesis. (The Hafez echo of this beat is saved for the close — one clause, as a callback.)
 
 **6 · The person (~1.5 min).** The loss you can write about a person is prediction error — and it converges fast: they stop surprising you. But *they* were never in the loss. Projection is seawater: completing them from priors, abundant and wrong. The four rows apply verbatim (done knowing them? stuck? have they changed? or optimizing your picture instead of them?) — and the tell is the same: they have to be allowed to surprise you. Podium-resolution wink survives here.
 
-**7 · Close (~1.5 min).** The Sufi axis, both poles named: **Vesal (وصال, union) and Feragh (فراق, separation).** The novice — seeker or engineer — chases Vesal, loss at zero. But Vesal is only available *with the proxy*, and reaching it is fatal: a model in perfect union with its data is **a mirror that only reflects what it has already seen** (memorization — the one correct technical claim in the myth). Vesal with the target is unwritable; the beloved lives in Feragh. The ghazal is the form that *knows* this — seven hundred years of poems that converge and never arrive, the gap the engine, not the failure. Thesis band as penultimate slide (PSF? · prior? · reconstruction? · projection? — *measurement, or invention*), every line now carrying a paper. Final line candidates:
+**7 · Close (~1 min).** Thesis band as penultimate slide (PSF? · prior? · reconstruction? · projection? — *measurement, or invention*), every line carrying a paper. Then the talk's only other non-science beat — twenty seconds, one breath, no lecture: the ghazal has run for seven hundred years on exactly this gap; Vesal (union) is available only with the proxy — the mirror from the regularization beat — and the beloved stays in Feragh (separation). Final line candidates:
 - *"We optimize the losses we can write. Hafez wrote his."* (recommended — pays the title, the double meaning, and the Farsi beat in nine words)
 - *"The beloved was never in the loss function. That's why the poem gets written."*
 
-## The Getig/Menog layer (optional — salvaged and remapped)
+## The Getig/Menog layer — CUT (archived for a future venue)
 
-Zoroastrian cosmology, a millennium-plus older than Hafez: **Menog**, the unseen complete realm; **Getig**, its coarse material projection. The pasted draft mapped these to dataset/latent-space — weak. The strong mapping for this talk:
+Does not survive the two-metaphor budget of a science talk. Archived because the remapping is good and could carry a colloquium or essay someday. Zoroastrian cosmology, a millennium-plus older than Hafez: **Menog**, the unseen complete realm; **Getig**, its coarse material projection. The pasted draft mapped these to dataset/latent-space — weak. The strong mapping:
 
 - **Menog = the sky as it is** — the unwritable target. No instrument observes it.
 - **Getig = what any instrument delivers** — sampled, PSF-convolved, noisy. Every telescope is a Getig-machine.
@@ -95,6 +105,24 @@ Placement: one spoken layer over slides 7–9, one line max — don't lecture th
 
 **Refused (and why):** "purpose is found in the descent, not the destination," "imagine the model happy," "error is sacred," "perpetually optimized by its own longing" — the exact unfalsifiable never-converge core v6 exists to escape. Technical errors not to let back in: overfitting is *not* "fear of the global minimum" (it's proxy-vs-target — the draft couldn't state it correctly without the gap concept); gradient descent goes *down* (its Sisyphus pushes up a hill it calls descent); flat gradient at "the peak" conflates maxima with minima.
 
+## Salvage report 2 — the `notsure` deck ("Glorious Gradient — JAISP Edition", Jul 2026)
+
+**Kept (design only):** full-bleed image under a dark radial overlay (use for the Tantalus SVG + the cold-open galaxy); glass stat cards; oversized serif-italic headlines; فراق as a large centerpiece glyph. Slide-title candidates: **"The Ten-Band Eye"** (JAISP setup), **"The Distance Between Eyes"** (astrometry).
+
+**Refused (content):** the whole arc — it's the v4 never-converge spine again (heat-death close, "sweetness on the slope"), with no gap thesis, no trilogy, no second instrument.
+
+**⚠️ Fabrication watchlist — do not let these leak into slides:**
+- "9–10 mas longing" / "Concordance Field" — number + term found in no source note (we have 50 → 14–17 mas); treat as invented unless verified in the JAISP draft
+- "9.1M parameters" — our notes say ~9M; verify the exact figure before quoting
+- "Merged Pixels" — opposite of the design (delivered sampling, no common grid)
+- "frozen **truth** of the latent space" — the embedding is a model, never truth (the honest band's central sin)
+- "a model is a hedge **against** forgetting" — inverted; modeling *is* forgetting, done with a hedge
+- "Spectra: 26% Real" — mislabeled; 26% is recovered **Hα amplitude**
+- "too close → hallucination / too far → amnesia" — garbles the sampling→resolution framework
+- "dream the tenth band" / "learns the latent structure of physics" — costume language + overclaim
+
+**Deck engineering rule it violates (keep ours):** the talk deck must be fully self-contained — no CDN, no webfonts, no hotlinked images (several Unsplash IDs in the draft are likely 404s; conference wifi is not a dependency).
+
 ## Title candidates
 
 - **"The Loss You Can Write"** ← recommended. Series-true (*The Black Boxes* → *Love the Embedding* → …), double register (objective / grief), and the final line pays it.
@@ -106,7 +134,7 @@ Placement: one spoken layer over slides 7–9, one line max — don't lecture th
 1. Title — *The Loss You Can Write*
 2. The seduction: super-resolved galaxy, full-bleed, no caption
 3. "Some of it is false" — thesis stated
-4. **Tantalus by the sea** (the SVG) — wrong prisoner; recession + seawater; Goodhart named
+4. **Tantalus by the sea** (the SVG) — one slide, two lines: water retreats as he reaches · the sea is undrinkable; Goodhart named, move on
 5. **[PAPER]** the trilogy: three gaps, measured (shape / spectra / photometry)
 6. The seawater curve: train↓ val↑ — then the deeper gap val can't see (needed JWST)
 7. The law: the gap is invisible from inside — every gap ever measured used a **second instrument**
@@ -117,9 +145,9 @@ Placement: one spoken layer over slides 7–9, one line max — don't lecture th
 12. **[PAPER-adjacent]** H₀: two converged losses, one universe — which row?
 13. The person: prediction error converges; the person was never in it; projection = seawater
 14. Thesis band: measurement, or invention (unchanged text, now earned)
-15. Close: فراق · *"We optimize the losses we can write. Hafez wrote his."*
+15. Close: the ghazal, one breath · *"We optimize the losses we can write. Hafez wrote his."*
 
-Timing ≈ 12.3 min. Flex: slide 6 can fold into 5 (spoken over the trilogy), slide 12 into 11. Cut entirely if needed: heavy-ball/momentum (gone — tangential to the gap), "it's coming home" (gone; the ghazal carries the close alone), the brain-pathology pair (gone as slides; one spoken line max in 11).
+Timing ≈ 11.5–12 min after the register calibration (open and close both shortened) — real buffer at last. Flex: slide 6 can fold into 5 (spoken over the trilogy), slide 12 into 11. Cut entirely if needed: heavy-ball/momentum (gone — tangential to the gap), "it's coming home" (gone; the ghazal carries the close alone), the brain-pathology pair (gone as slides; one spoken line max in 11).
 
 ## What this framework now *excludes* (the vacuity test)
 
@@ -137,6 +165,8 @@ The risk: each philosophical claim, translated, is something they already believ
 3. **The Monday-morning tool:** *"In what currency was this validated — and does my measurement live in that currency?"*
 
 **Pacing rule (for the allergic minority):** every mythic beat costs one line, and a number arrives within 30 seconds of it.
+
+**Voice rule (hers, explicit):** dry, precise, literary — emotion is carried by precision and understatement, never named on stage. Banned register: sentimental/greeting-card vocabulary — *sweetness, joy (as in "joy inside the sadness"), sacred, magic, heart/soul talk* — alongside the already-banned money register. The v4 close lines ("the sweetness was never at the bottom," "joy, sadness — or the joy inside the sadness") are **retired**; do not port them into v6 slides or scripts. The Persian material carries the feeling as literature (فراق, Vesal/Feragh, the ghazal's architecture), not as sentiment — that's why it works. Laugh lines delivered flat.
 
 **Grounding rule for the diagnostic table (slide 11):** each row is a war story, not an abstraction — *seawater* = photo-z nails the spec-z validation set, fails the faint population; *world drifted* = the new release broke the calibration; *local min* = the stuck MCMC; *done* = the survey shipped. Recognition, not framework.
 

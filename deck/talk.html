@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sisyphus Optimizing in a Dynamic Universe — GISS 2026</title>
+<title>The Loss You Can Write — GISS 2026</title>
 <style>
   :root{
     --bg:#05060a; --ink:#e8ecf4; --dim:#8b93a7; --faint:#5b6478;
@@ -30,61 +30,69 @@
   body::before{
     content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
     background:
-      radial-gradient(ellipse 80% 60% at 75% 15%, rgba(56,189,248,.10), transparent 60%),
-      radial-gradient(ellipse 70% 60% at 15% 90%, rgba(192,132,252,.10), transparent 60%);
+      radial-gradient(ellipse 80% 60% at 75% 15%, rgba(56,189,248,.08), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 15% 90%, rgba(192,132,252,.08), transparent 60%);
   }
   .deck{position:relative; z-index:1; height:100vh; width:100vw}
   section.slide{position:absolute; inset:0; display:none; padding:8vh 9vw; flex-direction:column; justify-content:center; gap:1rem}
   section.slide.active{display:flex; animation:rise .55s ease}
+  section.slide.full{padding:0}
   @keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
 
   .kicker{font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--faint)}
   h1{font-family:var(--serif); font-weight:400; font-size:clamp(2.4rem,6.5vw,5.4rem); line-height:1.04; letter-spacing:-.01em}
   h2{font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5vw,3.8rem); line-height:1.08}
   .big{font-family:var(--serif); font-size:clamp(1.7rem,4.2vw,3.2rem); line-height:1.16}
-  .sub{font-size:clamp(1rem,1.8vw,1.4rem); color:var(--dim); line-height:1.4}
+  .sub{font-size:clamp(1rem,1.8vw,1.4rem); color:var(--dim); line-height:1.45}
   em{color:var(--ink); font-style:italic}
   .blue{color:var(--blue)} .amber{color:var(--amber)} .green{color:var(--green)}
   .mag{color:var(--magenta)} .red{color:var(--red)} .purple{color:var(--purple)}
   .quiet{color:var(--faint); font-style:italic; font-size:.95rem}
 
   .cols{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:.8rem}
-  .col{border:1px solid #1a2030; border-radius:14px; padding:1.1rem 1.1rem; background:rgba(255,255,255,.015)}
-  .col h3{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.5rem; font-weight:600}
-  .col p{font-size:clamp(.95rem,1.5vw,1.2rem); line-height:1.35}
-  .col.astro h3{color:var(--blue)} .col.ai h3{color:var(--green)} .col.person h3{color:var(--magenta)}
+  .cols.two{grid-template-columns:repeat(2,1fr)}
+  .col{border:1px solid #1a2030; border-radius:14px; padding:1.1rem 1.2rem; background:rgba(255,255,255,.02); backdrop-filter:blur(8px)}
+  .col h3{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.55rem; font-weight:600; color:var(--blue)}
+  .col p{font-size:clamp(.92rem,1.45vw,1.15rem); line-height:1.4; color:var(--dim)}
+  .col p b{color:var(--ink); font-weight:600}
 
   .fig{border:1.5px dashed #2a3346; border-radius:14px; padding:1.4rem; text-align:center; color:var(--faint); background:rgba(255,255,255,.012)}
   .fig .tag{font-size:.68rem; letter-spacing:.18em; text-transform:uppercase}
   .fig .what{color:var(--dim); font-size:.95rem; margin-top:.4rem}
+  .fig.hero{position:absolute; inset:6vh 7vw; display:flex; flex-direction:column; justify-content:center}
 
-  .loopwrap{display:flex; justify-content:center}
-  svg{max-width:min(720px,86vw); height:auto}
-  .node{font-family:var(--sans); font-size:15px; fill:var(--ink)}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:1rem}
+  .stat{border:1px solid rgba(255,255,255,.09); border-radius:16px; padding:1.2rem 1.3rem; background:rgba(255,255,255,.035); backdrop-filter:blur(10px)}
+  .stat b{font-family:var(--serif); font-weight:400; font-size:clamp(1.6rem,3.2vw,2.5rem); color:var(--amber); display:block; margin-bottom:.35rem}
+  .stat span{color:var(--faint); font-size:.78rem; letter-spacing:.06em; line-height:1.35; display:block}
 
-  .stat{display:inline-block; margin:.2rem 1.6rem .2rem 0}
-  .stat b{font-family:var(--serif); font-size:clamp(1.5rem,3vw,2.3rem); color:var(--amber); display:block}
-  .stat span{color:var(--faint); font-size:.76rem; letter-spacing:.05em}
+  table{border-collapse:collapse; margin-top:1rem; width:100%}
+  th{font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); text-align:left; font-weight:600; padding:.5rem .9rem; border-bottom:1px solid #1a2030}
+  td{padding:.62rem .9rem; border-bottom:1px solid #12182a; font-size:clamp(.85rem,1.35vw,1.1rem); color:var(--dim); line-height:1.35}
+  td:first-child{color:var(--ink); font-family:var(--serif); font-size:clamp(.95rem,1.5vw,1.25rem)}
+  tr.hot td{color:var(--ink); background:rgba(245,158,11,.06)}
+  tr.hot td:first-child{color:var(--amber)}
+  td .war{color:var(--faint); font-style:italic; font-size:.85em}
 
   .band p{font-family:var(--serif); font-size:clamp(1.3rem,2.8vw,2.1rem); line-height:1.55; margin:.2rem 0}
   .band .who{font-family:var(--sans); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-right:.7rem}
 
   .center{align-items:center; text-align:center}
 
+  .bgart{position:absolute; inset:0; width:100%; height:100%; z-index:0}
+  .shade{position:absolute; inset:0; z-index:1; background:linear-gradient(to top, rgba(2,3,8,.88) 0%, rgba(2,3,8,.25) 40%, rgba(2,3,8,0) 65%)}
+  .overlay{position:relative; z-index:2; padding:8vh 9vw; margin-top:auto}
+
+  .duo{display:flex; gap:3rem; align-items:center; margin-top:.6rem}
+  .duo .chart{flex:0 0 52%}
+  .duo .side{flex:1; display:flex; flex-direction:column; gap:1rem}
+  .chart svg{width:100%; height:auto}
+  .farsi{font-size:clamp(4rem,9vw,7.5rem); line-height:1.1; color:var(--ink); opacity:.92}
+
   .bar{position:fixed; left:0; bottom:0; height:3px; background:var(--blue); z-index:5; transition:width .4s ease}
   .count{position:fixed; right:16px; bottom:14px; color:var(--faint); font-size:.72rem; z-index:6; font-variant-numeric:tabular-nums}
   .hint{position:fixed; right:16px; top:14px; color:var(--faint); font-size:.7rem; z-index:6}
-  /* loop minimap — where we are, on the loop */
-  .minimap{position:fixed; left:50%; transform:translateX(-50%); bottom:8px; z-index:6; pointer-events:none}
-  .minimap svg{width:220px; height:auto; overflow:visible}
-  .mm-ring{fill:none; stroke:#1c2233; stroke-width:1.5}
-  .mm-node{fill:var(--faint); font-family:var(--sans); font-size:13px; transition:all .35s}
-  .mm-node.on{fill:var(--amber); filter:drop-shadow(0 0 5px rgba(245,158,11,.9))}
-  .mm-grad{fill:#2a3346; transition:all .35s}
-  .mm-grad.on{fill:var(--amber); filter:drop-shadow(0 0 6px rgba(245,158,11,.9))}
-  .mm-cap{fill:var(--dim); font-size:9px; letter-spacing:.14em; text-transform:uppercase}
-  @media (max-width:760px){ .minimap svg{width:150px} }
-  @media (max-width:720px){ .cols{grid-template-columns:1fr} }
+  @media (max-width:720px){ .cols,.stats{grid-template-columns:1fr} .duo{flex-direction:column} }
 </style>
 </head>
 <body>
@@ -92,138 +100,221 @@
 <div class="deck" id="deck">
 
   <!-- 1 TITLE -->
-  <section class="slide center" data-role="open">
+  <section class="slide center" data-role="title">
     <div class="kicker">GISS 2026</div>
-    <h1>Sisyphus Optimizing<br>in a <span class="amber">Dynamic Universe</span></h1>
+    <h1>The Loss<br>You Can <span class="amber">Write</span></h1>
     <p class="sub" style="margin-top:1.2rem">Shoubaneh Hemmati · IPAC</p>
-    <div class="fig" style="max-width:460px;margin-top:1.6rem">
-      <div class="tag">figure</div>
-      <div class="what">Sisyphus — boulder mid-roll, <em>downhill</em>. He's below it, holding it back.</div>
+  </section>
+
+  <!-- 2 THE SEDUCTION -->
+  <section class="slide full" data-role="cold open">
+    <div class="fig hero">
+      <div class="tag">figure — full bleed, no caption, no logos</div>
+      <div class="what" style="font-size:1.15rem;margin-top:.8rem">the prettiest super-resolved galaxy we can make.<br>let the room want it for ten full seconds.</div>
     </div>
   </section>
 
-  <!-- 2 HOOK -->
-  <section class="slide" data-role="open">
-    <h2>Camus got one thing wrong.<br>The <span class="amber">direction.</span></h2>
-    <p class="sub">The boulder rolls down. He goes with it.</p>
-    <p class="big" style="margin-top:1.4rem">AI's newest idea is<br>your brain's <span class="green">oldest.</span></p>
+  <!-- 3 THESIS -->
+  <section class="slide" data-role="the thesis">
+    <h2>Some of it is <span class="red">false.</span></h2>
+    <p class="sub">sharper than the telescope can see — the model filled the gaps.</p>
+    <p class="big" style="margin-top:1.3rem">Every pipeline optimizes a loss it can <em>write</em>.</p>
+    <p class="sub">the thing we want is rarely in it.</p>
   </section>
 
-  <!-- 3 THE LOOP -->
-  <section class="slide center" data-role="the bone">
-    <div class="kicker" style="margin-bottom:1.2rem">the whole talk is one loop</div>
-    <div class="loopwrap">
-      <svg viewBox="0 0 720 360" role="img" aria-label="the optimization loop">
-        <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5b6478"/></marker></defs>
-        <ellipse cx="360" cy="175" rx="300" ry="140" fill="none" stroke="#1c2233" stroke-width="1.5"/>
-        <path d="M660,175 A300,140 0 0 1 360,315" fill="none" stroke="#2a3346" stroke-width="1.5" marker-end="url(#ar)"/>
-        <g text-anchor="middle">
-          <circle cx="360" cy="35" r="6" fill="#38bdf8"/><text class="node" x="360" y="22">① distance</text>
-          <circle cx="660" cy="175" r="6" fill="#38bdf8"/><text class="node" x="660" y="160" text-anchor="end">② loss</text>
-          <circle cx="540" cy="315" r="6" fill="#38bdf8"/><text class="node" x="540" y="340">③ descend</text>
-          <circle cx="180" cy="315" r="6" fill="#f59e0b"/><text class="node" x="180" y="340">④ forget</text>
-          <circle cx="60" cy="175" r="6" fill="#f59e0b"/><text class="node" x="60" y="160" text-anchor="start">⑤ target moves</text>
-        </g>
-        <text x="360" y="170" text-anchor="middle" style="font-family:Georgia;font-size:24px;fill:#e8ecf4">never converges</text>
-        <text x="360" y="202" text-anchor="middle" style="font-family:Georgia;font-size:19px;fill:#f59e0b">the glorious gradient</text>
-      </svg>
+  <!-- 4 TANTALUS BY THE SEA -->
+  <section class="slide full" data-role="the only myth until the close">
+    <svg class="bgart" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="Tantalus by the sea">
+      <defs>
+        <linearGradient id="tsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#05060a"/><stop offset="0.72" stop-color="#081226"/><stop offset="1" stop-color="#0c1c38"/>
+        </linearGradient>
+        <linearGradient id="tsea" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0e2c4e"/><stop offset="0.5" stop-color="#0a1e3a"/><stop offset="1" stop-color="#050d1c"/>
+        </linearGradient>
+        <radialGradient id="thalo" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#f59e0b" stop-opacity="0.30"/><stop offset="0.55" stop-color="#f59e0b" stop-opacity="0.10"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="tmoon" cx="0.42" cy="0.38" r="0.75">
+          <stop offset="0" stop-color="#fde9bb"/><stop offset="0.6" stop-color="#f8c15c"/><stop offset="1" stop-color="#e8940a"/>
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="1600" height="524" fill="url(#tsky)"/>
+      <g fill="#e8ecf4">
+        <circle cx="90" cy="70" r="1.4" opacity="0.8"/><circle cx="210" cy="180" r="1" opacity="0.5"/><circle cx="330" cy="60" r="1.2" opacity="0.7"/>
+        <circle cx="420" cy="240" r="1" opacity="0.45"/><circle cx="520" cy="120" r="1.6" opacity="0.9"/><circle cx="600" cy="330" r="0.9" opacity="0.4"/>
+        <circle cx="680" cy="80" r="1.1" opacity="0.6"/><circle cx="760" cy="210" r="1.3" opacity="0.7"/><circle cx="150" cy="330" r="1" opacity="0.5"/>
+        <circle cx="470" cy="400" r="1.1" opacity="0.5"/><circle cx="1180" cy="90" r="1.4" opacity="0.8"/><circle cx="1290" cy="200" r="1" opacity="0.5"/>
+        <circle cx="1400" cy="120" r="1.5" opacity="0.85"/><circle cx="1500" cy="260" r="1" opacity="0.5"/><circle cx="1340" cy="350" r="1.1" opacity="0.55"/>
+        <circle cx="1540" cy="60" r="1.1" opacity="0.6"/><circle cx="840" cy="120" r="1" opacity="0.5"/><circle cx="1100" cy="300" r="0.9" opacity="0.4"/>
+        <circle cx="960" cy="60" r="1.2" opacity="0.65"/><circle cx="380" cy="150" r="0.9" opacity="0.45"/><circle cx="720" cy="380" r="0.9" opacity="0.4"/>
+      </g>
+      <circle cx="1000" cy="392" r="190" fill="url(#thalo)"/>
+      <circle cx="1000" cy="392" r="74" fill="url(#tmoon)"/>
+      <rect x="0" y="524" width="1600" height="330" fill="url(#tsea)"/>
+      <g stroke="#7dd3fc" stroke-linecap="round" fill="none">
+        <line x1="120" y1="560" x2="260" y2="560" stroke-width="2.5" opacity="0.10"/><line x1="380" y1="590" x2="560" y2="590" stroke-width="3" opacity="0.12"/>
+        <line x1="200" y1="640" x2="430" y2="640" stroke-width="3.5" opacity="0.10"/><line x1="80" y1="710" x2="330" y2="710" stroke-width="4" opacity="0.08"/>
+        <line x1="480" y1="680" x2="700" y2="680" stroke-width="3.5" opacity="0.10"/><line x1="1250" y1="575" x2="1400" y2="575" stroke-width="2.5" opacity="0.12"/>
+        <line x1="1330" y1="630" x2="1540" y2="630" stroke-width="3.5" opacity="0.10"/><line x1="1200" y1="700" x2="1460" y2="700" stroke-width="4" opacity="0.08"/>
+        <line x1="620" y1="620" x2="760" y2="620" stroke-width="3" opacity="0.09"/><line x1="540" y1="545" x2="640" y2="545" stroke-width="2" opacity="0.10"/>
+      </g>
+      <g stroke="#f59e0b" stroke-linecap="round" fill="none">
+        <line x1="985" y1="536" x2="1015" y2="536" stroke-width="3" opacity="0.38"/><line x1="972" y1="556" x2="1030" y2="556" stroke-width="3.5" opacity="0.34"/>
+        <line x1="958" y1="580" x2="1046" y2="580" stroke-width="4" opacity="0.30"/><line x1="944" y1="608" x2="1062" y2="608" stroke-width="4.5" opacity="0.27"/>
+        <line x1="928" y1="640" x2="1080" y2="640" stroke-width="5" opacity="0.24"/><line x1="912" y1="676" x2="1100" y2="676" stroke-width="5.5" opacity="0.21"/>
+        <line x1="896" y1="716" x2="1122" y2="716" stroke-width="6" opacity="0.18"/><line x1="880" y1="758" x2="1148" y2="758" stroke-width="6.5" opacity="0.15"/>
+        <line x1="866" y1="800" x2="1170" y2="800" stroke-width="7" opacity="0.12"/>
+      </g>
+      <path d="M 0,900 L 0,786 C 260,768 480,776 720,802 C 950,828 1240,846 1600,838 L 1600,900 Z" fill="#04070e"/>
+      <path d="M 0,790 C 260,772 480,780 720,806" stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.18"/>
+      <path d="M 1150,838 C 1320,844 1470,844 1600,840" stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.16"/>
+      <path d="M 1052,822 C 1112,808 1176,808 1236,824" stroke="#7dd3fc" stroke-width="2.5" fill="none" opacity="0.45"/>
+      <path d="M 1076,834 C 1128,824 1180,824 1230,836" stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.28"/>
+      <path d="M 1100,846 C 1142,839 1182,839 1222,847" stroke="#7dd3fc" stroke-width="1.5" fill="none" opacity="0.16"/>
+      <ellipse cx="1120" cy="828" rx="92" ry="9" fill="#f59e0b" opacity="0.07"/>
+      <ellipse cx="1100" cy="820" rx="60" ry="6" fill="#7dd3fc" opacity="0.06"/>
+      <g stroke="#01030a" fill="none" stroke-linecap="round">
+        <path d="M 872,690 C 856,722 850,754 866,788" stroke-width="54"/>
+        <path d="M 866,788 C 878,802 894,812 912,820" stroke-width="48"/>
+        <path d="M 912,822 C 878,830 838,833 800,830" stroke-width="28"/>
+        <path d="M 864,706 C 880,738 892,766 898,796" stroke-width="20"/>
+        <path d="M 880,700 C 928,722 978,748 1030,786" stroke-width="24"/>
+      </g>
+      <circle cx="899" cy="663" r="31" fill="#01030a"/>
+      <circle cx="1038" cy="791" r="11" fill="#01030a"/>
+      <ellipse cx="1052" cy="796" rx="14" ry="7" fill="#01030a" transform="rotate(24 1052 796)"/>
+      <g stroke="#f59e0b" fill="none" stroke-linecap="round">
+        <path d="M 919,645 A 31,31 0 0 1 928,673" stroke-width="3.5" opacity="0.5"/>
+        <path d="M 899,692 C 886,722 882,752 894,782" stroke-width="4" opacity="0.32"/>
+        <path d="M 892,706 C 936,727 982,752 1030,786" stroke-width="3" opacity="0.22"/>
+      </g>
+      <ellipse cx="812" cy="826" rx="120" ry="12" fill="#000000" opacity="0.5"/>
+    </svg>
+    <div class="shade"></div>
+    <div class="overlay">
+      <div class="kicker" style="margin-bottom:.7rem">the failure modes, both of them</div>
+      <p class="big">The water retreats as he <span class="amber">reaches</span>.</p>
+      <p class="big">The sea beside him is <span class="blue">undrinkable</span>.</p>
+      <p class="quiet" style="margin-top:.9rem">Goodhart's law — when a measure becomes a target, it ceases to be a good measure.</p>
     </div>
   </section>
 
-  <!-- 4 DISTANCE (domains) -->
-  <section class="slide" data-role="① distance">
-    <div class="kicker">① distance — one idea, three costumes</div>
+  <!-- 5 THE TRILOGY -->
+  <section class="slide" data-role="paper · three measured gaps">
+    <div class="kicker">Everetts · Rezaee · Haghjoo</div>
+    <h2>“Sharper at What <span class="red">Cost?</span>”</h2>
     <div class="cols">
-      <div class="col astro"><h3>🔭 Astronomy</h3><p>redshift picks your rung.</p></div>
-      <div class="col ai"><h3>🤖 AI</h3><p>the embedding <em>is</em> "close."</p></div>
-      <div class="col person"><h3>🧑 Person</h3><p>too far: a stranger.<br>too close: only flaws.</p></div>
+      <div class="col"><h3>shape · NISP→JWST</h3><p>diffusion: <b>below bilinear</b> on shape info.<br>best net: <b>−25–35%</b> ellipticity.<br>lensing needs 10⁻³.</p></div>
+      <div class="col"><h3>spectra · JADES</h3><p>Hα recovered: <b>26% of true</b>.<br>line ratios — the physics — <b>corrupted</b>.</p></div>
+      <div class="col"><h3>photometry · WISE→Spitzer</h3><p>deblending <b>35% vs 9%</b> — the one win.<br>flux biased <b>up</b> (oversmoothing).</p></div>
+    </div>
+    <p class="sub" style="margin-top:.9rem">safe where the claim is <em>auditable</em> (a detection) · unsafe where it is <em>silent</em> (a shape, a ratio)</p>
+    <p class="quiet">the loss fell in every case. the physics didn't follow.</p>
+  </section>
+
+  <!-- 6 TWO GAPS -->
+  <section class="slide" data-role="the curve everyone knows — and the gap it can't see">
+    <div class="kicker">the canonical curve</div>
+    <h2>Two gaps.</h2>
+    <div class="duo">
+      <div class="chart">
+        <svg viewBox="0 0 760 430" role="img" aria-label="training loss falls while validation loss rises past the early-stopping point">
+          <line x1="70" y1="30" x2="70" y2="370" stroke="#2a3346" stroke-width="1.5"/>
+          <line x1="70" y1="370" x2="720" y2="370" stroke="#2a3346" stroke-width="1.5"/>
+          <text x="70" y="20" fill="#5b6478" font-size="15" font-family="system-ui">loss</text>
+          <text x="720" y="398" fill="#5b6478" font-size="15" font-family="system-ui" text-anchor="end">training time →</text>
+          <line x1="420" y1="55" x2="420" y2="370" stroke="#8b93a7" stroke-width="1.5" stroke-dasharray="6 7" opacity=".6"/>
+          <text x="420" y="42" fill="#8b93a7" font-size="15" font-family="system-ui" text-anchor="middle">stop here</text>
+          <path d="M 90,80 C 200,300 320,330 420,341 C 520,352 630,356 700,358" fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M 90,100 C 210,270 330,280 420,285 C 510,290 610,220 700,120" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+          <text x="706" y="356" fill="#e8ecf4" font-size="16" font-family="system-ui" text-anchor="end" dy="-10">training</text>
+          <text x="706" y="118" fill="#e8ecf4" font-size="16" font-family="system-ui" text-anchor="end" dy="-10">validation</text>
+        </svg>
+      </div>
+      <div class="side">
+        <p class="sub"><b style="color:var(--ink)">train ↔ validation</b> — the gap you can see in-house.</p>
+        <p class="sub"><b style="color:var(--ink)">loss ↔ physics</b> — the gap validation can't see: it's denominated in the same currency. the shape bias survived every split — and died at JWST.</p>
+        <p class="quiet">every regularizer — early stopping, dropout, weight decay — deliberately underfits the proxy to protect the target. perfect union with the training set is a mirror.</p>
+      </div>
     </div>
   </section>
 
-  <!-- 5 DISTANCE (rigor) -->
-  <section class="slide center" data-role="① distance · the rigor">
-    <p class="big">sampling → resolution → distance</p>
-    <p class="sub" style="margin-top:1rem"><span class="amber">Nyquist</span> binds all three</p>
-    <p class="quiet" style="margin-top:1.4rem">past the band → hallucinate · below it → forget</p>
+  <!-- 7 THE SECOND INSTRUMENT -->
+  <section class="slide" data-role="the law">
+    <div class="kicker">the law</div>
+    <h2>The gap is invisible from <span class="amber">inside</span>.</h2>
+    <p class="sub" style="margin-top:.7rem">every gap in this talk was measured from outside:<br>JWST · Spitzer · the grating · truth catalogs · a second ladder.</p>
+    <p class="big" style="margin-top:1.1rem">Calibration. Cross-survey validation. Joint processing.<br><span class="blue">Second instruments.</span></p>
+    <p class="quiet" style="margin-top:.9rem">in what currency was it validated — and does your measurement live in that currency?</p>
   </section>
 
-  <!-- 6 LOSS + RECURSION -->
-  <section class="slide" data-role="② loss">
-    <div class="kicker">② loss — it falls out of the distance</div>
-    <p class="sub">once "close" is defined, the loss writes itself.</p>
-    <h2 style="margin-top:1rem">But choosing the distance<br>was <span class="amber">itself</span> an optimization.</h2>
-    <p class="quiet">loops inside loops</p>
-  </section>
-
-  <!-- 7 DESCEND -->
-  <section class="slide" data-role="③ descend">
-    <div class="kicker">③ descend · Polyak 1964 — the "heavy ball method"</div>
-    <h2>Mass is <span class="green">memory.</span></h2>
-    <p class="big" style="margin-top:1rem">Downhill, <span class="red">gravity switches sides.</span></p>
-    <p class="sub">pushing → restraining · let go = divergence</p>
-  </section>
-
-  <!-- 8 FORGET -->
-  <section class="slide" data-role="④ model = forget">
-    <div class="kicker">④ model = forget</div>
-    <h2>To model is to <span class="amber">forget.</span></h2>
-    <p class="big" style="margin-top:.6rem">hallucination &nbsp;↔&nbsp; amnesia</p>
-    <p class="sub">which pixels are physics — and which are the model's?</p>
+  <!-- 8 THE TEN-BAND EYE -->
+  <section class="slide" data-role="the loss you can't write yet">
+    <div class="kicker">the loss you can't write yet — tomorrow's questions</div>
+    <h2>The Ten-Band <span class="blue">Eye</span></h2>
+    <p class="sub">Rubin <em>ugrizy</em> + Euclid <em>VIS · Y · J · H</em> — one sky; nobody sees all of it.</p>
+    <div class="cols two" style="margin-top:1rem">
+      <div class="col"><h3 style="color:var(--amber)">commit</h3><p>the pipeline writes today's loss in full: <b>petabytes → kilobytes</b>, today's questions, decided in advance, for every source, forever.</p></div>
+      <div class="col"><h3 style="color:var(--green)">hedge</h3><p>JAISP: <b>mask one band, predict it from the other nine</b> — at each band's delivered sampling. no common grid, no target committed.</p></div>
+    </div>
   </section>
 
   <!-- 9 JAISP -->
   <section class="slide" data-role="paper · pillar">
-    <div class="kicker">JAISP · Rubin–Euclid foundation model · <span class="green">Hemmati et al.</span></div>
-    <h2>Forgetting <span class="green">with a hedge.</span></h2>
-    <p class="sub">freeze the encoder — build a good model, then leave it alone.</p>
-    <div style="margin-top:1rem">
-      <span class="stat"><b>0.45 mag</b><span>deeper</span></span>
-      <span class="stat"><b>50→14 mas</b><span>astrometry</span></span>
-      <span class="stat"><b>0×</b><span>retraining, new field</span></span>
+    <div class="kicker">JAISP · Rubin–Euclid foundation model · Hemmati et al.</div>
+    <h2>Reconstruction is secretly <span class="green">alignment</span>.</h2>
+    <p class="sub">no band can be predicted from the other nine without factoring the sky from the instruments.</p>
+    <div class="stats">
+      <div class="stat"><b>0.45 mag</b><span>deeper than the VIS catalog<br>93% complete · 94% pure</span></div>
+      <div class="stat"><b>50 → 14 mas</b><span>astrometric scatter</span></div>
+      <div class="stat"><b>0×</b><span>retraining on a new field —<br>encoder frozen</span></div>
     </div>
-    <div class="fig" style="max-width:560px"><div class="tag">hero figure</div><div class="what">one source, ten bands → one frozen representation.</div></div>
+    <div class="fig" style="max-width:560px;margin-top:1rem"><div class="tag">hero figure</div><div class="what">one source, ten bands → one frozen representation.</div></div>
   </section>
 
-  <!-- 10 REVEAL -->
-  <section class="slide center" data-role="you think you know this → no">
-    <div class="fig" style="max-width:480px"><div class="tag">figure — big & gorgeous</div><div class="what">a stunning super-resolved galaxy.</div></div>
-    <h2 style="margin-top:1rem">Sharper — <span class="red">but real?</span></h2>
-    <p class="sub">shape: worse than a blur · spectra: <span class="red">26%</span> real · photometry: biased</p>
+  <!-- 10 COMPRESSION -->
+  <section class="slide" data-role="the confession">
+    <div class="kicker">the confession</div>
+    <h2>Is it even <span class="amber">compressing?</span></h2>
+    <p class="sub" style="margin-top:.7rem">the catalog compresses <em>because it committed</em> — it named the questions it will answer.</p>
+    <p class="sub">the foundation model refuses to name them. <b style="color:var(--ink)">hedging costs bits.</b></p>
+    <p class="big" style="margin-top:1.1rem">Prediction <em>is</em> compression —<br>it compresses the <span class="blue">survey</span>, not the source.</p>
   </section>
 
-  <!-- 11 SUBVERSION -->
-  <section class="slide" data-role="the turn">
-    <h2>Optimizing <span class="amber">every second?</span><br>Something is wrong.</h2>
-    <p class="sub" style="margin-top:.8rem">a healthy mind coasts. re-descend only on: <span class="blue">distrust · surprise · a new question.</span></p>
-    <p class="big" style="margin-top:1.2rem"><span class="red">exploding</span> → anxiety &nbsp;·&nbsp; <span class="purple">vanishing</span> → depression</p>
+  <!-- 11 THE DIAGNOSTIC -->
+  <section class="slide" data-role="when the gradient goes quiet">
+    <div class="kicker">when the gradient goes quiet</div>
+    <h2>Four readings.</h2>
+    <table>
+      <tr><th>why it's quiet</th><th>the tell</th><th>the move</th></tr>
+      <tr><td>done, locally</td><td>outside truth agrees <span class="war">— the survey shipped</span></td><td>declare it · freeze</td></tr>
+      <tr><td>local minimum</td><td>a perturbation finds lower <span class="war">— the stuck MCMC</span></td><td>add noise</td></tr>
+      <tr><td>the world drifted</td><td>new data surprises the frozen model <span class="war">— the release broke the calibration</span></td><td>retrain</td></tr>
+      <tr class="hot"><td>proxy ≠ target</td><td>truth disagrees while the loss is happy <span class="war">— photo-z: perfect on spec-z, wrong on the faint end</span></td><td>stop — rewrite the loss</td></tr>
+    </table>
+    <p class="quiet" style="margin-top:.8rem">every tell needs information from outside the loss.</p>
   </section>
 
-  <!-- 12 CHECKPOINT + BASIN HOPPING -->
-  <section class="slide center" data-role="checkpoint · we solve things constantly">
-    <p class="big" style="max-width:20ch">A paper is a photograph of the boulder <span class="amber">mid-slope.</span></p>
-    <p class="sub" style="margin-top:1rem">midway is the only place one can be written — <em>"done, for now."</em></p>
-    <p class="sub" style="margin-top:.7rem">a real win — then you move: a new direction opens, or the well goes <span class="amber">flat.</span></p>
+  <!-- 12 H0 -->
+  <section class="slide" data-role="a century of descent">
+    <div class="kicker">a century of descent</div>
+    <h2>Two converged losses.<br>One <span class="amber">universe</span>.</h2>
+    <p class="sub" style="margin-top:.7rem">both ladders: immaculate residuals — incompatible answers.<br>the frontier of cosmology is a gap diagnosis.</p>
+    <p class="quiet" style="margin-top:.9rem">the response, correctly: more second instruments — TRGB, time delays, standard sirens.</p>
+    <div class="fig" style="max-width:520px;margin-top:.8rem"><div class="tag">figure</div><div class="what">the two ladders and the tension — standard figure, redrawn clean.</div></div>
   </section>
 
-  <!-- 13 TANTALUS -->
-  <section class="slide" data-role="⑤ the target moves · the second prisoner">
-    <div class="kicker">⑤ the target moves</div>
-    <h2>You reach — and it <span class="amber">recedes.</span></h2>
-    <p class="sub">that isn't Sisyphus. that's <em>Tantalus</em> — water retreating from his lips, fruit the wind lifts from his hand.</p>
-    <p class="big" style="margin-top:1.1rem">the target moves <span class="amber">because</span> you reached.</p>
-    <p class="sub">Goodhart's law · reward hacking · the alignment problem</p>
+  <!-- 13 THE PERSON -->
+  <section class="slide" data-role="the last domain">
+    <div class="kicker">the last domain</div>
+    <h2>Prediction error converges.<br><span class="mag">People don't.</span></h2>
+    <p class="sub" style="margin-top:.8rem">you stop being surprised by someone — that's the proxy converging, not the knowledge.<br>completing them from your priors is the same failure with a softer name.</p>
+    <p class="quiet" style="margin-top:.9rem">you see me at podium resolution — which I've selected carefully.</p>
   </section>
 
-  <!-- 14 TARGET MOVES -->
-  <section class="slide" data-role="⑤ the target moves">
-    <div class="kicker">⑤ the target moves</div>
-    <h2>You reach the bottom —<br>the valley <span class="amber">splits.</span></h2>
-    <p class="sub">H₀ → the Hubble tension · intimacy has a <span class="mag">Nyquist limit</span></p>
-    <p class="quiet" style="margin-top:1rem">you see me at podium resolution — which I've selected carefully.</p>
-  </section>
-
-  <!-- 14 THESIS -->
-  <section class="slide band" data-role="the thesis">
+  <!-- 14 THESIS BAND -->
+  <section class="slide band" data-role="the thesis, four ways">
     <p><span class="who">galaxy</span> real clump, or the <span class="blue">PSF?</span></p>
     <p><span class="who">neural net</span> <span class="green">physics,</span> or prior?</p>
     <p><span class="who">brain</span> memory, or a <span class="purple">reconstruction?</span></p>
@@ -231,55 +322,28 @@
     <p class="sub" style="margin-top:1.4rem"><em>measurement, or invention.</em></p>
   </section>
 
-  <!-- 16 CLOSE -->
-  <section class="slide" data-role="close">
-    <h2>The receding target<br>was never the <span class="amber">punishment.</span></h2>
-    <p class="sub">reach the fruit and the wanting ends · no gradient → nothing moves → heat death.</p>
-    <p class="big" style="margin-top:1.1rem">"it's coming home" · <span class="quiet" style="font-style:normal">60 years</span><br><span dir="rtl">فراق</span> · Hafez · <span class="quiet" style="font-style:normal">700 years</span></p>
-    <p class="sub">Tantalus, the ghazal, the stadium — <em>the distance is the wanting.</em></p>
-  </section>
-
-  <!-- 16 FINAL -->
-  <section class="slide center" data-role="the glorious gradient">
-    <h1 class="amber">The Glorious Gradient</h1>
-    <p class="sub" style="margin-top:1.4rem;font-style:italic">joy, sadness — or the joy inside the sadness.</p>
-    <p class="big" style="margin-top:2rem">The sweetness was never at the bottom.<br>It was on the <span class="amber">slope.</span></p>
+  <!-- 15 CLOSE -->
+  <section class="slide center" data-role="close · one breath">
+    <div class="farsi">فراق</div>
+    <p class="sub" style="margin-top:.6rem">seven hundred years of poems that converge and never arrive —<br>union is available only with the proxy.</p>
+    <p class="big" style="margin-top:2rem">We optimize the losses we can write.</p>
+    <h2 style="margin-top:.4rem">Hafez wrote <span class="amber">his</span>.</h2>
   </section>
 
 </div>
 
 <div class="bar" id="bar"></div>
 <div class="count" id="count"></div>
-<div class="minimap">
-  <svg viewBox="0 0 240 106" aria-hidden="true">
-    <ellipse class="mm-ring" cx="120" cy="46" rx="100" ry="32"/>
-    <text class="mm-node" data-node="0" x="120" y="14" text-anchor="middle" dominant-baseline="middle">①</text>
-    <text class="mm-node" data-node="1" x="222" y="46" text-anchor="middle" dominant-baseline="middle">②</text>
-    <text class="mm-node" data-node="2" x="182" y="80" text-anchor="middle" dominant-baseline="middle">③</text>
-    <text class="mm-node" data-node="3" x="58" y="80" text-anchor="middle" dominant-baseline="middle">④</text>
-    <text class="mm-node" data-node="4" x="18" y="46" text-anchor="middle" dominant-baseline="middle">⑤</text>
-    <circle class="mm-grad" data-node="5" cx="120" cy="46" r="4"/>
-    <text class="mm-cap" id="mmcap" x="120" y="102" text-anchor="middle"></text>
-  </svg>
-</div>
 <div class="hint">← → · F fullscreen</div>
 
 <script>
   const slides=[...document.querySelectorAll('.slide')]; let i=0;
-  // loop minimap: which loop node each of the 16 slides sits on
-  // 0=① distance · 1=② loss · 2=③ descend · 3=④ forget · 4=⑤ target · 5=center (glorious gradient)
-  const NODEMAP=[0,0,5,0,0,1,2,3,3,3,3,3,4,4,4,5,5];
-  const CAPS=["① distance","② loss","③ descend","④ forget","⑤ the target moves","the glorious gradient"];
-  const mmNodes=[...document.querySelectorAll('.mm-node,.mm-grad')];
-  const mmCap=document.getElementById('mmcap');
   function show(n){
     i=Math.max(0,Math.min(slides.length-1,n));
     slides.forEach((s,k)=>s.classList.toggle('active',k===i));
     document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
     document.getElementById('count').textContent=(i+1)+' / '+slides.length;
-    const node=NODEMAP[i];
-    mmNodes.forEach(n=>n.classList.toggle('on', +n.dataset.node===node));
-    mmCap.textContent=CAPS[node];
+    history.replaceState(null,'','#'+(i+1));
   }
   document.addEventListener('keydown',e=>{
     if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1)}
@@ -288,7 +352,7 @@
     else if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();
   });
   document.getElementById('deck').addEventListener('click',e=>{ (e.clientX<innerWidth*0.28)?show(i-1):show(i+1) });
-  show(0);
+  show(parseInt(location.hash.slice(1))-1||0);
 </script>
 </body>
 </html>

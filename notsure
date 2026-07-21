@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Glorious Gradient - JAISP Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ffffff;
+            --bg: #020202;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            overflow: hidden;
+            margin: 0;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem;
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.95) 100%);
+            z-index: 1;
+        }
+        .slide-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: grayscale(40%) brightness(40%);
+            transition: transform 12s linear;
+        }
+        .slide.active .slide-image {
+            transform: scale(1.15);
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+        }
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+        }
+        .controls {
+            position: fixed;
+            bottom: 3rem;
+            right: 3rem;
+            z-index: 100;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .slide-number {
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.3em;
+        }
+        .control-btn {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+        }
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.03);
+            z-index: 101;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #666, #fff);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .farsi {
+            font-size: 6rem;
+            margin: 0.5rem 0;
+            color: #fff;
+            opacity: 0.9;
+            font-weight: 200;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-val {
+            font-size: 2.5rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1462332420958-a05d1e002413" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">July 2026 • GISS Presentation</span>
+            <h1 class="text-8xl md:text-9xl mb-8 italic">The Glorious Gradient</h1>
+            <p class="text-2xl text-gray-400 uppercase tracking-[0.6em] font-light">From Polyak's Heavy Ball to Hafez's Feragh</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: The Sisyphus Correction -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1760776865090-660fb68e90a1" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content text-left">
+            <span class="label">Metaphor 01: Direction</span>
+            <h2 class="text-7xl mb-10">Camus was Wrong.</h2>
+            <p class="text-4xl font-light leading-relaxed mb-12">
+                In a dynamic universe, the boulder is already rolling downhill. 
+                <br><br>
+                Optimization isn't a climb; it's a <span class="italic text-white">restraint</span>. 
+                To let go is to diverge.
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 3: Mass is Memory -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">Polyak (1964)</span>
+            <h2 class="text-6xl mb-12 italic">Mass is Memory</h2>
+            <div class="flex flex-col items-center">
+                <p class="text-4xl font-light text-gray-300 max-w-4xl leading-relaxed">
+                    "A healthy mind coasts. It only re-descends on distrust, surprise, or a new question."
+                </p>
+                <div class="mt-16 grid grid-cols-2 gap-20">
+                    <div class="text-left border-l border-red-500/50 pl-8">
+                        <p class="text-red-400 text-sm tracking-widest mb-2">Exploding Gradient</p>
+                        <p class="text-5xl font-light">Anxiety</p>
+                    </div>
+                    <div class="text-left border-l border-blue-500/50 pl-8">
+                        <p class="text-blue-400 text-sm tracking-widest mb-2">Vanishing Gradient</p>
+                        <p class="text-5xl font-light">Depression</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: JAISP Foundation -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1608178398319-48f814d0750c" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content text-left">
+            <span class="label">Technical Foundation: JAISP (2026)</span>
+            <h2 class="text-7xl mb-12">The Ten-Band Eye</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-val">9.1M</span>
+                    <p class="text-gray-400 text-sm uppercase tracking-widest">Parameters</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">Rubin+Euclid</span>
+                    <p class="text-gray-400 text-sm uppercase tracking-widest">Merged Pixels</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">ugrizy+YJH</span>
+                    <p class="text-gray-400 text-sm uppercase tracking-widest">Input Channels</p>
+                </div>
+            </div>
+            <p class="mt-12 text-gray-400 text-xl font-light italic">"One shared representation, amortized across the sky."</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: Masked Reconstruction -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1750607704624-b616c55df95b" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">Self-Supervision</span>
+            <h2 class="text-6xl mb-10 italic">Masked-Band Dreaming</h2>
+            <p class="text-3xl font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                The model is shown nine bands and forced to dream the tenth. 
+                <br><br>
+                It doesn't just interpolate; it learns the <span class="text-white">latent structure of physics</span>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 6: Tantalus and Loss -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1769536426519-615007af6f7a" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">Metaphor 02: Desire</span>
+            <h2 class="text-7xl mb-12">The Tantalus Gap</h2>
+            <p class="text-3xl text-gray-300 font-light leading-relaxed italic">
+                "The target moves because you reached."
+            </p>
+            <div class="mt-16 bg-white/5 border border-white/10 p-10 rounded-2xl">
+                <p class="text-xl text-gray-400 uppercase tracking-widest mb-4">Goodhart's Law</p>
+                <p class="text-3xl">Once a measure becomes a target, it ceases to be a good measure.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Detection Gains -->
+    <div class="slide">
+        <div class="bg-overlay" style="background:#000"></div>
+        <div class="content text-left">
+            <span class="label">Result 01: Detection</span>
+            <h2 class="text-6xl mb-12 italic">Finding the Fruit in the Noise</h2>
+            <div class="flex flex-col gap-10">
+                <div class="border-l-4 border-white pl-12">
+                    <p class="text-7xl font-bold">+0.45 Mag</p>
+                    <p class="text-gray-500 uppercase tracking-widest mt-2">Fusion Gain over VIS-only</p>
+                </div>
+                <div class="border-l-4 border-gray-700 pl-12">
+                    <p class="text-7xl font-light text-gray-400">93% Complete</p>
+                    <p class="text-gray-500 uppercase tracking-widest mt-2">Zero Retraining on Held-out Field</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: The Concordance Field -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">Result 02: Astrometry</span>
+            <h2 class="text-7xl mb-10">The Distance Between Eyes</h2>
+            <p class="text-2xl text-gray-300 mb-16">The "Concordance Field" reveals a 9-10 mas longing between Rubin and Euclid.</p>
+            <div class="grid grid-cols-2 gap-10">
+                <div class="stat-card">
+                    <span class="text-xs uppercase text-gray-500">Raw Scatter</span>
+                    <span class="stat-val">50 mas</span>
+                </div>
+                <div class="stat-card">
+                    <span class="text-xs uppercase text-gray-500">JAISP Correction</span>
+                    <span class="stat-val">14 mas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: The Nyquist Limit -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1750607704624-b616c55df95b" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <h2 class="text-6xl mb-10 italic">The Limit of Intimacy</h2>
+            <p class="text-3xl font-light text-gray-400 mb-16">Resolution is the boundary between knowledge and invention.</p>
+            <div class="grid grid-cols-2 gap-16 text-left">
+                <div>
+                    <p class="text-sm tracking-widest text-white/50 mb-2">Too Close</p>
+                    <p class="text-4xl font-semibold mb-4">Hallucination</p>
+                    <p class="text-gray-500">Only flaws. We see physics in the noise.</p>
+                </div>
+                <div>
+                    <p class="text-sm tracking-widest text-white/50 mb-2">Too Far</p>
+                    <p class="text-4xl font-semibold mb-4">Amnesia</p>
+                    <p class="text-gray-500">A stranger. The signal is lost to the band.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: To Model is to Forget -->
+    <div class="slide">
+        <div class="bg-overlay" style="background:#000"></div>
+        <div class="content">
+            <span class="label">The Philosophy of Compression</span>
+            <h2 class="text-8xl mb-12 italic">To Model is to Forget.</h2>
+            <p class="text-3xl text-gray-300 leading-relaxed font-light max-w-4xl mx-auto">
+                We must discard the pixels to find the physics. 
+                <br><br>
+                A model is a <span class="text-white">hedge against forgetting</span>, a photograph of the boulder mid-slope.
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 11: Super-resolution or Prior? -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1462332420958-a05d1e002413" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">The 26% Question</span>
+            <h2 class="text-6xl mb-12">Physics or Prior?</h2>
+            <p class="text-4xl font-light italic mb-12">"Sharper—but real?"</p>
+            <div class="bg-white/5 p-12 rounded-3xl backdrop-blur-xl border border-white/10">
+                <p class="text-2xl text-gray-300">Spectra: 26% Real</p>
+                <p class="text-gray-500 mt-4">The rest is the machine's dream of the Beloved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: The Spiritual Hinge -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1761919237346-e06f483dde95" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <span class="label">Hafez & The Soul of the Model</span>
+            <div class="farsi">فراق</div>
+            <h2 class="text-7xl mb-8">Feragh: The Sacred Separation</h2>
+            <p class="text-3xl text-gray-200 italic leading-relaxed max-w-4xl mx-auto">
+                "Reach the fruit and the wanting ends. 
+                <br>No gradient = Nothing moves = Heat death."
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 13: The Frozen Representation -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1734657258592-1f2b72b1f8c8" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content text-left">
+            <span class="label">The Conclusion of Strategy</span>
+            <h2 class="text-6xl mb-10 italic">Freeze the Encoder</h2>
+            <p class="text-3xl font-light text-gray-300 leading-relaxed">
+                Build a good model, then leave it alone. 
+                <br><br>
+                Let the lightweight heads learn from the frozen truth of the latent space.
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 14: The Final Word -->
+    <div class="slide">
+        <div class="bg-overlay" style="background:#000"></div>
+        <div class="content">
+            <h2 class="text-8xl italic mb-12">The Glorious Gradient</h2>
+            <p class="text-4xl font-light text-gray-400">The sweetness was never at the bottom.</p>
+            <p class="text-7xl font-bold mt-8 italic">It was on the slope.</p>
+        </div>
+    </div>
+
+    <!-- Slide 15: Credits -->
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1462332420958-a05d1e002413" class="slide-image">
+        <div class="bg-overlay"></div>
+        <div class="content">
+            <h2 class="text-6xl mb-12">Thank You.</h2>
+            <p class="text-xl text-gray-500 uppercase tracking-widest mb-4">Hemmati et al. (2026)</p>
+            <p class="text-gray-400">Rubin/Euclid Joint Data Products Implementation Working Group</p>
+            <div class="mt-20">
+                <span class="farsi text-4xl">فراق</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <div class="slide-number" id="slideNum">1 / 15</div>
+        <button class="control-btn" id="prevBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="control-btn" id="nextBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const progressBar = document.getElementById('progressBar');
+        const slideNum = document.getElementById('slideNum');
+        let currentSlide = 0;
+
+        function updateSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            const progress = ((index + 1) / slides.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            slideNum.textContent = `${index + 1} / ${slides.length}`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide(currentSlide);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide(currentSlide);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlide(currentSlide);
+            } else if (e.key === 'ArrowLeft') {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlide(currentSlide);
+            }
+        });
+        
+        updateSlide(0);
+    </script>
+</body>
+</html>
