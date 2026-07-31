@@ -56,9 +56,9 @@ Two nested gaps, stated once so the ML crowd can't object: the **generalization 
 
 **1 · The seduction (~1 min).** Cold open, no title-slide throat-clearing: one gorgeous super-resolved galaxy, full-bleed. *"This is sharper than our telescope can see. It's beautiful. Some of it is false. In twelve minutes I'll show you how to tell which part — for a galaxy, for a neural net, and for a person."*
 
-**2 · The gap, named (~1 min).** Straight from the galaxy to the thesis, as science — no Sisyphus, no meta-open. One image while saying it: Tantalus by the sea (the SVG), two lines — the water retreats as he reaches; the sea he sits beside is undrinkable — Goodhart named in passing, then back to data. The thesis, plainly: *every optimizer descends a loss it can write toward a thing it wants that it can't.* 
+**2 · The gap, named (~1 min).** Straight from the galaxy to the thesis, as science — no Sisyphus, no meta-open. One image while saying it: Tantalus by the sea (the SVG), two lines — the water retreats as he reaches; the sea he sits beside is undrinkable — Goodhart named in passing, then back to data. The thesis, plainly: *every optimizer descends a loss it can write toward a thing it wants that it can't.* Candidate second line (salvage 3): *"The deepest scientific decision happened before the first gradient step: we decided what downhill meant."*
 
-**3 · Act I — the gap, measured (~3 min).** The trilogy as three measurements of the same gap, loss ↓ while target ↓:
+**3 · Act I — the gap, measured (~3 min).** Spoken bridge in (salvage 3, best line of that draft): *"Resolution decides which differences are visible. A loss decides which visible differences matter."* — the room's PSF intuition converted to loss geometry in one breath. Then the trilogy as three measurements of the same gap, loss ↓ while target ↓:
 - **shape** (Everetts): diffusion prettier, *below bilinear* on shape info; best net still 25–35% ellipticity shrinkage vs lensing's 10⁻³;
 - **spectra** (Haghjoo): *"Sharper at What Cost?"* — 26% of true Hα, line ratios corrupted;
 - **photometry** (Rezaee): the one win — deblending 35% vs 9% — and *why* it wins: a decision you can audit, not a measurement that propagates silently.
@@ -66,17 +66,17 @@ Then the law: the gap appeared **only against a second instrument** — and insi
 
 **4 · Act II — the loss you can't write yet: JAISP (~3 min).** Tomorrow's science questions are a target that *cannot be written today*. Three honest responses, and the pipeline/JAISP contrast is now a contrast of **how much loss you dare to write**:
 - **commit** — the classical pipeline writes today's loss in full: petabytes → kilobytes, maximal compression, and the gap shows up years later as the question the catalog can't answer;
-- **hedge** — JAISP's pretext loss (masked-band, cross-instrument, delivered sampling) is chosen *not because it's the target* but because no band can be predicted from the other nine without factoring out the shared sky — reconstruction that is secretly alignment. The compression confession lands here, sharpened: **compression ratio measures how much loss-writing you've committed to.** The catalog compresses because it committed; the foundation model can't compress *because it refuses to write the loss*. (Bytes/rate–distortion/Shannon ladder from v5 survives as the spoken texture; "compresses the survey, not the source.")
-- **audit** — freeze, then measure the gap per task against truth: 93/94 completeness/purity, 0.45 mag past VIS, 50→14 mas, zero retraining. The numbers are the argument.
+- **hedge** — JAISP's pretext loss (masked-band, cross-instrument, delivered sampling) is chosen *not because it's the target* but because no band can be predicted from the other nine without factoring out the shared sky — reconstruction that is secretly alignment. The compression confession lands here, sharpened: **compression ratio measures how much loss-writing you've committed to.** The catalog compresses because it committed; the foundation model can't compress *because it refuses to write the loss*. (Bytes/rate–distortion/Shannon ladder from v5 survives as the spoken texture; "compresses the survey, not the source.") One spoken line here or on slide 10 (salvage 3): three kinds of missing information — **never observed · observed and discarded · retained but inaccessible to the model you chose.**
+- **audit** — three layers (salvage 3): **output** — can the encoder–decoder reconstruct the withheld band; **representation** — is the information in the frozen latent, or hidden in the decoder (reconstruction only proves it exists *somewhere* in the path; the heads see only the frozen encoder); **reuse** — can a small new head extract it for a new task. Freeze, then measure the gap per task against truth: 93/94 completeness/purity, 0.45 mag past VIS, 50→14 mas, zero retraining. The numbers are the argument. Spoken: *"a useful representation is one that makes several important questions cheap to ask."*
 
 **5 · The diagnostic turn (~1.5 min).** The gradient goes quiet. Four things that can mean — and *telling them apart is the skill the talk teaches*:
 
-| the gradient is quiet because… | the tell | the move | misdiagnosis has a name |
-|---|---|---|---|
-| you're actually done (locally) | outside truth agrees | declare it, freeze, go to lunch | rumination (re-digging a solved well) |
-| local minimum of a bigger landscape | a perturbation finds lower | add noise, hop basins | staleness (never perturbing) |
-| the world drifted | fresh data surprises the frozen model | retrain | dogma (coasting on an outrun model) |
-| **the proxy diverged from the target** | **truth disagrees while the loss is happy** | **stop descending — rewrite the loss** | **seawater** (reward hacking, hallucination) |
+| | the gradient is quiet because… | the tell | the move | misdiagnosis has a name |
+|---|---|---|---|---|
+| **Done** | you're actually done (locally) | outside truth agrees | declare it, freeze, go to lunch | rumination (re-digging a solved well) |
+| **Stuck** | local minimum of a bigger landscape | a perturbation finds lower | add noise, hop basins | staleness (never perturbing) |
+| **Drift** | the world drifted | fresh data surprises the frozen model | retrain | dogma (coasting on an outrun model) |
+| **Wrong proxy** | the proxy diverged from the target | **truth disagrees while the loss is happy** | **stop descending — rewrite the loss** | **seawater** (reward hacking, hallucination) |
 
 Every tell requires information **from outside the loss** — the law, again. Worked example for the astronomers: the Hubble tension — two converged losses, immaculate residuals, incompatible answers; the entire debate is *which row are we in* (new-physics landscape vs systematics-as-proxy-error). A century of work, and the frontier is a gap diagnosis.
 
@@ -122,6 +122,25 @@ Placement: one spoken layer over slides 7–9, one line max — don't lecture th
 - "dream the tenth band" / "learns the latent structure of physics" — costume language + overclaim
 
 **Deck engineering rule it violates (keep ours):** the talk deck must be fully self-contained — no CDN, no webfonts, no hotlinked images (several Unsplash IDs in the draft are likely 404s; conference wifi is not a dependency).
+
+## Salvage report 3 — the pasted "optimizer at noon" outline (Jul 2026)
+
+A ~41.5-minute colloquium structure pasted against a 12-minute slot — not adoptable as structure, and it reverts three v6 decisions (Sisyphus back as the finale with Tantalus absent; a 2-min anecdote open that plants the moving-objective thesis; ~6 metaphor appearances against a budget of 2). Mined for lines.
+
+**Kept (folded into the arc above):**
+- *"Resolution decides which differences are visible. A loss decides which visible differences matter."* → bridge into Act I (beat 3)
+- *"…we decided what downhill meant"* → thesis beat (beat 2), candidate second line
+- the three-layer audit — output / representation / reuse — + *"a useful representation is one that makes several important questions cheap to ask"* → JAISP audit (beat 4)
+- missing-information triad — never observed / observed and discarded / retained but inaccessible → compression beat (hedge bullet / slide 10)
+- **Done / Stuck / Drift / Wrong proxy** row labels → diagnostic table (beat 5)
+
+**Candidates, her call (one notch cuter than the register — deadpan-test aloud):**
+- *"completing a person from our priors is hallucination with better manners"* (slide 13)
+- *"the model learned the loss ≠ the loss learned the universe"* chiasmus (slide 6)
+
+**Refused (and why):** the noon-optimizer anecdote open (pre-science minutes; "the objective function changes while I am solving it" makes drift the thesis — the gap exists even when nothing moves); Sisyphus-reinterpreted as climax (v4/v5 drift spine returning; drift is row 3 of the table, not the thesis); Nyquist and compression-as-forgetting as standalone sections (both are single spoken lines in v6); "this should be one of the emotional centers" as direction (emotion is never named on stage); the five-line abstract litany close (v6's thesis band carries a paper per line; the litany carries none); *"Reality is under no obligation to be one of them"* (Tyson echo, and it ends on reality instead of the person — *"Hafez wrote his"* stays); *"One must imagine the optimizer revising the proposal"* (the draft itself withdrew it; correct).
+
+**⚠️ Fabrication flag:** its JAISP origin story — *"we originally tried alignment; the representations agreed while forgetting where the sources were; the paper explains this structural limitation"* — appears nowhere in the notes and is incompatible with the spine's actual twist (reconstruction *is* alignment, [science_spine.md](science_spine.md) beat 1). Verify against the JAISP draft before it touches a slide. If the paper really reports a failed similarity-alignment baseline losing subpixel astrometry, it earns one line as a within-act twist; if not, it's the most dangerous item in the draft because it sounds the most like a result.
 
 ## Title candidates
 
@@ -187,3 +206,5 @@ The risk: each philosophical claim, translated, is something they already believ
 - [ ] فراق: does the close *also* need the "second instrument for the self" half-line (other people as the only audit of self-models) or is that one turn too many
 - [ ] Title: confirm "The Loss You Can Write" with the GISS organizers' deadline in mind
 - [ ] Fact-checks inherited from science_spine.md still open (embedding vs cutout bytes; astrometry baseline; exact metric scopes)
+- [ ] Salvage 3 fact-check: does the JAISP paper report a failed alignment baseline that lost subpixel positions? (see fabrication flag above)
+- [ ] Salvage 3 borderline lines — "hallucination with better manners" (slide 13) and the loss/universe chiasmus (slide 6): deadpan-test aloud, keep or cut

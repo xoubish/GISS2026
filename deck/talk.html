@@ -93,6 +93,19 @@
   .count{position:fixed; right:16px; bottom:14px; color:var(--faint); font-size:.72rem; z-index:6; font-variant-numeric:tabular-nums}
   .hint{position:fixed; right:16px; top:14px; color:var(--faint); font-size:.7rem; z-index:6}
   @media (max-width:720px){ .cols,.stats{grid-template-columns:1fr} .duo{flex-direction:column} }
+
+  @media print{
+    @page{size:1600px 900px; margin:0}
+    html,body{height:auto; overflow:visible}
+    body{-webkit-print-color-adjust:exact; print-color-adjust:exact; background:var(--bg)}
+    body::before,.stars,.bar,.count,.hint{display:none}
+    .deck{height:auto; width:auto}
+    section.slide{position:relative; inset:auto; display:flex !important; width:1600px; height:900px;
+      padding:72px 144px; break-after:page; page-break-after:always; animation:none; overflow:hidden; background:var(--bg)}
+    section.slide.full{padding:0}
+    section.slide:last-child{break-after:auto; page-break-after:auto}
+    .fig.hero{inset:54px 112px}
+  }
 </style>
 </head>
 <body>
@@ -120,6 +133,7 @@
     <p class="sub">sharper than the telescope can see — the model filled the gaps.</p>
     <p class="big" style="margin-top:1.3rem">Every pipeline optimizes a loss it can <em>write</em>.</p>
     <p class="sub">the thing we want is rarely in it.</p>
+    <p class="quiet" style="margin-top:.9rem">the deepest decision happened before the first gradient step — we decided what downhill meant.</p>
   </section>
 
   <!-- 4 TANTALUS BY THE SEA -->
@@ -204,6 +218,7 @@
   <section class="slide" data-role="paper · three measured gaps">
     <div class="kicker">Everetts · Rezaee · Haghjoo</div>
     <h2>“Sharper at What <span class="red">Cost?</span>”</h2>
+    <p class="sub">resolution decides which differences are visible — a loss decides which visible differences matter.</p>
     <div class="cols">
       <div class="col"><h3>shape · NISP→JWST</h3><p>diffusion: <b>below bilinear</b> on shape info.<br>best net: <b>−25–35%</b> ellipticity.<br>lensing needs 10⁻³.</p></div>
       <div class="col"><h3>spectra · JADES</h3><p>Hα recovered: <b>26% of true</b>.<br>line ratios — the physics — <b>corrupted</b>.</p></div>
@@ -271,6 +286,7 @@
       <div class="stat"><b>0×</b><span>retraining on a new field —<br>encoder frozen</span></div>
     </div>
     <div class="fig" style="max-width:560px;margin-top:1rem"><div class="tag">hero figure</div><div class="what">one source, ten bands → one frozen representation.</div></div>
+    <p class="quiet" style="margin-top:.7rem">audited in three layers — the output · the frozen representation · a new head. a useful representation makes several important questions cheap to ask.</p>
   </section>
 
   <!-- 10 COMPRESSION -->
@@ -280,6 +296,7 @@
     <p class="sub" style="margin-top:.7rem">the catalog compresses <em>because it committed</em> — it named the questions it will answer.</p>
     <p class="sub">the foundation model refuses to name them. <b style="color:var(--ink)">hedging costs bits.</b></p>
     <p class="big" style="margin-top:1.1rem">Prediction <em>is</em> compression —<br>it compresses the <span class="blue">survey</span>, not the source.</p>
+    <p class="quiet" style="margin-top:.9rem">three kinds of missing information — never observed · observed and discarded · retained but inaccessible.</p>
   </section>
 
   <!-- 11 THE DIAGNOSTIC -->
@@ -288,10 +305,10 @@
     <h2>Four readings.</h2>
     <table>
       <tr><th>why it's quiet</th><th>the tell</th><th>the move</th></tr>
-      <tr><td>done, locally</td><td>outside truth agrees <span class="war">— the survey shipped</span></td><td>declare it · freeze</td></tr>
-      <tr><td>local minimum</td><td>a perturbation finds lower <span class="war">— the stuck MCMC</span></td><td>add noise</td></tr>
-      <tr><td>the world drifted</td><td>new data surprises the frozen model <span class="war">— the release broke the calibration</span></td><td>retrain</td></tr>
-      <tr class="hot"><td>proxy ≠ target</td><td>truth disagrees while the loss is happy <span class="war">— photo-z: perfect on spec-z, wrong on the faint end</span></td><td>stop — rewrite the loss</td></tr>
+      <tr><td>Done</td><td>outside truth agrees <span class="war">— the survey shipped</span></td><td>declare it · freeze</td></tr>
+      <tr><td>Stuck</td><td>a perturbation finds lower <span class="war">— the stuck MCMC</span></td><td>add noise</td></tr>
+      <tr><td>Drift</td><td>new data surprises the frozen model <span class="war">— the release broke the calibration</span></td><td>retrain</td></tr>
+      <tr class="hot"><td>Wrong proxy</td><td>truth disagrees while the loss is happy <span class="war">— photo-z: perfect on spec-z, wrong on the faint end</span></td><td>stop — rewrite the loss</td></tr>
     </table>
     <p class="quiet" style="margin-top:.8rem">every tell needs information from outside the loss.</p>
   </section>
