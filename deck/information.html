@@ -227,10 +227,11 @@
           <g fill="#38bdf8"><circle cx="627.0" cy="197.0" r="4.6"/><circle cx="467.0" cy="259.6" r="4.6"/><circle cx="452.4" cy="249.1" r="4.6"/><circle cx="360.4" cy="286.3" r="4.6"/><circle cx="518.2" cy="246.4" r="4.6"/><circle cx="534.5" cy="253.8" r="4.6"/><circle cx="466.1" cy="249.7" r="4.6"/><circle cx="348.9" cy="281.0" r="4.6"/><circle cx="438.3" cy="260.9" r="4.6"/><circle cx="502.7" cy="235.7" r="4.6"/><circle cx="336.4" cy="289.7" r="4.6"/><circle cx="229.5" cy="321.0" r="4.6"/><circle cx="308.3" cy="295.5" r="4.6"/><circle cx="596.5" cy="224.9" r="4.6"/><circle cx="415.6" cy="250.4" r="4.6"/><circle cx="422.0" cy="280.6" r="4.6"/><circle cx="641.3" cy="187.6" r="4.6"/><circle cx="329.3" cy="289.1" r="4.6"/><circle cx="503.5" cy="227.3" r="4.6"/><circle cx="330.7" cy="288.8" r="4.6"/><circle cx="209.4" cy="332.1" r="4.6"/><circle cx="259.0" cy="338.3" r="4.6"/><circle cx="566.0" cy="206.8" r="4.6"/><circle cx="218.4" cy="332.4" r="4.6"/><circle cx="594.8" cy="215.1" r="4.6"/><circle cx="340.5" cy="292.4" r="4.6"/><circle cx="369.4" cy="282.6" r="4.6"/><circle cx="333.9" cy="299.0" r="4.6"/><circle cx="350.2" cy="283.0" r="4.6"/><circle cx="377.6" cy="265.8" r="4.6"/><circle cx="319.5" cy="289.1" r="4.6"/><circle cx="381.3" cy="284.3" r="4.6"/><circle cx="504.5" cy="223.5" r="4.6"/><circle cx="526.0" cy="218.3" r="4.6"/><circle cx="370.2" cy="294.0" r="4.6"/><circle cx="503.1" cy="244.5" r="4.6"/><circle cx="443.3" cy="247.3" r="4.6"/><circle cx="635.6" cy="187.9" r="4.6"/><circle cx="363.7" cy="303.6" r="4.6"/><circle cx="553.3" cy="247.3" r="4.6"/><circle cx="413.5" cy="271.0" r="4.6"/><circle cx="246.3" cy="328.0" r="4.6"/><circle cx="602.6" cy="215.2" r="4.6"/><circle cx="613.0" cy="205.8" r="4.6"/><circle cx="319.0" cy="305.5" r="4.6"/><circle cx="359.6" cy="293.8" r="4.6"/></g>
           <!-- shrunk trend -->
           <line x1="120" y1="357" x2="660" y2="188" stroke="#38bdf8" stroke-width="2" opacity=".75"/>
-          <!-- direct labels -->
-          <text x="668" y="182" fill="#e8ecf4" font-size="16" font-family="system-ui" text-anchor="end" dy="-14">residual net — shrunk</text>
-          <text x="300" y="96" fill="#e8ecf4" font-size="16" font-family="system-ui">diffusion — scattered</text>
+          <!-- direct labels (never color alone: dot + text, placed clear of the marks) -->
           <circle cx="288" cy="91" r="5" fill="#f59e0b"/>
+          <text x="300" y="97" fill="#e8ecf4" font-size="16" font-family="system-ui">diffusion — scattered</text>
+          <circle cx="430" cy="341" r="5" fill="#38bdf8"/>
+          <text x="442" y="347" fill="#e8ecf4" font-size="16" font-family="system-ui">residual net — shrunk</text>
           <text x="90" y="444" fill="#5b6478" font-size="13" font-family="system-ui" font-style="italic">schematic — replace with the paper's scatter</text>
         </svg>
       </div>
@@ -279,50 +280,58 @@
     <div class="kicker">every arrow is a channel</div>
     <h2>Where the information <span class="amber">went</span>.</h2>
     <div class="chart" style="margin-top:.4rem">
-      <svg viewBox="0 0 1360 330" role="img" aria-label="Information about the source can only decrease along the chain sky, telescope, pixels, network, catalog. The prior injected by the network adds population information, not source information.">
+      <svg viewBox="0 0 1360 372" role="img" aria-label="Information about the source can only decrease along the chain sky, telescope, pixels, network, catalog. The faint track behind each bar is what the sky had. The network injects population information, which is not information about this source.">
         <g font-family="system-ui" text-anchor="middle">
           <!-- stage boxes -->
           <g fill="none" stroke="#2a3346" stroke-width="1.5">
-            <rect x="30"   y="34" width="190" height="66" rx="12"/>
-            <rect x="286"  y="34" width="190" height="66" rx="12"/>
-            <rect x="542"  y="34" width="190" height="66" rx="12"/>
-            <rect x="798"  y="34" width="190" height="66" rx="12"/>
-            <rect x="1054" y="34" width="190" height="66" rx="12"/>
+            <rect x="30"   y="16" width="190" height="64" rx="12"/>
+            <rect x="286"  y="16" width="190" height="64" rx="12"/>
+            <rect x="542"  y="16" width="190" height="64" rx="12"/>
+            <rect x="798"  y="16" width="190" height="64" rx="12"/>
+            <rect x="1054" y="16" width="190" height="64" rx="12"/>
           </g>
           <g fill="#e8ecf4" font-size="19">
-            <text x="125"  y="74">the sky</text>
-            <text x="381"  y="74">telescope</text>
-            <text x="637"  y="74">pixels</text>
-            <text x="893"  y="74">network</text>
-            <text x="1149" y="74">catalog</text>
+            <text x="125"  y="55">the sky</text>
+            <text x="381"  y="55">telescope</text>
+            <text x="637"  y="55">pixels</text>
+            <text x="893"  y="55">network</text>
+            <text x="1149" y="55">catalog</text>
           </g>
           <g stroke="#5b6478" stroke-width="1.6" fill="none">
-            <path d="M 224,67 L 278,67"/><path d="M 480,67 L 534,67"/><path d="M 736,67 L 790,67"/><path d="M 992,67 L 1046,67"/>
+            <path d="M 224,48 L 278,48"/><path d="M 480,48 L 534,48"/><path d="M 736,48 L 790,48"/><path d="M 992,48 L 1046,48"/>
           </g>
           <g fill="#5b6478">
-            <path d="M 286,67 l -10,-5 v 10 z"/><path d="M 542,67 l -10,-5 v 10 z"/><path d="M 798,67 l -10,-5 v 10 z"/><path d="M 1054,67 l -10,-5 v 10 z"/>
+            <path d="M 286,48 l -10,-5 v 10 z"/><path d="M 542,48 l -10,-5 v 10 z"/><path d="M 798,48 l -10,-5 v 10 z"/><path d="M 1054,48 l -10,-5 v 10 z"/>
           </g>
 
-          <!-- information-about-the-source bars -->
-          <text x="125" y="146" fill="#5b6478" font-size="13" letter-spacing="1.4">INFORMATION ABOUT THE SOURCE</text>
-          <g>
-            <rect x="30"   y="160" width="190" height="34" rx="4" fill="#38bdf8"/>
-            <rect x="286"  y="160" width="132" height="34" rx="4" fill="#38bdf8"/>
-            <rect x="542"  y="160" width="108" height="34" rx="4" fill="#38bdf8"/>
-            <rect x="798"  y="160" width="104" height="34" rx="4" fill="#38bdf8"/>
-            <rect x="1054" y="160" width="46"  height="34" rx="4" fill="#38bdf8"/>
+          <!-- how much of the sky's information survives -->
+          <text x="30" y="124" fill="#5b6478" font-size="13" letter-spacing="1.4" text-anchor="start">INFORMATION ABOUT THIS SOURCE — THE FAINT TRACK IS WHAT THE SKY HAD</text>
+          <g fill="#38bdf8" opacity=".14">
+            <rect x="30" y="138" width="190" height="34" rx="4"/><rect x="286" y="138" width="190" height="34" rx="4"/>
+            <rect x="542" y="138" width="190" height="34" rx="4"/><rect x="798" y="138" width="190" height="34" rx="4"/>
+            <rect x="1054" y="138" width="190" height="34" rx="4"/>
           </g>
-          <g fill="#8b93a7" font-size="15" text-anchor="start">
-            <text x="228" y="184">PSF, noise, sampling</text>
-            <text x="660" y="184">quantization</text>
-            <text x="1110" y="184">the questions you named in 2005</text>
+          <g fill="#38bdf8">
+            <rect x="30"   y="138" width="190" height="34" rx="4"/>
+            <rect x="286"  y="138" width="132" height="34" rx="4"/>
+            <rect x="542"  y="138" width="108" height="34" rx="4"/>
+            <rect x="798"  y="138" width="104" height="34" rx="4"/>
+            <rect x="1054" y="138" width="46"  height="34" rx="4"/>
           </g>
 
-          <!-- the injection -->
-          <path d="M 893,296 L 893,214" stroke="#f59e0b" stroke-width="2.2" fill="none" stroke-dasharray="7 6"/>
-          <path d="M 893,204 l -6,12 h 12 z" fill="#f59e0b"/>
-          <text x="893" y="322" fill="#f59e0b" font-size="17">the training set — information about the population</text>
-          <text x="893" y="248" fill="#8b93a7" font-size="14" font-style="italic">looks like sharpness. isn't about this galaxy.</text>
+          <!-- why each bar is shorter than the one before it -->
+          <g stroke="#2a3346" stroke-width="1.2"><path d="M 381,176 v 16"/><path d="M 637,176 v 16"/><path d="M 1149,176 v 16"/></g>
+          <g fill="#8b93a7" font-size="15">
+            <text x="381"  y="210">PSF · noise · sampling</text>
+            <text x="637"  y="210">quantization</text>
+            <text x="1149" y="210">the questions you named in 2005</text>
+          </g>
+
+          <!-- the injection: population information entering at the network -->
+          <path d="M 893,300 L 893,190" stroke="#f59e0b" stroke-width="2.2" fill="none" stroke-dasharray="7 6"/>
+          <path d="M 893,178 l -7,14 h 14 z" fill="#f59e0b"/>
+          <text x="893" y="328" fill="#f59e0b" font-size="17">the training set — information about the <tspan font-style="italic">population</tspan></text>
+          <text x="893" y="354" fill="#8b93a7" font-size="15">looks like sharpness. is not about this galaxy. the blue bar cannot go up.</text>
         </g>
       </svg>
     </div>
@@ -347,30 +356,31 @@
     <h2>Which parameters <span class="amber">matter</span>?</h2>
     <div class="duo">
       <div class="chart" style="flex:0 0 44%">
-        <svg viewBox="0 0 560 380" role="img" aria-label="Fisher information eigenvalue spectrum spanning six decades: two stiff directions, a long sloppy tail.">
-          <line x1="72" y1="30" x2="72" y2="300" stroke="#2a3346" stroke-width="1.5"/>
+        <svg viewBox="0 0 560 396" role="img" aria-label="Fisher information eigenvalue spectrum spanning six decades: two stiff directions, then a long sloppy tail.">
+          <text x="72" y="18" fill="#5b6478" font-size="14" font-family="system-ui">Fisher eigenvalue (log)</text>
+          <line x1="72" y1="52" x2="72" y2="300" stroke="#2a3346" stroke-width="1.5"/>
           <line x1="72" y1="300" x2="540" y2="300" stroke="#2a3346" stroke-width="1.5"/>
-          <text x="72" y="20" fill="#5b6478" font-size="14" font-family="system-ui">Fisher eigenvalue (log)</text>
           <text x="540" y="326" fill="#5b6478" font-size="14" font-family="system-ui" text-anchor="end">parameter directions →</text>
           <g fill="#38bdf8">
-            <rect x="86"  y="42"  width="24" height="258" rx="4"/>
-            <rect x="118" y="66"  width="24" height="234" rx="4"/>
-            <rect x="150" y="140" width="24" height="160" rx="4"/>
-            <rect x="182" y="176" width="24" height="124" rx="4"/>
-            <rect x="214" y="200" width="24" height="100" rx="4"/>
-            <rect x="246" y="222" width="24" height="78"  rx="4"/>
-            <rect x="278" y="238" width="24" height="62"  rx="4"/>
-            <rect x="310" y="252" width="24" height="48"  rx="4"/>
-            <rect x="342" y="262" width="24" height="38"  rx="4"/>
-            <rect x="374" y="270" width="24" height="30"  rx="4"/>
-            <rect x="406" y="277" width="24" height="23"  rx="4"/>
-            <rect x="438" y="283" width="24" height="17"  rx="4"/>
-            <rect x="470" y="288" width="24" height="12"  rx="4"/>
-            <rect x="502" y="292" width="24" height="8"   rx="4"/>
+            <rect x="86"  y="64"  width="24" height="236" rx="4"/>
+            <rect x="118" y="86"  width="24" height="214" rx="4"/>
+            <rect x="150" y="150" width="24" height="150" rx="4"/>
+            <rect x="182" y="182" width="24" height="118" rx="4"/>
+            <rect x="214" y="204" width="24" height="96"  rx="4"/>
+            <rect x="246" y="224" width="24" height="76"  rx="4"/>
+            <rect x="278" y="240" width="24" height="60"  rx="4"/>
+            <rect x="310" y="253" width="24" height="47"  rx="4"/>
+            <rect x="342" y="263" width="24" height="37"  rx="4"/>
+            <rect x="374" y="271" width="24" height="29"  rx="4"/>
+            <rect x="406" y="278" width="24" height="22"  rx="4"/>
+            <rect x="438" y="284" width="24" height="16"  rx="4"/>
+            <rect x="470" y="289" width="24" height="11"  rx="4"/>
+            <rect x="502" y="293" width="24" height="7"   rx="4"/>
           </g>
-          <text x="98" y="34" fill="#e8ecf4" font-size="15" font-family="system-ui">stiff</text>
-          <text x="440" y="264" fill="#e8ecf4" font-size="15" font-family="system-ui">sloppy — six decades down</text>
-          <line x1="430" y1="272" x2="452" y2="284" stroke="#5b6478" stroke-width="1.3"/>
+          <text x="88" y="54" fill="#e8ecf4" font-size="15" font-family="system-ui">two stiff directions</text>
+          <text x="540" y="246" fill="#e8ecf4" font-size="15" font-family="system-ui" text-anchor="end">a sloppy tail — six decades down</text>
+          <line x1="505" y1="256" x2="505" y2="284" stroke="#5b6478" stroke-width="1.3"/>
+          <text x="72" y="368" fill="#5b6478" font-size="13" font-family="system-ui" font-style="italic">schematic — the shape is universal (Sethna and others, 2000s)</text>
         </svg>
       </div>
       <div class="side">
@@ -463,7 +473,7 @@
       <div><b>1972</b> Chentsov — and only one metric will do</div>
     </div>
     <p class="big" style="margin-top:1.3rem">The newest idea in this talk is <span class="amber">fifty-one years old</span>.</p>
-    <p class="quiet">Goodhart, 1975. All of it is one <span style="font-family:ui-monospace,monospace">pip install</span> away from being ignored.</p>
+    <p class="quiet"><b class="amber" style="font-style:normal;font-family:var(--serif);font-weight:400">1975</b> &nbsp;Goodhart — when a measure becomes a target. &nbsp;And all of it is one <span style="font-family:ui-monospace,monospace">pip install</span> away from being ignored.</p>
   </section>
 
   <!-- 23 · THE PERSON -->
