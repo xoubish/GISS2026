@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(git ls-remote *)",
-      "Bash(open \"/Users/shemmati/Desktop/GISS2026/deck/talk.html\")"
-    ]
-  }
-}
