@@ -3,6 +3,14 @@
   const steps  = Array.from(document.querySelectorAll('.step'));
   const hud    = document.getElementById('hud');
   const noteBox= document.getElementById('noteBox');
+  const bar    = document.createElement('div');
+  bar.id = 'progress';
+  document.body.appendChild(bar);
+  const sectionAccent = {
+    'II · Four Rulers': '#2f5f8f',
+    'III · The Program': '#477860',
+    'Return': '#9a3d42'
+  };
   const S = steps.map(el => ({
     el,
     x: parseFloat(el.dataset.x), y: parseFloat(el.dataset.y),
@@ -216,6 +224,8 @@
     }
     if (sub === 0) lightLinesFor(o.id);
     hud.textContent = o.section + '  ·  ' + o.title + '  ·  ' + (i+1) + ' / ' + S.length;
+    bar.style.width = (100 * (i+1) / S.length) + '%';
+    bar.style.background = sectionAccent[o.section] || '#68717a';
     const n = o.el.querySelector('.notes');
     noteBox.innerHTML = n ? n.innerHTML : '<em>(no notes for this step)</em>';
     if (pushHash !== false) { suppressHash = true; location.hash = '/' + o.id; }
