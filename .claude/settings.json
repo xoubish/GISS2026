@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/shemmati/Desktop/GISS2026/slides/assets/paper.png)"
+    ]
+  }
+}

@@ -4,108 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sisyphus, Optimizing in a Dynamic Universe</title>
-<style>
-  :root{
-    --paper:#f4efe3; --card:#fbf8f0; --ink:#1d1b18; --muted:#6f695e;
-    --line:#6f675b; --human:#8c2f2f; --astro:#355c7d; --prog:#537a5a;
-    --hair:#b6ae9e;
-  }
-  *{box-sizing:border-box; margin:0; padding:0}
-  html,body{height:100%; overflow:hidden; background:#151412; color:var(--ink);
-    font-family:Georgia, "Times New Roman", serif;}
-  body::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:4;
-    background:radial-gradient(circle at center, transparent 55%, rgba(0,0,0,.26) 135%);}
-  #viewport{position:fixed; inset:0; overflow:hidden;}
-  #canvas{position:absolute; left:0; top:0; transform-origin:0 0;}
-
-  #paper{position:absolute; left:-9500px; top:-4300px; width:13400px; height:10800px; z-index:0;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(255,255,255,.5), transparent 36%),
-      radial-gradient(circle at 72% 62%, rgba(255,255,255,.28), transparent 38%),
-      var(--paper);
-    border-radius:26px; box-shadow:0 30px 90px rgba(0,0,0,.45);}
-  #decor{position:absolute; z-index:1; pointer-events:none; overflow:visible;}
-  #decor line{stroke:var(--line); stroke-width:7; stroke-dasharray:16 16; opacity:.42;}
-  #decor line.walked{stroke-dasharray:none; stroke:#4a4338; opacity:.8;}
-  #decor line.lit{stroke:var(--human); opacity:.9;}
-  #decor text{font-style:italic; fill:rgba(60,54,45,.45);}
-
-  .step{position:absolute; width:1100px; z-index:2;
-    background:var(--card); border:2px solid rgba(75,67,57,.22); border-radius:20px;
-    padding:52px 60px; box-shadow:0 12px 34px rgba(40,35,27,.15);
-    opacity:.32; transition:opacity .8s ease;}
-  .step.active{opacity:1; box-shadow:0 16px 44px rgba(30,24,16,.26);}
-  body.overview .step{opacity:.92;}
-  .step.hollow{background:none; border:none; box-shadow:none; pointer-events:none;
-    height:600px; display:flex; flex-direction:column; justify-content:flex-start;
-    align-items:center; text-align:center;}
-  .step.ghost{background:none; border:none; box-shadow:none; pointer-events:none; height:600px;}
-
-  .kicker{font-size:16px; letter-spacing:.2em; text-transform:uppercase;
-    color:var(--muted); margin-bottom:20px; font-family:Georgia, serif;}
-  .kicker.hu{color:var(--human)} .kicker.as{color:var(--astro)} .kicker.pr{color:var(--prog)}
-  h1{font-size:60px; line-height:1.08; font-weight:700; letter-spacing:-.01em;}
-  h2{font-size:42px; line-height:1.12; margin-bottom:22px;}
-  p, li{font-size:25px; line-height:1.45; color:#2c2822;}
-  .sub{color:var(--muted); font-size:24px; margin-top:16px;}
-  .small{font-size:18px; color:var(--muted);}
-  .quote{font-style:italic; font-size:31px; line-height:1.38; color:var(--ink);
-    border-left:5px solid #8a8172; padding-left:26px; margin:12px 0 22px;}
-  .joke{font-size:22px; font-style:italic; color:var(--muted); margin-top:24px;}
-  .eq{font-size:31px; text-align:center; margin:22px 0; padding:16px 8px;
-    border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); font-style:italic;}
-  .duo{display:grid; grid-template-columns:1fr 1fr; gap:40px; margin:22px 0 6px;}
-  .duo .lab{font-size:15px; letter-spacing:.18em; text-transform:uppercase; margin:14px 0 8px; font-style:normal;}
-  .duo .h .lab{color:var(--human)} .duo .a .lab{color:var(--astro)}
-  .duo p{font-size:22px; color:#3a352e;}
-  ul{list-style:none; margin-top:4px;}
-  li{padding-left:24px; position:relative; margin:10px 0;}
-  li::before{content:"—"; position:absolute; left:0; color:var(--muted);}
-  ul ul{margin:8px 0 4px 30px;}
-  ul ul li{font-size:22px; margin:7px 0;}
-  .three{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:20px;}
-  .mini{border:1.5px solid var(--hair); border-radius:13px; padding:18px;
-    background:rgba(255,255,255,.46);}
-  .mini h3{font-size:24px; margin-bottom:8px;}
-  .mini p{font-size:19px; color:#3a352e;}
-  .mini.A h3{color:var(--human)} .mini.B h3{color:var(--astro)} .mini.C h3{color:var(--prog)}
-  .caution{border-left:4px solid rgba(140,47,47,.45); padding-left:16px;
-    margin-top:22px; font-size:20px; font-style:italic; color:var(--muted);}
-  .titlerow{display:flex; gap:46px; align-items:center;}
-  .titlerow .img{width:470px; flex:none;}
-  .sketch{width:100%; display:block; mix-blend-mode:multiply;}
-  .baked{mix-blend-mode:normal;}
-  .figure{margin-top:18px;}
-  .figure img{width:100%; display:block; background:#fff;
-    border:1px solid #d7d0c4; border-radius:10px;}
-  .figcap{font-size:17px; color:var(--muted); margin-top:9px; font-style:italic;}
-  .notes{display:none;}
-
-  #hud{position:fixed; z-index:6; right:20px; bottom:16px; font-size:13px;
-    font-family:Arial, sans-serif; color:#ddd; background:rgba(24,23,21,.78);
-    padding:6px 12px; border-radius:8px; pointer-events:none; letter-spacing:.04em;}
-  #hint{position:fixed; z-index:6; left:20px; bottom:16px; font-size:13px;
-    font-family:Arial, sans-serif; color:#bbb; background:rgba(24,23,21,.62);
-    padding:6px 12px; border-radius:8px; pointer-events:none;}
-  #noteBox{position:fixed; z-index:7; left:50%; transform:translateX(-50%);
-    bottom:54px; max-width:780px; width:calc(100% - 80px);
-    background:rgba(24,23,21,.94); border:1px solid rgba(220,210,190,.3);
-    border-radius:10px; padding:14px 18px; font-size:16px; line-height:1.45;
-    color:#e8e4dc; font-family:Georgia, serif; display:none;}
-  body.shownotes #noteBox{display:block;}
-</style>
+<link rel="preload" href="assets/opening.png" as="image">
+<link rel="stylesheet" href="deck.css">
 </head>
 <body>
-<div id="viewport">
+<div id="viewport" role="main" aria-label="Sisyphus presentation deck">
 <div id="canvas">
   <div id="paper"></div>
-  <svg id="decor"></svg>
+  <svg id="decor" role="navigation" aria-label="Presentation map"></svg>
 
   <!-- ============ OPENING (north-west) ============ -->
   <section class="step" id="title" data-x="-5600" data-y="-3300" data-scale="1.15"
            data-title="Title" data-section="Opening" style="width:1500px">
     <div class="titlerow">
-      <div class="img"><img class="sketch" src="assets/opening.png" alt="Sisyphus pushing the boulder uphill"></div>
+      <div class="img"><img class="sketch" src="assets/opening.png" width="1200" height="1666" decoding="async" fetchpriority="high" alt="Sisyphus pushing the boulder uphill"></div>
       <div>
         <div class="kicker">GIPS 2026</div>
         <h1>Sisyphus, Optimizing in a Dynamic Universe</h1>
@@ -117,35 +29,22 @@
   </section>
 
   <section class="step" id="rock" data-x="-3900" data-y="-2950" data-scale=".9"
-           data-title="The whole talk, simply" data-section="Opening" style="width:1240px">
-    <div class="kicker">the whole talk, in one breath</div>
-    <p style="font-size:27px"><b>Constant optimization</b> — pushing a rock up a hill, forever.</p>
-    <ul>
-      <li><b>Good enough?</b> <span class="small">answered the question = minimized the loss = reached this hill’s top</span>
-        <ul>
-          <li>ask a new question → a new hill</li>
-          <li>or die on that hill :D</li>
-        </ul>
-      </li>
-      <li><b>Not constraining enough?</b>
-        <ul>
-          <li><b style="color:var(--human)">a better question</b> — change the loss, change the hill</li>
-          <li><b style="color:var(--astro)">the same data, a better compression</b> — the information was there all along</li>
-          <li><b style="color:var(--prog)">more data</b> — but really: more <em>information</em> — distance · resolution · depth · coverage</li>
-          <li>or die on the slope :D</li>
-        </ul>
-      </li>
-    </ul>
-    <p class="sub" style="font-size:20px; margin-top:18px">This outline is itself a compression of the talk. Whether it is lossless depends on what you ask of it — so let’s zoom in.</p>
-    <aside class="notes">The whole talk in one breath — the three colored branches become the three-way fork at the center of the map, and then the three regions. Land the meta-line: the outline is a lossy compression, sufficient for “what is this talk about?”, insufficient for the details. The rest of the talk adds resolution.</aside>
+           data-title="Why constant pushing?" data-section="Opening" style="width:1240px">
+    <div class="kicker">motivation</div>
+    <h2>We are always pushing toward an answer.</h2>
+    <p>Sometimes the question is enormous: <em>What is dark energy?</em></p>
+    <p>Sometimes it is ordinary: <em>Do I need another drink?</em></p>
+    <p class="quote" style="font-size:28px">Constant pushing means living inside questions that are not yet settled.</p>
+    <p class="sub" style="font-size:20px; margin-top:18px">The scale changes. The structure of inquiry keeps returning.</p>
+    <aside class="notes">Use this as motivation, not outline. “Constant pushing” is not only heroic science; it is the repeated pressure of unresolved questions, from cosmology to tiny decisions. Then move to the promise: information only makes sense relative to the question being asked.</aside>
   </section>
 
   <section class="step" id="promise" data-x="-2300" data-y="-2550" data-scale=".9"
            data-title="The promise" data-section="Opening">
     <div class="kicker">the promise</div>
     <p class="quote">Information is always information about a question.</p>
-    <p>One loop, three scales: a stranger you just met · a source on the joint Rubin–Euclid sky · a foundation model of both surveys (JAISP).</p>
-    <p class="sub">By the end, a measurable claim: <em>how much astrometric information survives each layer of a learned representation?</em></p>
+    <p>One loop, three scales: first impressions · Rubin–Euclid astrometry · JAISP.</p>
+    <p class="sub">Payoff: measure how much astrometric information survives each representation layer.</p>
     <aside class="notes">Foreshadow the payoff in the first three minutes so the philosophy visibly lands somewhere concrete.</aside>
   </section>
 
@@ -172,7 +71,7 @@
         <p>Where is this source? &nbsp;<em>θ = (x, y)</em> — reached only through pixels, PSFs, noise, calibration.</p></div>
     </div>
     <p class="sub">The question decides which parts of reality are signal and which are nuisance.</p>
-    <p class="joke">Different stakes. Suspiciously similar machinery.</p>
+    <p class="sub">Different stakes; similar machinery.</p>
   </section>
 
   <section class="step" id="matters" data-x="1289" data-y="-1029" data-scale="1"
@@ -193,8 +92,8 @@
     <div class="kicker">zoom · the ruler</div>
     <p class="quote">Change the ruler, change the landscape.</p>
     <ul>
-      <li>The metric defines what “closer to the answer” means — the geometry of the hill.</li>
-      <li>Optimization is movement through that geometry.</li>
+      <li>The metric defines “closer to the answer.”</li>
+      <li>Optimization moves through that geometry.</li>
       <li>A model can numerically converge while the scientific answer stays weakly constrained.</li>
     </ul>
     <p class="caution">Convergence of the optimizer is not convergence of inquiry.</p>
@@ -222,7 +121,7 @@
         <p>photon noise · blending · chromatic morphology · PSF variation · resampling · detector effects · background</p></div>
     </div>
     <p class="eq" style="font-size:26px">p(D | θ, context, observer, action)</p>
-    <p class="sub">The observer is not passive: probing a person changes their behavior — and θ itself may be θ(t, context, relationship).</p>
+    <p class="sub">The observer is not passive: probing changes behavior, and θ may be θ(t, context, relationship).</p>
     <aside class="notes">This quietly plants the “dynamic universe” of the title; it returns explicitly at the end.</aside>
   </section>
 
@@ -244,7 +143,7 @@
     <div class="kicker">the loop · compression</div>
     <h2>We cannot carry everything forward. So we compress.</h2>
     <p class="eq">D → T(D)</p>
-    <p>T(D) may be: a statistic · a catalog entry · a centroid · a latent vector · a posterior · a first impression.</p>
+    <p>T(D): statistic · catalog entry · centroid · latent vector · posterior · first impression.</p>
     <p class="sub">Different questions may require different compressions of the same data.</p>
   </section>
 
@@ -263,7 +162,7 @@
     <ul>
       <li>Enough for: “would I enjoy another coffee with them?”</li>
       <li>Hopeless for: “would I trust them with something important?”</li>
-      <li>The clues may already be in memory — reweight the evidence, rebuild the summary.</li>
+      <li>The clues may already be in memory — rebuild the summary.</li>
     </ul>
     <p class="caution" style="border-color:rgba(53,92,125,.5)">No new data required — a new compression of the old data.</p>
   </section>
@@ -273,7 +172,7 @@
     <div class="kicker">the loop · inference</div>
     <h2>An answer — with a width.</h2>
     <p>A posterior, or a learned estimator, yields the quantity <em>and</em> its remaining uncertainty.</p>
-    <p class="sub">A number without its width is not an answer. Which raises the question: how do we talk about what we know?</p>
+    <p class="sub">A number without its width is not an answer.</p>
     <aside class="notes">Pivot line into Region II: “we need rulers for knowledge itself.”</aside>
   </section>
 
@@ -353,53 +252,50 @@
            data-title="Good enough?" data-section="The Fork">
     <div class="kicker">the loop · verdict</div>
     <h2>Is the answer good enough?</h2>
-    <p><b style="color:var(--prog)">Yes</b> — use it; stop; or ask the next question: new objective, new loss, new compression, new readout.</p>
-    <p class="quote" style="font-size:27px; margin-top:14px">A new question does not necessarily require new data.</p>
-    <p><b style="color:var(--human)">No</b> — then diagnose <em>why</em>. Three fundamentally different failures →</p>
-    <p class="joke">If yes: die on that hill :D</p>
+    <p><b style="color:var(--prog)">Yes</b> — use it, stop, or ask the next question.</p>
+    <p><b style="color:var(--human)">No</b> — diagnose why. Three failures →</p>
   </section>
 
   <section class="step" id="fork" data-x="0" data-y="0" data-scale="1.05"
-           data-title="The three-way fork" data-section="The Fork">
+           data-title="The three-way fork" data-section="The Fork" style="width:1360px">
     <div class="kicker">the heart of the talk</div>
     <h2>Not constraining enough — why?</h2>
     <div class="three">
-      <div class="mini A"><h3>A · wrong ruler</h3><p>The question, metric, or loss is inadequate. Fixing it changes the landscape itself.</p></div>
-      <div class="mini B"><h3>B · bad compression</h3><p>The information exists in the data — the representation destroyed or hid it.</p></div>
-      <div class="mini C"><h3>C · missing information</h3><p>The data genuinely do not contain it. Only new observations can help.</p></div>
+      <div class="mini A branch build" data-exit="matters">
+        <h3>wrong ruler</h3>
+        <p>Question, metric, or loss is inadequate.</p>
+        <div class="more">
+          <ul>
+            <li>ask a better question; redefine utility</li>
+            <li>change the loss, the metric, the distance</li>
+          </ul>
+          <p class="lead">You are not moving on the landscape — you are exchanging it. → back to the ruler</p>
+        </div>
+      </div>
+      <div class="mini B branch build" data-exit="compression">
+        <h3>bad compression</h3>
+        <p>The data had it; the representation hid it.</p>
+        <div class="more">
+          <ul>
+            <li>a different statistic, readout, representation</li>
+            <li>step back toward the raw data</li>
+          </ul>
+          <p class="lead">No new observation required — foundation models live here. → recompress</p>
+        </div>
+      </div>
+      <div class="mini C branch build" data-exit="expdesign">
+        <h3>missing information</h3>
+        <p>The data do not contain it.</p>
+        <div class="more">
+          <ul>
+            <li>depth · resolution · area · S/N</li>
+            <li>wavelength · epoch · vantage · instrument</li>
+          </ul>
+          <p class="lead">Which observation, exactly? → experimental design</p>
+        </div>
+      </div>
     </div>
-    <aside class="notes">The skeleton of everything: A returns to the metric, B becomes foundation models, C becomes experimental design.</aside>
-  </section>
-
-  <section class="step" id="brancha" data-x="820" data-y="-655" data-scale=".55"
-           data-title="Branch A" data-section="The Fork">
-    <div class="kicker hu">branch A · wrong ruler</div>
-    <ul>
-      <li>Ask a better question; redefine utility.</li>
-      <li>Change the loss, the metric, the notion of distance.</li>
-      <li>Reconsider which information counts as relevant at all.</li>
-    </ul>
-    <p class="caution">You are not moving on the landscape — you are exchanging it for another.</p>
-  </section>
-
-  <section class="step" id="branchb" data-x="-456" data-y="946" data-scale=".55"
-           data-title="Branch B" data-section="The Fork">
-    <div class="kicker as">branch B · bad compression</div>
-    <ul>
-      <li>The signal was discarded, averaged away, or buried.</li>
-      <li>Recompress: a different statistic, another readout, a step back toward the raw data.</li>
-    </ul>
-    <p class="caution" style="border-color:rgba(53,92,125,.5)">No new observation required. This branch is where foundation models live.</p>
-  </section>
-
-  <section class="step" id="branchc" data-x="588" data-y="872" data-scale=".55"
-           data-title="Branch C" data-section="The Fork">
-    <div class="kicker pr">branch C · missing information</div>
-    <ul>
-      <li>More depth, resolution, area, S/N.</li>
-      <li>Another wavelength, modality, epoch, vantage point, instrument.</li>
-    </ul>
-    <p class="caution" style="border-color:rgba(83,122,90,.55)">Which observation, exactly? That is a design question →</p>
+    <aside class="notes">One failure at a time: each advance highlights a branch, expands its remedies, and lights that exit road on the map — back to the ruler, down to recompression and foundation models, down to experimental design. The three stay side by side because they are alternatives, not stops on a journey.</aside>
   </section>
 
   <!-- ============ III · THE RESEARCH PROGRAM (south) ============ -->
@@ -412,9 +308,8 @@
            data-title="Experimental design" data-section="III · The Program">
     <div class="kicker pr">experimental design</div>
     <h2>Which observation teaches me the most?</h2>
-    <p class="quote">More data is not automatically more information.</p>
     <p class="eq">EIG(d) = 𝔼<sub>y</sub> D<sub>KL</sub>[ p(θ | y, d) ‖ p(θ) ]</p>
-    <p class="sub">Maximize expected information gain — equivalently, expected reduction in posterior entropy; a Fisher criterion in the Gaussian limit.</p>
+    <p class="sub">Maximize expected information gain; in the Gaussian limit, use a Fisher criterion.</p>
   </section>
 
   <section class="step" id="expexamples" data-x="2500" data-y="4900" data-scale=".7"
@@ -422,9 +317,9 @@
     <div class="kicker pr">zoom · designing the probe</div>
     <div class="duo">
       <div class="h"><div class="lab">human</div>
-        <p>Another hour of small talk ≈ nothing. Responsibility, disagreement, stress, cooperation ≫. And probing changes the interaction — ethics bind the design.</p></div>
+        <p>Small talk ≈ little. Responsibility, disagreement, stress, cooperation ≫. Ethics bind the probe.</p></div>
       <div class="a"><div class="lab">astrometry</div>
-        <p>More photons, sharper PSF, better sampling, another epoch, another instrument. A little high-resolution can beat a mountain of low-resolution photons.</p></div>
+        <p>Sharper PSF, better sampling, another epoch. A little resolution can beat many photons.</p></div>
     </div>
   </section>
 
@@ -432,14 +327,14 @@
            data-title="Joint processing" data-section="III · The Program">
     <div class="kicker pr">joint processing</div>
     <h2>Datasets can lend information to each other.</h2>
-    <p>One experiment may carry information about a quantity that another experiment measures poorly.</p>
+    <p>One experiment may constrain what another measures poorly.</p>
     <p class="sub">The question becomes: <em>where</em> in the pipeline do you let them meet?</p>
   </section>
 
   <section class="step" id="jointhuman" data-x="900" data-y="5000" data-scale=".7"
            data-title="Many contexts" data-section="III · The Program">
     <div class="kicker hu">zoom · one person, many contexts</div>
-    <p>Work, friendship, stress, family, conflict, play — heterogeneous observations of the same latent person: different noise, different selection effects.</p>
+    <p>Work, friendship, stress, conflict, play — same latent person, different noise and selection.</p>
     <p class="eq" style="font-size:25px">D₁, D₂, D₃, … → one shared latent model of the person</p>
     <p class="sub">Not: reduce each context to a label, then compare labels.</p>
   </section>
@@ -466,34 +361,36 @@
            data-title="Foundation representation" data-section="III · The Program">
     <div class="kicker pr">many questions, same data</div>
     <h2>The cost of rebuilding</h2>
-    <p>If every new question means a new compression learned from raw pixels, the cost is enormous.</p>
+    <p>If every question starts from raw pixels, the cost is enormous.</p>
     <p class="quote" style="font-size:28px">Can we learn a compression that survives changes in the question?</p>
-    <p class="sub">Not lossless — <em>broadly reusable</em>: a minimally task-specific compression for questions not yet asked.</p>
+    <p class="sub">Not lossless; broadly reusable for questions not yet asked.</p>
   </section>
 
   <section class="step" id="foundationhuman" data-x="-2300" data-y="5000" data-scale=".7"
            data-title="Human parallel" data-section="III · The Program">
     <div class="kicker hu">zoom · the human parallel</div>
     <p>We do not keep separate mental databases for “person for football,” “person for advice,” “person for trust.”</p>
-    <p>One rich representation — interrogated differently per question. A future question can expose it as too compressed, biased, incomplete: re-evaluate, re-weight, or go gather more.</p>
+    <p>One rich representation, interrogated differently per question. Failure means reweight, recompress, or gather more.</p>
   </section>
 
-  <section class="step" id="jaisp" data-x="-3900" data-y="3700" data-scale="1.1"
-           data-title="JAISP" data-section="III · The Program" style="width:1300px">
+  <section class="step" id="receipts" data-x="-3900" data-y="3700" data-scale="1"
+           data-title="The JAISP paper" data-section="III · The Program" style="width:1300px">
     <div class="kicker pr">the payoff · JAISP</div>
-    <h2 style="margin-bottom:10px">Learn once, interrogate per question.</h2>
-    <div class="figure">
-      <img src="assets/jaisp_architecture_crop.png" alt="JAISP architecture: masked-band pretraining and downstream heads">
-      <p class="figcap">10 bands — Rubin ugrizy (0.2″/px) + Euclid VIS·Y·J·H (0.1″/px) → two-stream ConvNeXt stems → shared transformer latent, trained by masked-band autoencoding; frozen encoder → detection · astrometry · photometry · shape · redshift heads.</p>
+    <h2 style="margin-bottom:10px">This is what we did here.</h2>
+    <div class="figure" style="margin-top:6px">
+      <img src="assets/paper.png" width="1204" height="956" decoding="async"
+           alt="JAISP paper title page — A Joint Rubin–Euclid Foundation Model for Cross-Instrument Source Detection and Astrometry">
+      <p class="figcap">A joint Rubin–Euclid foundation model for cross-instrument source detection and astrometry: learn a shared representation from the images, then read out the measurement needed for the question.</p>
     </div>
   </section>
 
-  <section class="step" id="astrohead" data-x="-3900" data-y="5000" data-scale=".8"
-           data-title="The astrometry head" data-section="III · The Program" style="width:1300px">
-    <div class="kicker pr">zoom · astrometry, the first readout</div>
+  <section class="step" id="jaisp" data-x="-3900" data-y="5000" data-scale=".9"
+           data-title="JAISP architecture" data-section="III · The Program" style="width:1300px">
+    <div class="kicker pr">what the model does</div>
+    <h2 style="margin-bottom:10px">Learn once, interrogate per question.</h2>
     <div class="figure">
-      <img src="assets/astrometry_fig8.png" alt="Cross-survey positional offsets, raw vs head-corrected">
-      <p class="figcap">Cross-survey offsets over 790 ECDFS tiles: the position head collapses raw ~50 mas offset clouds to ~14–17 mas, re-centered on the origin — high-resolution VIS localization transferred through the shared latent.</p>
+      <img src="assets/jaisp_architecture_crop.png" width="1109" height="550" decoding="async" alt="JAISP architecture: masked-band pretraining and downstream heads">
+      <p class="figcap">10 bands: Rubin ugrizy + Euclid VIS·Y·J·H → two-stream ConvNeXt stems → shared transformer latent → detection · astrometry · photometry · shape · redshift heads.</p>
     </div>
   </section>
 
@@ -501,12 +398,12 @@
            data-title="Fisher through the latent" data-section="III · The Program">
     <div class="kicker pr">the measurable claim</div>
     <p class="eq">F<sub>pixels</sub> → F<sub>stems</sub> → F<sub>fused</sub> → F<sub>head</sub></p>
-    <ul>
-      <li>Inject sources at known (x, y); perturb ±δx, ±δy; repeat noise realizations.</li>
-      <li>Measure the response at every stage: &nbsp;<em>F<sub>z</sub> = J<sub>z</sub>ᵀ C<sub>z</sub>⁻¹ J<sub>z</sub></em>, &nbsp;J<sub>z</sub> = ∂⟨z⟩/∂(x,y).</li>
-      <li>F drops → the compression discarded astrometric information. &nbsp;F<sub>fused</sub> ≈ F<sub>pixels</sub> → effectively lossless <em>for astrometry</em>.</li>
-    </ul>
-    <p class="sub">Hypothesis until measured: F<sub>Rubin</sub> &lt; F<sub>fused</sub> ≲ F<sub>VIS</sub>. Then repeat for photometry, shape, redshift.</p>
+    <div class="three compact">
+      <div class="mini"><h3>Probe</h3><p>Inject known (x,y); perturb ±δx, ±δy across noise realizations.</p></div>
+      <div class="mini"><h3>Measure</h3><p><em>F<sub>z</sub> = J<sub>z</sub>ᵀ C<sub>z</sub>⁻¹ J<sub>z</sub></em>, with J<sub>z</sub> = ∂⟨z⟩/∂(x,y).</p></div>
+      <div class="mini"><h3>Read</h3><p>F drop = information lost. F<sub>fused</sub> ≈ F<sub>pixels</sub> = lossless for astrometry.</p></div>
+    </div>
+    <p class="sub">Test astrometry first; repeat for photometry, shape, redshift.</p>
     <aside class="notes">This turns “the latent looks useful” into an information-retention measurement. If a toy result exists, show it here.</aside>
   </section>
 
@@ -522,7 +419,7 @@
     <h2>Sometimes the hill itself moves.</h2>
     <ul>
       <li>A person changes, reacts, learns, performs, adapts to the observer.</li>
-      <li>Even the “static” example moves: proper motion across Rubin’s decade of epochs.</li>
+      <li>Even the “static” sky moves: proper motion across Rubin’s decade.</li>
       <li>New instruments, new surveys, new questions — the landscape is redrawn under your feet.</li>
     </ul>
     <p class="sub">The optimizer is not merely climbing a difficult hill. The hill is dynamic.</p>
@@ -540,7 +437,7 @@
 
   <section class="step" id="breakgame" data-x="-8600" data-y="-2000" data-scale="1.05"
            data-title="Sisyphus takes a break" data-section="Return" style="width:1150px">
-    <img class="sketch" src="assets/closing.png" alt="Sisyphus takes a break — playing pinball beside the boulder" style="max-height:560px; width:auto; margin:0 auto;">
+    <img class="sketch" src="assets/closing.png" width="1524" height="1470" decoding="async" alt="Sisyphus takes a break — playing pinball beside the boulder" style="max-height:560px; width:auto; margin:0 auto;">
     <p class="sub" style="text-align:center; margin-top:14px">…and starts the game.</p>
     <p class="small" style="text-align:center">cartoon: Jon Adams</p>
     <aside class="notes">Land the reversal: no universal loss, no compression sufficient for every question, every answer breeds questions. The purpose was never to stop pushing.</aside>
@@ -555,251 +452,10 @@
 </div>
 </div>
 
-<div id="hint">→ next · ← prev · O map · N notes · click a region to jump</div>
-<div id="hud"></div>
-<div id="noteBox"></div>
+<div id="hint">→/← · O map · N notes</div>
+<div id="hud" aria-live="polite" aria-atomic="true"></div>
+<div id="noteBox" role="note"></div>
 
-<script>
-(function(){
-  const canvas = document.getElementById('canvas');
-  const steps  = Array.from(document.querySelectorAll('.step'));
-  const hud    = document.getElementById('hud');
-  const noteBox= document.getElementById('noteBox');
-  const S = steps.map(el => ({
-    el,
-    x: parseFloat(el.dataset.x), y: parseFloat(el.dataset.y),
-    s: parseFloat(el.dataset.scale || 1),
-    id: el.id, title: el.dataset.title || el.id,
-    section: el.dataset.section || ''
-  }));
-  S.forEach(o => {
-    o.el.style.left = o.x + 'px';
-    o.el.style.top  = o.y + 'px';
-    o.el.style.transform = 'translate(-50%,-50%) scale(' + o.s + ')';
-  });
-  const byId = id => S.find(o => o.id === id);
-
-  /* ---- map lines ---- */
-  const svg = document.getElementById('decor');
-  const B = {x:-9500, y:-4300, w:13400, h:10800};
-  svg.setAttribute('viewBox', B.x+' '+B.y+' '+B.w+' '+B.h);
-  svg.style.left = B.x+'px'; svg.style.top = B.y+'px';
-  svg.style.width = B.w+'px'; svg.style.height = B.h+'px';
-
-  const solid = [
-    ['title','rock'],['rock','promise'],['promise','question'],
-    ['question','matters'],['matters','data'],['data','model'],
-    ['model','compression'],['compression','inference'],
-    ['inference','entropy'],['entropy','surprise'],['surprise','kl'],['kl','fisher'],
-    ['fisher','fisherastro'],['fisherastro','quad'],['quad','goodenough'],['goodenough','fork'],
-    ['branchc','expdesign'],['expdesign','joint'],['joint','rubineuclid'],
-    ['rubineuclid','foundation'],['foundation','jaisp'],['jaisp','fisherlatent']
-  ];
-  const dashed = [
-    ['matters','metricdetail'],['data','nuisance'],
-    ['compression','sufficiency'],['compression','humanrecompress'],
-    ['inference','goodenough'],['goodenough','question'],
-    ['fork','brancha'],['fork','branchb'],['fork','branchc'],
-    ['brancha','matters'],['branchb','compression'],
-    ['expdesign','expexamples'],['joint','jointhuman'],['rubineuclid','transferflavors'],
-    ['foundation','foundationhuman'],['jaisp','astrohead'],
-    ['dynamic','endings'],['endings','breakgame']
-  ];
-  const NS = 'http://www.w3.org/2000/svg';
-  const defs = document.createElementNS(NS,'defs');
-  defs.innerHTML = '<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f675b"/></marker>';
-  svg.appendChild(defs);
-
-  const lineMap = {};
-  function addLine(a, b, isSolid){
-    const A = byId(a), Z = byId(b);
-    if (!A || !Z) return;
-    let x1=A.x, y1=A.y, x2=Z.x, y2=Z.y;
-    const dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy);
-    const tA=560*A.s, tB=560*Z.s;
-    if (L > tA+tB+120){
-      const ux=dx/L, uy=dy/L;
-      x1+=ux*tA; y1+=uy*tA; x2-=ux*tB; y2-=uy*tB;
-    }
-    const ln = document.createElementNS(NS,'line');
-    ln.setAttribute('x1',x1); ln.setAttribute('y1',y1);
-    ln.setAttribute('x2',x2); ln.setAttribute('y2',y2);
-    if (isSolid) ln.setAttribute('marker-end','url(#arr)');
-    svg.appendChild(ln);
-    lineMap[a+'|'+b] = ln; lineMap[b+'|'+a] = ln;
-  }
-  solid.forEach(([a,b]) => addLine(a,b,true));
-  dashed.forEach(([a,b]) => addLine(a,b,false));
-
-  const regionTitles = [
-    ['the map of inquiry', -1000, -3800, 210],
-    ['I · the loop of inquiry', 0, -2450, 170],
-    ['II · four rulers for information', -4000, -2350, 170],
-    ['III · the research program', -1200, 5750, 170],
-    ['the beginning', -5600, -3900, 120],
-    ['the end', -8600, -2480, 95]
-  ];
-  regionTitles.forEach(([t,x,y,fs]) => {
-    const tx = document.createElementNS(NS,'text');
-    tx.setAttribute('x',x); tx.setAttribute('y',y);
-    tx.setAttribute('text-anchor','middle'); tx.setAttribute('font-size',fs);
-    tx.textContent = t;
-    svg.appendChild(tx);
-  });
-
-  /* ---- camera: van Wijk & Nuij smooth zoom-pan ---- */
-  const cam = {cx:0, cy:0, w:2000};   /* world center + visible world width */
-  let flight = null;
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function applyCam(){
-    const vw = innerWidth, vh = innerHeight, k = vw / cam.w;
-    canvas.style.transform =
-      'translate(' + (vw/2 - k*cam.cx) + 'px,' + (vh/2 - k*cam.cy) + 'px) scale(' + k + ')';
-  }
-  function flyTo(cx1, cy1, w1, snap){
-    if (flight) { cancelAnimationFrame(flight); flight = null; }
-    const cx0 = cam.cx, cy0 = cam.cy, w0 = cam.w;
-    const dx = cx1 - cx0, dy = cy1 - cy0, u1 = Math.hypot(dx, dy);
-    const finish = () => {
-      cam.cx = cx1; cam.cy = cy1; cam.w = w1; applyCam();
-      canvas.style.willChange = 'auto';
-    };
-    if (snap || reduceMotion || (u1 < 1 && Math.abs(Math.log(w1/w0)) < .01)) { finish(); return; }
-    const rho = 1.42, rho2 = rho*rho;
-    let S, u, w;
-    if (u1 < 1e-3){
-      const sgn = w1 < w0 ? -1 : 1;
-      S = Math.abs(Math.log(w1/w0)) / rho;
-      u = () => 0;
-      w = s => w0 * Math.exp(sgn * rho * s);
-    } else {
-      const b = i => {
-        const wi = i ? w1 : w0;
-        return (w1*w1 - w0*w0 + (i ? -1 : 1) * rho2*rho2 * u1*u1) / (2 * wi * rho2 * u1);
-      };
-      const rr = bi => Math.log(Math.sqrt(bi*bi + 1) - bi);
-      const r0 = rr(b(0)), r1 = rr(b(1));
-      S = (r1 - r0) / rho;
-      u = s => (w0/rho2) * (Math.cosh(r0) * Math.tanh(rho*s + r0) - Math.sinh(r0));
-      w = s => w0 * Math.cosh(r0) / Math.cosh(rho*s + r0);
-    }
-    if (!isFinite(S)) { finish(); return; }
-    const D = Math.min(1600, Math.max(650, Math.abs(S) * 380));
-    const t0 = performance.now();
-    const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
-    canvas.style.willChange = 'transform';
-    function frame(now){
-      const t = Math.min(1, (now - t0) / D);
-      const s = S * ease(t);
-      const us = u1 < 1e-3 ? 0 : u(s) / u1;
-      cam.cx = cx0 + dx * us; cam.cy = cy0 + dy * us; cam.w = w(s);
-      applyCam();
-      if (t < 1) flight = requestAnimationFrame(frame);
-      else { flight = null; finish(); }
-    }
-    flight = requestAnimationFrame(frame);
-  }
-
-  let cur = 0, prevBeforeMap = 0, suppressHash = false;
-  const mapIndex = S.findIndex(o => o.id === 'map');
-
-  function markWalked(a, b){
-    const ln = lineMap[a+'|'+b];
-    if (ln) ln.classList.add('walked');
-  }
-  function goto(i, pushHash, snap){
-    if (i < 0 || i >= S.length) return;
-    const from = S[cur];
-    cur = i;
-    const o = S[i], vw = innerWidth, vh = innerHeight;
-    const w = Math.max(o.el.offsetWidth, 400);
-    const h = Math.max(o.el.offsetHeight, 200);
-    const k = Math.min(0.86*vw/(w*o.s), 0.82*vh/(h*o.s));
-    flyTo(o.x, o.y, vw / k, snap);
-    const friend = o.el.dataset.friend;
-    steps.forEach(el => el.classList.toggle('active', el === o.el || (friend && el.id === friend)));
-    document.body.classList.toggle('overview', !!o.el.dataset.overview);
-    markWalked(from.id, o.id);
-    if (o.el.dataset.mark) markWalked(o.el.dataset.mark, o.id);
-    Object.values(lineMap).forEach(ln => ln.classList.remove('lit'));
-    Object.keys(lineMap).forEach(key => {
-      const [a,b] = key.split('|');
-      if (a === o.id || b === o.id) lineMap[key].classList.add('lit');
-    });
-    hud.textContent = o.section + '  ·  ' + o.title + '  ·  ' + (i+1) + ' / ' + S.length;
-    const n = o.el.querySelector('.notes');
-    noteBox.innerHTML = n ? n.innerHTML : '<em>(no notes for this step)</em>';
-    if (pushHash !== false) { suppressHash = true; location.hash = '/' + o.id; }
-  }
-  const next = () => goto(Math.min(cur+1, S.length-1));
-  const prev = () => goto(Math.max(cur-1, 0));
-
-  /* data-mark: walked-line fallback where the walk detours through subs */
-  const marks = {question:'promise', data:'matters', model:'data', compression:'model',
-    inference:'compression', entropy:'inference', humanrecompress:'compression',
-    branchb:'fork', branchc:'fork', joint:'expdesign', rubineuclid:'joint',
-    foundation:'rubineuclid', jaisp:'foundation', fisherlatent:'jaisp'};
-  Object.keys(marks).forEach(id => { const o = byId(id); if (o) o.el.dataset.mark = marks[id]; });
-
-  addEventListener('hashchange', () => {
-    if (suppressHash) { suppressHash = false; return; }
-    const i = S.findIndex(o => '/'+o.id === location.hash.slice(1));
-    if (i >= 0 && i !== cur) goto(i, false);
-  });
-  addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
-    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); prev(); }
-    else if (e.key === 'Home') goto(0);
-    else if (e.key === 'End') goto(S.length-1);
-    else if (e.key === 'o' || e.key === 'O' || e.key === 'Escape') {
-      if (S[cur].el.dataset.overview) goto(prevBeforeMap);
-      else { prevBeforeMap = cur; goto(mapIndex); }
-    }
-    else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('shownotes');
-  });
-  document.getElementById('viewport').addEventListener('click', e => {
-    const stepEl = e.target.closest('.step');
-    if (stepEl && stepEl !== S[cur].el) {
-      const i = S.findIndex(o => o.el === stepEl);
-      if (i >= 0) { goto(i); return; }
-    }
-    next();
-  });
-  addEventListener('resize', () => goto(cur, false, true));
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', () => goto(cur, false, true));
-    img.addEventListener('error', () => {
-      const ph = document.createElement('p');
-      ph.className = 'caution';
-      ph.textContent = 'missing image: ' + img.getAttribute('src');
-      img.replaceWith(ph);
-    });
-  });
-
-  /* bake the sketch blend once so no per-frame mix-blend-mode cost */
-  document.querySelectorAll('img.sketch').forEach(img => {
-    const bake = () => {
-      if (img.dataset.baked) return;
-      try {
-        const c = document.createElement('canvas');
-        c.width = img.naturalWidth; c.height = img.naturalHeight;
-        const g = c.getContext('2d');
-        g.fillStyle = '#fbf8f0'; g.fillRect(0, 0, c.width, c.height);
-        g.globalCompositeOperation = 'multiply';
-        g.drawImage(img, 0, 0);
-        c.className = img.className + ' baked';
-        c.setAttribute('style', img.getAttribute('style') || '');
-        img.dataset.baked = '1';
-        img.replaceWith(c);
-      } catch (e) { /* keep the blended img */ }
-    };
-    if (img.complete && img.naturalWidth) bake();
-    else img.addEventListener('load', bake);
-  });
-
-  const initial = S.findIndex(o => '/'+o.id === location.hash.slice(1));
-  goto(initial >= 0 ? initial : 0, false, true);
-})();
-</script>
+<script src="deck.js"></script>
 </body>
 </html>
