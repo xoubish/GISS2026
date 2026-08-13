@@ -38,7 +38,8 @@
   .thumb .frame{position:absolute; left:0; top:0; width:1280px; height:720px;
     transform-origin:0 0;}
   .thumb .slide{position:absolute; inset:0; opacity:1 !important; visibility:visible !important;
-    transition:none;}
+    transition:none; color:#191917;}   /* the dark presenter chrome must not leak into the preview */
+  .thumb h1,.thumb h2,.thumb h3,.thumb .lede,.thumb .quote{color:#191917;}
   .thumb .build{opacity:.16;}
   .thumb .build.on{opacity:1;}
   #nextTitle{font-family:Georgia,serif; font-size:19px; color:#cfcabf; margin-top:10px;}

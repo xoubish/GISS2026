@@ -29,3 +29,6 @@ venv/
 # Figure/scratch build output
 build/
 _build/
+
+# Deck exports (regenerate with deck-v7/export.sh)
+deck-v7/out/
