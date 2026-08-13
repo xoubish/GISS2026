@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Presenter — Photons or Priors</title>
+<link rel="stylesheet" href="deck.css">
+<style>
+  html,body{height:100%; overflow:hidden; background:#14161a; color:#e8e4dc;
+    font-family:Arial, Helvetica, sans-serif;}
+  #pv{display:grid; grid-template-rows:auto 1fr auto; height:100%; gap:14px; padding:14px 16px;}
+
+  /* top bar: clock, pace, position */
+  #top{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:18px;}
+  #clock{font-size:44px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-1px;}
+  #clock small{font-size:15px; font-weight:400; color:#8f8c85; margin-left:10px; letter-spacing:0;}
+  #pace{font-size:17px; font-weight:700; padding:6px 12px; border-radius:5px;
+    background:rgba(71,120,96,.22); color:#8ecfae; justify-self:start;}
+  #pace.over{background:rgba(154,61,66,.24); color:#e79aa0;}
+  #pos{font-size:15px; color:#8f8c85; text-align:right; font-variant-numeric:tabular-nums;}
+  #pos b{display:block; font-size:22px; color:#e8e4dc; font-family:Georgia,serif; font-weight:400;}
+
+  /* body: notes left, previews right */
+  #body{display:grid; grid-template-columns:1.15fr .85fr; gap:18px; min-height:0;}
+  .panel{background:#1b1e23; border:1px solid #2b2f36; border-radius:8px; padding:14px 16px;
+    min-height:0; display:flex; flex-direction:column;}
+  .plab{font-size:11px; text-transform:uppercase; letter-spacing:.09em; color:#7d7a73;
+    font-weight:700; margin-bottom:10px; flex:none;}
+  #notes{font-family:Georgia,serif; font-size:21px; line-height:1.5; color:#ece8e0;
+    overflow-y:auto; flex:1;}
+  #notes em{color:#c9b98f;}
+  #notes .warn{display:block; margin-top:12px; padding:10px 12px; border-radius:5px;
+    background:rgba(154,61,66,.18); color:#f0aeb2; font-size:18px;}
+  #right{display:grid; grid-template-rows:auto 1fr; gap:18px; min-height:0;}
+
+  /* slide previews built from cloned markup */
+  .thumb{position:relative; width:100%; overflow:hidden; border-radius:5px;
+    background:#fbf8f0; border:1px solid #2b2f36; flex:none;}
+  .thumb .frame{position:absolute; left:0; top:0; width:1280px; height:720px;
+    transform-origin:0 0;}
+  .thumb .slide{position:absolute; inset:0; opacity:1 !important; visibility:visible !important;
+    transition:none;}
+  .thumb .build{opacity:.16;}
+  .thumb .build.on{opacity:1;}
+  #nextTitle{font-family:Georgia,serif; font-size:19px; color:#cfcabf; margin-top:10px;}
+  #nextTitle span{color:#7d7a73; font-size:15px;}
+
+  /* bottom: controls + slide rail */
+  #bot{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:center;}
+  button{font:inherit; font-size:14px; padding:9px 15px; border-radius:5px; cursor:pointer;
+    background:#252a31; color:#e8e4dc; border:1px solid #333941;}
+  button:hover{background:#2e343c;}
+  #rail{display:flex; gap:4px; overflow-x:auto;}
+  #rail i{flex:1; min-width:9px; height:22px; border-radius:3px; background:#252a31;
+    font-style:normal; font-size:10px; color:#6e6b64; display:grid; place-items:center;
+    cursor:pointer;}
+  #rail i.done{background:#333941;}
+  #rail i.now{background:#c9b98f; color:#1b1e23; font-weight:700;}
+  #err{padding:14px; font-size:15px; color:#e79aa0; line-height:1.5;}
+</style>
+</head>
+<body>
+<div id="pv">
+  <div id="top">
+    <div id="clock">00:00<small id="budget"></small></div>
+    <div id="pace">—</div>
+    <div id="pos"><b id="title">…</b><span id="count"></span></div>
+  </div>
+
+  <div id="body">
+    <div class="panel">
+      <div class="plab">speaker notes</div>
+      <div id="notes">waiting for the deck…</div>
+    </div>
+    <div id="right">
+      <div class="panel" style="flex:none">
+        <div class="plab">now</div>
+        <div class="thumb" id="thumbNow"><div class="frame"></div></div>
+      </div>
+      <div class="panel" style="flex:none">
+        <div class="plab">next</div>
+        <div class="thumb" id="thumbNext"><div class="frame"></div></div>
+        <div id="nextTitle"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bot">
+    <div>
+      <button id="bPrev">← prev</button>
+      <button id="bNext">next →</button>
+      <button id="bStart">start clock</button>
+      <button id="bReset">reset</button>
+    </div>
+    <div id="rail"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  let deck = null, state = { i: 0, sub: 0 };
+
+  /* ---- channel ---- */
+  let chan = null;
+  try { chan = new BroadcastChannel('giss2026-deck'); } catch (e) {}
+  function send(cmd, extra) {
+    const m = Object.assign({ type: 'cmd', cmd: cmd }, extra || {});
+    if (chan) chan.postMessage(m);
+    else try { localStorage.setItem('giss2026-deck-cmd', JSON.stringify(Object.assign({ t: Date.now() }, m))); } catch (e) {}
+  }
+  function onState(m) {
+    if (!m || m.type !== 'state') return;
+    state = m; paint();
+  }
+  if (chan) { chan.onmessage = e => onState(e.data); chan.postMessage({ type: 'hello' }); }
+  else addEventListener('storage', e => {
+    if (e.key === 'giss2026-deck' && e.newValue) { try { onState(JSON.parse(e.newValue)); } catch (err) {} }
+  });
+
+  /* ---- load the deck's own markup so notes and previews stay in one source ---- */
+  fetch('index.html')
+    .then(r => r.text())
+    .then(t => {
+      const doc = new DOMParser().parseFromString(t, 'text/html');
+      deck = Array.from(doc.querySelectorAll('.slide')).map(el => ({
+        el,
+        title: el.dataset.title || '',
+        section: el.dataset.section || '',
+        mins: parseFloat(el.dataset.mins || 0),
+        notes: (el.querySelector('.notes') || {}).innerHTML || '',
+        builds: el.querySelectorAll('.build').length
+      }));
+      buildRail(); paint();
+    })
+    .catch(() => {
+      $('notes').innerHTML = '<div id="err">Could not read <b>index.html</b>.<br><br>' +
+        'The presenter view needs the deck served over http, not opened from the ' +
+        'file system. Run <b>./serve.sh</b> in this folder and reopen both windows ' +
+        'from <b>http://localhost:8000</b>.</div>';
+    });
+
+  /* ---- rendering ---- */
+  function scaleThumb(box) {
+    const w = box.clientWidth;
+    box.style.height = (w * 720 / 1280) + 'px';
+    box.querySelector('.frame').style.transform = 'scale(' + (w / 1280) + ')';
+  }
+  function paintThumb(box, idx, sub) {
+    const frame = box.querySelector('.frame');
+    frame.innerHTML = '';
+    if (!deck || !deck[idx]) return;
+    const clone = deck[idx].el.cloneNode(true);
+    clone.classList.add('active');
+    Array.from(clone.querySelectorAll('.build')).forEach((b, k) => {
+      b.classList.toggle('on', sub >= k + 1);
+    });
+    frame.appendChild(clone);
+    scaleThumb(box);
+  }
+  function highlightWatchlist(html) {
+    return html.replace(/(WATCHLIST:[\s\S]*?)(?=<\/|$)/g, '<span class="warn">$1</span>');
+  }
+  function paint() {
+    if (!deck) return;
+    const i = Math.min(state.i, deck.length - 1), s = deck[i];
+    $('title').textContent = s.title;
+    $('count').textContent = (s.section ? s.section + '  ·  ' : '') +
+      (i + 1) + ' / ' + deck.length + (s.builds ? '  ·  build ' + state.sub + '/' + s.builds : '');
+    $('notes').innerHTML = highlightWatchlist(s.notes || '<em>(no notes)</em>');
+    paintThumb($('thumbNow'), i, state.sub);
+    if (deck[i + 1]) {
+      paintThumb($('thumbNext'), i + 1, 0);
+      $('nextTitle').innerHTML = deck[i + 1].title +
+        ' <span>· ' + deck[i + 1].mins.toFixed(1) + ' min</span>';
+    } else {
+      $('thumbNext').querySelector('.frame').innerHTML = '';
+      $('nextTitle').innerHTML = '<span>end of deck</span>';
+    }
+    Array.from($('rail').children).forEach((el, k) => {
+      el.className = k === i ? 'now' : (k < i ? 'done' : '');
+    });
+    paintPace();
+  }
+  function buildRail() {
+    $('rail').innerHTML = '';
+    deck.forEach((s, k) => {
+      const el = document.createElement('i');
+      el.textContent = k + 1;
+      el.title = s.title + ' · ' + s.mins.toFixed(1) + ' min';
+      el.onclick = () => send('goto', { i: k, sub: 0 });
+      $('rail').appendChild(el);
+    });
+    const total = deck.reduce((a, s) => a + s.mins, 0);
+    $('budget').textContent = 'of ' + total.toFixed(0) + ':00 budget';
+  }
+
+  /* ---- clock and pace ---- */
+  let t0 = null, tick = null;
+  function fmt(sec) {
+    const sign = sec < 0 ? '−' : '';
+    sec = Math.abs(Math.round(sec));
+    return sign + String(Math.floor(sec / 60)).padStart(2, '0') + ':' + String(sec % 60).padStart(2, '0');
+  }
+  function elapsed() { return t0 === null ? 0 : (Date.now() - t0) / 1000; }
+  function paintClock() { $('clock').firstChild.nodeValue = fmt(elapsed()); paintPace(); }
+  function paintPace() {
+    if (!deck) return;
+    /* expected elapsed by the time this slide is finished */
+    let due = 0;
+    for (let k = 0; k <= Math.min(state.i, deck.length - 1); k++) due += deck[k].mins * 60;
+    const drift = elapsed() - due;
+    const p = $('pace');
+    if (t0 === null) { p.textContent = 'clock not started'; p.className = ''; return; }
+    p.textContent = (drift > 0 ? 'over by ' : 'ahead by ') + fmt(Math.abs(drift)) +
+      '   ·   slide due at ' + fmt(due);
+    p.className = drift > 30 ? 'over' : '';
+  }
+  $('bStart').onclick = () => {
+    if (t0 === null) { t0 = Date.now(); tick = setInterval(paintClock, 1000); $('bStart').textContent = 'clock running'; }
+  };
+  $('bReset').onclick = () => {
+    clearInterval(tick); t0 = null; tick = null;
+    $('clock').firstChild.nodeValue = '00:00'; $('bStart').textContent = 'start clock'; paintPace();
+  };
+  $('bPrev').onclick = () => send('prev');
+  $('bNext').onclick = () => send('next');
+
+  addEventListener('keydown', e => {
+    const k = e.key;
+    if (k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'PageDown') { e.preventDefault(); send('next'); }
+    else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp') { e.preventDefault(); send('prev'); }
+    else if (k === 's' || k === 'S') $('bStart').click();
+  });
+  addEventListener('resize', () => { scaleThumb($('thumbNow')); scaleThumb($('thumbNext')); });
+})();
+</script>
+</body>
+</html>

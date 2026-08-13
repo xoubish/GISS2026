@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photons or Priors — GISS 2026</title>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<div id="viewport" role="main" aria-label="Photons or Priors — presentation">
+<div id="stage">
+
+<!-- ============ 1 · TITLE ============ -->
+<section class="slide center" data-title="Title" data-section="Open" data-mins=".3">
+  <div class="kicker">GISS 2026</div>
+  <h1>Photons or Priors</h1>
+  <p class="lede" style="margin-top:26px; max-width:820px">
+    What learned models can and cannot measure, and how to tell the difference
+    before you run anything.
+  </p>
+  <p class="small" style="margin-top:40px">Shoubaneh Hemmati — Caltech/IPAC</p>
+  <aside class="notes">Title only. Do not preview the structure — the cold open does that work.</aside>
+</section>
+
+<!-- ============ 2 · COLD OPEN ============ -->
+<section class="slide bleed" data-title="Cold open" data-section="Open" data-mins=".4">
+  <div class="needfig" style="height:100%; border-radius:0; border-width:3px">
+    FIGURE NEEDED — the super-resolved galaxy, full bleed.<br>
+    Ideally the paired strip: input · model output · second-instrument truth.
+  </div>
+  <aside class="notes">Say nothing for a beat. Then: "this is the same galaxy, twice. One of these
+  is what the telescope recorded." Do not reveal which yet.</aside>
+</section>
+
+<!-- ============ 3 · THE QUESTION ============ -->
+<section class="slide" data-title="The question" data-section="Open" data-mins=".6">
+  <div class="kicker">the question</div>
+  <h2>Same photons. More detail.</h2>
+  <p class="lede">Where did the information come from?</p>
+  <p class="sub" style="margin-top:26px">
+    Three of our papers sharpened images. One did not. This talk is about why the
+    difference was predictable in advance.
+  </p>
+  <aside class="notes">Two sentences, then move. The whole engine is that the results below are
+  derivable from theory, not discovered by accident.</aside>
+</section>
+
+<!-- ============ 4 · THE THEOREM + THE BAND LIMIT ============ -->
+<section class="slide" data-title="The theorem" data-section="I · Theory" data-mins="1.2">
+  <div class="kicker as">the theorem</div>
+  <h2>No process adds information about the sky.</h2>
+  <div class="split fig-left">
+    <div>
+      <p class="eq" style="margin-top:6px">Sky → Data → f(Data)<br>
+        <span style="font-size:30px">I(Sky ; f(Data)) ≤ I(Sky ; Data)</span></p>
+      <p>The data processing inequality. No architecture, no amount of compute.
+        Sharpening is <b class="ph">redistribution</b>, not acquisition.</p>
+      <p class="caution build">
+        The honest refinement: a learned prior <em>does</em> carry real sky information —
+        but <b class="pr">population</b> information, not <b class="ph">this-source</b>
+        information. A statement about galaxies in general, applied to your galaxy.
+      </p>
+    </div>
+    <div>
+      <svg class="chart" viewBox="0 0 560 250" role="img"
+           aria-label="Modulation transfer function falling to zero at the cutoff frequency; the network output has support beyond it.">
+        <rect x="333" y="30" width="167" height="170" fill="rgba(154,61,66,.09)"/>
+        <line class="grid" x1="60" y1="30" x2="500" y2="30"/>
+        <line class="ax" x1="60" y1="200" x2="500" y2="200"/>
+        <line class="ax" x1="60" y1="200" x2="60" y2="30"/>
+        <path d="M60,30 C 95,50 130,74 169,114 C 205,150 262,182 333,200"
+              fill="none" stroke="#2f5f8f" stroke-width="2.8"/>
+        <path d="M60,30 C 95,48 130,70 169,105 C 210,142 272,158 333,164 C 380,169 432,178 500,196"
+              fill="none" stroke="#9a3d42" stroke-width="2.4" stroke-dasharray="7 6"/>
+        <line x1="333" y1="30" x2="333" y2="207" stroke="#6f675b" stroke-width="1.4" stroke-dasharray="4 5"/>
+        <text x="200" y="70" fill="#2f5f8f">what the optics passed</text>
+        <text x="356" y="96" fill="#9a3d42">the model wrote this</text>
+        <text x="356" y="118" fill="#9a3d42" font-size="14">from the training set</text>
+        <text class="axis" x="333" y="224" text-anchor="middle">cutoff</text>
+        <text class="axis" x="500" y="224" text-anchor="end">spatial frequency →</text>
+        <text class="axis" x="52" y="36" text-anchor="end">1</text>
+        <text class="axis" x="52" y="204" text-anchor="end">0</text>
+        <text class="axis" x="18" y="120" transform="rotate(-90 18 120)" text-anchor="middle">MTF</text>
+      </svg>
+      <p class="figcap">Past the band limit the data carry nothing. Whatever the output shows
+        there did not come from this source.</p>
+    </div>
+  </div>
+  <aside class="notes">Advance once for the refinement — say it before someone in the room says it
+  for you. Population-vs-per-source is the distinction the entire talk rests on: it is exactly why
+  detection gains are real and shapes shrink.</aside>
+</section>
+
+<!-- ============ 5 · WHAT A PRIOR DOES TO A NUMBER ============ -->
+<section class="slide" data-title="Shrinkage" data-section="I · Theory" data-mins="1.1">
+  <div class="kicker as">the mechanism</div>
+  <h2>What a prior does to a number</h2>
+  <div class="split fig-left">
+    <div>
+      <p>A network trained on pixel-wise error returns an approximation of the
+        <b class="ph">posterior mean</b>. Posterior means are under-dispersed: they shrink
+        toward the prior.</p>
+      <p class="quote build" style="margin-top:20px">
+        Any per-source amplitude that goes through an MSE-trained network comes back
+        <b class="pr">too small</b> — in a direction set by the training distribution.
+      </p>
+      <p class="sub build">A prediction, not a postmortem. Everything after this slide
+        was already implied by it.</p>
+    </div>
+    <div>
+      <svg class="chart" viewBox="0 0 560 250" role="img"
+           aria-label="True amplitudes spread widely; estimates pulled toward the prior mean.">
+        <line x1="280" y1="34" x2="280" y2="222" stroke="#6f675b" stroke-width="1.4" stroke-dasharray="4 5"/>
+        <text x="280" y="26" text-anchor="middle" font-size="14">prior mean</text>
+        <line class="ax" x1="60" y1="96" x2="500" y2="96"/>
+        <line class="ax" x1="60" y1="186" x2="500" y2="186"/>
+        <g stroke="#9a3d42" stroke-width="1.6" opacity=".75">
+          <line x1="95"  y1="104" x2="154" y2="178" marker-end="url(#sh)"/>
+          <line x1="150" y1="104" x2="192" y2="178" marker-end="url(#sh)"/>
+          <line x1="215" y1="104" x2="236" y2="178" marker-end="url(#sh)"/>
+          <line x1="345" y1="104" x2="324" y2="178" marker-end="url(#sh)"/>
+          <line x1="410" y1="104" x2="368" y2="178" marker-end="url(#sh)"/>
+          <line x1="465" y1="104" x2="406" y2="178" marker-end="url(#sh)"/>
+        </g>
+        <defs><marker id="sh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5"
+          orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9a3d42"/></marker></defs>
+        <g fill="#2f5f8f">
+          <circle cx="95" cy="96" r="6"/><circle cx="150" cy="96" r="6"/><circle cx="215" cy="96" r="6"/>
+          <circle cx="280" cy="96" r="6"/><circle cx="345" cy="96" r="6"/><circle cx="410" cy="96" r="6"/>
+          <circle cx="465" cy="96" r="6"/>
+        </g>
+        <g fill="#477860">
+          <circle cx="154" cy="186" r="6"/><circle cx="192" cy="186" r="6"/><circle cx="236" cy="186" r="6"/>
+          <circle cx="280" cy="186" r="6"/><circle cx="324" cy="186" r="6"/><circle cx="368" cy="186" r="6"/>
+          <circle cx="406" cy="186" r="6"/>
+        </g>
+        <text x="60" y="80" fill="#2f5f8f">true amplitude</text>
+        <text x="60" y="216" fill="#477860">what the network returns</text>
+      </svg>
+      <p class="figcap">The spread collapses toward the mean of whatever the model was trained on.</p>
+    </div>
+  </div>
+  <aside class="notes">Two advances. Land the middle line slowly — it is the falsifiable claim, and the
+  next slide is nothing but receipts for it. WATCHLIST: confirm the Everetts net trains on a
+  pixel-wise loss, not an adversarial one, or this mechanism needs restating.</aside>
+</section>
+
+<!-- ============ 6 · THE TRILOGY: RECEIPTS ============ -->
+<section class="slide" data-title="The trilogy — receipts" data-section="II · Receipts" data-mins="2.0">
+  <div class="kicker pr">the receipts · three papers</div>
+  <h2 style="margin-bottom:6px">Predicted, then measured</h2>
+  <table class="receipts">
+    <thead><tr><th>predicted, from theory</th><th>measured, in our papers</th></tr></thead>
+    <tbody>
+      <tr class="build">
+        <td>MSE nets shrink per-source amplitudes</td>
+        <td>ellipticity shrunk <span class="num">25–35%</span> <span class="src">Everetts+</span> ·
+          median Hα recovered <span class="num">26%</span> of true <span class="src">Haghjoo+</span> ·
+          flux biased <span class="num">up</span> by oversmoothing <span class="src">Rezaee+</span></td>
+      </tr>
+      <tr class="build">
+        <td>generative priors trade accuracy for realism</td>
+        <td>the diffusion model suppresses shape information
+          <b class="pr">below bilinear interpolation</b> <span class="src">Everetts+</span></td>
+      </tr>
+      <tr class="build">
+        <td>priors help decisions, hurt measurements</td>
+        <td>the one clean win is deblending at 3–5″:
+          <span class="num">35%</span> vs <span class="num">9%</span> peak recovery
+          <span class="src">Rezaee+</span> — a decision, auditable against truth</td>
+      </tr>
+      <tr class="build">
+        <td>the gap is invisible from inside</td>
+        <td>every gap above was measured against a <b class="ph">second instrument</b>:
+          JWST · Spitzer · the grating · truth catalogs</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="caution build">Held-out validation from the same data looked fine in every case.</p>
+  <aside class="notes">Five advances, one row at a time. This is the slide the talk is for — do not
+  rush it. WATCHLIST: "26% Hα is the same effect" — say "consistent with," not "because of."
+  Haghjoo frames it as denoising, not amplitude. Same for Rezaee's flux bias as prior-mean pull.</aside>
+</section>
+
+<!-- ============ 7 · PERCEPTION–DISTORTION ============ -->
+<section class="slide" data-title="Perception–distortion" data-section="II · Receipts" data-mins=".7">
+  <div class="kicker as">why the prettiest one scored worst</div>
+  <h2>Realism and accuracy are provably in tension</h2>
+  <div class="split fig-left">
+    <div>
+      <p>Past a bound, perceptual quality is bought only by paying distortion
+        <span class="src">(Blau &amp; Michaeli 2018)</span>.</p>
+      <p class="quote" style="margin-top:18px">The prettiest reconstruction is the least faithful
+        one — not sometimes, structurally.</p>
+      <p class="sub">Scope it aloud: on structural metrics, for this task.</p>
+    </div>
+    <div>
+      <svg class="chart" viewBox="0 0 560 250" role="img"
+           aria-label="Perception-distortion tradeoff curve, with the residual net at low distortion and the diffusion model beyond the bilinear baseline.">
+        <path d="M80,196 C 180,184 240,142 320,106 C 380,80 432,66 476,56 L476,30 L80,30 Z"
+              fill="rgba(47,95,143,.10)"/>
+        <line class="ax" x1="60" y1="210" x2="510" y2="210"/>
+        <line class="ax" x1="60" y1="210" x2="60" y2="30"/>
+        <path d="M80,196 C 180,184 240,142 320,106 C 380,80 432,66 476,56"
+              fill="none" stroke="#2f5f8f" stroke-width="2.8"/>
+        <line x1="382" y1="46" x2="382" y2="210" stroke="#6f675b" stroke-width="1.4" stroke-dasharray="4 5"/>
+        <text x="374" y="196" text-anchor="end" font-size="14">bilinear</text>
+        <circle cx="150" cy="188" r="7" fill="#477860"/>
+        <text x="164" y="193" fill="#477860">residual net</text>
+        <circle cx="424" cy="68" r="7" fill="#9a3d42"/>
+        <text x="424" y="42" text-anchor="middle" fill="#9a3d42">diffusion</text>
+        <text x="112" y="62" fill="#2f5f8f" font-size="15">unattainable</text>
+        <text class="axis" x="510" y="234" text-anchor="end">distortion (worse →)</text>
+        <text class="axis" x="20" y="120" transform="rotate(-90 20 120)" text-anchor="middle">realism (better ↑)</text>
+      </svg>
+      <p class="figcap">The diffusion model sits to the right of the bilinear baseline: more
+        realistic, and further from the truth.</p>
+    </div>
+  </div>
+  <aside class="notes">If time is short this folds into slide 6 as one spoken line — it is the first
+  thing to cut.</aside>
+</section>
+
+<!-- ============ 8 · THE RULE ============ -->
+<section class="slide" data-title="The rule" data-section="III · The rule" data-mins="1.0">
+  <div class="kicker pr">the Monday-morning tool</div>
+  <h2>Decisions versus measurements</h2>
+  <div class="duo" style="margin-top:6px">
+    <div class="a">
+      <div class="lab">safe — a decision</div>
+      <p>Few bits. Is there a source? Is this one object or two?</p>
+      <p style="margin-top:10px">Checkable against truth: completeness, purity. A prior that
+        is wrong here shows up in the audit.</p>
+    </div>
+    <div class="h">
+      <div class="lab">unsafe — a measurement</div>
+      <p>A continuous number. A shape, a flux, a line ratio.</p>
+      <p style="margin-top:10px">Propagates silently into cosmology or chemistry, with no
+        per-object truth to catch it.</p>
+    </div>
+  </div>
+  <p class="eq build" style="margin-top:24px">
+    Never measure on enhanced pixels. Detect on them if you like.</p>
+  <aside class="notes">One advance for the rule. This is the sentence people write down; pause after
+  it. If they take one thing home, this is it.</aside>
+</section>
+
+<!-- ============ 9 · THE SECOND CHANNEL ============ -->
+<section class="slide" data-title="The second channel" data-section="III · The rule" data-mins=".7">
+  <div class="kicker as">the audit</div>
+  <h2>You cannot estimate the gap from inside.</h2>
+  <p>Validation is denominated in the same currency as training. The shape bias survived
+    every split and died at JWST.</p>
+  <div class="three" style="margin-top:22px">
+    <div class="mini A"><h3>Same currency</h3><p>Held-out data share the instrument, the
+      selection, and the prior. They cannot price what all three omit.</p></div>
+    <div class="mini B"><h3>Second instrument</h3><p>JWST for shapes. Spitzer for photometry.
+      The grating for spectra. Different optics, different failure modes.</p></div>
+    <div class="mini C"><h3>What it bought</h3><p>Every number on the receipts slide. None of
+      it was visible without a second channel.</p></div>
+  </div>
+  <aside class="notes">Pre-empts the "your val split would catch this" question, which will otherwise
+  come at the end and cost more time.</aside>
+</section>
+
+<!-- ============ 10 · H₀ ============ -->
+<section class="slide" data-title="H₀" data-section="III · The rule" data-mins=".6">
+  <div class="kicker">the field already knows this</div>
+  <h2>Two converged losses, one universe.</h2>
+  <p class="lede" style="margin-top:8px">Both pipelines converged. Both report tight error bars.
+    They disagree.</p>
+  <p class="sub" style="margin-top:22px">The field's answer was not a better optimizer. It was
+    more independent channels.</p>
+  <aside class="notes">Do not editorialize on the Hubble tension or take a side. It is here as the
+  canonical case of the second-channel argument at field scale, and as the bridge into Act II.</aside>
+</section>
+
+<!-- ============ 11 · THE SURVEY AS A CODEC ============ -->
+<section class="slide" data-title="The survey as a codec" data-section="IV · The codec" data-mins=".7">
+  <div class="kicker as">act II</div>
+  <h2>A catalog is a lossy codec.</h2>
+  <p>Petabytes to kilobytes, with the distortion measure chosen in advance.</p>
+  <p class="quote" style="margin-top:20px">The columns <em>are</em> the distortion measure. You
+    decide which questions stay answerable before you know what will be asked.</p>
+  <p class="sub">Which is a fine bargain, provided someone says out loud what was thrown away.</p>
+  <aside class="notes">Pivot in tone here — Act I was about a failure mode, Act II is about a design
+  choice. Same accounting, different verb.</aside>
+</section>
+
+<!-- ============ 12 · MASKED-BAND PREDICTION ============ -->
+<section class="slide" data-title="What ten instruments share" data-section="IV · The codec" data-mins=".5">
+  <div class="kicker pr">the mechanism</div>
+  <h2>What do ten instruments share?</h2>
+  <p class="eq">mask one band · predict it from the other nine</p>
+  <p>No band is predictable from the other nine unless the model separates the source from
+    what each instrument did to it.</p>
+  <p class="quote build" style="margin-top:18px">The only thing ten instruments share is the sky.
+    So the factorization is not a bonus — it is forced.</p>
+  <p class="sub build">Alignment is not an add-on to the reconstruction. It is the only way to
+    score on the task.</p>
+  <aside class="notes">Two advances. This is the "reconstruction is secretly alignment" beat, stated
+  as a mechanism rather than a slogan. Prediction is compression — Shannon, if anyone wants the cite.</aside>
+</section>
+
+<!-- ============ 13 · JAISP ============ -->
+<section class="slide" data-title="JAISP" data-section="IV · The codec" data-mins="1.4">
+  <div class="kicker pr">the payoff · JAISP</div>
+  <h2 style="margin-bottom:10px">Ten bands, no common grid, no resampling.</h2>
+  <div class="split fig-left" style="gap:32px">
+    <div class="figure">
+      <img src="assets/jaisp_architecture_crop.png" width="1109" height="550" decoding="async"
+           alt="JAISP architecture: two-stream stems, shared transformer latent, task heads.">
+      <p class="figcap">Rubin <em>ugrizy</em> + Euclid VIS·Y·J·H → two-stream stems → shared latent →
+        heads. ~9M parameters, self-supervised, each band at its delivered sampling.</p>
+    </div>
+    <div>
+      <ul style="margin-top:0">
+        <li class="build">Detection matches the VIS catalog at
+          <span class="num">93%</span> complete / <span class="num">94%</span> pure —
+          and reaches <span class="num">0.45 mag</span> deeper.</li>
+        <li class="build">Astrometric scatter <span class="num">50 → 14–17 mas</span>.</li>
+        <li class="build">Transfers to a new field with <b class="ok">zero retraining</b>.</li>
+      </ul>
+      <p class="caution build" style="margin-top:20px">Audited in three layers, so the claim is
+        checkable: the <b>output</b> (reconstruct the withheld band), the <b>frozen
+        representation</b> (the heads only ever see the frozen encoder), and <b>reuse</b> (a small
+        new head, on a task it was never trained for).</p>
+    </div>
+  </div>
+  <aside class="notes">Four advances. The three-layer audit is what separates this from "the latent
+  looks useful" — it is the same second-channel discipline turned on our own model. WATCHLIST:
+  confirm 14–17 mas against the JAISP draft; the v6 deck said 14.</aside>
+</section>
+
+<!-- ============ 14 · HEDGING COSTS BITS ============ -->
+<section class="slide" data-title="Hedging costs bits" data-section="IV · The codec" data-mins=".5">
+  <div class="kicker as">the confession</div>
+  <h2>Hedging costs bits.</h2>
+  <div class="split fig-left">
+    <div>
+      <p>Refusing to name the distortion measure means you cannot claim the catalog's
+        compression ratio. JAISP compresses the <b class="ph">survey</b>, not the
+        <b class="pr">source</b>.</p>
+      <p class="sub" style="margin-top:20px">Three kinds of missing information:
+        <b>never observed</b> · <b>observed and discarded</b> ·
+        <b>retained but inaccessible to the model you chose</b>.</p>
+    </div>
+    <div>
+      <svg class="chart" viewBox="0 0 560 240" role="img"
+           aria-label="Rate ladder: raw pixels, learned embedding, and catalog row in decreasing size.">
+        <text x="60" y="26" fill="#2f5f8f">raw pixels</text>
+        <rect x="60" y="36" width="440" height="30" fill="rgba(47,95,143,.28)"/>
+
+        <text x="60" y="98" fill="#477860">learned embedding
+          <tspan fill="#625f58" font-size="14">  ·  distortion measure: unnamed</tspan></text>
+        <rect x="60" y="108" width="250" height="30" fill="rgba(71,120,96,.30)"/>
+
+        <text x="60" y="170" fill="#9a3d42">catalog row
+          <tspan fill="#625f58" font-size="14">  ·  distortion measure: the columns</tspan></text>
+        <rect x="60" y="180" width="70" height="30" fill="rgba(154,61,66,.30)"/>
+
+        <text x="60" y="234" font-size="14" font-style="italic">bar length is schematic — not measured bytes</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">The ladder is deliberately unnumbered: embedding-vs-cutout bytes is still on
+  the open list. Do not quote a ratio from the podium.</aside>
+</section>
+
+<!-- ============ 15 · CLOSE ============ -->
+<section class="slide" data-title="Close — four audit rules" data-section="Close" data-mins=".3">
+  <div class="kicker">the four audit rules</div>
+  <h2 style="margin-bottom:14px">Photon or prior. Say which.</h2>
+  <ul>
+    <li>Detect on enhanced pixels if you like. Do not measure on them.</li>
+    <li>Audit against a second instrument. You cannot price the gap from inside.</li>
+    <li>Name what the prior contributed: population information, not this-source information.</li>
+    <li>Name the distortion measure — or do not claim the compression.</li>
+  </ul>
+  <p class="quote build" style="margin-top:26px; border:none; padding:0; font-size:32px">
+    Every pixel that looks new came from a photon or from a prior.</p>
+  <aside class="notes">One advance for the last line, then stop. The four rules are assembled from
+  claims made earlier in the talk — check you actually said all four before the podium.</aside>
+</section>
+
+</div>
+</div>
+
+<div id="hint">→/← · N notes · P presenter · T timer</div>
+<div id="hud" aria-live="polite" aria-atomic="true"></div>
+<div id="noteBox" role="note"></div>
+<div id="progress"><i></i></div>
+
+<script src="deck.js"></script>
+</body>
+</html>
