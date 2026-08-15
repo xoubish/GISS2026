@@ -46,7 +46,7 @@
     ['rubineuclid','foundation'],['foundation','receipts'],['receipts','jaisp'],['jaisp','fisherlatent']
   ];
   const dashed = [
-    ['matters','metricdetail'],['data','nuisance'],
+    ['matters','metricdetail'],['metricdetail','prospect'],['data','nuisance'],
     ['compression','sufficiency'],['compression','humanrecompress'],
     ['inference','goodenough'],['goodenough','question'],
     ['fork','matters'],['fork','compression'],
