@@ -1,0 +1,312 @@
+/* ============================================================================
+   deck.css — paper, ink, and typography.
+   Nothing in here knows anything about the argument. Colours and type scale
+   live at the top; everything else is plumbing.
+   ========================================================================= */
+
+:root {
+  --paper: #f0ebdf;
+  --paper-hi: #f6f2e8;
+  --ink: #1b1a17;
+  --ink-soft: #3a3730;
+  --muted: #736c60;
+  --human: #8a5747;   /* the second hand: the same question, asked about a person */
+  --bar: #15130f;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Hoefler Text",
+    Georgia, "Times New Roman", serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bar);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+#viewport { position: fixed; inset: 0; display: grid; place-items: center; }
+
+/* The 16:9 sheet. Everything spatial happens inside it. */
+#stage {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 30% 12%, var(--paper-hi), transparent 62%),
+    var(--paper);
+}
+
+#world {
+  position: absolute;
+  left: 0; top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------------ ink --- */
+#art {
+  position: absolute;
+  overflow: visible;
+  --u: 1px;                      /* world units per screen pixel, set by engine */
+}
+/* Layer opacity is driven frame-by-frame from engine.js (scene state x zoom
+   level-of-detail), so no CSS transition here — it would lag the crossfade. */
+
+.ink {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: calc(var(--u) * 1);
+  vector-effect: none;
+}
+
+.ridgeline   { stroke-width: calc(var(--u) * 1.5); stroke: #14130f; }
+.ridge-far   { stroke-width: calc(var(--u) * 1.1); stroke: #4a463c; }
+.ridgeline-new {
+  stroke-width: calc(var(--u) * 1.5);
+  stroke: #2c2a24;
+  stroke-dasharray: calc(var(--u) * 11) calc(var(--u) * 7);
+}
+.hatch       { stroke: #23211c; }
+.ball        { stroke-width: calc(var(--u) * 0.9); stroke: #14130f; opacity: .92; }
+
+.gridline    { stroke: #8a8375; stroke-width: calc(var(--u) * 0.8); opacity: .34; }
+.axis        { stroke: #2a2822; stroke-width: calc(var(--u) * 1.1); }
+.plotted     { stroke: #14130f; stroke-width: calc(var(--u) * 1.7); }
+
+.ring        { stroke: #2a2822; stroke-width: calc(var(--u) * 1.1); opacity: .55; }
+.ring.loud   { stroke: #14130f; stroke-width: calc(var(--u) * 1.4); opacity: .9; }
+.drop        { stroke: #4a463c; stroke-width: calc(var(--u) * 0.9); opacity: .5;
+               stroke-dasharray: calc(var(--u) * 5) calc(var(--u) * 4); }
+.leader      { stroke: #4a463c; stroke-width: calc(var(--u) * 1); opacity: .6; }
+.dot         { fill: #14130f; opacity: 0; }
+
+/* stations: soundings, compressions, rulers, routes, instruments */
+.errbar      { stroke: #3a3730; stroke-width: calc(var(--u) * 0.9); opacity: .75; }
+.datum       { fill: #14130f; opacity: .82; }
+.datum.loud  { fill: none; stroke: #14130f; stroke-width: calc(var(--u) * 1.4); }
+.knot        { fill: none; stroke: #14130f; stroke-width: calc(var(--u) * 1.3); }
+.resid       { stroke: #6b6455; stroke-width: calc(var(--u) * 0.8); opacity: .5; }
+.guide       { stroke: #2a2822; stroke-width: calc(var(--u) * 1.1); opacity: .6;
+               stroke-dasharray: calc(var(--u) * 8) calc(var(--u) * 6); }
+.trail       { stroke: #2a2822; stroke-width: calc(var(--u) * 1.3); opacity: .7;
+               stroke-dasharray: calc(var(--u) * 9) calc(var(--u) * 7); }
+.sight       { stroke: #6b6455; stroke-width: calc(var(--u) * 0.8); opacity: .42; }
+
+.marker.cand .ring { opacity: .3; }
+.marker.cand.win .ring { opacity: .95; stroke: #14130f;
+                         stroke-width: calc(var(--u) * 1.5); }
+.marker.cand.win .dot  { opacity: 1; }
+.marker.cand.win .drop { opacity: .8; }
+.marker.cand .glab { opacity: .45; }
+.marker.cand.win .glab { opacity: 1; }
+.marker.cand .ring, .marker.cand .drop, .marker.cand .dot, .marker.cand .glab {
+  transition: opacity 420ms ease, stroke-width 420ms ease;
+}
+
+text.glab {
+  fill: #2a2822;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: calc(var(--u) * 17);
+}
+text.glab.sm { font-size: calc(var(--u) * 13); }
+
+/* --------------------------------------------------------------- plates ---
+   Rasters living in the world. `.feather` dissolves a drawing into the paper;
+   `.framed` lays a figure on the page with a hairline rule and a caption.
+   The feather geometry must match MASK in engine.js.                        */
+#plates { position: absolute; left: 0; top: 0; }
+.plate {
+  position: absolute;
+  transform-origin: 0 0;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  pointer-events: none;
+}
+.plate.on { opacity: 1; }
+.plate img { display: block; width: 100%; height: auto; }
+
+/* drawings: paper removed, ink kept */
+.plate.feather img, .plate.blend img { filter: url(#inkify); }
+
+.plate.feather img {
+  -webkit-mask-image: radial-gradient(ellipse 34% 26% at 55% 44%,
+    #000 46%, rgba(0, 0, 0, .58) 74%, transparent 100%);
+  mask-image: radial-gradient(ellipse 34% 26% at 55% 44%,
+    #000 46%, rgba(0, 0, 0, .58) 74%, transparent 100%);
+}
+
+.plate.framed {
+  padding: 16px 16px 0;
+  background: #fbf8f0;
+  border: 1px solid rgba(60, 55, 44, .30);
+  box-shadow: 0 10px 34px rgba(40, 34, 22, .13);
+}
+.plate.framed img { border: 1px solid rgba(60, 55, 44, .16); }
+.plate .cap {
+  font-size: 17px;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--muted);
+  padding: 12px 2px 14px;
+}
+
+/* ----------------------------------------------------------------- text --- */
+.tb {
+  position: absolute;
+  transform-origin: 0 0;
+  opacity: 0;
+  transition: opacity 620ms ease;
+  pointer-events: none;
+}
+.tb.on { opacity: 1; }
+
+.titleblock .kicker {
+  font-size: 17px;
+  letter-spacing: .30em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 30px;
+}
+.titleblock h1 {
+  font-size: 72px;
+  line-height: 1.04;
+  font-weight: 400;
+  letter-spacing: -.005em;
+  color: var(--ink);
+}
+.titleblock .byline {
+  margin-top: 40px;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.phrase p {
+  font-size: 46px;
+  line-height: 1.18;
+  color: var(--ink);
+}
+.phrase.sm p { font-size: 36px; line-height: 1.2; }
+.phrase em { font-style: italic; }
+
+.aside p, .callout p {
+  font-size: 21px;
+  line-height: 1.44;
+  font-style: italic;
+  color: var(--muted);
+}
+.aside p + p { margin-top: 18px; }
+.aside b, .callout b { font-style: normal; font-weight: 400; color: var(--ink); }
+.aside em, .callout em { font-style: normal; }
+.aside.lead p { font-size: 26px; color: var(--ink-soft); }
+
+/* The human thread. Not a second column — a gloss in the margin of the same
+   picture, in the one accent this deck allows itself. Make it grey by changing
+   --human to var(--muted) and dropping the rule. */
+.human {
+  padding-left: 22px;
+  border-left: 1px solid rgba(138, 87, 71, .32);
+}
+.human p, .human b { color: var(--human); }
+.human p + p { margin-top: 16px; }
+.callout.mid p { text-align: center; }
+.callout.heads p { display: flex; justify-content: space-between; }
+.callout.heads span { flex: 1 1 0; text-align: center; }
+
+.answer p {
+  font-size: 210px;
+  line-height: .9;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.tiny42 p { font-size: 24px; font-style: italic; color: var(--ink-soft); }
+
+/* --------------------------------------------------------------- overlay --- */
+#grain {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
+#vignette {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 105% at 50% 46%,
+    transparent 58%, rgba(60, 52, 36, .13) 100%);
+}
+
+/* ------------------------------------------------------------------ hud --- */
+#hud {
+  position: absolute;
+  right: 26px; bottom: 20px;
+  font-size: 13px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: .55;
+  pointer-events: none;
+  transition: opacity 300ms;
+}
+#hud b { font-weight: 400; color: var(--ink-soft); }
+body.bare #hud, body.bare #dots { opacity: 0; }
+
+#dots {
+  position: absolute;
+  left: 26px; bottom: 24px;
+  display: flex; gap: 9px;
+  pointer-events: none;
+  transition: opacity 300ms;
+}
+#dots { gap: 6px; }
+#dots i {
+  width: 14px; height: 2px;
+  background: var(--muted); opacity: .25;
+  transition: opacity 300ms;
+}
+#dots i.on { opacity: .85; }
+
+.overlay {
+  position: absolute; inset: 0;
+  background: rgba(240, 235, 223, .97);
+  display: none;
+  padding: 6% 8%;
+  overflow: auto;
+}
+.overlay.on { display: block; }
+.overlay h2 {
+  font-size: 15px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--muted); font-weight: 400; margin-bottom: 34px;
+}
+.overlay ol { list-style: none; columns: 2; column-gap: 9%; }
+.overlay li {
+  font-size: 26px; line-height: 1.72; color: var(--ink-soft);
+  cursor: pointer; break-inside: avoid;
+}
+.overlay li span {
+  color: var(--muted); font-size: 18px;
+  display: inline-block; width: 44px;
+}
+.overlay li:hover { color: var(--ink); }
+.overlay dl { display: grid; grid-template-columns: 190px 1fr; row-gap: 14px; }
+.overlay dt { font-style: italic; color: var(--muted); font-size: 21px; }
+.overlay dd { font-size: 21px; color: var(--ink-soft); }
+
+#notes {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 26px 34px 30px;
+  background: linear-gradient(to top, rgba(240, 235, 223, .98), rgba(240, 235, 223, .86));
+  border-top: 1px solid rgba(80, 74, 62, .22);
+  display: none;
+}
+#notes.on { display: block; }
+#notes p { font-size: 21px; line-height: 1.45; color: var(--ink-soft); max-width: 62ch; }
+#notes .who { font-size: 13px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 10px; }
