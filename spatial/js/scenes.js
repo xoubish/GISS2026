@@ -174,15 +174,40 @@
         far: 0.8, rock: 1, ball: 0.5, roll: 0,
         cyc1: 0.4, cyc2: 0.4, cyc3: 0.4, cyc4: 0.4,
       },
+      /* The receipts. Title pages, not content: they are on screen so the
+         family reads as real manuscripts, and the captions carry the one
+         number each that matters. Nobody walks through them. */
+      plates: [
+        {
+          src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 2,
+          at: [0.175, 0.76], w: 340,
+          alt: 'Title page: Euclid deep-learning super-resolution of NISP imaging',
+          cap: 'Everetts, Hemmati, et al. — NISP → NIRCam, five times finer sampling.',
+        },
+        {
+          src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 2,
+          at: [0.475, 0.73], w: 300,
+          alt: 'Title page: enhancing WISE infrared imaging to Spitzer resolution',
+          cap: 'Rezaee, Hemmati, et al. — WISE → Spitzer, 4.6× finer.',
+        },
+        {
+          src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 2,
+          at: [0.765, 0.73], w: 300,
+          alt: 'Title page: physics-informed super-resolution of galaxy spectra',
+          cap: 'Haghjoo, Hemmati, et al. — prism → grating, R 100 → 1000.',
+        },
+      ],
       steps: [
         {},
         {
           notes:
             'Ten seconds on the drink, no more. It is here so the abstraction ' +
-            'has a human anchor, not because a brain is a neural network. ' +
-            '(Verify the one-liners in the right column against the actual ' +
-            'training sets — the grism and WISE teachers especially — before ' +
-            'presenting.)',
+            'has a human anchor, not because a brain is a neural network. The ' +
+            'receipts appear below: Everetts+ (NISP YE → NIRCam F115W, 5×, ' +
+            'shape fidelity), Rezaee+ (WISE W1 → Spitzer IRAC Ch1, 4.6×, flux ' +
+            'and deblending), Haghjoo+ (NIRSpec prism → grating, R 100 → 1000, ' +
+            'JADES — the path to Euclid and Roman grism). One line each, ' +
+            'gesture and move on — they are here to be real, not to be read.',
         },
         {
           notes:
@@ -224,8 +249,8 @@
           html: '<p><b>A model.</b> Recover what an instrument did not ' +
             'resolve, using what a sharper one taught it.</p>' +
             '<p><em>Euclid</em> NISP imaging, with JWST-resolution sky. WISE ' +
-            'imaging, with Spitzer. JWST grism spectra, sharpened in ' +
-            'wavelength.</p>' +
+            'imaging, with Spitzer. JWST prism spectra, sharpened tenfold in ' +
+            'resolving power.</p>' +
             '<p>Each time: data, a representation, a loss, a decision that ' +
             'training is done — and the doubt: was all the information ' +
             'used?</p>',
@@ -308,12 +333,14 @@
           set: { rock: 0.12, line: 0.22, m: 1 },
           anim: { m: 1400, rock: 900, line: 900 },
           notes:
-            'Same data, same architecture. Score the reconstruction ' +
-            'pixel-by-pixel and A wins; weight what the downstream measurement ' +
-            'needs — flux, shape, position — and B wins. A network can be superb ' +
-            'under one ruler while quietly destroying the information another ' +
-            'question needed. Neither ruler is wrong; the choice is scientific, ' +
-            'not technical.',
+            'Same data, same landscape — and this is measured, not ' +
+            'hypothetical. In Everetts+, the diffusion model ties the residual ' +
+            'network on per-pixel error yet pushes ellipticity below even ' +
+            'bilinear interpolation, while the residual network holds shape ' +
+            'slopes of 0.64–0.74. Superb under one ruler, destructive under ' +
+            'another. Neither ruler is wrong; the choice is scientific, not ' +
+            'technical. And neither model meets the 10⁻³ lensing bar — that ' +
+            'honesty is the stopping question, and it returns at the fork.',
         },
         {
           /* pull back a little to make room for the second ruler underneath */
@@ -346,6 +373,12 @@
         },
         { id: 'rul-a', at: [0.055, 0.21], w: 340, cls: 'aside', to: 0, html: '<p>ruler A — pixel-by-pixel similarity</p>' },
         { id: 'rul-b', at: [0.055, 0.21], w: 380, cls: 'aside', from: 1, to: 1, html: '<p>ruler B — weighted by the downstream measurement: flux, shape, position</p>' },
+        {
+          id: 'rul-real', at: [0.565, 0.44], w: 430, cls: 'aside', from: 1, to: 1,
+          html: '<p>Measured: a diffusion model ties on per-pixel error yet ' +
+            'pushes ellipticity below bilinear interpolation. Superb under one ' +
+            'ruler, destructive under another.</p>',
+        },
         {
           id: 'rul-h', at: [0.055, 0.21], w: 380, cls: 'aside human', from: 2,
           html: '<p>and the ruler people actually carry: read from a reference ' +
@@ -471,7 +504,10 @@
             'difference supplied by a prior learned on other data. That is not ' +
             'cheating — it is how inference works — but the imported structure ' +
             'must be audited against the downstream question, or the basin in ' +
-            'your output is the prior talking.',
+            'your output is the prior talking. Everetts+ frames its own ' +
+            'architecture comparison exactly this way: a generative prior ' +
+            'versus a direct mapping — two answers to where super-resolved ' +
+            'information should come from.',
         },
       ],
       text: [

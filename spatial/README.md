@@ -57,8 +57,15 @@ with no axis of its own and it is what the second half of the talk is about.
 
 Scene 4 runs that loop at two scales side by side: a brain (*another drink?*,
 set as the human marginalia) and a model — not one model but the year's family
-of them: NISP imaging sharpened with JWST-resolution sky, WISE with Spitzer,
-JWST grism spectra sharpened in wavelength. Ten seconds on the drink, a spoken
+of them, each verified against its manuscript: NISP Y_E imaging sharpened with
+JWST/NIRCam F115W at 5× finer sampling (Everetts, Hemmati, et al.), WISE W1
+with Spitzer IRAC Ch1 at 4.6× (Rezaee, Hemmati, et al.), and JWST/NIRSpec
+prism spectra sharpened from R ∼ 100 to R ∼ 1000 against grating references
+(Haghjoo, Hemmati, et al. — the path to Euclid and Roman grism). **The
+receipts are on screen**: the three title pages appear as small framed plates
+on the beat where the family is named (`assets/paper_nisp.png`, `_wise.png`,
+`_spectra.png`) — evidence, not content; the captions carry one number each
+and the notes say to gesture and move on. Ten seconds on the drink, a spoken
 disclaimer that nobody is claiming the brain minimizes a loss, and then the
 beat that sets the stage for everything after: **many instruments, one sky**.
 Every instrument is a lossy projection of the same reality, and enhancement is
@@ -78,9 +85,12 @@ out, and validation is auditing which is which. That beat is what separates
 recovery from hallucination, and it gives the information-theory scenes that
 follow their reason to exist.
 
-The one-line descriptions of each enhancement (which teacher trained which
-student, the grism case especially) are placeholders to be checked against the
-actual papers — the presenter notes on scene 4 carry the reminder.
+The NISP paper also hands the ruler scene (6) its measured instance: a
+diffusion model that ties the residual network on per-pixel error while
+pushing ellipticity below even bilinear interpolation — superb under one
+ruler, destructive under another — and the honest stopping fact that neither
+model meets the 10⁻³ lensing bar. Both live in the on-screen aside and the
+notes of scene 6.
 
 Detail is built at five levels over progressively narrower strips of ground and
 crossfaded by zoom, so the hillside is drawn with a finer pen the closer you
