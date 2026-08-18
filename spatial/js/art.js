@@ -306,7 +306,7 @@
     /* ---- the plotted curve (diverges from the ground as the ruler turns) - */
     L.curve.appendChild(el('path', { id: 'plotcurve', class: 'ink plotted', d: '' }));
 
-    /* ---- scene 18: what we are looking back at --------------------------- */
+    /* ---- scene 16: what we are looking back at --------------------------- */
     (function () {
       const g = L.marks;
       const ox = S.F.A.c, oy = S.ground(ox);
@@ -560,13 +560,13 @@
       }
     })();
 
-    /* ---- 16 · THE ASTROMETRY RESULT, AS WIDTHS ON THIS AXIS ------------- */
+    /* ---- A1 · THE ASTROMETRY RESULT (appendix), AS WIDTHS ON THIS AXIS ------------- */
     bracket(L.astro1, cmin - 50 / (2 * MAS), cmin + 50 / (2 * MAS), AX.bot - 27, 3.2,
       '≈ 50 mas', 2101);
     bracket(L.astro2, cmin - 15.5 / (2 * MAS), cmin + 15.5 / (2 * MAS), AX.bot - 13, 3.2,
       '14 – 17 mas', 2111);
 
-    /* ---- 17 · THE CONCORDANCE FIELD — the ground itself displaced ------- */
+    /* ---- A2 · THE CONCORDANCE FIELD (appendix) — the ground itself displaced ------- */
     (function () {
       const dx = 9.5 / (2 * MAS), dy = -1.1;                 // 9.5 mas, coherent
       const pts = S.samples(LEDGE.x0 - 20, LEDGE.x1 + 20).map((p) => [p[0] + dx, p[1] + dy]);
@@ -579,7 +579,7 @@
       }
     })();
 
-    /* ---- 19 · TWO ENDINGS ---------------------------------------------- */
+    /* ---- 17 · TWO ENDINGS ---------------------------------------------- */
     L.ends.appendChild(el('path', { d: ring(2900, S.ground(2900), 34, 2401), class: 'ink ring loud' }));
     L.ends.appendChild(el('path', { d: ring(2596, S.ground(2596), 34, 2402), class: 'ink ring loud' }));
   }

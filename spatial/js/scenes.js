@@ -15,8 +15,9 @@
 
    The route: the myth (1–2); the loop, and two systems that run it (3–4);
    down into the ledge (5–7); apart what the answer is made of (8–11); east
-   over the crest to the program (12–15); back west to the same basin with a
-   better instrument (16–17); then all the way out (18–20).
+   over the crest to the program (12–15); then all the way out (16–18).
+   Two appendix scenes — astrometry and the moving field — sit after the
+   return, out of the spoken route, jumpable by number for Q&A.
    ========================================================================= */
 (function () {
   const S = (window.SIS = window.SIS || {});
@@ -814,91 +815,7 @@
         'the picture is there so nobody has to take the numbers on faith.',
     },
 
-    /* ================================================== 16 · ASTROMETRY == */
-    {
-      id: 'astrometry',
-      name: 'Astrometry',
-      camera() { const z = 8.5; return { x: 2202, y: S.anchorY(G(2199.3), 0.42, z), z }; },
-      enter: { dur: 2500 },
-      set: { rock: 0.35, line: 1, axes: 1, astro1: 1 },
-      steps: [
-        { set: { astro1: 1 } },
-        { set: { astro1: 1, astro2: 1 }, notes: 'The head does not add information. It stops throwing it away.' },
-        {
-          set: { rock: 0.12, line: 0.3, axes: 0.15, astro1: 0, astro2: 0 },
-          notes: 'And here is the same statement as the paper makes it.',
-        },
-      ],
-      text: [
-        {
-          id: 'ah', at: [0.055, 0.06], w: 520, cls: 'phrase sm',
-          html: '<p>Where is the source — and how wide is the answer?</p>',
-        },
-        {
-          id: 'a1', at: [0.055, 0.19], w: 420, cls: 'aside', to: 0,
-          html: '<p>Raw cross-survey scatter, Rubin against <em>Euclid</em> VIS: ' +
-            'about 50 mas.</p>',
-        },
-        {
-          id: 'a2', at: [0.055, 0.19], w: 360, cls: 'aside', from: 1,
-          html: '<p>A position head reading the frozen features: <b>14–17 mas</b>. ' +
-            'Injected sources recovered to <b>19 mas at S/N = 5</b> — near the ' +
-            'floor the VIS labels themselves set.</p>',
-        },
-        {
-          id: 'h14', at: [0.60, 0.10], w: 420, cls: 'aside human', to: 1,
-          html: '<p>A number without its width is not an answer. That is as true of ' +
-            'a first impression as it is of a centroid.</p>',
-        },
-      ],
-      plates: [{
-        src: 'assets/astrometry_fig8_crop.png', ar: 525 / 1135, frame: 1, from: 2,
-        at: [0.63, 0.46], w: 940,
-        alt: 'Cross-survey offset clouds collapsing from 50 mas to 14-17 mas',
-        cap: 'All 790 ECDFS tiles. Dashed: raw classical centroids. Solid: ' +
-          'head-corrected — the clouds collapse and re-centre on the origin. ' +
-          'Right: median per-source offset against S/N.',
-      }],
-      notes:
-        'This is the same axis we called θ in scene five, now calibrated in ' +
-        'milliarcseconds. The bracket is the answer\'s width, and it is her own ' +
-        'measurement, not an illustration.',
-    },
-
-    /* =========================================== 17 · THE CONCORDANCE FIELD */
-    {
-      id: 'concordance',
-      name: 'The field moves',
-      camera() { const z = 6.5; return { x: 2205, y: S.anchorY(-1780, 0.72, z), z }; },
-      enter: { dur: 1800 },
-      set: { rock: 0.45, line: 1, axes: 0.5 },
-      steps: [
-        { set: { shift: 1 }, anim: { shift: 1600 } },
-        { notes: 'Say it plainly: this is not scatter. The ground was in a different place.' },
-      ],
-      text: [
-        {
-          id: 'ch', at: [0.055, 0.07], w: 700, cls: 'phrase sm',
-          html: '<p>Beneath the per-source scatter, the field itself is displaced.</p>',
-        },
-        {
-          id: 'c1b', at: [0.055, 0.20], w: 460, cls: 'aside', to: 0,
-          html: '<p>A coherent <b>9–10 mas</b> pattern between two independently ' +
-            'Gaia-anchored solutions — mostly a single shift, common to every band.</p>',
-        },
-        {
-          id: 'c2b', at: [0.055, 0.20], w: 460, cls: 'aside', from: 1,
-          html: '<p>Every arrow points the same way. That is not noise: the ' +
-            'landscape had moved, and the scatter was hiding it.</p>',
-        },
-      ],
-      notes:
-        'The quiet centre of the talk. A systematic looks like noise until you ' +
-        'plot it as a field; then it is a displacement. Both solutions are ' +
-        'defensible. Nobody made a mistake.',
-    },
-
-    /* ====================================================== 18 · ZOOM OUT == */
+    /* ====================================================== 16 · ZOOM OUT == */
     {
       id: 'wider',
       name: 'Zoom out',
@@ -946,7 +863,7 @@
         'we could not ask before.',
     },
 
-    /* =================================================== 19 · TWO ENDINGS == */
+    /* =================================================== 17 · TWO ENDINGS == */
     {
       id: 'endings',
       name: 'Two endings',
@@ -981,7 +898,7 @@
         'Dreams of a Final Theory, so say it as a reference, not as his words.',
     },
 
-    /* ======================================================== 20 · RETURN == */
+    /* ======================================================== 18 · RETURN == */
     {
       id: 'return',
       name: 'Return',
@@ -1013,6 +930,90 @@
         'every question, and no observer with all the information. The purpose was ' +
         'never to stop pushing.',
     },
+    /* ======================================= A1 · APPENDIX — ASTROMETRY == */
+    {
+      id: 'astrometry',
+      name: 'Appendix — Astrometry',
+      camera() { const z = 8.5; return { x: 2202, y: S.anchorY(G(2199.3), 0.42, z), z }; },
+      enter: { dur: 2500 },
+      set: { rock: 0.35, line: 1, axes: 1, astro1: 1 },
+      steps: [
+        { set: { astro1: 1 } },
+        { set: { astro1: 1, astro2: 1 }, notes: 'The head does not add information. It stops throwing it away.' },
+        {
+          set: { rock: 0.12, line: 0.3, axes: 0.15, astro1: 0, astro2: 0 },
+          notes: 'And here is the same statement as the paper makes it.',
+        },
+      ],
+      text: [
+        {
+          id: 'ah', at: [0.055, 0.06], w: 520, cls: 'phrase sm',
+          html: '<p>Where is the source — and how wide is the answer?</p>',
+        },
+        {
+          id: 'a1', at: [0.055, 0.19], w: 420, cls: 'aside', to: 0,
+          html: '<p>Raw cross-survey scatter, Rubin against <em>Euclid</em> VIS: ' +
+            'about 50 mas.</p>',
+        },
+        {
+          id: 'a2', at: [0.055, 0.19], w: 360, cls: 'aside', from: 1,
+          html: '<p>A position head reading the frozen features: <b>14–17 mas</b>. ' +
+            'Injected sources recovered to <b>19 mas at S/N = 5</b> — near the ' +
+            'floor the VIS labels themselves set.</p>',
+        },
+        {
+          id: 'h14', at: [0.60, 0.10], w: 420, cls: 'aside human', to: 1,
+          html: '<p>A number without its width is not an answer. That is as true of ' +
+            'a first impression as it is of a centroid.</p>',
+        },
+      ],
+      plates: [{
+        src: 'assets/astrometry_fig8_crop.png', ar: 525 / 1135, frame: 1, from: 2,
+        at: [0.63, 0.46], w: 940,
+        alt: 'Cross-survey offset clouds collapsing from 50 mas to 14-17 mas',
+        cap: 'All 790 ECDFS tiles. Dashed: raw classical centroids. Solid: ' +
+          'head-corrected — the clouds collapse and re-centre on the origin. ' +
+          'Right: median per-source offset against S/N.',
+      }],
+      notes:
+        'This is the same axis we called θ in scene five, now calibrated in ' +
+        'milliarcseconds. The bracket is the answer\'s width, and it is her own ' +
+        'measurement, not an illustration.',
+    },
+
+    /* ================================= A2 · APPENDIX — THE FIELD MOVES == */
+    {
+      id: 'concordance',
+      name: 'Appendix — The field moves',
+      camera() { const z = 6.5; return { x: 2205, y: S.anchorY(-1780, 0.72, z), z }; },
+      enter: { dur: 1800 },
+      set: { rock: 0.45, line: 1, axes: 0.5 },
+      steps: [
+        { set: { shift: 1 }, anim: { shift: 1600 } },
+        { notes: 'Say it plainly: this is not scatter. The ground was in a different place.' },
+      ],
+      text: [
+        {
+          id: 'ch', at: [0.055, 0.07], w: 700, cls: 'phrase sm',
+          html: '<p>Beneath the per-source scatter, the field itself is displaced.</p>',
+        },
+        {
+          id: 'c1b', at: [0.055, 0.20], w: 460, cls: 'aside', to: 0,
+          html: '<p>A coherent <b>9–10 mas</b> pattern between two independently ' +
+            'Gaia-anchored solutions — mostly a single shift, common to every band.</p>',
+        },
+        {
+          id: 'c2b', at: [0.055, 0.20], w: 460, cls: 'aside', from: 1,
+          html: '<p>Every arrow points the same way. That is not noise: the ' +
+            'landscape had moved, and the scatter was hiding it.</p>',
+        },
+      ],
+      notes:
+        'The quiet centre of the talk. A systematic looks like noise until you ' +
+        'plot it as a field; then it is a displacement. Both solutions are ' +
+        'defensible. Nobody made a mistake.',
+    },
+
   ];
 
   /* Fallback values for every animatable layer, so a scene only has to name

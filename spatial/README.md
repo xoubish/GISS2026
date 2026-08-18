@@ -30,7 +30,7 @@ scenes 5–11 is not a diagram drawn beside the mountain — it *is* a 90-metre
 stretch of the mountain in scene 1, at 20× magnification. The mountain is
 ~9 km wide with ~2.1 km of relief; the basin the optimizer settles into is
 ~26 m across. That ratio is the argument, and it is literal rather than
-illustrated: scene 18 pulls back and the basin really is a speck, because it
+illustrated: scene 16 pulls back and the basin really is a speck, because it
 always was.
 
 Every station in the middle of the talk is drawn *on that ground*, not beside
@@ -41,9 +41,9 @@ residual hairlines are exactly what each summary threw away. The four rulers in
 scene 10 are four readings of this one basin — entropy is the width of the
 bracket, Fisher is the curvature that decides how fast it closes. The fork in
 scene 11 is three directions you could actually walk. And the astrometry
-numbers in scene 16 are real widths on the same θ axis that scene 5 set up:
-**1 world unit = 2 mas** (`S.MAS` in `art.js`), so 50 mas and 14–17 mas are
-drawn to scale against each other.
+numbers in the appendix are real widths on the same θ axis that scene 5 set
+up: **1 world unit = 2 mas** (`S.MAS` in `art.js`), so 50 mas and 14–17 mas
+are drawn to scale against each other.
 
 ## The science goes first
 
@@ -115,14 +115,20 @@ get. It never looks like a picture being scaled.
 | 13 | Two instruments | Rubin and *Euclid* VIS sampling the same ground |
 | 14 | One representation | ten bands → one frozen latent → five heads |
 | 15 | JAISP | the architecture plate and the numbers |
-| 16 | Astrometry | back to the same basin: 50 → 14–17 mas |
-| 17 | The field moves | the concordance field, 9–10 mas, coherent |
-| 18 | Zoom out | the speck, then the new terrain |
-| 19 | Two endings | on the hill · on the slope |
-| 20 | Return | scene 1's camera exactly, and the pinball machine |
+| 16 | Zoom out | the speck, then the new terrain |
+| 17 | Two endings | on the hill · on the slope |
+| 18 | Return | scene 1's camera exactly, and the pinball machine |
+| A1 | Appendix — Astrometry | back to the same basin: 50 → 14–17 mas |
+| A2 | Appendix — The field moves | the concordance field, 9–10 mas, coherent |
 
-Roughly 50 beats — comfortable at 18–20 minutes. At 12, run **the 12-minute
-cut** below; the content stays in the deck for questions and longer venues.
+The two appendix scenes sit after the return, out of the spoken route. They
+are there for Q&A — jump with `1` `9` and `2` `0` — because someone will ask
+about the coherent 9–10 mas field, and the measured answer deserves better
+than a verbal description.
+
+Roughly 45 beats in the spoken route — comfortable at 15–18 minutes. At 12,
+run **the 12-minute cut** below; the content stays in the deck for questions
+and longer venues.
 
 ## The 12-minute cut
 
@@ -136,7 +142,7 @@ The default drops, also flagged in each scene's presenter notes:
 - **Scene 12** — a transit: one sentence while the camera climbs, then on to
   the instruments.
 - **Marginalia** — voice only the three load-bearing glosses (scenes 8, 14,
-  18); the rest are for the eye.
+  16); the rest are for the eye.
 
 That is roughly a third fewer narrated beats, and every camera move survives —
 the cut trims words, not geography.
@@ -219,7 +225,7 @@ reading is set as **marginalia** instead: a gloss in the margin of the same
 picture, in italic, behind a hairline rule, in the one accent colour the deck
 allows itself (`--human`, a desaturated sanguine — the way a second hand shows up
 in an old drawing). It runs through scenes 4 (the brain, deciding on a drink),
-5, 6, 8, 9, 10, 11, 12, 13, 14, 16 and 18, always as `cls: 'aside human'`.
+5, 6, 8–14, 16 and appendix A1, always as `cls: 'aside human'`.
 
 Because it is subordinate rather than parallel, the picture stays dominant and
 nothing turns into a two-column slide. To make it grey instead of sanguine, set
@@ -227,7 +233,7 @@ nothing turns into a two-column slide. To make it grey instead of sanguine, set
 everything follows.
 
 The three glosses that carry the most weight: scene 8 (probing changes the thing
-being probed), scene 14 (nobody keeps separate mental files), and scene 18 —
+being probed), scene 14 (nobody keeps separate mental files), and scene 16 —
 a source's position is a stable latent parameter and a person is not, which is
 where the title finally earns itself.
 
@@ -235,14 +241,14 @@ where the title finally earns itself.
 
 - **GIPS is deliberate** — Greater IPAC *Philosophy* Symposium. Scene 1's notes
   remind you to land it out loud before anyone reads it as a typo.
-- **Weinberg is in**, scene 19: the reference is to *Dreams of a Final Theory*,
+- **Weinberg is in**, scene 17: the reference is to *Dreams of a Final Theory*,
   and "half in longing, half in mourning" is presented as your phrase about
   reading him, not as a quotation from him. The notes say so, so it stays honest
   if anyone asks.
 
 ## Notes
 
-- Measured on a software rasteriser with no GPU, the scene 7 → 18 pull-back runs
+- Measured on a software rasteriser with no GPU, the scene 7 → 16 pull-back runs
   at a median 11 ms per frame, worst frame 27 ms. `a` is there if a venue's
   machine disagrees.
 - Nothing uses `Math.random`, so the drawing is byte-identical on every machine
