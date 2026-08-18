@@ -112,7 +112,7 @@
             'Everything in this talk is one lap of it.',
         },
         {
-          set: { cyc2: 1, ball: 0.92 },
+          set: { cyc2: 1, ball: 0.92, pusher: 0.92 },
           notes:
             'The boulder is the current state — of a fit, of a network, of a ' +
             'belief. Wherever it rests is what we currently think the world is.',
@@ -172,7 +172,7 @@
       camera() { const z = 2.1; return { x: 2200, y: S.anchorY(-1790, 0.62, z), z }; },
       enter: { dur: 1800 },
       set: {
-        far: 0.8, rock: 1, ball: 0.5, roll: 0,
+        far: 0.8, rock: 1, ball: 0.5, pusher: 0.5, roll: 0,
         cyc1: 0.4, cyc2: 0.4, cyc3: 0.4, cyc4: 0.4,
       },
       /* The receipts. Title pages, not content: they are on screen so the
@@ -404,7 +404,7 @@
       name: 'Apparent solution',
       camera() { const z = 11; return { x: NOTCH + 2, y: S.anchorY(G(NOTCH), 0.72, z), z }; },
       enter: { dur: 1400 },
-      set: { rock: 0.55, ruler: 0.85, ball: 1, roll: 0 },
+      set: { rock: 0.55, ruler: 0.85, ball: 1, pusher: 1, roll: 0 },
       steps: [
         { set: { roll: 0 } },
         { set: { roll: 1 }, anim: { roll: 2900 }, notes: 'Let it settle. Do not talk over it.' },
@@ -430,7 +430,7 @@
       name: 'Data',
       camera() { const z = 5.6; return { x: 2185, y: S.anchorY(-1780, 0.58, z), z }; },
       enter: { dur: 1600 },
-      set: { rock: 0.30, line: 0.16, axes: 1, sound: 1 },
+      set: { rock: 0.30, line: 0.16, axes: 1, sound: 1, ball: 0.45, pusher: 0.45 },
       steps: [
         {},
         {
@@ -479,7 +479,7 @@
       name: 'Compression',
       camera() { const z = 4.0; return { x: 2212, y: S.anchorY(-1780, 0.5, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.22, line: 0.30, axes: 1, approx1: 1 },
+      set: { rock: 0.22, line: 0.30, axes: 1, approx1: 1, ball: 0.4, pusher: 0.4 },
       steps: [
         {},
         {
@@ -569,7 +569,7 @@
       name: 'Four rulers',
       camera() { const z = 4.4; return { x: 2202, y: S.anchorY(-1782, 0.5, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.30, line: 1, axes: 1 },
+      set: { rock: 0.30, line: 1, axes: 1, ball: 0.4, pusher: 0.4 },
       steps: [
         { set: { entropy: 1 } },
         { set: { entropy: 1, surprise: 1 } },
@@ -610,7 +610,7 @@
       name: 'The fork',
       camera() { const z = 3.2; return { x: 2210, y: -1850, z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.6, line: 1, axes: 0.3, curmark: 0.6 },
+      set: { rock: 0.6, line: 1, axes: 0.3, curmark: 0.6, ball: 0.7, pusher: 0.7 },
       steps: [
         { set: { fork1: 1 } },
         { set: { fork1: 0.35, fork2: 1 } },
@@ -655,7 +655,7 @@
       name: 'Experimental design',
       camera: { x: 2860, y: -2200, z: 0.9 },
       enter: { dur: 2400 },
-      set: { far: 1, rock: 1, here: 1 },
+      set: { far: 1, rock: 1, here: 1, climber: 1 },
       text: [
         {
           id: 'dh', at: [0.055, 0.10], w: 620, cls: 'phrase',
@@ -825,8 +825,8 @@
       steps: [
         {},
         {
-          set: { newland: 1, marks: 0.55 },
-          anim: { newland: 2200 },
+          set: { newland: 1, marks: 0.55, climber2: 1 },
+          anim: { newland: 2200, climber2: 2600 },
           notes:
             'New instrument, new depth, new sky. The old optimum is still there ' +
             'and still correct. It is simply no longer the lowest thing in the ' +
@@ -1027,5 +1027,6 @@
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,
+    pusher: 0, climber: 0, climber2: 0,
   };
 })();

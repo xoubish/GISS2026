@@ -92,6 +92,20 @@ ruler, destructive under another — and the honest stopping fact that neither
 model meets the 10⁻³ lensing bar. Both live in the on-screen aside and the
 notes of scene 6.
 
+## Sisyphus stays on stage
+
+The middle of the talk is not allowed to decay into points and lines: a small
+pen-scribble Sisyphus (drawn in `pusherFigure()` in `art.js`, stroke widths
+compensated so the pen stays a pen at any scale) keeps the work visible. One
+dynamic figure trails the boulder — `setRoll` keeps his hands on it, so in
+scene 7 he wrestles it into the minimum and stands there when 42 appears — and
+he stays faintly present through data, compression, the four rulers, and the
+fork (layer `pusher`). Two static figures mark the myth's moments: pushing his
+rock up the slope toward the crest in scene 12 (`climber`), and starting again
+at the *new* lowest place when the terrain changes in scene 16 (`climber2`) —
+which is the Sisyphus thesis drawn rather than said. The deck should feel like
+the whole thing is hard, because it is.
+
 Detail is built at five levels over progressively narrower strips of ground and
 crossfaded by zoom, so the hillside is drawn with a finer pen the closer you
 get. It never looks like a picture being scaled.

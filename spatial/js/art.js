@@ -130,6 +130,55 @@
     return g;
   }
 
+  /* -------------------------------------------------------- the pusher ---
+     Sisyphus himself, at pen scale: a scribbled figure leaning into the
+     rock, built at the origin with feet at y = 0 and height ~1, facing +x.
+     The caller scales him; stroke widths are compensated by 1/s so the pen
+     stays a pen at any size. He exists so the middle of the talk shows the
+     work, not just the geometry.                                           */
+  function pusherFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(-0.34, 0, -0.16, -0.22, 2);      // back leg, braced
+    stroke(-0.16, -0.22, 0.0, -0.42, 2);
+    stroke(0.10, 0, 0.05, -0.24, 2);        // front leg
+    stroke(0.05, -0.24, 0.0, -0.42, 2);
+    stroke(0.0, -0.42, 0.30, -0.72, 3);     // torso, leaning hard
+    stroke(0.30, -0.71, 0.58, -0.50, 2);    // lower arm
+    stroke(0.28, -0.74, 0.60, -0.62, 2);    // upper arm
+    const hd = el('path', { d: ring(0.40, -0.85, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    return g;
+  }
+
+  /* A static Sisyphus with his own rock, feet on the given ground function. */
+  function placePusher(host, fn, x, s, seed) {
+    const g = pusherFigure(seed, s);
+    g.setAttribute('transform', 'translate(' + f2(x) + ' ' + f2(fn(x)) + ') scale(' + s + ')');
+    host.appendChild(g);
+    const br = 0.40 * s;
+    const bx = x + 0.62 * s + br * 0.65;
+    const b = scribbleBall(seed + 9);
+    b.firstChild.style.strokeWidth = 'calc(var(--u) * ' + (1.0 / br).toFixed(5) + ')';
+    b.setAttribute('transform', 'translate(' + f2(bx) + ' ' + f2(fn(bx) - br * 0.85) + ') scale(' + br + ')');
+    host.appendChild(b);
+  }
+
   /* ------------------------------------------------------ jittered lines ---
      Straight rules drawn by hand: axes, ruler, leaders.                     */
   function handLine(x1, y1, x2, y2, wobble, seed) {
@@ -169,7 +218,8 @@
     'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
     'approx1', 'approx2', 'approx3', 'entropy', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
-    'astro1', 'astro2', 'shift', 'here', 'ends', 'marks', 'body'];
+    'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
+    'pusher', 'climber', 'climber2', 'body'];
 
   /* One world unit of θ at the basin is worth this many milliarcseconds. Set
      once here so her measured numbers can be drawn as real widths on the axis
@@ -316,6 +366,16 @@
     })();
 
     buildStations(L);
+
+    /* ---- Sisyphus, wherever the work is --------------------------------
+       One dynamic figure trails the boulder (positioned by setRoll); two
+       static ones mark the climb to the crest (scene 12) and the new
+       basin after the zoom-out (scene 16), where the work starts again.  */
+    const pf = pusherFigure(777, 4.8);
+    pf.setAttribute('id', 'pusher-fig');
+    L.pusher.appendChild(pf);
+    placePusher(L.climber, S.ground, 2600, 85, 4001);
+    placePusher(L.climber2, S.groundNew, S.NEWMIN.x + 30, 85, 4101);
 
     /* ---- the boulder ---------------------------------------------------- */
     const b = scribbleBall(31337);
@@ -640,6 +700,13 @@
     document.getElementById('boulder').setAttribute('transform',
       'translate(' + f2(x) + ' ' + f2(support(x, r)) + ') rotate(' + rot.toFixed(1) +
       ') scale(' + r + ')');
+    /* Sisyphus keeps his hands on it the whole way down. */
+    const pf = document.getElementById('pusher-fig');
+    if (pf) {
+      const px = x - 4.35;
+      pf.setAttribute('transform',
+        'translate(' + f2(px) + ' ' + f2(S.ground(px)) + ') scale(4.8)');
+    }
     S.rollT = T;
   };
 })();
