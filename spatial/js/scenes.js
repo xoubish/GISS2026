@@ -138,24 +138,23 @@
           html: '<p>The hill is already doing inference.</p>',
         },
         {
-          id: 'cyc-a', at: [0.055, 0.20], w: 430, cls: 'aside', to: 0,
-          html: '<p><b>Data.</b> What information is actually in hand?</p>',
+          id: 'cyc-a', at: [0.055, 0.20], w: 470, cls: 'aside lead', to: 0,
+          html: '<p>I never see the hill itself — only a few soundings of it.</p>',
         },
         {
-          id: 'cyc-b', at: [0.055, 0.20], w: 430, cls: 'aside', from: 1, to: 1,
-          html: '<p><b>Model.</b> A current guess at what made the data. ' +
-            'The boulder is that guess.</p>',
+          id: 'cyc-b', at: [0.055, 0.20], w: 470, cls: 'aside lead', from: 1, to: 1,
+          html: '<p>The boulder is my current guess at what made them.</p>',
         },
         {
-          id: 'cyc-c', at: [0.055, 0.20], w: 430, cls: 'aside', from: 2, to: 2,
-          html: '<p><b>Objective.</b> A chosen definition of <em>better</em>. ' +
-            'Here, better is downhill — because we chose the height.</p>',
+          id: 'cyc-c', at: [0.055, 0.20], w: 470, cls: 'aside lead', from: 2, to: 2,
+          html: '<p>And downhill is a choice. Nothing in nature says what ' +
+            'the height means; I do.</p>',
         },
         {
-          id: 'cyc-d', at: [0.055, 0.20], w: 450, cls: 'aside', from: 3,
-          html: '<p><b>Update — or stop.</b> The hard question is the stop: is ' +
-            'the answer good enough, or did the data, the representation, or ' +
-            'the ruler run out first?</p>',
+          id: 'cyc-d', at: [0.055, 0.20], w: 480, cls: 'aside lead', from: 3,
+          html: '<p>The step is the easy part. Knowing when to stop — ' +
+            'whether the data, the representation, or my ruler ran out — is ' +
+            'the whole difficulty.</p>',
         },
       ],
       notes:
@@ -172,27 +171,27 @@
       camera() { const z = 2.1; return { x: 2200, y: S.anchorY(-1790, 0.62, z), z }; },
       enter: { dur: 1800 },
       set: {
-        far: 0.8, rock: 1, ball: 0.5, pusher: 0.5, roll: 0,
-        cyc1: 0.4, cyc2: 0.4, cyc3: 0.4, cyc4: 0.4,
+        far: 0.6, rock: 0.75, ball: 0.5, pusher: 0.5, roll: 0,
+        cyc1: 0.22, cyc2: 0.22, cyc3: 0.22, cyc4: 0.22,
       },
       /* The receipts. Title pages, not content: they are on screen so the
          family reads as real manuscripts, and the captions carry the one
          number each that matters. Nobody walks through them. */
       plates: [
         {
-          src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 2,
+          src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 1,
           at: [0.175, 0.76], w: 340,
           alt: 'Title page: Euclid deep-learning super-resolution of NISP imaging',
           cap: 'Everetts, Hemmati, et al. — NISP → NIRCam, five times finer sampling.',
         },
         {
-          src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 2,
+          src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 1,
           at: [0.475, 0.73], w: 300,
           alt: 'Title page: enhancing WISE infrared imaging to Spitzer resolution',
           cap: 'Rezaee, Hemmati, et al. — WISE → Spitzer, 4.6× finer.',
         },
         {
-          src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 2,
+          src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 1,
           at: [0.765, 0.73], w: 300,
           alt: 'Title page: physics-informed super-resolution of galaxy spectra',
           cap: 'Haghjoo, Hemmati, et al. — prism → grating, R 100 → 1000.',
@@ -218,17 +217,12 @@
             'right-hand column is the talk from here on.',
         },
         {
-          set: {
-            cyc1: 0.15, cyc2: 0.15, cyc3: 0.15, cyc4: 0.15,
-            combR: 0.55, combE: 0.55,
-          },
+          set: { cyc1: 0.12, cyc2: 0.12, cyc3: 0.12, cyc4: 0.12 },
           notes:
             'The stage for everything that follows: NISP, WISE, grism, VIS are ' +
             'lossy projections of one sky. A model that holds the shared ' +
             'reality can move information between them — which is exactly what ' +
-            'the joint-representation scenes will build. The two combs on the ' +
-            'ground are the same stretch of hill sampled two ways; they return ' +
-            'with names in the two-instruments scene.',
+            'the joint-representation scenes will build.',
         },
       ],
       text: [
@@ -237,7 +231,7 @@
           html: '<p>The same loop, at very different scales.</p>',
         },
         {
-          id: 'sys-brain', at: [0.055, 0.21], w: 430, cls: 'aside human', to: 1,
+          id: 'sys-brain', at: [0.60, 0.21], w: 430, cls: 'aside human', to: 1,
           html: '<p><b>A brain.</b> Another drink?</p>' +
             '<p>Data: how you feel, how many you have had, what tomorrow asks, ' +
             'every previous time, the company.</p>' +
@@ -246,7 +240,7 @@
             'ignored — then a decision.</p>',
         },
         {
-          id: 'sys-model', at: [0.565, 0.16], w: 450, cls: 'aside', from: 1,
+          id: 'sys-model', at: [0.055, 0.17], w: 450, cls: 'aside', from: 1,
           html: '<p><b>A model.</b> Recover what an instrument did not ' +
             'resolve, using what a sharper one taught it.</p>' +
             '<p><em>Euclid</em> NISP imaging, with JWST-resolution sky. WISE ' +
@@ -261,7 +255,7 @@
           html: '<p>Not the same algorithm. The same questions.</p>',
         },
         {
-          id: 'sys-qs', at: [0.055, 0.21], w: 440, cls: 'aside', from: 2, to: 2,
+          id: 'sys-qs', at: [0.055, 0.53], w: 470, cls: 'aside', from: 2, to: 2,
           html: '<p>What information do I have? What model of the world? What ' +
             'counts as better? What did I throw away? When do I stop?</p>',
         },
@@ -270,11 +264,10 @@
           html: '<p>Many instruments, one sky.</p>',
         },
         {
-          id: 'sys-sky', at: [0.055, 0.21], w: 440, cls: 'aside', from: 3,
+          id: 'sys-sky', at: [0.055, 0.53], w: 470, cls: 'aside lead', from: 3,
           html: '<p>Every instrument is a lossy projection of the same ' +
             'reality. Enhancement is inference on the shared sky: information ' +
-            'moved from where it was measured to where it is needed.</p>' +
-            '<p>On the ground: the same stretch of hill, sampled two ways.</p>',
+            'moved from where it was measured to where it is needed.</p>',
         },
       ],
       notes:
@@ -305,8 +298,8 @@
         },
         {
           id: 'axesnote', at: [0.10, 0.24], w: 520, cls: 'aside', from: 1,
-          html: '<p><em>θ</em> is what we want to know. <em>L</em> is how wrong we are.<br>' +
-            'For a source: <em>θ</em> = (x, y) — reached only through pixels, ' +
+          html: '<p><em>θ</em>, the thing I want. <em>L</em>, how wrong I am.<br>' +
+            'For a source that is a position — reached only through pixels, ' +
             'PSFs, noise, calibration.</p>',
         },
         {
@@ -329,7 +322,7 @@
       name: 'The ruler',
       camera() { const z = 13; return { x: NOTCH, y: S.anchorY(G(NOTCH), 0.80, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.6, axes: 0.10, curve: 1, ruler: 1, cands: 1 },
+      set: { rock: 0.35, axes: 0.10, curve: 1, ruler: 1, cands: 1 },
       steps: [
         {},
         {
@@ -368,7 +361,7 @@
           html: '<p>The loss is a ruler we chose.</p>',
         },
         {
-          id: 'rul-sr', at: [0.565, 0.075], w: 430, cls: 'aside', to: 1,
+          id: 'rul-sr', at: [0.055, 0.30], w: 470, cls: 'aside', to: 0,
           html: '<p>Super-resolve <em>Euclid</em> NISP with what ' +
             'JWST-resolution sky taught the model. What is <b>success</b>?</p>' +
             '<p>pixel similarity · flux conservation · morphology · astrometry ' +
@@ -377,13 +370,13 @@
         { id: 'rul-a', at: [0.055, 0.21], w: 340, cls: 'aside', to: 0, html: '<p>ruler A — pixel-by-pixel similarity</p>' },
         { id: 'rul-b', at: [0.055, 0.21], w: 380, cls: 'aside', from: 1, to: 1, html: '<p>ruler B — weighted by the downstream measurement: flux, shape, position</p>' },
         {
-          id: 'rul-real', at: [0.565, 0.44], w: 430, cls: 'aside', from: 1, to: 1,
+          id: 'rul-real', at: [0.055, 0.33], w: 470, cls: 'aside', from: 1, to: 1,
           html: '<p>Measured: a diffusion model ties on per-pixel error yet ' +
             'pushes ellipticity below bilinear interpolation. Superb under one ' +
             'ruler, destructive under another.</p>',
         },
         {
-          id: 'rul-h', at: [0.055, 0.21], w: 380, cls: 'aside human', from: 2,
+          id: 'rul-h', at: [0.60, 0.10], w: 400, cls: 'aside human', from: 2,
           html: '<p>and the ruler people actually carry: read from a reference ' +
             'point, losses spaced twice as far as equal gains</p>',
         },
@@ -430,11 +423,11 @@
       name: 'Data',
       camera() { const z = 5.6; return { x: 2185, y: S.anchorY(-1780, 0.58, z), z }; },
       enter: { dur: 1600 },
-      set: { rock: 0.30, line: 0.16, axes: 1, sound: 1, ball: 0.45, pusher: 0.45 },
+      set: { rock: 0.18, line: 0.16, axes: 1, sound: 1, ball: 0.45, pusher: 0.45 },
       steps: [
         {},
         {
-          set: { line: 1, rock: 0.5 },
+          set: { line: 1, rock: 0.35 },
           notes:
             'Now put the curve back. It was never observed — it is what we ' +
             'inferred, and every later scene is drawn on top of that inference.',
@@ -451,7 +444,7 @@
         },
         {
           id: 'nuis', at: [0.075, 0.235], w: 480, cls: 'aside', from: 1,
-          html: '<p><em>p</em>(D | θ, instrument, epoch, calibration)<br>' +
+          html: '<p>Between θ and me: the instrument, the epoch, the calibration —<br>' +
             'photon noise · blending · chromatic morphology · resampling</p>',
         },
         {
@@ -479,7 +472,7 @@
       name: 'Compression',
       camera() { const z = 4.0; return { x: 2212, y: S.anchorY(-1780, 0.5, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.22, line: 0.30, axes: 1, approx1: 1, ball: 0.4, pusher: 0.4 },
+      set: { rock: 0.15, line: 0.30, axes: 1, approx1: 1, ball: 0.4, pusher: 0.4 },
       steps: [
         {},
         {
@@ -497,7 +490,7 @@
             'branch foundation models live on.',
         },
         {
-          set: { approx3: 0, approx2: 1, line: 1, rock: 0.45 },
+          set: { approx3: 0, approx2: 1, line: 1, rock: 0.3 },
           notes:
             'Super-resolving NISP, WISE, or a grism spectrum is this picture ' +
             'run backwards: sparse measurements, a dense answer, and the ' +
@@ -569,7 +562,7 @@
       name: 'Four rulers',
       camera() { const z = 4.4; return { x: 2202, y: S.anchorY(-1782, 0.5, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.30, line: 1, axes: 1, ball: 0.4, pusher: 0.4 },
+      set: { rock: 0.18, line: 1, axes: 1, ball: 0.4, pusher: 0.4 },
       steps: [
         { set: { entropy: 1 } },
         { set: { entropy: 1, surprise: 1 } },
@@ -582,9 +575,9 @@
           html: '<p>Four rulers, one basin.</p>',
         },
         { id: 'r4a', at: [0.115, 0.155], w: 740, cls: 'aside', html: '<p><b>Entropy</b> — how uncertain am I?</p>' },
-        { id: 'r4b', at: [0.115, 0.225], w: 740, cls: 'aside', from: 1, html: '<p><b>Surprise</b> — how unexpected was this? &nbsp;<em>s</em>(D) = −log <em>p</em>(D)</p>' },
-        { id: 'r4c', at: [0.115, 0.295], w: 740, cls: 'aside', from: 2, html: '<p><b>Information gain</b> — how much did I learn? &nbsp;D<sub>KL</sub>[ <em>p</em>(θ|D) ‖ <em>p</em>(θ) ]</p>' },
-        { id: 'r4d', at: [0.115, 0.365], w: 740, cls: 'aside', from: 3, html: '<p><b>Fisher</b> — where is the hill steep? &nbsp;<em>F</em> ∝ 1/σ²</p>' },
+        { id: 'r4b', at: [0.115, 0.225], w: 740, cls: 'aside', from: 1, html: '<p><b>Surprise</b> — how unexpected was this datum?</p>' },
+        { id: 'r4c', at: [0.115, 0.295], w: 740, cls: 'aside', from: 2, html: '<p><b>Information gain</b> — how much did the bracket close?</p>' },
+        { id: 'r4d', at: [0.115, 0.365], w: 740, cls: 'aside', from: 3, html: '<p><b>Fisher</b> — how steep is the hill where I stand?</p>' },
         {
           id: 'h8', at: [0.60, 0.055], w: 420, cls: 'aside human', from: 1,
           html: '<p>A confident first impression can be flatly wrong: low entropy ' +
@@ -600,21 +593,23 @@
         'curvature that decides how fast it closes: the two dashed parabolas are ' +
         'the same landscape, flat at one scale and steep at another. Two cautions ' +
         'to say out loud: low entropy is not truth, and surprise is not gain. ' +
-        '12-minute cut: narrate entropy and Fisher only; step through surprise ' +
-        'and KL without commentary — they stay on screen for anyone reading.',
+        'The formulas stay off screen; if asked: s(D) = −log p(D), gain is ' +
+        'D_KL[p(θ|D) ‖ p(θ)], and F ∝ 1/σ². 12-minute cut: narrate entropy ' +
+        'and Fisher only; step through surprise and KL without commentary — ' +
+        'they stay on screen for anyone reading.',
     },
 
     /* ===================================================== 11 · THE FORK == */
     {
       id: 'fork',
       name: 'The fork',
-      camera() { const z = 3.2; return { x: 2210, y: -1850, z }; },
+      camera() { const z = 1.7; return { x: 2210, y: S.anchorY(-1790, 0.82, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.6, line: 1, axes: 0.3, curmark: 0.6, ball: 0.7, pusher: 0.7 },
+      set: { rock: 0.35, line: 1, axes: 0, curmark: 0.35, ball: 0.5, pusher: 0.5 },
       steps: [
         { set: { fork1: 1 } },
-        { set: { fork1: 0.35, fork2: 1 } },
-        { set: { fork1: 0.35, fork2: 0.35, fork3: 1 } },
+        { set: { fork2: 1 } },
+        { set: { fork3: 1 } },
       ],
       text: [
         {
@@ -622,29 +617,31 @@
           html: '<p>Not good enough. Three reasons — and they are three directions.</p>',
         },
         {
-          id: 'f1', at: [0.055, 0.20], w: 430, cls: 'aside', to: 0,
-          html: '<p><b>Wrong ruler.</b> The question, the metric or the loss is ' +
-            'inadequate. You are not moving on the landscape — you are exchanging it.</p>',
+          id: 'f1', at: [0.055, 0.20], w: 470, cls: 'aside lead',
+          html: '<p><b>Wrong ruler.</b> The question or the loss is inadequate — ' +
+            'I am not moving on the landscape, I am exchanging it.</p>',
         },
         {
-          id: 'f2', at: [0.055, 0.20], w: 430, cls: 'aside', from: 1, to: 1,
-          html: '<p><b>Bad compression.</b> The data had it; the representation hid ' +
-            'it. No new observation required.</p>',
+          id: 'f2', at: [0.055, 0.36], w: 470, cls: 'aside lead', from: 1,
+          html: '<p><b>Bad compression.</b> The data had it; my representation ' +
+            'hid it. No new observation required.</p>',
         },
         {
-          id: 'f3', at: [0.055, 0.20], w: 430, cls: 'aside', from: 2,
-          html: '<p><b>Missing information.</b> The data do not contain it. Depth, ' +
-            'resolution, area, S/N, wavelength, epoch, vantage, instrument.</p>',
+          id: 'f3', at: [0.055, 0.52], w: 470, cls: 'aside lead', from: 2,
+          html: '<p><b>Missing information.</b> The data never contained it. ' +
+            'Depth, resolution, wavelength, epoch — go and get more.</p>',
         },
         {
-          id: 'h9', at: [0.58, 0.10], w: 400, cls: 'aside human',
+          id: 'h9', at: [0.60, 0.20], w: 420, cls: 'aside human',
           html: '<p>You have made all three mistakes about a person: judged them by ' +
             'the wrong thing, summarised them badly, or never seen them in the one ' +
             'situation that would have told you.</p>',
         },
       ],
       notes:
-        'The three stay side by side because they are alternatives, not stages. ' +
+        'The hill is scenery here — deliberately: the content of this scene is ' +
+        'verbal, so the words take the stage and the fork trails stay small at ' +
+        'the bottom. The three stay side by side because they are alternatives, not stages. ' +
         'Each trail points where we would actually have to go — and we are about ' +
         'to take the third one, over the crest.',
     },
@@ -663,8 +660,8 @@
         },
         {
           id: 'd2', at: [0.055, 0.28], w: 520, cls: 'aside',
-          html: '<p>EIG(<em>d</em>) = 𝔼<sub>y</sub> D<sub>KL</sub>[ <em>p</em>(θ | y, <em>d</em>) ‖ ' +
-            '<em>p</em>(θ) ] — and in the Gaussian limit, a Fisher criterion.</p>',
+          html: '<p>Rank the observations you could take by how much you ' +
+            'expect to learn from each — then buy that one.</p>',
         },
         {
           id: 'd3', at: [0.055, 0.42], w: 480, cls: 'aside',
@@ -681,7 +678,9 @@
       ],
       notes:
         'We have left the ledge and climbed to where you can see further — which ' +
-        'is what experimental design is. The basin we spent five scenes in is the ' +
+        'is what experimental design is. If asked for the formal version: expected ' +
+        'information gain, EIG(d) = E_y D_KL[p(θ|y,d) ‖ p(θ)], a Fisher criterion ' +
+        'in the Gaussian limit. The basin we spent five scenes in is the ' +
         'small step down at the lower left. 12-minute cut: this scene is a ' +
         'transit — one sentence while the camera climbs ("which observation ' +
         'teaches the most is itself a Fisher question"), then on to the ' +
@@ -709,8 +708,8 @@
         { id: 'j2', at: [0.12, 0.185], w: 420, cls: 'aside', from: 1, to: 1, html: '<p><em>Euclid</em> VIS: sharp, well sampled, one band.</p>' },
         {
           id: 'j3', at: [0.12, 0.185], w: 460, cls: 'aside', from: 2,
-          html: '<p><em>F</em><sub>joint</sub> = <em>F</em><sub>R</sub> + <em>F</em><sub>E</sub>. ' +
-            'Compress the shared reality, not each instrument separately.</p>',
+          html: '<p>Together they know more than either alone — if we ' +
+            'compress the shared reality, not each instrument separately.</p>',
         },
         {
           id: 'h11', at: [0.62, 0.09], w: 440, cls: 'aside human',
@@ -762,7 +761,7 @@
             '<span>shape</span><span>redshift</span></p>',
         },
         {
-          id: 'h12', at: [0.055, 0.56], w: 430, cls: 'aside human',
+          id: 'h12', at: [0.66, 0.60], w: 430, cls: 'aside human',
           html: '<p>Nobody keeps separate mental files for “person for football”, ' +
             '“person for advice”, “person to trust”. One representation, ' +
             'interrogated differently per question.</p>',
@@ -850,17 +849,18 @@
           html: '<p>new data,<br>a different lowest place</p>',
         },
         {
-          id: 'h16', at: [0.36, 0.68], w: 430, cls: 'aside human', from: 1,
-          html: '<p>A source’s position is very nearly a stable latent parameter. ' +
-            'A person is not: they change, react, learn, perform, and adapt to ' +
-            'being observed.</p>' +
-            '<p>The hardest landscapes are the ones that moved because you looked.</p>',
+          id: 'h16', at: [0.635, 0.345], w: 400, cls: 'aside human', from: 1,
+          html: '<p>A source’s position sits still while you measure it. A ' +
+            'person does not — the hardest landscapes are the ones that moved ' +
+            'because you looked.</p>',
         },
       ],
       notes:
         'Hold on the speck before the new terrain arrives. The rock does not come ' +
         'back because we failed. It comes back because we can now ask something ' +
-        'we could not ask before.',
+        'we could not ask before. The gloss, spoken in full: a source’s position ' +
+        'is very nearly a stable latent parameter; a person is not — they change, ' +
+        'react, learn, perform, and adapt to being observed.',
     },
 
     /* =================================================== 17 · TWO ENDINGS == */

@@ -70,9 +70,10 @@ disclaimer that nobody is claiming the brain minimizes a loss, and then the
 beat that sets the stage for everything after: **many instruments, one sky**.
 Every instrument is a lossy projection of the same reality, and enhancement is
 inference on the shared sky — information moved from where it was measured to
-where it is needed. (The two unnamed sampling combs that appear on the ground
-in that beat are the same combs that return with names in the two-instruments
-scene.) The ruler scene (6) then makes the family's core choice concrete:
+where it is needed. The opening scenes stay deliberately light on marks — a
+few soundings as a hint, the words doing the work; data-as-points gets its
+full treatment at scene 8. The ruler scene (6) then makes the family's core
+choice concrete:
 pixel similarity, flux conservation, morphology, astrometry, weak-lensing
 shape — five defensible losses, one basin, and the argmin moves when the ruler
 changes. That is where "the loss is a ruler we chose" stops being poetry.
@@ -91,6 +92,22 @@ pushing ellipticity below even bilinear interpolation — superb under one
 ruler, destructive under another — and the honest stopping fact that neither
 model meets the 10⁻³ lensing bar. Both live in the on-screen aside and the
 notes of scene 6.
+
+## Register: claims, not lessons
+
+The deck asserts; it does not instruct. Terms are named on the terrain (the
+loop labels, the ruler names), the on-screen sentences are first-person
+claims from someone who has done the work — "downhill is a choice; nothing in
+nature says what the height means; I do" — and **formulas live in the
+presenter notes**, not on screen (surprise, KL, Fisher, EIG: all in the notes
+of scenes 10 and 12, ready if someone asks). When editing, resist the
+definitional reflex: if a sentence would fit a lecture handout, rewrite it as
+something the speaker learned the hard way.
+
+And when a scene's content is verbal — the fork's three ways of not
+converging — the hill drops to the bottom of the frame and the words take the
+stage in lead type. The stations stay for the scenes that measure things; the
+scenes that *say* things get paper.
 
 ## Sisyphus stays on stage
 
@@ -245,6 +262,13 @@ Because it is subordinate rather than parallel, the picture stays dominant and
 nothing turns into a two-column slide. To make it grey instead of sanguine, set
 `--human: var(--muted)` in `deck.css` and drop the `border-left` — one edit,
 everything follows.
+
+**The geometry is a rule**: wherever both voices appear, science and its
+language — terms, losses, the statistics — sit on the **left**; the human,
+simple example sits on the **right**, in the sanguine. The audience learns
+once where to look and never re-orients. (Scene 15's numbers sit right of the
+JAISP plate because there is no human column there; that is the one layout the
+rule does not govern.)
 
 The three glosses that carry the most weight: scene 8 (probing changes the thing
 being probed), scene 14 (nobody keeps separate mental files), and scene 16 —

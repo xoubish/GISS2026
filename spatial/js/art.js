@@ -454,10 +454,11 @@
        returning to; the fourth (stop?) is the one with no axis of its own. */
     (function () {
       const g = (x) => S.ground(x);
-      /* data: a handful of soundings where the label stands */
+      /* data: a few soundings where the label stands — a hint, not a survey;
+         the full treatment of data-as-soundings belongs to scene 8 */
       const rnd = S.mulberry32(3301);
-      for (let i = 0; i < 7; i++) {
-        const x = 2079 + i * 9.5 + (rnd() - 0.5) * 3;
+      for (let i = 0; i < 4; i++) {
+        const x = 2082 + i * 14 + (rnd() - 0.5) * 3;
         const y = g(x) + gaussRnd(rnd) * 2.2, sg = 3.4;
         L.cyc1.appendChild(el('path', { d: handLine(x, y - sg, x, y + sg, 0.18, 3310 + i), class: 'ink errbar' }));
         L.cyc1.appendChild(el('circle', { cx: x, cy: y, r: 1.05, class: 'datum' }));
@@ -473,7 +474,6 @@
       /* objective: better is a direction, and the direction was chosen */
       trail(L.cyc3, [[bx + 4, g(bx + 4) - 3], [cmin - 2.5, g(cmin - 2.5) - 2]], 3350);
       txt(L.cyc3, 2225, g(2225) - 32, 'objective — downhill');
-      L.cyc3.appendChild(el('path', { d: handLine(2214, g(2225) - 29, cmin + 2, g(cmin) - 5, 0.4, 3351), class: 'ink leader' }));
 
       /* update: the step taken — then the loop closes on new data */
       L.cyc4.appendChild(el('path', { d: ring(cmin - 1.6, g(cmin - 1.6), 2.3, 3360), class: 'ink ring' }));
@@ -559,7 +559,7 @@
       const sx = 2268, sy = S.ground(sx) - 46;
       L.surprise.appendChild(el('circle', { cx: sx, cy: sy, r: 2.0, class: 'datum loud' }));
       L.surprise.appendChild(el('path', { d: handLine(sx, sy + 3, sx, S.ground(sx) - 3, 0.4, 1321), class: 'ink resid' }));
-      txt(L.surprise, sx + 5, sy - 3, '−log p(D)', '', 'start');
+      txt(L.surprise, sx + 5, sy - 3, 'nothing predicted this', 'sm', 'start');
 
       /* KL: the bracket closing in from both sides */
       [[-1, 1401], [1, 1402]].forEach(([s, seed]) => {
