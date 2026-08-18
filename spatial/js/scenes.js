@@ -84,10 +84,6 @@
           id: 'slope-phrase', at: [0.055, 0.11], w: 660, cls: 'phrase sm',
           html: '<p>We are always building models from incomplete information.</p>',
         },
-        {
-          id: 'slope-note', at: [0.055, 0.30], w: 420, cls: 'aside',
-          html: '<p>Go close enough to any slope and it stops being scenery.</p>',
-        },
       ],
       notes:
         'One slow move into the hillside beside him. The drawing dissolves; the ' +
@@ -134,24 +130,21 @@
       ],
       text: [
         {
-          id: 'cych', at: [0.055, 0.075], w: 660, cls: 'phrase sm',
-          html: '<p>The hill is already doing inference.</p>',
+          id: 'cyc-a', at: [0.055, 0.10], w: 470, cls: 'aside lead', to: 0,
+          html: '<p>I never see the thing itself — only a handful of ' +
+            'measurements of it.</p>',
         },
         {
-          id: 'cyc-a', at: [0.055, 0.20], w: 470, cls: 'aside lead', to: 0,
-          html: '<p>I never see the hill itself — only a few soundings of it.</p>',
+          id: 'cyc-b', at: [0.055, 0.10], w: 470, cls: 'aside lead', from: 1, to: 1,
+          html: '<p>A model is my current guess at what made them.</p>',
         },
         {
-          id: 'cyc-b', at: [0.055, 0.20], w: 470, cls: 'aside lead', from: 1, to: 1,
-          html: '<p>The boulder is my current guess at what made them.</p>',
+          id: 'cyc-c', at: [0.055, 0.10], w: 470, cls: 'aside lead', from: 2, to: 2,
+          html: '<p>And <em>better</em> is a choice. Nothing in nature ' +
+            'defines it; I do.</p>',
         },
         {
-          id: 'cyc-c', at: [0.055, 0.20], w: 470, cls: 'aside lead', from: 2, to: 2,
-          html: '<p>And downhill is a choice. Nothing in nature says what ' +
-            'the height means; I do.</p>',
-        },
-        {
-          id: 'cyc-d', at: [0.055, 0.20], w: 480, cls: 'aside lead', from: 3,
+          id: 'cyc-d', at: [0.055, 0.10], w: 480, cls: 'aside lead', from: 3,
           html: '<p>The step is the easy part. Knowing when to stop — ' +
             'whether the data, the representation, or my ruler ran out — is ' +
             'the whole difficulty.</p>',
@@ -579,7 +572,7 @@
       text: [
         {
           id: 'forkh', at: [0.055, 0.07], w: 700, cls: 'phrase sm',
-          html: '<p>Not good enough. Three reasons — and they are three directions.</p>',
+          html: '<p>Not good enough. Three reasons.</p>',
         },
         {
           id: 'f1', at: [0.055, 0.20], w: 470, cls: 'aside lead',

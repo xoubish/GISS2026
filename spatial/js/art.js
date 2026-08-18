@@ -521,12 +521,12 @@
 
       /* model: the boulder — the ball layer draws it, this labels it */
       const bx = cmin - 11, by = g(bx);
-      txt(L.cyc2, bx - 12, by - 24, 'model — the current state');
+      txt(L.cyc2, bx - 6, by - 24, 'model');
       L.cyc2.appendChild(el('path', { d: handLine(bx - 4, by - 20, bx - 1, by - 7, 0.3, 3340), class: 'ink leader' }));
 
       /* objective: better is a direction, and the direction was chosen */
       trail(L.cyc3, [[bx + 4, g(bx + 4) - 3], [cmin - 2.5, g(cmin - 2.5) - 2]], 3350);
-      txt(L.cyc3, 2225, g(2225) - 32, 'objective — downhill');
+      txt(L.cyc3, 2225, g(2225) - 32, 'objective');
 
       /* update: the step taken — then the loop closes on new data */
       L.cyc4.appendChild(el('path', { d: ring(cmin - 1.6, g(cmin - 1.6), 2.3, 3360), class: 'ink ring' }));

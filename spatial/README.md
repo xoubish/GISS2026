@@ -125,6 +125,14 @@ converging — the hill drops to the bottom of the frame and the words take the
 stage in lead type. The stations stay for the scenes that measure things; the
 scenes that *say* things get paper.
 
+**Use the hill, never narrate it.** The landscape earns its keep when
+something happens on it — the boulder settling at 42, the fork trails, the
+climber, the return — and costs credibility whenever the words point at it
+and explain the mapping. So the terrain labels are single words (*data,
+model, objective, update — then stop?*), the asides never mention boulders or
+downhill, and the metaphor is carried entirely by what the audience watches
+happen.
+
 ## Sisyphus stays on stage
 
 The middle of the talk is not allowed to decay into points and lines: a small
