@@ -336,7 +336,7 @@
       S.NEWMIN = { x: bx, y: by };
     })();
 
-    /* ---- scene 5: the ledge, framed as a figure -------------------------- */
+    /* ---- the axes frame — unlit in the spoken route, appendix only ------- */
     (function () {
       const g = L.axes;
       const { x0, x1 } = S.LEDGE;
@@ -380,7 +380,7 @@
       L.curmark.appendChild(el('path', { d: handLine(mn.x, mn.y + 6.5, mn.x, bot, 0.5, 556), class: 'ink drop' }));
     })();
 
-    /* ---- scenes 6–7: the ruler ------------------------------------------ */
+    /* ---- scenes 5–6: the ruler ------------------------------------------ */
     (function () {
       const g = L.ruler;
       const { x0, x1 } = S.WIN;
@@ -409,7 +409,7 @@
     /* ---- the plotted curve (diverges from the ground as the ruler turns) - */
     L.curve.appendChild(el('path', { id: 'plotcurve', class: 'ink plotted', d: '' }));
 
-    /* ---- scene 16: what we are looking back at --------------------------- */
+    /* ---- retired with the zoom-out scene; kept unlit --------------------- */
     (function () {
       const g = L.marks;
       const ox = S.F.A.c, oy = S.ground(ox);
@@ -535,7 +535,7 @@
       txt(L.cyc4, 2160, g(2152) - 70, 'new data', 'sm');
     })();
 
-    /* ---- 6 · THE RULER PEOPLE ACTUALLY CARRY ----------------------------
+    /* ---- 5 · THE RULER PEOPLE ACTUALLY CARRY ----------------------------
        Kahneman & Tversky measured it and found it bent: value is read from a
        reference point, and losses are spaced about twice as far apart as
        equal gains. Drawn as a third ruler with the same ticks, unevenly laid
@@ -556,7 +556,7 @@
       txt(L.humanrule, cmin + 8, y + 8.5, 'gains', 'sm');
     })();
 
-    /* ---- 8 · DATA — we never see θ, we see what it generates ------------ */
+    /* ---- 7 · DATA — we never see θ, we see what it generates ------------ */
     (function () {
       const rnd = S.mulberry32(8801);
       const sig = 5.2;
@@ -570,7 +570,7 @@
       }
     })();
 
-    /* ---- 9 · COMPRESSION — the same curve, re-drawn from k numbers ------ */
+    /* ---- 8 · COMPRESSION — the same curve, re-drawn from k numbers ------ */
     function compression(host, knots, seed) {
       const pts = knots.map((k) => [k, S.ground(k)]);
       host.appendChild(el('path', { d: S.toPath(pts), class: 'ink plotted' }));
@@ -600,7 +600,7 @@
         [LEDGE.x0, 2150, 2186, cmin, 2216, 2252, LEDGE.x1], 1203);
     })();
 
-    /* ---- 10 · FOUR RULERS — four readings of one basin ------------------- */
+    /* ---- 9 · FOUR RULERS — four readings of one basin ------------------- */
     const A_WIDE = 0.0030, A_NARROW = 0.11, RISE = 26;
     const halfWide = Math.sqrt(RISE / A_WIDE), halfNarrow = Math.sqrt(RISE / A_NARROW);
     (function () {
@@ -626,17 +626,17 @@
       txt(L.fisher, cmin + halfNarrow + 16, ymin - 26, 'steep — pinned', 'sm', 'start');
     })();
 
-    /* ---- 11 · THE FORK — three ways out, and they are directions --------- */
+    /* ---- 10 · THE FORK — three ways out, and they are directions --------- */
     /* left and up — exchange the landscape; along the surface — re-read what
        is already there; up and out over the crest — go and get more. */
     trail(L.fork1, [[cmin - 6, ymin - 16], [2150, ymin - 34], [2092, -1858]], 1501);
     trail(L.fork2, [2226, 2260, 2296, 2330, 2352].map((x) => [x, S.ground(x) - 15]), 1502);
     trail(L.fork3, [[cmin + 8, ymin - 26], [2300, -1890], [2418, -1938]], 1503);
 
-    /* ---- 12 · WHERE WE WERE, seen from the crest ------------------------ */
+    /* ---- 11 · WHERE WE WERE, seen from the crest ------------------------ */
     L.here.appendChild(el('path', { d: ring(cmin, ymin, 26, 2501), class: 'ink ring loud' }));
 
-    /* ---- 13 · TWO INSTRUMENTS SAMPLING ONE PATCH OF GROUND --------------
+    /* ---- 12 · TWO INSTRUMENTS SAMPLING ONE PATCH OF GROUND --------------
        An instrument is not drawn in the sky — it is drawn as the sampling it
        actually delivers on the same stretch of ground: how often it reports,
        and how wide each report is. That is all that matters here, and it is
@@ -656,7 +656,7 @@
     comb(L.combE, 9, 3.0, 1.5, 1701);    // Euclid VIS: finer and sharper
     comb(L.combJ, 9, 1.9, 1.5, 1801);    // the two together
 
-    /* ---- 14 · ONE REPRESENTATION, MANY READOUTS ------------------------- */
+    /* ---- 13 · ONE REPRESENTATION, MANY READOUTS ------------------------- */
     (function () {
       const g = L.latent;
       const bx0 = 2050, bx1 = 2370, inY = -2096, zY = -1996, outY = -1900;
@@ -692,7 +692,7 @@
       }
     })();
 
-    /* ---- 17 · TWO ENDINGS ---------------------------------------------- */
+    /* ---- 15 · TWO ENDINGS ---------------------------------------------- */
     L.ends.appendChild(el('path', { d: ring(2900, S.ground(2900), 34, 2401), class: 'ink ring loud' }));
     L.ends.appendChild(el('path', { d: ring(2596, S.ground(2596), 34, 2402), class: 'ink ring loud' }));
   }

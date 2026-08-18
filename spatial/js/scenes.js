@@ -14,8 +14,8 @@
      steps   — beats. Right arrow advances the beat; at the last one it moves on.
 
    The route: the myth (1–2); the loop, and two systems that run it (3–4);
-   down into the ledge (5–7); apart what the answer is made of (8–11); east
-   over the crest to the program (12–15); then all the way out (16–18).
+   down into the basin (5–6); apart what the answer is made of (7–10); east
+   over the crest to the program (11–14); then the endings (15–16).
    Two appendix scenes — astrometry and the moving field — sit after the
    return, out of the spoken route, jumpable by number for Q&A.
    ========================================================================= */
@@ -280,48 +280,12 @@
         'skip the "same questions" beat, land on one sky.',
     },
 
-    /* ================================================= 5 · LOSS LANDSCAPE == */
-    {
-      id: 'landscape',
-      name: 'Loss landscape',
-      camera() { const z = 4.57; return { x: 2210, y: S.anchorY(-1777, 0.5, z), z }; },
-      enter: { dur: 1700 },
-      set: { far: 0.35, rock: 0.55, axes: 1, curmark: 1 },
-      steps: [
-        {},
-        { notes: 'Name the axes and both readings of them, then move on quickly.' },
-      ],
-      text: [
-        {
-          id: 'better', at: [0.10, 0.09], w: 640, cls: 'phrase',
-          html: '<p>Name the axes, and the hill becomes the problem.</p>',
-        },
-        {
-          id: 'axesnote', at: [0.10, 0.24], w: 520, cls: 'aside', from: 1,
-          html: '<p><em>θ</em>, the thing I want. <em>L</em>, how wrong I am.<br>' +
-            'For a source that is a position — reached only through pixels, ' +
-            'PSFs, noise, calibration.</p>',
-        },
-        {
-          id: 'h3', at: [0.62, 0.10], w: 460, cls: 'aside human', from: 1,
-          html: '<p>Ask it about a person you have just met and the machinery is ' +
-            'the same. θ is who they are — reached only through words, tone, and ' +
-            'what they do under stress.</p>',
-        },
-      ],
-      notes:
-        'The ledge, framed. The same ground the loop was drawn on two scenes ' +
-        'ago, now with axes: θ across, L up. A current minimum is visible and ' +
-        'marked. Nothing has been solved — we have only agreed to call the ' +
-        'vertical axis L.',
-    },
-
-    /* ========================================================= 6 · RULER == */
+    /* ========================================================= 5 · RULER == */
     {
       id: 'ruler',
       name: 'The ruler',
       camera() { const z = 13; return { x: NOTCH, y: S.anchorY(G(NOTCH), 0.80, z), z }; },
-      enter: { dur: 1500 },
+      enter: { dur: 2300 },
       set: { rock: 0.35, axes: 0.10, curve: 1, ruler: 1, cands: 1 },
       steps: [
         {},
@@ -391,7 +355,7 @@
         'its own definition of success.',
     },
 
-    /* ============================================ 7 · APPARENT SOLUTION == */
+    /* ============================================ 6 · APPARENT SOLUTION == */
     {
       id: 'solution',
       name: 'Apparent solution',
@@ -417,13 +381,13 @@
         'a beat of silence before the number appears.',
     },
 
-    /* =========================================================== 8 · DATA == */
+    /* =========================================================== 7 · DATA == */
     {
       id: 'data',
       name: 'Data',
       camera() { const z = 5.6; return { x: 2185, y: S.anchorY(-1780, 0.58, z), z }; },
       enter: { dur: 1600 },
-      set: { rock: 0.18, line: 0.16, axes: 1, sound: 1, ball: 0.45, pusher: 0.45 },
+      set: { rock: 0.18, line: 0.16, sound: 1, ball: 0.45, pusher: 0.45 },
       steps: [
         {},
         {
@@ -449,8 +413,9 @@
         },
         {
           id: 'h6', at: [0.62, 0.085], w: 440, cls: 'aside human', to: 0,
-          html: '<p>Words · tone · promises · how they treat other people · ' +
-            'behaviour under stress · repeated encounters.</p>',
+          html: '<p>The same question, about a person you have just met: who ' +
+            'they are — reached only through words, tone, promises, behaviour ' +
+            'under stress.</p>',
         },
         {
           id: 'h6b', at: [0.62, 0.085], w: 450, cls: 'aside human', from: 1,
@@ -466,13 +431,13 @@
         'scenes was a model all along.',
     },
 
-    /* ==================================================== 9 · COMPRESSION == */
+    /* ==================================================== 8 · COMPRESSION == */
     {
       id: 'compression',
       name: 'Compression',
       camera() { const z = 4.0; return { x: 2212, y: S.anchorY(-1780, 0.5, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.15, line: 0.30, axes: 1, approx1: 1, ball: 0.4, pusher: 0.4 },
+      set: { rock: 0.15, line: 0.30, approx1: 1, ball: 0.4, pusher: 0.4 },
       steps: [
         {},
         {
@@ -556,13 +521,13 @@
         'away. Ring marks where that representation thinks the minimum is.',
     },
 
-    /* =================================================== 10 · FOUR RULERS == */
+    /* =================================================== 9 · FOUR RULERS == */
     {
       id: 'rulers',
       name: 'Four rulers',
       camera() { const z = 4.4; return { x: 2202, y: S.anchorY(-1782, 0.5, z), z }; },
       enter: { dur: 1500 },
-      set: { rock: 0.18, line: 1, axes: 1, ball: 0.4, pusher: 0.4 },
+      set: { rock: 0.18, line: 1, ball: 0.4, pusher: 0.4 },
       steps: [
         { set: { entropy: 1 } },
         { set: { entropy: 1, surprise: 1 } },
@@ -599,7 +564,7 @@
         'they stay on screen for anyone reading.',
     },
 
-    /* ===================================================== 11 · THE FORK == */
+    /* ===================================================== 10 · THE FORK == */
     {
       id: 'fork',
       name: 'The fork',
@@ -646,7 +611,7 @@
         'to take the third one, over the crest.',
     },
 
-    /* ========================================== 12 · EXPERIMENTAL DESIGN == */
+    /* ========================================== 11 · EXPERIMENTAL DESIGN == */
     {
       id: 'design',
       name: 'Experimental design',
@@ -687,7 +652,7 @@
         'instruments.',
     },
 
-    /* ================================================ 13 · TWO INSTRUMENTS == */
+    /* ================================================ 12 · TWO INSTRUMENTS == */
     {
       id: 'joint',
       name: 'Two instruments',
@@ -727,7 +692,7 @@
         'before anyone can use it.',
     },
 
-    /* ================================================== 14 · FOUNDATION == */
+    /* ================================================== 13 · FOUNDATION == */
     {
       id: 'foundation',
       name: 'One representation',
@@ -779,7 +744,7 @@
         'included, is a small head reading the same frozen features.',
     },
 
-    /* ======================================================= 15 · JAISP == */
+    /* ======================================================= 14 · JAISP == */
     {
       id: 'jaisp',
       name: 'JAISP',
@@ -814,56 +779,7 @@
         'the picture is there so nobody has to take the numbers on faith.',
     },
 
-    /* ====================================================== 16 · ZOOM OUT == */
-    {
-      id: 'wider',
-      name: 'Zoom out',
-      camera: { x: 3300, y: -1500, z: 0.30 },
-      enter: { dur: 2800, ease: 'slow' },
-      set: { far: 1, rock: 1, marks: 1 },
-      steps: [
-        {},
-        {
-          set: { newland: 1, marks: 0.55, climber2: 1 },
-          anim: { newland: 2200, climber2: 2600 },
-          notes:
-            'New instrument, new depth, new sky. The old optimum is still there ' +
-            'and still correct. It is simply no longer the lowest thing in the ' +
-            'world. This is also where 42 finally gets explained: an excellent ' +
-            'answer to 6 × 7.',
-        },
-      ],
-      text: [
-        { id: 'oldlabel', at: [0.05, 0.115], w: 300, cls: 'callout', html: '<p>the optimum<br>we solved</p>' },
-        { id: 'old42', at: [0.305, 0.325], w: 90, cls: 'tiny42', html: '<p>42</p>' },
-        {
-          id: 'improved', at: [0.60, 0.09], w: 560, cls: 'phrase', from: 1,
-          html: '<p>The answer improved the question.</p>',
-        },
-        {
-          id: 'sixseven', at: [0.60, 0.27], w: 480, cls: 'aside', from: 1,
-          html: '<p>Forty-two was right. The question was 6 × 7.</p>',
-        },
-        {
-          id: 'newlabel', at: [0.645, 0.795], w: 300, cls: 'callout', from: 1,
-          html: '<p>new data,<br>a different lowest place</p>',
-        },
-        {
-          id: 'h16', at: [0.635, 0.345], w: 400, cls: 'aside human', from: 1,
-          html: '<p>A source’s position sits still while you measure it. A ' +
-            'person does not — the hardest landscapes are the ones that moved ' +
-            'because you looked.</p>',
-        },
-      ],
-      notes:
-        'Hold on the speck before the new terrain arrives. The rock does not come ' +
-        'back because we failed. It comes back because we can now ask something ' +
-        'we could not ask before. The gloss, spoken in full: a source’s position ' +
-        'is very nearly a stable latent parameter; a person is not — they change, ' +
-        'react, learn, perform, and adapt to being observed.',
-    },
-
-    /* =================================================== 17 · TWO ENDINGS == */
+    /* =================================================== 15 · TWO ENDINGS == */
     {
       id: 'endings',
       name: 'Two endings',
@@ -898,7 +814,7 @@
         'Dreams of a Final Theory, so say it as a reference, not as his words.',
     },
 
-    /* ======================================================== 18 · RETURN == */
+    /* ======================================================== 16 · RETURN == */
     {
       id: 'return',
       name: 'Return',
@@ -920,13 +836,18 @@
           html: '<p>Maybe the rock comes back because we keep finding better questions.</p>',
         },
         {
-          id: 'fin2', at: [0.055, 0.35], w: 620, cls: 'phrase', from: 1,
+          id: 'fin42', at: [0.055, 0.345], w: 560, cls: 'aside',
+          html: '<p>Forty-two was right, by the way. The question was 6 × 7.</p>',
+        },
+        {
+          id: 'fin2', at: [0.055, 0.50], w: 620, cls: 'phrase', from: 1,
           html: '<p>One must imagine the optimizer happy.</p>',
         },
       ],
       notes:
         'Exactly the opening camera — same hill, same scale, and by now it means ' +
-        'something else. There is no universal loss, no compression sufficient for ' +
+        'something else. Land 6 × 7 as a throwaway, not a reveal. If it needs a ' +
+        'chaser: the hardest landscapes are the ones that moved because you looked. There is no universal loss, no compression sufficient for ' +
         'every question, and no observer with all the information. The purpose was ' +
         'never to stop pushing.',
     },
@@ -976,7 +897,7 @@
           'Right: median per-source offset against S/N.',
       }],
       notes:
-        'This is the same axis we called θ in scene five, now calibrated in ' +
+        'This is the θ axis the talk has been walking, now calibrated in ' +
         'milliarcseconds. The bracket is the answer\'s width, and it is her own ' +
         'measurement, not an illustration.',
     },

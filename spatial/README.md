@@ -26,23 +26,25 @@ so a reload puts you back where you were.
 
 There are no slides. There is **one landscape**, defined once in
 `js/terrain.js`, and a camera that moves through it. The loss landscape of
-scenes 5–11 is not a diagram drawn beside the mountain — it *is* a 90-metre
+scenes 5–10 is not a diagram drawn beside the mountain — it *is* a 90-metre
 stretch of the mountain in scene 1, at 20× magnification. The mountain is
 ~9 km wide with ~2.1 km of relief; the basin the optimizer settles into is
 ~26 m across. That ratio is the argument, and it is literal rather than
-illustrated: scene 16 pulls back and the basin really is a speck, because it
-always was.
+illustrated: the return puts scene 1's camera back and the basin is a speck
+again, because it always was. There are no axes in the spoken route — the
+hill is never dressed up as a chart; only the appendix astrometry scene
+earns a calibrated frame.
 
 Every station in the middle of the talk is drawn *on that ground*, not beside
 it. The loop of scene 3 — data → model → objective → update — is pinned to the
-hillside, not boxed above it. The soundings in scene 8 are soundings of this
-hillside. The compressions in scene 9 are re-drawings of this curve, and the
+hillside, not boxed above it. The soundings in scene 7 are soundings of this
+hillside. The compressions in scene 8 are re-drawings of this curve, and the
 residual hairlines are exactly what each summary threw away. The four rulers in
-scene 10 are four readings of this one basin — entropy is the width of the
+scene 9 are four readings of this one basin — entropy is the width of the
 bracket, Fisher is the curvature that decides how fast it closes. The fork in
-scene 11 is three directions you could actually walk. And the astrometry
-numbers in the appendix are real widths on the same θ axis that scene 5 set
-up: **1 world unit = 2 mas** (`S.MAS` in `art.js`), so 50 mas and 14–17 mas
+scene 10 is three directions you could actually walk. And the astrometry
+numbers in the appendix are real widths on the hill's own θ axis:
+**1 world unit = 2 mas** (`S.MAS` in `art.js`), so 50 mas and 14–17 mas
 are drawn to scale against each other.
 
 ## The science goes first
@@ -72,13 +74,13 @@ Every instrument is a lossy projection of the same reality, and enhancement is
 inference on the shared sky — information moved from where it was measured to
 where it is needed. The opening scenes stay deliberately light on marks — a
 few soundings as a hint, the words doing the work; data-as-points gets its
-full treatment at scene 8. The ruler scene (6) then makes the family's core
+full treatment at scene 7. The ruler scene (5) then makes the family's core
 choice concrete:
 pixel similarity, flux conservation, morphology, astrometry, weak-lensing
 shape — five defensible losses, one basin, and the argmin moves when the ruler
 changes. That is where "the loss is a ruler we chose" stops being poetry.
 
-The compression scene (9) closes the argument with a fourth beat: **enhancement
+The compression scene (8) closes the argument with a fourth beat: **enhancement
 is compression run backwards**. Five coarse numbers in hand, a full curve
 delivered — and the basin in the output was never in those data. It came from a
 prior trained on other sky. The ledger must balance: data + prior in, structure
@@ -86,12 +88,12 @@ out, and validation is auditing which is which. That beat is what separates
 recovery from hallucination, and it gives the information-theory scenes that
 follow their reason to exist.
 
-The NISP paper also hands the ruler scene (6) its measured instance: a
+The NISP paper also hands the ruler scene (5) its measured instance: a
 diffusion model that ties the residual network on per-pixel error while
 pushing ellipticity below even bilinear interpolation — superb under one
 ruler, destructive under another — and the honest stopping fact that neither
 model meets the 10⁻³ lensing bar. Both live in the on-screen aside and the
-notes of scene 6.
+notes of scene 5.
 
 ## The weather
 
@@ -114,7 +116,7 @@ loop labels, the ruler names), the on-screen sentences are first-person
 claims from someone who has done the work — "downhill is a choice; nothing in
 nature says what the height means; I do" — and **formulas live in the
 presenter notes**, not on screen (surprise, KL, Fisher, EIG: all in the notes
-of scenes 10 and 12, ready if someone asks). When editing, resist the
+of scenes 9 and 11, ready if someone asks). When editing, resist the
 definitional reflex: if a sentence would fit a lecture handout, rewrite it as
 something the speaker learned the hard way.
 
@@ -129,13 +131,13 @@ The middle of the talk is not allowed to decay into points and lines: a small
 pen-scribble Sisyphus (drawn in `pusherFigure()` in `art.js`, stroke widths
 compensated so the pen stays a pen at any scale) keeps the work visible. One
 dynamic figure trails the boulder — `setRoll` keeps his hands on it, so in
-scene 7 he wrestles it into the minimum and stands there when 42 appears — and
+scene 6 he wrestles it into the minimum and stands there when 42 appears — and
 he stays faintly present through data, compression, the four rulers, and the
-fork (layer `pusher`). Two static figures mark the myth's moments: pushing his
-rock up the slope toward the crest in scene 12 (`climber`), and starting again
-at the *new* lowest place when the terrain changes in scene 16 (`climber2`) —
-which is the Sisyphus thesis drawn rather than said. The deck should feel like
-the whole thing is hard, because it is.
+fork (layer `pusher`). A static figure pushes his rock up the slope toward the
+crest in scene 11 (`climber`). (`climber2`, the restart at a new minimum, was
+retired with the zoom-out scene and stays unlit in the code, like `newland`
+and `marks`.) The deck should feel like the whole thing is hard, because it
+is.
 
 Detail is built at five levels over progressively narrower strips of ground and
 crossfaded by zoom, so the hillside is drawn with a finer pen the closer you
@@ -149,29 +151,27 @@ get. It never looks like a picture being scaled.
 | 2 | Enter the slope | into the hillside, z 1.5 |
 | 3 | The loop | the ledge before any axes: data → model → objective → update |
 | 4 | Two systems | pulled back, z 2.1: a brain, the enhancement family, one sky |
-| 5 | Loss landscape | the ledge, framed with axes |
-| 6 | The ruler | inside the basin — five super-resolution losses, then the human one |
-| 7 | Apparent solution | the boulder settles · **42**, played straight |
-| 8 | Data | the same ledge: soundings, not a curve |
-| 9 | Compression | 15 → 5 (basin lost) → 7 placed (basin back) → run backwards |
-| 10 | Four rulers | entropy · surprise · KL · Fisher, on one basin |
-| 11 | The fork | wrong ruler / bad compression / missing information |
-| 12 | Experimental design | up to the crest, where you can see further |
-| 13 | Two instruments | Rubin and *Euclid* VIS sampling the same ground |
-| 14 | One representation | ten bands → one frozen latent → five heads |
-| 15 | JAISP | the architecture plate and the numbers |
-| 16 | Zoom out | the speck, then the new terrain |
-| 17 | Two endings | on the hill · on the slope |
-| 18 | Return | scene 1's camera exactly, and the pinball machine |
+| 5 | The ruler | inside the basin — five super-resolution losses, then the human one |
+| 6 | Apparent solution | the boulder settles · **42**, played straight |
+| 7 | Data | the same ledge: soundings, not a curve |
+| 8 | Compression | 15 → 5 (basin lost) → 7 placed (basin back) → run backwards |
+| 9 | Four rulers | entropy · surprise · KL · Fisher, on one basin |
+| 10 | The fork | wrong ruler / bad compression / missing information |
+| 11 | Experimental design | up to the crest, where you can see further |
+| 12 | Two instruments | Rubin and *Euclid* VIS sampling the same ground |
+| 13 | One representation | ten bands → one frozen latent → five heads |
+| 14 | JAISP | the architecture plate and the numbers |
+| 15 | Two endings | on the hill · on the slope |
+| 16 | Return | scene 1's camera, the pinball machine — and 6 × 7, thrown away |
 | A1 | Appendix — Astrometry | back to the same basin: 50 → 14–17 mas |
 | A2 | Appendix — The field moves | the concordance field, 9–10 mas, coherent |
 
 The two appendix scenes sit after the return, out of the spoken route. They
-are there for Q&A — jump with `1` `9` and `2` `0` — because someone will ask
+are there for Q&A — jump with `1` `7` and `1` `8` — because someone will ask
 about the coherent 9–10 mas field, and the measured answer deserves better
 than a verbal description.
 
-Roughly 45 beats in the spoken route — comfortable at 15–18 minutes. At 12,
+Roughly 41 beats in the spoken route — comfortable at 14–16 minutes. At 12,
 run **the 12-minute cut** below; the content stays in the deck for questions
 and longer venues.
 
@@ -181,13 +181,13 @@ The default drops, also flagged in each scene's presenter notes:
 
 - **Scene 4** — advance straight to the receipts beat: brain and papers get
   ~20 seconds together, skip the "same questions" beat, land on *one sky*.
-- **Scene 6** — drop the human-ruler beat (Kahneman–Tversky).
-- **Scene 10** — narrate entropy and Fisher only; step through surprise and
+- **Scene 5** — drop the human-ruler beat (Kahneman–Tversky).
+- **Scene 9** — narrate entropy and Fisher only; step through surprise and
   KL silently — they stay on screen for anyone reading.
-- **Scene 12** — a transit: one sentence while the camera climbs, then on to
+- **Scene 11** — a transit: one sentence while the camera climbs, then on to
   the instruments.
-- **Marginalia** — voice only the three load-bearing glosses (scenes 8, 14,
-  16); the rest are for the eye.
+- **Marginalia** — voice only the load-bearing glosses (scenes 7 and 13); the
+  rest are for the eye.
 
 That is roughly a third fewer narrated beats, and every camera move survives —
 the cut trims words, not geography.
@@ -196,13 +196,13 @@ the cut trims words, not geography.
 
 The talk has one seam: the opening anchors on the enhancement family
 (pairwise, one teacher per student), the program half anchors on JAISP. The
-seam is closed in scene 14, on screen and in the notes: each enhancement was
+seam is closed in scene 13, on screen and in the notes: each enhancement was
 *a new model for one task* — its own pair of instruments, its own choice of
 what to keep. The general answer is to learn everything together, once: one
 foundation, **less lossy than any single-task compression** because every band
 and both instruments constrain it — and then every task, enhancement included,
 is a small head on top. Say it there and the receipts become the special
-cases of scenes 14–15 rather than a separate act.
+cases of scenes 13–14 rather than a separate act.
 
 ## Files
 
@@ -270,7 +270,7 @@ reading is set as **marginalia** instead: a gloss in the margin of the same
 picture, in italic, behind a hairline rule, in the one accent colour the deck
 allows itself (`--human`, a desaturated sanguine — the way a second hand shows up
 in an old drawing). It runs through scenes 4 (the brain, deciding on a drink),
-5, 6, 8–14, 16 and appendix A1, always as `cls: 'aside human'`.
+5, 7–13 and appendix A1, always as `cls: 'aside human'`.
 
 Because it is subordinate rather than parallel, the picture stays dominant and
 nothing turns into a two-column slide. To make it grey instead of sanguine, set
@@ -284,23 +284,24 @@ once where to look and never re-orients. (Scene 15's numbers sit right of the
 JAISP plate because there is no human column there; that is the one layout the
 rule does not govern.)
 
-The three glosses that carry the most weight: scene 8 (probing changes the thing
-being probed), scene 14 (nobody keeps separate mental files), and scene 16 —
-a source's position is a stable latent parameter and a person is not, which is
-where the title finally earns itself.
+The two glosses that carry the most weight: scene 7 (probing changes the thing
+being probed) and scene 13 (nobody keeps separate mental files). The third —
+a source's position sits still while you measure it; a person does not — was
+retired with the zoom-out scene and lives on in the return's presenter notes,
+where the title finally earns itself out loud.
 
 ## Decided
 
 - **GIPS is deliberate** — Greater IPAC *Philosophy* Symposium. Scene 1's notes
   remind you to land it out loud before anyone reads it as a typo.
-- **Weinberg is in**, scene 17: the reference is to *Dreams of a Final Theory*,
+- **Weinberg is in**, scene 15: the reference is to *Dreams of a Final Theory*,
   and "half in longing, half in mourning" is presented as your phrase about
   reading him, not as a quotation from him. The notes say so, so it stays honest
   if anyone asks.
 
 ## Notes
 
-- Measured on a software rasteriser with no GPU, the scene 7 → 16 pull-back runs
+- Measured on a software rasteriser with no GPU, the scene 6 → 16 pull-back runs
   at a median 11 ms per frame, worst frame 27 ms. `a` is there if a venue's
   machine disagrees.
 - Nothing uses `Math.random`, so the drawing is byte-identical on every machine
