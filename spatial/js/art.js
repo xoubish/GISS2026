@@ -2,8 +2,9 @@
    art.js — THE PEN
    ----------------------------------------------------------------------------
    Everything visible is generated here, once, at load, from terrain.js. The
-   aesthetic target is the title drawing: scribbled pen on warm paper, dense at
-   the ridge, dissolving downward into blank page.
+   aesthetic target: the title drawing's scribbled pen, laid over an Atlantic
+   hillside — moss-green washes under the hatching, hazy far ridges, storm
+   masses in the sky. Ink dense at the ridge, dissolving downward into mist.
 
    Ground detail is built at five levels (LOD0..LOD4) over progressively
    narrower strips of x, each with its own band depth and stroke length.
@@ -166,6 +167,25 @@
     return g;
   }
 
+  /* ---------------------------------------------------------- a cloud ---
+     A low, flat-bottomed mass of Atlantic weather: a wavy closed blob,
+     filled, no stroke. Lives in the far layer, so it fades with distance
+     and never follows the camera into the basin.                          */
+  function cloud(host, cx, cy, w, h, seed, op, col) {
+    let d = '';
+    const n = 72;
+    for (let k = 0; k <= n; k++) {
+      const t = (k / n) * Math.PI * 2;
+      const rr = 1 + 0.32 * S.vnoise(t * 2.3 + seed) + 0.11 * S.vnoise(t * 5.1 + seed * 2.7);
+      const px = cx + Math.cos(t) * w * rr;
+      const py = cy + Math.sin(t) * h * rr * (Math.sin(t) > 0 ? 0.5 : 1);
+      d += (k ? 'L' : 'M') + f2(px) + ' ' + f2(py);
+    }
+    const p = el('path', { d: d + 'Z', fill: col, stroke: 'none' });
+    p.style.opacity = op;
+    host.appendChild(p);
+  }
+
   /* A static Sisyphus with his own rock, feet on the given ground function. */
   function placePusher(host, fn, x, s, seed) {
     const g = pusherFigure(seed, s);
@@ -213,7 +233,7 @@
   S.ring = ring;
 
   /* ======================================================== build the world */
-  S.LAYERS = ['far', 'hatch0', 'hatch1', 'hatch2', 'hatch3', 'hatch4', 'ridge',
+  S.LAYERS = ['far', 'gfill', 'hatch0', 'hatch1', 'hatch2', 'hatch3', 'hatch4', 'ridge',
     'newland', 'axes', 'curmark', 'curve', 'ruler', 'humanrule', 'cands',
     'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
     'approx1', 'approx2', 'approx3', 'entropy', 'surprise', 'kl',
@@ -240,7 +260,19 @@
     S.LAYERS.forEach((k) => { L[k] = el('g', { id: 'l-' + k }); svg.appendChild(L[k]); });
     S.L = L;
 
-    /* ---- distant ranges, the layered peaks of the drawing ---------------- */
+    /* ---- the wash: a moss gradient under the pen, top-lit under storm --- */
+    const defs = el('defs');
+    const lg = el('linearGradient', {
+      id: 'hillgrad', gradientUnits: 'userSpaceOnUse',
+      x1: 0, y1: -2650, x2: 0, y2: 400,
+    });
+    [[0, '#7f9478', 0.42], [0.35, '#5f7a63', 0.52], [1, '#3d5347', 0.64]].forEach((st) => {
+      lg.appendChild(el('stop', { offset: st[0], 'stop-color': st[1], 'stop-opacity': st[2] }));
+    });
+    defs.appendChild(lg);
+    svg.appendChild(defs);
+
+    /* ---- distant ranges, hazed like real distance in wet air ------------ */
     [
       { sx: 0.74, ox: 1750, ay: 0.84, dy: -170, o: 0.34, seed: 61 },
       { sx: 0.55, ox: 3400, ay: 0.70, dy: -330, o: 0.20, seed: 913 },
@@ -249,10 +281,31 @@
         46 * S.vnoise(x / 190 + D.seed);
       const g = el('g');
       g.style.opacity = D.o;
+      g.appendChild(el('path', {
+        d: S.toPath(S.samples(B.x0 + 40, B.x1 - 40, fn, 26), true),
+        fill: '#93a79d', 'fill-opacity': '0.55', stroke: 'none',
+      }));
       g.appendChild(el('path', { d: S.toPath(S.samples(B.x0 + 40, B.x1 - 40, fn, 26)), class: 'ink ridge-far' }));
       buildHatch(g, B.x0 + 60, B.x1 - 60, 320, D.seed + 5, fn, 4);
       L.far.appendChild(g);
     });
+
+    /* ---- the weather ----------------------------------------------------
+       Storm masses with flat undersides, strung along the whole range. They
+       live with the far ridges, so close scenes get plain rain-light sky.  */
+    cloud(L.far, -700, -2260, 950, 170, 71, 0.30, '#76837f');
+    cloud(L.far, 1350, -2300, 1150, 195, 72, 0.24, '#83908c');
+    cloud(L.far, 3100, -2560, 1300, 205, 73, 0.30, '#71807b');
+    cloud(L.far, 5200, -2380, 1200, 175, 74, 0.20, '#83908c');
+    cloud(L.far, 6900, -2600, 950, 155, 75, 0.27, '#76837f');
+    cloud(L.far, 350, -1990, 700, 105, 76, 0.13, '#93a09b');
+    cloud(L.far, 4300, -2080, 820, 115, 77, 0.13, '#93a09b');
+
+    /* ---- the ground itself, filled — the hills are green now ------------ */
+    L.gfill.appendChild(el('path', {
+      d: S.toPath(S.samples(B.x0 + 10, B.x1 - 10), true),
+      fill: 'url(#hillgrad)', stroke: 'none',
+    }));
 
     /* ---- five levels of ground detail -----------------------------------
        band = how deep the ink reaches; the strip narrows as the band shrinks. */

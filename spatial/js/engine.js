@@ -87,7 +87,7 @@
 
   /* ------------------------------------------------------------- painting -- */
   /* Layers whose opacity is simply the state value of the same name. */
-  const PLAIN = ['ridge:line', 'axes', 'curmark', 'curve', 'ruler', 'humanrule',
+  const PLAIN = ['gfill:rock', 'ridge:line', 'axes', 'curmark', 'curve', 'ruler', 'humanrule',
     'cands', 'newland', 'marks', 'body:ball', 'sound',
     'cyc1', 'cyc2', 'cyc3', 'cyc4', 'approx1', 'approx2',
     'approx3', 'entropy', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
@@ -369,7 +369,7 @@
     const r = S.mulberry32(99991);
     for (let i = 0; i < n * n; i++) {
       const v = 236 + r() * 19;
-      im.data[i * 4] = v; im.data[i * 4 + 1] = v; im.data[i * 4 + 2] = v - 2;
+      im.data[i * 4] = v - 4; im.data[i * 4 + 1] = v; im.data[i * 4 + 2] = v - 2;
       im.data[i * 4 + 3] = 255;
     }
     g.putImageData(im, 0, 0);

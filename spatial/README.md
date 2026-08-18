@@ -93,6 +93,20 @@ ruler, destructive under another — and the honest stopping fact that neither
 model meets the 10⁻³ lensing bar. Both live in the on-screen aside and the
 notes of scene 6.
 
+## The weather
+
+The world is an Atlantic hillside — Ireland or the west of Scotland in the
+rain. The palette lives in `deck.css`: a stormy sky gradient on the stage,
+peat-dark ink instead of soot, moss and slate for every stroke class. The
+ground itself is filled — `hillgrad` in `art.js`, a moss wash that deepens
+downhill and rides the `rock` state like the hatching — the far ridges carry
+a blue-grey haze fill (real wet-air distance), and `cloud()` strings
+flat-bottomed storm masses along the range, living in the `far` layer so the
+close-up scenes get plain rain-light sky. The Sisyphus drawings are untouched;
+the `#inkify` tint just cooled to match the new ink. The human thread's
+sanguine now reads as heather against the moss, which is better than it read
+against the old paper.
+
 ## Register: claims, not lessons
 
 The deck asserts; it does not instruct. Terms are named on the terrain (the
