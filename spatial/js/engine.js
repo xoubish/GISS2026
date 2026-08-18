@@ -88,7 +88,8 @@
   /* ------------------------------------------------------------- painting -- */
   /* Layers whose opacity is simply the state value of the same name. */
   const PLAIN = ['ridge:line', 'axes', 'curmark', 'curve', 'ruler', 'humanrule',
-    'cands', 'newland', 'marks', 'body:ball', 'sound', 'approx1', 'approx2',
+    'cands', 'newland', 'marks', 'body:ball', 'sound',
+    'cyc1', 'cyc2', 'cyc3', 'cyc4', 'approx1', 'approx2',
     'approx3', 'entropy', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
     'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'shift', 'here', 'ends']
     .map((s) => { const p = s.split(':'); return { layer: p[0], key: p[1] || p[0] }; });

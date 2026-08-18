@@ -13,9 +13,10 @@
      plates  — rasters placed in the world the same way
      steps   — beats. Right arrow advances the beat; at the last one it moves on.
 
-   The route: down into the ledge (1–5), apart what the answer is made of
-   (6–9), east over the crest to the program (10–13), back west to the same
-   basin with a better instrument (14–15), then all the way out (16–18).
+   The route: the myth (1–2); the loop, and two systems that run it (3–4);
+   down into the ledge (5–7); apart what the answer is made of (8–11); east
+   over the crest to the program (12–15); back west to the same basin with a
+   better instrument (16–17); then all the way out (18–20).
    ========================================================================= */
 (function () {
   const S = (window.SIS = window.SIS || {});
@@ -40,6 +41,15 @@
         at: [0.655, 0.46], w: 1180,
         alt: 'Sisyphus pushing the boulder up the slope',
       }],
+      steps: [
+        {},
+        {
+          notes:
+            'One sentence over the title, before any explanation: data arrive, ' +
+            'we build a model, we decide what better means. Do not gloss it — ' +
+            'the whole talk is this sentence at different magnifications.',
+        },
+      ],
       text: [
         {
           id: 'title', at: [0.055, 0.115], w: 640, cls: 'titleblock',
@@ -47,6 +57,11 @@
             '<p class="kicker">GIPS 2026</p>' +
             '<h1>Sisyphus,<br>Optimizing in a<br>Dynamic Universe</h1>' +
             '<p class="byline">Shoubaneh Hemmati — Caltech/IPAC</p>',
+        },
+        {
+          id: 'openline', at: [0.055, 0.585], w: 660, cls: 'aside lead', from: 1,
+          html: '<p>Data arrive. We build a model. Then we must decide what ' +
+            '<em>better</em> means.</p>',
         },
       ],
       notes:
@@ -65,16 +80,186 @@
       set: { far: 1, rock: 1 },
       text: [
         {
-          id: 'slope-note', at: [0.055, 0.13], w: 420, cls: 'aside',
+          id: 'slope-phrase', at: [0.055, 0.11], w: 660, cls: 'phrase sm',
+          html: '<p>We are always building models from incomplete information.</p>',
+        },
+        {
+          id: 'slope-note', at: [0.055, 0.30], w: 420, cls: 'aside',
           html: '<p>Go close enough to any slope and it stops being scenery.</p>',
         },
       ],
       notes:
         'One slow move into the hillside beside him. The drawing dissolves; the ' +
-        'ground stays. Note the ledge halfway up — we are going to live there.',
+        'ground stays. This sentence is the thesis; everything after it is the ' +
+        'machinery of taking it seriously. Note the ledge halfway up — we are ' +
+        'going to live there.',
     },
 
-    /* ================================================= 3 · LOSS LANDSCAPE == */
+    /* ====================================================== 3 · THE LOOP == */
+    {
+      id: 'cycle',
+      name: 'The loop',
+      camera() { const z = 3.8; return { x: 2185, y: S.anchorY(-1782, 0.55, z), z }; },
+      enter: { dur: 1900 },
+      set: { far: 0.5, rock: 0.85, ball: 0, roll: 0 },
+      steps: [
+        {
+          set: { cyc1: 1 }, anim: { roll: 0 },
+          notes:
+            'No axes, no equations — still a hillside, now with measurements on ' +
+            'it. Say the loop once, plainly: data, model, objective, update. ' +
+            'Everything in this talk is one lap of it.',
+        },
+        {
+          set: { cyc2: 1, ball: 0.92 },
+          notes:
+            'The boulder is the current state — of a fit, of a network, of a ' +
+            'belief. Wherever it rests is what we currently think the world is.',
+        },
+        {
+          set: { cyc3: 1 },
+          notes:
+            'Better is not given by nature. Downhill is only downhill after we ' +
+            'chose what the height means. That choice is the objective, and it ' +
+            'is ours.',
+        },
+        {
+          set: { cyc4: 1 },
+          notes:
+            'The step is the easy part; knowing when to stop is not. And when ' +
+            'new data arrive, the lap begins again — that is the rock coming ' +
+            'back, said without the myth.',
+        },
+      ],
+      text: [
+        {
+          id: 'cych', at: [0.055, 0.075], w: 660, cls: 'phrase sm',
+          html: '<p>The hill is already doing inference.</p>',
+        },
+        {
+          id: 'cyc-a', at: [0.055, 0.20], w: 430, cls: 'aside', to: 0,
+          html: '<p><b>Data.</b> What information is actually in hand?</p>',
+        },
+        {
+          id: 'cyc-b', at: [0.055, 0.20], w: 430, cls: 'aside', from: 1, to: 1,
+          html: '<p><b>Model.</b> A current guess at what made the data. ' +
+            'The boulder is that guess.</p>',
+        },
+        {
+          id: 'cyc-c', at: [0.055, 0.20], w: 430, cls: 'aside', from: 2, to: 2,
+          html: '<p><b>Objective.</b> A chosen definition of <em>better</em>. ' +
+            'Here, better is downhill — because we chose the height.</p>',
+        },
+        {
+          id: 'cyc-d', at: [0.055, 0.20], w: 450, cls: 'aside', from: 3,
+          html: '<p><b>Update — or stop.</b> The hard question is the stop: is ' +
+            'the answer good enough, or did the data, the representation, or ' +
+            'the ruler run out first?</p>',
+        },
+      ],
+      notes:
+        'The recurring structure, drawn on the ground rather than boxed above ' +
+        'it: data → model → objective → update, and the dashed return to new ' +
+        'data. Four ingredients; the fourth has no axis of its own, which is ' +
+        'why it will take the rest of the talk.',
+    },
+
+    /* =================================================== 4 · TWO SYSTEMS == */
+    {
+      id: 'systems',
+      name: 'Two systems',
+      camera() { const z = 2.1; return { x: 2200, y: S.anchorY(-1790, 0.62, z), z }; },
+      enter: { dur: 1800 },
+      set: {
+        far: 0.8, rock: 1, ball: 0.5, roll: 0,
+        cyc1: 0.4, cyc2: 0.4, cyc3: 0.4, cyc4: 0.4,
+      },
+      steps: [
+        {},
+        {
+          notes:
+            'Ten seconds on the drink, no more. It is here so the abstraction ' +
+            'has a human anchor, not because a brain is a neural network. ' +
+            '(Verify the one-liners in the right column against the actual ' +
+            'training sets — the grism and WISE teachers especially — before ' +
+            'presenting.)',
+        },
+        {
+          notes:
+            'Say the disclaimer out loud: no claim that the brain minimizes a ' +
+            'loss. The claim is that both face the same questions about ' +
+            'information, representation, objective and stopping — and the ' +
+            'right-hand column is the talk from here on.',
+        },
+        {
+          set: {
+            cyc1: 0.15, cyc2: 0.15, cyc3: 0.15, cyc4: 0.15,
+            combR: 0.55, combE: 0.55,
+          },
+          notes:
+            'The stage for everything that follows: NISP, WISE, grism, VIS are ' +
+            'lossy projections of one sky. A model that holds the shared ' +
+            'reality can move information between them — which is exactly what ' +
+            'the joint-representation scenes will build. The two combs on the ' +
+            'ground are the same stretch of hill sampled two ways; they return ' +
+            'with names in the two-instruments scene.',
+        },
+      ],
+      text: [
+        {
+          id: 'sysh', at: [0.055, 0.075], w: 700, cls: 'phrase sm', to: 1,
+          html: '<p>The same loop, at very different scales.</p>',
+        },
+        {
+          id: 'sys-brain', at: [0.055, 0.21], w: 430, cls: 'aside human', to: 1,
+          html: '<p><b>A brain.</b> Another drink?</p>' +
+            '<p>Data: how you feel, how many you have had, what tomorrow asks, ' +
+            'every previous time, the company.</p>' +
+            '<p>Objectives, plural and competing: pleasure now, health, the ' +
+            'morning, the evening itself. Some information weighted, some ' +
+            'ignored — then a decision.</p>',
+        },
+        {
+          id: 'sys-model', at: [0.565, 0.16], w: 450, cls: 'aside', from: 1,
+          html: '<p><b>A model.</b> Recover what an instrument did not ' +
+            'resolve, using what a sharper one taught it.</p>' +
+            '<p><em>Euclid</em> NISP imaging, with JWST-resolution sky. WISE ' +
+            'imaging, with Spitzer. JWST grism spectra, sharpened in ' +
+            'wavelength.</p>' +
+            '<p>Each time: data, a representation, a loss, a decision that ' +
+            'training is done — and the doubt: was all the information ' +
+            'used?</p>',
+        },
+        {
+          id: 'sysh2', at: [0.055, 0.075], w: 660, cls: 'phrase sm', from: 2, to: 2,
+          html: '<p>Not the same algorithm. The same questions.</p>',
+        },
+        {
+          id: 'sys-qs', at: [0.055, 0.21], w: 440, cls: 'aside', from: 2, to: 2,
+          html: '<p>What information do I have? What model of the world? What ' +
+            'counts as better? What did I throw away? When do I stop?</p>',
+        },
+        {
+          id: 'sysh3', at: [0.055, 0.075], w: 660, cls: 'phrase sm', from: 3,
+          html: '<p>Many instruments, one sky.</p>',
+        },
+        {
+          id: 'sys-sky', at: [0.055, 0.21], w: 440, cls: 'aside', from: 3,
+          html: '<p>Every instrument is a lossy projection of the same ' +
+            'reality. Enhancement is inference on the shared sky: information ' +
+            'moved from where it was measured to where it is needed.</p>' +
+            '<p>On the ground: the same stretch of hill, sampled two ways.</p>',
+        },
+      ],
+      notes:
+        'One loop, two runners — then the stage. The brain example makes the ' +
+        'abstraction intuitive; the right column is the year of work: one ' +
+        'family of enhancements, imaging and spectral, each an instance of the ' +
+        'same loop. The final beat states the frame the rest of the talk ' +
+        'stands on: many instruments, one sky.',
+    },
+
+    /* ================================================= 5 · LOSS LANDSCAPE == */
     {
       id: 'landscape',
       name: 'Loss landscape',
@@ -87,8 +272,8 @@
       ],
       text: [
         {
-          id: 'better', at: [0.10, 0.09], w: 560, cls: 'phrase',
-          html: '<p>What does <em>better</em> mean?</p>',
+          id: 'better', at: [0.10, 0.09], w: 640, cls: 'phrase',
+          html: '<p>Name the axes, and the hill becomes the problem.</p>',
         },
         {
           id: 'axesnote', at: [0.10, 0.24], w: 520, cls: 'aside', from: 1,
@@ -104,12 +289,13 @@
         },
       ],
       notes:
-        'The ledge, framed. Same ground as the last scene, with axes drawn on ' +
-        'it. A current minimum is visible and marked. Nothing has been solved — ' +
-        'we have only agreed to call the vertical axis L.',
+        'The ledge, framed. The same ground the loop was drawn on two scenes ' +
+        'ago, now with axes: θ across, L up. A current minimum is visible and ' +
+        'marked. Nothing has been solved — we have only agreed to call the ' +
+        'vertical axis L.',
     },
 
-    /* ========================================================= 4 · RULER == */
+    /* ========================================================= 6 · RULER == */
     {
       id: 'ruler',
       name: 'The ruler',
@@ -122,9 +308,12 @@
           set: { rock: 0.12, line: 0.22, m: 1 },
           anim: { m: 1400, rock: 900, line: 900 },
           notes:
-            'Same data, same landscape. Reparametrise θ, weight the residuals by ' +
-            'what the instrument can actually measure, and the argument moves ' +
-            'from A to B. Neither ruler is wrong.',
+            'Same data, same architecture. Score the reconstruction ' +
+            'pixel-by-pixel and A wins; weight what the downstream measurement ' +
+            'needs — flux, shape, position — and B wins. A network can be superb ' +
+            'under one ruler while quietly destroying the information another ' +
+            'question needed. Neither ruler is wrong; the choice is scientific, ' +
+            'not technical.',
         },
         {
           /* pull back a little to make room for the second ruler underneath */
@@ -148,8 +337,15 @@
           id: 'rulerphrase2', at: [0.055, 0.09], w: 620, cls: 'phrase', from: 2,
           html: '<p>The loss is a ruler we chose.</p>',
         },
-        { id: 'rul-a', at: [0.055, 0.21], w: 300, cls: 'aside', to: 0, html: '<p>uniform weights</p>' },
-        { id: 'rul-b', at: [0.055, 0.21], w: 340, cls: 'aside', from: 1, to: 1, html: '<p>weighted by what we can measure</p>' },
+        {
+          id: 'rul-sr', at: [0.565, 0.075], w: 430, cls: 'aside', to: 1,
+          html: '<p>Super-resolve <em>Euclid</em> NISP with what ' +
+            'JWST-resolution sky taught the model. What is <b>success</b>?</p>' +
+            '<p>pixel similarity · flux conservation · morphology · astrometry ' +
+            '· weak-lensing shape — five defensible rulers, one basin.</p>',
+        },
+        { id: 'rul-a', at: [0.055, 0.21], w: 340, cls: 'aside', to: 0, html: '<p>ruler A — pixel-by-pixel similarity</p>' },
+        { id: 'rul-b', at: [0.055, 0.21], w: 380, cls: 'aside', from: 1, to: 1, html: '<p>ruler B — weighted by the downstream measurement: flux, shape, position</p>' },
         {
           id: 'rul-h', at: [0.055, 0.21], w: 380, cls: 'aside human', from: 2,
           html: '<p>and the ruler people actually carry: read from a reference ' +
@@ -157,11 +353,16 @@
         },
       ],
       notes:
-        'Inside the minimum. The strip along the bottom is the ruler. Two ' +
-        'candidates, A and B, about a metre apart on a nine-kilometre mountain.',
+        'Inside the minimum. The strip along the bottom is the ruler; A and B ' +
+        'are two reconstructions about a metre apart on a nine-kilometre ' +
+        'mountain. The super-resolution question makes the choice concrete: ' +
+        'what should the loss reward? This is where the line stops being ' +
+        'poetry. NISP stands in for the whole family here — the same question ' +
+        'repeats for WISE, for the grism, for every enhancement: each needs ' +
+        'its own definition of success.',
     },
 
-    /* ============================================ 5 · APPARENT SOLUTION == */
+    /* ============================================ 7 · APPARENT SOLUTION == */
     {
       id: 'solution',
       name: 'Apparent solution',
@@ -171,17 +372,26 @@
       steps: [
         { set: { roll: 0 } },
         { set: { roll: 1 }, anim: { roll: 2900 }, notes: 'Let it settle. Do not talk over it.' },
-        { notes: 'Forty-two. Correct, reproducible, and no use at all.' },
+        {
+          notes:
+            'Forty-two. Correct, reproducible — and conditional: on this ruler, ' +
+            'these data, this question. Say "conditional" now; the zoom-out at ' +
+            'the end pays it off.',
+        },
       ],
       text: [
         { id: 'answer', at: [0.395, 0.10], w: 460, cls: 'answer', from: 2, html: '<p>42</p>' },
+        {
+          id: 'answer-cond', at: [0.325, 0.42], w: 600, cls: 'aside', from: 2,
+          html: '<p>Converged — under this ruler, on these data, for this question.</p>',
+        },
       ],
       notes:
         'The optimizer arrives. Converged, well-conditioned, defensible. Give it ' +
         'a beat of silence before the number appears.',
     },
 
-    /* =========================================================== 6 · DATA == */
+    /* =========================================================== 8 · DATA == */
     {
       id: 'data',
       name: 'Data',
@@ -230,7 +440,7 @@
         'scenes was a model all along.',
     },
 
-    /* ==================================================== 7 · COMPRESSION == */
+    /* ==================================================== 9 · COMPRESSION == */
     {
       id: 'compression',
       name: 'Compression',
@@ -253,11 +463,25 @@
             'data, no new observation — and the answer comes back. This is the ' +
             'branch foundation models live on.',
         },
+        {
+          set: { approx3: 0, approx2: 1, line: 1, rock: 0.45 },
+          notes:
+            'Super-resolving NISP, WISE, or a grism spectrum is this picture ' +
+            'run backwards: sparse measurements, a dense answer, and the ' +
+            'difference supplied by a prior learned on other data. That is not ' +
+            'cheating — it is how inference works — but the imported structure ' +
+            'must be audited against the downstream question, or the basin in ' +
+            'your output is the prior talking.',
+        },
       ],
       text: [
         {
-          id: 'compp', at: [0.13, 0.08], w: 640, cls: 'phrase',
+          id: 'compp', at: [0.13, 0.08], w: 640, cls: 'phrase', to: 2,
           html: '<p>We cannot carry everything forward.</p>',
+        },
+        {
+          id: 'compp2', at: [0.13, 0.08], w: 700, cls: 'phrase sm', from: 3,
+          html: '<p>Enhancement is compression run backwards.</p>',
         },
         {
           id: 'c1', at: [0.13, 0.215], w: 460, cls: 'aside', to: 0,
@@ -268,20 +492,34 @@
           html: '<p>Five numbers, evenly spaced. The data had it. The representation hid it.</p>',
         },
         {
-          id: 'c3', at: [0.13, 0.215], w: 480, cls: 'aside', from: 2,
+          id: 'c3', at: [0.13, 0.215], w: 480, cls: 'aside', from: 2, to: 2,
           html: '<p>Seven, placed where the curvature is. A different compression ' +
             'of the same data — lossy for the data, lossless for the question.</p>',
         },
         {
-          id: 'h7', at: [0.62, 0.09], w: 440, cls: 'aside human',
+          id: 'c4', at: [0.13, 0.215], w: 490, cls: 'aside', from: 3,
+          html: '<p>Five numbers in hand, a full curve delivered. The basin in ' +
+            'the output was never in these data — it came from a prior trained ' +
+            'on other sky.</p>' +
+            '<p>The ledger must balance: data + prior in, structure out. ' +
+            'Validation is auditing which is which.</p>',
+        },
+        {
+          id: 'h7', at: [0.62, 0.09], w: 440, cls: 'aside human', to: 2,
           html: '<p>Hundreds of observations collapse to <em>nice</em>. Enough for ' +
             'another coffee. Hopeless for whether to trust them with something ' +
             'that matters.</p>',
         },
         {
-          id: 'h7b', at: [0.62, 0.34], w: 440, cls: 'aside human', from: 2,
+          id: 'h7b', at: [0.62, 0.34], w: 440, cls: 'aside human', from: 2, to: 2,
           html: '<p>The clues may already be in memory. Rebuild the summary — ' +
             'no new data required.</p>',
+        },
+        {
+          id: 'h7c', at: [0.62, 0.09], w: 440, cls: 'aside human', from: 3,
+          html: '<p>Memory runs backwards too: the gaps in what you know about ' +
+            'a person get filled with what people like them are usually like. ' +
+            'Sometimes right. Always imported.</p>',
         },
       ],
       notes:
@@ -289,7 +527,7 @@
         'away. Ring marks where that representation thinks the minimum is.',
     },
 
-    /* ==================================================== 8 · FOUR RULERS == */
+    /* =================================================== 10 · FOUR RULERS == */
     {
       id: 'rulers',
       name: 'Four rulers',
@@ -328,7 +566,7 @@
         'to say out loud: low entropy is not truth, and surprise is not gain.',
     },
 
-    /* ====================================================== 9 · THE FORK == */
+    /* ===================================================== 11 · THE FORK == */
     {
       id: 'fork',
       name: 'The fork',
@@ -373,7 +611,7 @@
         'to take the third one, over the crest.',
     },
 
-    /* ========================================== 10 · EXPERIMENTAL DESIGN == */
+    /* ========================================== 12 · EXPERIMENTAL DESIGN == */
     {
       id: 'design',
       name: 'Experimental design',
@@ -409,7 +647,7 @@
         'small step down at the lower left.',
     },
 
-    /* ================================================ 11 · TWO INSTRUMENTS == */
+    /* ================================================ 13 · TWO INSTRUMENTS == */
     {
       id: 'joint',
       name: 'Two instruments',
@@ -449,7 +687,7 @@
         'before anyone can use it.',
     },
 
-    /* ================================================== 12 · FOUNDATION == */
+    /* ================================================== 14 · FOUNDATION == */
     {
       id: 'foundation',
       name: 'One representation',
@@ -488,7 +726,7 @@
         'is a small head reading the same frozen features.',
     },
 
-    /* ======================================================= 13 · JAISP == */
+    /* ======================================================= 15 · JAISP == */
     {
       id: 'jaisp',
       name: 'JAISP',
@@ -523,7 +761,7 @@
         'the picture is there so nobody has to take the numbers on faith.',
     },
 
-    /* ================================================== 14 · ASTROMETRY == */
+    /* ================================================== 16 · ASTROMETRY == */
     {
       id: 'astrometry',
       name: 'Astrometry',
@@ -569,12 +807,12 @@
           'Right: median per-source offset against S/N.',
       }],
       notes:
-        'This is the same axis we called θ in scene three, now calibrated in ' +
+        'This is the same axis we called θ in scene five, now calibrated in ' +
         'milliarcseconds. The bracket is the answer\'s width, and it is her own ' +
         'measurement, not an illustration.',
     },
 
-    /* =========================================== 15 · THE CONCORDANCE FIELD */
+    /* =========================================== 17 · THE CONCORDANCE FIELD */
     {
       id: 'concordance',
       name: 'The field moves',
@@ -607,7 +845,7 @@
         'defensible. Nobody made a mistake.',
     },
 
-    /* ====================================================== 16 · ZOOM OUT == */
+    /* ====================================================== 18 · ZOOM OUT == */
     {
       id: 'wider',
       name: 'Zoom out',
@@ -655,7 +893,7 @@
         'we could not ask before.',
     },
 
-    /* =================================================== 17 · TWO ENDINGS == */
+    /* =================================================== 19 · TWO ENDINGS == */
     {
       id: 'endings',
       name: 'Two endings',
@@ -690,7 +928,7 @@
         'Dreams of a Final Theory, so say it as a reference, not as his words.',
     },
 
-    /* ======================================================== 18 · RETURN == */
+    /* ======================================================== 20 · RETURN == */
     {
       id: 'return',
       name: 'Return',
@@ -729,7 +967,8 @@
   S.DEFAULT_SET = {
     far: 1, rock: 1, line: 1, axes: 0, curmark: 0, curve: 0, ruler: 0,
     humanrule: 0, cands: 0, ball: 0, newland: 0, marks: 0, m: 0, roll: 1,
-    sound: 0, approx1: 0, approx2: 0, approx3: 0,
+    sound: 0, cyc1: 0, cyc2: 0, cyc3: 0, cyc4: 0,
+    approx1: 0, approx2: 0, approx3: 0,
     entropy: 0, surprise: 0, kl: 0, fisher: 0,
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,

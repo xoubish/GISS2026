@@ -3,7 +3,7 @@
    ----------------------------------------------------------------------------
    One landscape, defined once, valid at every zoom level. Everything the
    camera ever looks at is a window onto these functions. That is the whole
-   trick of the talk: the loss landscape of scenes 3–5 is not a diagram drawn
+   trick of the talk: the loss landscape of scenes 5–7 is not a diagram drawn
    next to the mountain, it *is* a 90-metre stretch of the mountain in scene 1.
 
    Coordinate system (world units, read them as metres):

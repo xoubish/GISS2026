@@ -166,7 +166,8 @@
   /* ======================================================== build the world */
   S.LAYERS = ['far', 'hatch0', 'hatch1', 'hatch2', 'hatch3', 'hatch4', 'ridge',
     'newland', 'axes', 'curmark', 'curve', 'ruler', 'humanrule', 'cands',
-    'sound', 'approx1', 'approx2', 'approx3', 'entropy', 'surprise', 'kl',
+    'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
+    'approx1', 'approx2', 'approx3', 'entropy', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'shift', 'here', 'ends', 'marks', 'body'];
 
@@ -232,7 +233,7 @@
       S.NEWMIN = { x: bx, y: by };
     })();
 
-    /* ---- scene 3: the ledge, framed as a figure -------------------------- */
+    /* ---- scene 5: the ledge, framed as a figure -------------------------- */
     (function () {
       const g = L.axes;
       const { x0, x1 } = S.LEDGE;
@@ -276,7 +277,7 @@
       L.curmark.appendChild(el('path', { d: handLine(mn.x, mn.y + 6.5, mn.x, bot, 0.5, 556), class: 'ink drop' }));
     })();
 
-    /* ---- scenes 4–5: the ruler ------------------------------------------ */
+    /* ---- scenes 6–7: the ruler ------------------------------------------ */
     (function () {
       const g = L.ruler;
       const { x0, x1 } = S.WIN;
@@ -305,7 +306,7 @@
     /* ---- the plotted curve (diverges from the ground as the ruler turns) - */
     L.curve.appendChild(el('path', { id: 'plotcurve', class: 'ink plotted', d: '' }));
 
-    /* ---- scene 6: what we are looking back at --------------------------- */
+    /* ---- scene 18: what we are looking back at --------------------------- */
     (function () {
       const g = L.marks;
       const ox = S.F.A.c, oy = S.ground(ox);
@@ -331,7 +332,7 @@
      same landscape. No station is a diagram placed beside the mountain: the
      soundings are soundings *of this ground*, the compressions are re-drawings
      of *this curve*, the four rulers are four readings of *this basin*, and
-     the astrometry numbers are real widths on the θ axis set up in scene 3.
+     the astrometry numbers are real widths on the θ axis set up in scene 5.
      ===================================================================== */
   function buildStations(L) {
     const F = S.F, AX = S.AXBOX;
@@ -386,7 +387,42 @@
     /* Deterministic pseudo-normal, mean 0, sd 1. */
     function gaussRnd(rnd) { return (rnd() + rnd() + rnd() - 1.5) * 1.633; }
 
-    /* ---- 4 · THE RULER PEOPLE ACTUALLY CARRY ----------------------------
+    /* ---- 3 · THE LOOP — data → model → objective → update ---------------
+       Pinned to the ground, not floated over it: the soundings are on this
+       ledge, the boulder is the current state, and "better" is literally
+       downhill. The four words are the four ingredients the whole talk keeps
+       returning to; the fourth (stop?) is the one with no axis of its own. */
+    (function () {
+      const g = (x) => S.ground(x);
+      /* data: a handful of soundings where the label stands */
+      const rnd = S.mulberry32(3301);
+      for (let i = 0; i < 7; i++) {
+        const x = 2079 + i * 9.5 + (rnd() - 0.5) * 3;
+        const y = g(x) + gaussRnd(rnd) * 2.2, sg = 3.4;
+        L.cyc1.appendChild(el('path', { d: handLine(x, y - sg, x, y + sg, 0.18, 3310 + i), class: 'ink errbar' }));
+        L.cyc1.appendChild(el('circle', { cx: x, cy: y, r: 1.05, class: 'datum' }));
+      }
+      txt(L.cyc1, 2107, g(2107) - 24, 'data');
+      L.cyc1.appendChild(el('path', { d: handLine(2107, g(2107) - 21, 2107, g(2107) - 7, 0.3, 3330), class: 'ink leader' }));
+
+      /* model: the boulder — the ball layer draws it, this labels it */
+      const bx = cmin - 11, by = g(bx);
+      txt(L.cyc2, bx - 12, by - 24, 'model — the current state');
+      L.cyc2.appendChild(el('path', { d: handLine(bx - 4, by - 20, bx - 1, by - 7, 0.3, 3340), class: 'ink leader' }));
+
+      /* objective: better is a direction, and the direction was chosen */
+      trail(L.cyc3, [[bx + 4, g(bx + 4) - 3], [cmin - 2.5, g(cmin - 2.5) - 2]], 3350);
+      txt(L.cyc3, 2225, g(2225) - 32, 'objective — downhill');
+      L.cyc3.appendChild(el('path', { d: handLine(2214, g(2225) - 29, cmin + 2, g(cmin) - 5, 0.4, 3351), class: 'ink leader' }));
+
+      /* update: the step taken — then the loop closes on new data */
+      L.cyc4.appendChild(el('path', { d: ring(cmin - 1.6, g(cmin - 1.6), 2.3, 3360), class: 'ink ring' }));
+      txt(L.cyc4, 2280, g(2280) - 14, 'update — then stop?');
+      trail(L.cyc4, [[2222, g(2222) - 10], [2200, g(2200) - 58], [2152, g(2152) - 64], [2112, g(2112) - 26]], 3370);
+      txt(L.cyc4, 2160, g(2152) - 70, 'new data', 'sm');
+    })();
+
+    /* ---- 6 · THE RULER PEOPLE ACTUALLY CARRY ----------------------------
        Kahneman & Tversky measured it and found it bent: value is read from a
        reference point, and losses are spaced about twice as far apart as
        equal gains. Drawn as a third ruler with the same ticks, unevenly laid
@@ -407,7 +443,7 @@
       txt(L.humanrule, cmin + 8, y + 8.5, 'gains', 'sm');
     })();
 
-    /* ---- 6 · DATA — we never see θ, we see what it generates ------------ */
+    /* ---- 8 · DATA — we never see θ, we see what it generates ------------ */
     (function () {
       const rnd = S.mulberry32(8801);
       const sig = 5.2;
@@ -421,7 +457,7 @@
       }
     })();
 
-    /* ---- 7 · COMPRESSION — the same curve, re-drawn from k numbers ------ */
+    /* ---- 9 · COMPRESSION — the same curve, re-drawn from k numbers ------ */
     function compression(host, knots, seed) {
       const pts = knots.map((k) => [k, S.ground(k)]);
       host.appendChild(el('path', { d: S.toPath(pts), class: 'ink plotted' }));
@@ -451,7 +487,7 @@
         [LEDGE.x0, 2150, 2186, cmin, 2216, 2252, LEDGE.x1], 1203);
     })();
 
-    /* ---- 8 · FOUR RULERS — four readings of one basin ------------------- */
+    /* ---- 10 · FOUR RULERS — four readings of one basin ------------------- */
     const A_WIDE = 0.0030, A_NARROW = 0.11, RISE = 26;
     const halfWide = Math.sqrt(RISE / A_WIDE), halfNarrow = Math.sqrt(RISE / A_NARROW);
     (function () {
@@ -477,17 +513,17 @@
       txt(L.fisher, cmin + halfNarrow + 16, ymin - 26, 'steep — pinned', 'sm', 'start');
     })();
 
-    /* ---- 9 · THE FORK — three ways out, and they are directions --------- */
+    /* ---- 11 · THE FORK — three ways out, and they are directions --------- */
     /* left and up — exchange the landscape; along the surface — re-read what
        is already there; up and out over the crest — go and get more. */
     trail(L.fork1, [[cmin - 6, ymin - 16], [2150, ymin - 34], [2092, -1858]], 1501);
     trail(L.fork2, [2226, 2260, 2296, 2330, 2352].map((x) => [x, S.ground(x) - 15]), 1502);
     trail(L.fork3, [[cmin + 8, ymin - 26], [2300, -1890], [2418, -1938]], 1503);
 
-    /* ---- 10 · WHERE WE WERE, seen from the crest ------------------------ */
+    /* ---- 12 · WHERE WE WERE, seen from the crest ------------------------ */
     L.here.appendChild(el('path', { d: ring(cmin, ymin, 26, 2501), class: 'ink ring loud' }));
 
-    /* ---- 11 · TWO INSTRUMENTS SAMPLING ONE PATCH OF GROUND --------------
+    /* ---- 13 · TWO INSTRUMENTS SAMPLING ONE PATCH OF GROUND --------------
        An instrument is not drawn in the sky — it is drawn as the sampling it
        actually delivers on the same stretch of ground: how often it reports,
        and how wide each report is. That is all that matters here, and it is
@@ -507,7 +543,7 @@
     comb(L.combE, 9, 3.0, 1.5, 1701);    // Euclid VIS: finer and sharper
     comb(L.combJ, 9, 1.9, 1.5, 1801);    // the two together
 
-    /* ---- 12 · ONE REPRESENTATION, MANY READOUTS ------------------------- */
+    /* ---- 14 · ONE REPRESENTATION, MANY READOUTS ------------------------- */
     (function () {
       const g = L.latent;
       const bx0 = 2050, bx1 = 2370, inY = -2096, zY = -1996, outY = -1900;
@@ -524,13 +560,13 @@
       }
     })();
 
-    /* ---- 14 · THE ASTROMETRY RESULT, AS WIDTHS ON THIS AXIS ------------- */
+    /* ---- 16 · THE ASTROMETRY RESULT, AS WIDTHS ON THIS AXIS ------------- */
     bracket(L.astro1, cmin - 50 / (2 * MAS), cmin + 50 / (2 * MAS), AX.bot - 27, 3.2,
       '≈ 50 mas', 2101);
     bracket(L.astro2, cmin - 15.5 / (2 * MAS), cmin + 15.5 / (2 * MAS), AX.bot - 13, 3.2,
       '14 – 17 mas', 2111);
 
-    /* ---- 15 · THE CONCORDANCE FIELD — the ground itself displaced ------- */
+    /* ---- 17 · THE CONCORDANCE FIELD — the ground itself displaced ------- */
     (function () {
       const dx = 9.5 / (2 * MAS), dy = -1.1;                 // 9.5 mas, coherent
       const pts = S.samples(LEDGE.x0 - 20, LEDGE.x1 + 20).map((p) => [p[0] + dx, p[1] + dy]);
@@ -543,7 +579,7 @@
       }
     })();
 
-    /* ---- 17 · TWO ENDINGS ---------------------------------------------- */
+    /* ---- 19 · TWO ENDINGS ---------------------------------------------- */
     L.ends.appendChild(el('path', { d: ring(2900, S.ground(2900), 34, 2401), class: 'ink ring loud' }));
     L.ends.appendChild(el('path', { d: ring(2596, S.ground(2596), 34, 2402), class: 'ink ring loud' }));
   }
