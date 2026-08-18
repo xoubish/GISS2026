@@ -281,7 +281,9 @@
         'abstraction intuitive; the right column is the year of work: one ' +
         'family of enhancements, imaging and spectral, each an instance of the ' +
         'same loop. The final beat states the frame the rest of the talk ' +
-        'stands on: many instruments, one sky.',
+        'stands on: many instruments, one sky. 12-minute cut: advance straight ' +
+        'to the receipts beat, give brain and papers twenty seconds together, ' +
+        'skip the "same questions" beat, land on one sky.',
     },
 
     /* ================================================= 5 · LOSS LANDSCAPE == */
@@ -407,17 +409,14 @@
         { set: { roll: 1 }, anim: { roll: 2900 }, notes: 'Let it settle. Do not talk over it.' },
         {
           notes:
-            'Forty-two. Correct, reproducible — and conditional: on this ruler, ' +
-            'these data, this question. Say "conditional" now; the zoom-out at ' +
-            'the end pays it off.',
+            'Forty-two. Correct, reproducible. Say nothing else — play it ' +
+            'completely straight, as if the talk could end here. The zoom-out ' +
+            'reveals the question was 6 × 7, and the joke only lands if this ' +
+            'moment never winks.',
         },
       ],
       text: [
         { id: 'answer', at: [0.395, 0.10], w: 460, cls: 'answer', from: 2, html: '<p>42</p>' },
-        {
-          id: 'answer-cond', at: [0.325, 0.42], w: 600, cls: 'aside', from: 2,
-          html: '<p>Converged — under this ruler, on these data, for this question.</p>',
-        },
       ],
       notes:
         'The optimizer arrives. Converged, well-conditioned, defensible. Give it ' +
@@ -599,7 +598,9 @@
         'anything about θ. Information gain is the bracket closing. Fisher is the ' +
         'curvature that decides how fast it closes: the two dashed parabolas are ' +
         'the same landscape, flat at one scale and steep at another. Two cautions ' +
-        'to say out loud: low entropy is not truth, and surprise is not gain.',
+        'to say out loud: low entropy is not truth, and surprise is not gain. ' +
+        '12-minute cut: narrate entropy and Fisher only; step through surprise ' +
+        'and KL without commentary — they stay on screen for anyone reading.',
     },
 
     /* ===================================================== 11 · THE FORK == */
@@ -680,7 +681,10 @@
       notes:
         'We have left the ledge and climbed to where you can see further — which ' +
         'is what experimental design is. The basin we spent five scenes in is the ' +
-        'small step down at the lower left.',
+        'small step down at the lower left. 12-minute cut: this scene is a ' +
+        'transit — one sentence while the camera climbs ("which observation ' +
+        'teaches the most is itself a Fisher question"), then on to the ' +
+        'instruments.',
     },
 
     /* ================================================ 13 · TWO INSTRUMENTS == */
@@ -736,6 +740,14 @@
           html: '<p>Learn the compression once.<br>Ask different questions of it later.</p>',
         },
         {
+          id: 'fbridge', at: [0.66, 0.10], w: 470, cls: 'aside',
+          html: '<p>Each enhancement was a new model for one task: its own ' +
+            'pair of instruments, its own choice of what to keep.</p>' +
+            '<p>The general answer: learn everything together, once. One ' +
+            'foundation, less lossy than any single-task compression — and ' +
+            'every task a small head on top.</p>',
+        },
+        {
           id: 'fbands', at: [0.3375, 0.028], w: 520, cls: 'callout mid',
           html: '<p>Rubin <em>u g r i z y</em> &nbsp;·&nbsp; <em>Euclid</em> VIS <em>Y J H</em></p>',
         },
@@ -756,10 +768,15 @@
         },
       ],
       notes:
-        'If every question starts again from raw pixels the cost is enormous. So ' +
-        'ask for a compression that survives a change of question: not lossless, ' +
-        'but broadly reusable for questions not yet asked. Then every measurement ' +
-        'is a small head reading the same frozen features.',
+        'The bridge, said out loud: the three receipts were each a new model ' +
+        'for one task — one teacher, one student, one choice of what to keep. ' +
+        'Learn everything together instead and the representation is less ' +
+        'lossy than any single-task compression, because every band and both ' +
+        'instruments constrain it. If every question starts again from raw ' +
+        'pixels the cost is enormous; ask instead for a compression that ' +
+        'survives a change of question — not lossless, but broadly reusable ' +
+        'for questions not yet asked. Then every measurement, enhancement ' +
+        'included, is a small head reading the same frozen features.',
     },
 
     /* ======================================================= 15 · JAISP == */

@@ -106,7 +106,7 @@ get. It never looks like a picture being scaled.
 | 4 | Two systems | pulled back, z 2.1: a brain, the enhancement family, one sky |
 | 5 | Loss landscape | the ledge, framed with axes |
 | 6 | The ruler | inside the basin — five super-resolution losses, then the human one |
-| 7 | Apparent solution | the boulder settles · **42**, conditional |
+| 7 | Apparent solution | the boulder settles · **42**, played straight |
 | 8 | Data | the same ledge: soundings, not a curve |
 | 9 | Compression | 15 → 5 (basin lost) → 7 placed (basin back) → run backwards |
 | 10 | Four rulers | entropy · surprise · KL · Fisher, on one basin |
@@ -121,9 +121,37 @@ get. It never looks like a picture being scaled.
 | 19 | Two endings | on the hill · on the slope |
 | 20 | Return | scene 1's camera exactly, and the pinball machine |
 
-Roughly 50 beats. At 12 minutes that is very fast; the notes flag which beats
-to drop first (scene 4 can collapse to two beats, scene 6's human ruler,
-two of scene 10's four).
+Roughly 50 beats — comfortable at 18–20 minutes. At 12, run **the 12-minute
+cut** below; the content stays in the deck for questions and longer venues.
+
+## The 12-minute cut
+
+The default drops, also flagged in each scene's presenter notes:
+
+- **Scene 4** — advance straight to the receipts beat: brain and papers get
+  ~20 seconds together, skip the "same questions" beat, land on *one sky*.
+- **Scene 6** — drop the human-ruler beat (Kahneman–Tversky).
+- **Scene 10** — narrate entropy and Fisher only; step through surprise and
+  KL silently — they stay on screen for anyone reading.
+- **Scene 12** — a transit: one sentence while the camera climbs, then on to
+  the instruments.
+- **Marginalia** — voice only the three load-bearing glosses (scenes 8, 14,
+  18); the rest are for the eye.
+
+That is roughly a third fewer narrated beats, and every camera move survives —
+the cut trims words, not geography.
+
+## The bridge
+
+The talk has one seam: the opening anchors on the enhancement family
+(pairwise, one teacher per student), the program half anchors on JAISP. The
+seam is closed in scene 14, on screen and in the notes: each enhancement was
+*a new model for one task* — its own pair of instruments, its own choice of
+what to keep. The general answer is to learn everything together, once: one
+foundation, **less lossy than any single-task compression** because every band
+and both instruments constrain it — and then every task, enhancement included,
+is a small head on top. Say it there and the receipts become the special
+cases of scenes 14–15 rather than a separate act.
 
 ## Files
 
