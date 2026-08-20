@@ -1,0 +1,1588 @@
+<title>Sisyphus Connective Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Archivo:wght@500;600&display=swap">
+<style>
+:root{
+  --paper:#f1f4ec; --paper-2:#e7ece3; --surface:#e3e9df;
+  --ink:#1c221d; --ink-soft:#3b463d; --muted:#6a756d;
+  --rule:#c8d1c5; --rule-soft:#d8dfd4;
+  --moss:#425f4a; --moss-soft:#6d8a73;
+  --human:#8a5747;
+  --shadow:rgba(28,34,29,.07);
+  --serif:"Spectral",-apple-system,"Iowan Old Style",Palatino,Georgia,serif;
+  --sans:"Archivo",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121714; --paper-2:#171e19; --surface:#1b231d;
+    --ink:#dfe5de; --ink-soft:#bcc6bd; --muted:#8d978e;
+    --rule:#2c352e; --rule-soft:#232b25;
+    --moss:#8fb095; --moss-soft:#6f8c75;
+    --human:#c68d78;
+    --shadow:rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121714; --paper-2:#171e19; --surface:#1b231d;
+  --ink:#dfe5de; --ink-soft:#bcc6bd; --muted:#8d978e;
+  --rule:#2c352e; --rule-soft:#232b25;
+  --moss:#8fb095; --moss-soft:#6f8c75;
+  --human:#c68d78;
+  --shadow:rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-weight:400;
+  font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{display:grid; grid-template-columns:1fr; max-width:1240px; margin:0 auto; padding:0 24px}
+@media(min-width:1120px){
+  .wrap{grid-template-columns:210px minmax(0,1fr); gap:56px; padding:0 40px}
+}
+
+/* ---------- rail ---------- */
+.rail{display:none}
+@media(min-width:1120px){
+  .rail{display:block; position:sticky; top:0; align-self:start;
+        max-height:100vh; overflow-y:auto; padding:64px 0 48px}
+  .rail-h{font-family:var(--sans); font-size:10.5px; font-weight:600;
+          letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
+          margin:0 0 14px}
+  .rail ol{list-style:none; margin:0 0 22px; padding:0; display:flex;
+           flex-direction:column; gap:1px}
+  .rail a{display:grid; grid-template-columns:26px 1fr; gap:8px; align-items:baseline;
+          padding:5px 8px 5px 0; text-decoration:none; color:var(--ink-soft);
+          border-radius:3px; line-height:1.3}
+  .rail a:hover{color:var(--ink); background:var(--paper-2)}
+  .rail a:focus-visible{outline:2px solid var(--moss); outline-offset:1px}
+  .rail .rn{font-family:var(--sans); font-size:10px; font-weight:600;
+            letter-spacing:.06em; color:var(--moss); text-align:right;
+            font-variant-numeric:tabular-nums}
+  .rail .rt{font-size:14px}
+  .rail .rr{display:block; font-family:var(--sans); font-size:10px;
+            color:var(--muted); letter-spacing:.04em; font-variant-numeric:tabular-nums}
+}
+
+/* ---------- masthead ---------- */
+.mast{padding:88px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.eyebrow{font-family:var(--sans); font-size:10.5px; font-weight:600;
+         letter-spacing:.15em; text-transform:uppercase; color:var(--moss);
+         margin:0 0 22px}
+.mast h1{font-size:clamp(38px,6.4vw,62px); line-height:1.03; font-weight:600;
+         letter-spacing:-.022em; margin:0 0 20px; text-wrap:balance; max-width:15ch}
+.mast .sub{font-size:clamp(18px,2.3vw,22px); line-height:1.38; color:var(--ink-soft);
+           font-weight:300; margin:0 0 30px; max-width:34ch; text-wrap:balance}
+.mast .sub em{font-style:italic; color:var(--ink)}
+.standfirst{max-width:62ch; font-size:15.5px; line-height:1.62; color:var(--muted);
+            border-left:2px solid var(--rule); padding-left:18px; margin:0}
+.standfirst code{font-size:.86em}
+.standfirst strong{color:var(--ink-soft); font-weight:500}
+
+/* ---------- column ---------- */
+.col{padding-bottom:120px; min-width:0}
+.col > *{max-width:66ch}
+.col > .tw, .col > .part-open, .col > pre{max-width:none}
+
+/* ---------- part openers ---------- */
+.part-open{display:grid; grid-template-columns:auto 1fr auto; align-items:baseline;
+           gap:18px; margin:96px 0 4px; padding-bottom:14px;
+           border-bottom:2px solid var(--moss)}
+.part-open:first-of-type{margin-top:64px}
+.pnum{font-family:var(--sans); font-weight:600; font-size:clamp(30px,4.6vw,44px);
+      line-height:1; color:var(--moss); letter-spacing:-.01em}
+.ptitle{font-size:clamp(24px,3.4vw,34px); font-weight:600; letter-spacing:-.015em;
+        margin:0; line-height:1.1}
+.prange{font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:.09em;
+        text-transform:uppercase; color:var(--muted); white-space:nowrap;
+        font-variant-numeric:tabular-nums}
+.is-appendix{border-bottom-color:var(--rule)}
+.is-appendix .pnum{color:var(--muted)}
+.part-sub{font-style:italic; color:var(--muted); font-size:15.5px;
+          margin:14px 0 40px; max-width:56ch}
+
+/* ---------- sections ---------- */
+h3.sec{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline;
+       font-size:clamp(19px,2.4vw,23px); font-weight:600; letter-spacing:-.012em;
+       line-height:1.24; margin:52px 0 16px; text-wrap:balance; scroll-margin-top:20px}
+.secnum{font-family:var(--sans); font-size:12px; font-weight:600; color:var(--moss);
+        letter-spacing:.04em; font-variant-numeric:tabular-nums;
+        padding-top:.34em; white-space:nowrap}
+.part-open + h3.sec, .part-sub + h3.sec{margin-top:34px}
+
+p{margin:0 0 17px}
+strong{font-weight:600; color:var(--ink)}
+em{font-style:italic}
+a{color:var(--moss); text-underline-offset:2px}
+hr{border:0; border-top:1px solid var(--rule-soft); margin:44px 0; max-width:66ch}
+
+ul,ol{margin:0 0 18px; padding-left:1.15em}
+li{margin:0 0 7px; padding-left:.15em}
+li::marker{color:var(--moss-soft)}
+
+/* ---------- claims ---------- */
+blockquote{margin:26px 0; padding:2px 0 2px 22px; border-left:2px solid var(--moss);
+           max-width:60ch}
+blockquote p{font-size:18.5px; line-height:1.5; color:var(--ink);
+             font-weight:400; margin:0 0 12px}
+blockquote p:last-child{margin-bottom:0}
+blockquote strong{font-weight:600}
+
+/* ---------- flagged paragraphs ---------- */
+.note{border-left:2px solid var(--human); padding:2px 0 2px 20px; margin:24px 0;
+      max-width:62ch}
+.note-new{border-left-color:var(--moss-soft)}
+.note strong:first-child{font-family:var(--sans); font-size:11.5px; font-weight:600;
+      letter-spacing:.07em; text-transform:uppercase; color:var(--human);
+      display:inline-block; margin-right:2px}
+.note-new strong:first-child{color:var(--moss)}
+
+/* ---------- refs ---------- */
+.ref-old{color:var(--muted); font-variant-numeric:tabular-nums;
+         white-space:nowrap; border-bottom:1px dotted var(--rule)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; margin:26px 0 32px; padding-bottom:2px;
+    border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink)}
+table{border-collapse:collapse; width:100%; font-size:14.5px; line-height:1.45}
+thead th{font-family:var(--sans); font-size:10.5px; font-weight:600; letter-spacing:.09em;
+         text-transform:uppercase; color:var(--muted); text-align:left;
+         padding:11px 16px 10px 0; border-bottom:1px solid var(--rule);
+         vertical-align:bottom; white-space:nowrap}
+tbody td{padding:11px 16px 11px 0; border-bottom:1px solid var(--rule-soft);
+         vertical-align:top; color:var(--ink-soft); font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:0}
+tbody td:first-child{color:var(--ink)}
+tbody td strong{color:var(--ink)}
+thead th:last-child, tbody td:last-child{padding-right:0}
+
+/* ---------- diagrams ---------- */
+pre{background:var(--surface); border:1px solid var(--rule); border-radius:2px;
+    padding:24px 26px; overflow-x:auto; margin:28px 0 32px;
+    box-shadow:0 1px 2px var(--shadow)}
+pre code{font-family:var(--mono); font-size:11.5px; line-height:1.5;
+         color:var(--ink-soft); white-space:pre; display:block}
+@media(min-width:760px){ pre code{font-size:12.5px} }
+:not(pre) > code{font-family:var(--mono); font-size:.855em; background:var(--paper-2);
+    padding:.12em .38em; border-radius:2px; color:var(--ink-soft);
+    border:1px solid var(--rule-soft)}
+
+/* single-line display equation (indented block, not a fenced diagram) */
+pre:not([class]){background:transparent; border:0; border-left:2px solid var(--moss-soft);
+  border-radius:0; box-shadow:none; padding:4px 0 4px 22px; margin:22px 0 26px}
+pre:not([class]) code{font-family:var(--mono); font-size:15px; color:var(--ink);
+  letter-spacing:.01em}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- print ---------- */
+@media print{
+  :root{--paper:#fff;--paper-2:#fff;--surface:#fff;--ink:#000;--ink-soft:#1a1a1a;
+        --muted:#555;--rule:#bbb;--rule-soft:#ddd;--moss:#2f4a37;--human:#7a4132;
+        --shadow:transparent}
+  body{font-size:10.5pt; line-height:1.5; background:#fff}
+  .rail{display:none}
+  .wrap{display:block; max-width:none; padding:0}
+  .col > *{max-width:none}
+  .mast{padding-top:0; page-break-after:avoid}
+  .part-open{page-break-before:always; page-break-after:avoid; margin-top:0}
+  .part-open:first-of-type{page-break-before:avoid}
+  h3.sec{page-break-after:avoid; margin-top:22pt}
+  .tw,pre,blockquote,.note,table,tr{page-break-inside:avoid}
+  pre code{font-size:7.6pt}
+  table{font-size:8.8pt}
+  p,li{orphans:3; widows:3}
+}
+</style>
+
+<div class="wrap">
+<nav class="rail" aria-label="Contents"><p class="rail-h">The order</p><ol><li><a href="#part-i--the-circle"><span class="rn">I</span><span class="rt">The Circle<span class="rr">§1–4</span></span></a></li><li><a href="#part-ii--the-ruler"><span class="rn">II</span><span class="rt">The Ruler<span class="rr">§5–9</span></span></a></li><li><a href="#part-iii--the-instruments"><span class="rn">III</span><span class="rt">The Instruments<span class="rr">§10–12</span></span></a></li><li><a href="#part-iv--the-arrow"><span class="rn">IV</span><span class="rt">The Arrow<span class="rr">§13–16</span></span></a></li><li><a href="#part-v--who-turns-the-crank"><span class="rn">V</span><span class="rt">Who Turns the Crank<span class="rr">§17–18</span></span></a></li><li><a href="#part-vi--the-program"><span class="rn">VI</span><span class="rt">The Program<span class="rr">§19–21</span></span></a></li><li><a href="#part-vii--the-outside"><span class="rn">VII</span><span class="rt">The Outside<span class="rr">§22–24</span></span></a></li><li><a href="#part-viii--the-ending"><span class="rn">VIII</span><span class="rt">The Ending<span class="rr">§25–28</span></span></a></li></ol><p class="rail-h">Appendices</p><ol><li><a href="#appendix-a--dependency-order"><span class="rn">A</span><span class="rt">Dependency Order</span></a></li><li><a href="#appendix-b--what-changes-in-the-existing-material"><span class="rn">B</span><span class="rt">What Changes</span></a></li><li><a href="#appendix-c--open-questions"><span class="rn">C</span><span class="rt">Open Questions</span></a></li></ol></nav>
+<main class="col">
+<header class="mast">
+  <p class="eyebrow">GISS 2026 &middot; talk architecture</p>
+  <h1>The Connective Map</h1>
+  <p class="sub">How the pieces of <em>Sisyphus, Optimizing in a Dynamic Universe</em> actually connect</p>
+  <p class="standfirst">This is not a replacement for
+<code>Sisyphus_Dynamic_Universe_Detailed_Notes.md</code>. That file is
+an inventory: thirty sections, each correct, each standing alone. This
+file is the <strong>spine</strong> — the order the pieces have to come
+in, and the load each one bears. Where a section here supersedes or
+reframes something there, it says so.</p>
+</header>
+<hr />
+<h3 id="0-the-single-organizing-claim" class="sec"><span class="secnum">0</span><span class="sectext">The single organizing claim</span></h3>
+<p>Everything below hangs off one sentence:</p>
+<blockquote>
+<p><strong>The loop is circular in structure and directional in
+fact.</strong></p>
+</blockquote>
+<p>The structure is a cycle: question → ruler → data → compression →
+inference → answer → question. Drawn on a page it closes.</p>
+<p>It does not close. Three independent mechanisms — one thermodynamic,
+one dynamical, one epistemic — guarantee that the point you return to is
+not the point you left. The circle is the <em>diagram</em>; the arrow is
+the <em>fact</em>.</p>
+<p>That gap is the whole talk. Sisyphus is not the image of a circle. He
+is the image of the difference between the diagram and the fact.</p>
+<p>Big picture → detail runs: <strong>axiom → circle → ruler →
+instruments → arrow → who turns it → the outside → the ending.</strong>
+Seven parts. Each depends only on the parts above it.</p>
+<hr />
+<h3 id="01-the-shape-on-one-page" class="sec"><span class="secnum">0.1</span><span class="sectext">The shape on one page</span></h3>
+<pre class="text"><code>                     ┌────────────────────────────────────┐
+        THE AXIOM    │ information is always information  │
+                     │           about a question         │
+                     └─────────────────┬──────────────────┘
+                                       │
+        ╭──────────────────────────────┴──────────────────────────────╮
+        │                        THE CIRCLE                           │
+        │                                                             │
+        │    QUESTION ────────&gt; what matters ────────&gt; RULER          │
+        │       ^                                        │            │
+        │       │                                        v            │
+        │   good enough?                                DATA          │
+        │       ^                                        │            │
+        │       │                                        v            │
+        │    ANSWER &lt;──────── INFERENCE &lt;──────── COMPRESSION         │
+        │                                                             │
+        ╰──────────────────────────────┬──────────────────────────────╯
+                                       │
+                    why the circle does not close
+                                       │
+            ┌──────────────────────────┼──────────────────────────┐
+            v                          v                          v
+     THERMODYNAMIC               DYNAMIC                   EPISTEMIC
+     every turn costs work;      the landscape moves       the answer makes
+     only bits informative       while you climb           the next question
+     about the question
+     pay it back
+            │                          │                          │
+            └──────────────────────────┼──────────────────────────┘
+                                       v
+                              THE ARROW — a spiral,
+                            not a circle: same shape,
+                              different altitude
+                                       │
+                                       v
+                   ┌───────────────────┴───────────────────┐
+                   │   three systems run this loop         │
+                   │   brain · model · science             │
+                   │   they differ in what they may change │
+                   └───────────────────┬───────────────────┘
+                                       │
+                                       v
+                   ┌───────────────────┴───────────────────┐
+                   │   THE PROGRAM — one of them, traced   │
+                   │   enhancement → wrong ruler →         │
+                   │   will not scale → JAISP → Fisher     │
+                   └───────────────────┬───────────────────┘
+                                       │
+                                       v
+                        you cannot judge a loss with
+                        that loss. the only signal that
+                        crosses out of the loop is SURPRISE
+                                       │
+                                       v
+                       a system that extracts work from a
+                       gradient must maintain a gradient
+                                       │
+                                       v
+                          one must imagine Sisyphus happy</code></pre>
+<hr />
+<h3 id="02-where-every-concept-lives" class="sec"><span class="secnum">0.2</span><span class="sectext">Where every concept lives</span></h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>concept</th>
+<th>part</th>
+<th>status</th>
+<th>old §</th>
+<th>on stage?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>information is about a question</td>
+<td>I</td>
+<td>kept</td>
+<td>§1</td>
+<td>yes — beat 2</td>
+</tr>
+<tr>
+<td>the loop</td>
+<td>I</td>
+<td>kept</td>
+<td>§2</td>
+<td>yes — scene 3</td>
+</tr>
+<tr>
+<td>optimization vs inference</td>
+<td>I</td>
+<td><strong>new</strong></td>
+<td>—</td>
+<td>one line, scene 6</td>
+</tr>
+<tr>
+<td>feedback</td>
+<td>I</td>
+<td><strong>new</strong></td>
+<td>implicit</td>
+<td>notes only</td>
+</tr>
+<tr>
+<td>loss / metric / distance</td>
+<td>II</td>
+<td>kept</td>
+<td>§3</td>
+<td>yes — scene 5</td>
+</tr>
+<tr>
+<td>distance as sampling rate</td>
+<td>II</td>
+<td><strong>new</strong></td>
+<td>—</td>
+<td><strong>yes</strong> — scene 5, science-carried</td>
+</tr>
+<tr>
+<td>rate–distortion</td>
+<td>II</td>
+<td><strong>new</strong> (Shannon)</td>
+<td>—</td>
+<td>notes; one line on stage</td>
+</tr>
+<tr>
+<td>prospect theory</td>
+<td>II</td>
+<td><strong>new</strong></td>
+<td>—</td>
+<td>yes — human thread</td>
+</tr>
+<tr>
+<td>Jaynes / chosen priors</td>
+<td>II</td>
+<td><strong>new</strong>, via prospect theory</td>
+<td>§28 warns</td>
+<td>notes only</td>
+</tr>
+<tr>
+<td>entropy · surprise · KL · Fisher</td>
+<td>III</td>
+<td>kept</td>
+<td>§8–11</td>
+<td>yes — scene 9</td>
+</tr>
+<tr>
+<td>surprise is the only exit</td>
+<td>III</td>
+<td><strong>new</strong> — hinge</td>
+<td>§9 partial</td>
+<td>yes — scene 10</td>
+</tr>
+<tr>
+<td>dopamine / RPE</td>
+<td>III</td>
+<td><strong>new</strong></td>
+<td>—</td>
+<td>one line, human thread</td>
+</tr>
+<tr>
+<td>the three reasons</td>
+<td>IV</td>
+<td><strong>new</strong> framing</td>
+<td>scattered</td>
+<td>notes; structures the deck</td>
+</tr>
+<tr>
+<td>mutual info = extractable work</td>
+<td>IV</td>
+<td><strong>new</strong> (Landauer/Szilard)</td>
+<td>—</td>
+<td>notes; one line if asked</td>
+</tr>
+<tr>
+<td>the landscape moves</td>
+<td>IV</td>
+<td>kept</td>
+<td>§21</td>
+<td>yes — title, appendix A2</td>
+</tr>
+<tr>
+<td>the answer makes the question</td>
+<td>IV</td>
+<td>kept</td>
+<td>§13.1</td>
+<td>yes — scene 16</td>
+</tr>
+<tr>
+<td>brain · model · science</td>
+<td>V</td>
+<td><strong>new</strong> framing</td>
+<td>§18 partial</td>
+<td>yes — scene 4</td>
+</tr>
+<tr>
+<td>foundation representation</td>
+<td>V</td>
+<td>kept</td>
+<td>§17–20</td>
+<td>yes — scenes 13–14</td>
+</tr>
+<tr>
+<td><strong>the enhancement family</strong></td>
+<td><strong>VI</strong></td>
+<td><strong>new — positioned</strong></td>
+<td>absent</td>
+<td><strong>yes</strong> — scene 4, receipts</td>
+</tr>
+<tr>
+<td><strong>what each result proves</strong></td>
+<td><strong>VI</strong></td>
+<td><strong>new</strong></td>
+<td>absent</td>
+<td><strong>yes</strong> — scenes 5, 8</td>
+</tr>
+<tr>
+<td><strong>JAISP as the bet</strong></td>
+<td><strong>VI</strong></td>
+<td>reframed</td>
+<td>§17–20</td>
+<td><strong>yes</strong> — scenes 13–14</td>
+</tr>
+<tr>
+<td>judging the loss from outside</td>
+<td>VII</td>
+<td><strong>new</strong> — load-bearing</td>
+<td>§13.2A partial</td>
+<td><strong>yes</strong> — scene 16</td>
+</tr>
+<tr>
+<td>the fork, re-read</td>
+<td>VII</td>
+<td>reframed</td>
+<td>§13.2</td>
+<td>yes — scene 10</td>
+</tr>
+<tr>
+<td>nonzero gradient</td>
+<td>VIII</td>
+<td><strong>new</strong></td>
+<td>—</td>
+<td>yes — scene 15/16</td>
+</tr>
+<tr>
+<td>die on the hill / slope</td>
+<td>VIII</td>
+<td>kept</td>
+<td>§22</td>
+<td>yes — scene 15</td>
+</tr>
+<tr>
+<td>Sisyphus happy</td>
+<td>VIII</td>
+<td>kept</td>
+<td>§23–24</td>
+<td>yes — scene 16</td>
+</tr>
+</tbody>
+</table></div>
+<header class="part-open" id="part-i--the-circle"><span class="pnum">I</span><h2 class="ptitle">The Circle</h2><span class="prange">§1–4</span></header><p class="part-sub">The timeless structure. Nothing here has a direction
+yet.</p>
+<h3 id="1-the-axiom" class="sec"><span class="secnum">1</span><span class="sectext">The axiom</span></h3>
+<blockquote>
+<p><strong>Information is always information about a
+question.</strong></p>
+</blockquote>
+<p>Unchanged from the old notes' <span class="ref-old">§1</span>, but note what it is doing
+structurally: it is the only statement in the talk that is <em>prior to
+the loop</em>. Everything else is a station on the circle or a fact
+about the circle. This one licenses the circle to exist.</p>
+<p>It also has a consequence nobody expects at this point in the talk,
+delivered in Part IV: this sentence is a thermodynamic statement, not
+only an epistemic one. Bits that carry no information about the question
+are not merely useless. They are expensive. Hold that.</p>
+<h3 id="2-the-loop" class="sec"><span class="secnum">2</span><span class="sectext">The loop</span></h3>
+<p>Question → what matters → ruler → data → compression → inference →
+answer → good enough? → question.</p>
+<p>Unchanged from the old notes' <span class="ref-old">§2.</span> Two notes on how it should be
+<em>drawn</em>:</p>
+<ul>
+<li>It must be drawn once, early, and completely. The deck does this at
+scene 3. Everything after is a zoom into one station.</li>
+<li>It must be drawn as a circle even though the rest of the talk is
+about why it is not one. The audience needs the wrong picture first, or
+the correction lands on nothing.</li>
+</ul>
+<h3 id="3-optimization-is-a-lossy-compression-of-inference" class="sec"><span class="secnum">3</span><span class="sectext">Optimization is a lossy compression of inference</span></h3>
+<p><strong>This resolves "optimization, or just inference?" — they are
+not alternatives.</strong></p>
+<ul>
+<li><strong>Inference</strong> takes a model and data and returns a
+<em>distribution</em>. It presupposes a model class and a prior.
+Uncertainty is the output.</li>
+<li><strong>Optimization</strong> takes a loss and data and returns a
+<em>point</em>. It presupposes the loss. It has no notion of how sure it
+is.</li>
+</ul>
+<p>The relation:</p>
+<blockquote>
+<p><strong>Optimization is inference with the uncertainty
+discarded.</strong></p>
+</blockquote>
+<p>A MAP estimate is a posterior with one number kept. Which means
+optimization is subject to §6's own rule about compression: it is lossy
+with respect to the full posterior, and it may or may not be sufficient
+for the question. Sometimes the point is all you need. Sometimes
+discarding the width is the error that ends the project.</p>
+<p>This is not a digression — it is the same claim as the compression
+scene, applied one level up, and it means the talk's central idea is
+self-similar. The loop compresses data into a representation, and
+<em>then compresses inference into an answer</em>. Both compressions are
+chosen. Both can be wrong in the same way.</p>
+<p><strong>The image this licenses, and it is the deck's best
+one:</strong> gradient descent sees only the local slope. Fisher is the
+curvature — the second-order fact. Entropy is the width. An optimizer
+standing on the hill can feel which way is down and <em>nothing
+else</em>. Sisyphus knows the slope under his feet. He cannot see the
+shape of the mountain. That is not a metaphor; it is a literal statement
+about first-order methods.</p>
+<p>→ connects forward to <strong>§11</strong> (why surprise is the only
+signal that escapes) and <strong>§23</strong> (why the optimizer cannot
+audit its own loss).</p>
+<h3 id="4-feedback-is-what-makes-it-a-loop" class="sec"><span class="secnum">4</span><span class="sectext">Feedback is what makes it a loop</span></h3>
+<p>The arrow from <em>answer</em> back to <em>question</em> is doing
+more work than the diagram admits. Four regimes, and the talk touches
+all four without naming them:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>regime</th>
+<th>behaviour</th>
+<th>where it shows up</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>open loop</strong> — no feedback</td>
+<td>you never learn the ruler was wrong</td>
+<td>the failure mode of a fixed benchmark</td>
+</tr>
+<tr>
+<td><strong>negative feedback</strong></td>
+<td>error shrinks, system converges</td>
+<td>die on the hill (§27)</td>
+</tr>
+<tr>
+<td><strong>positive feedback</strong></td>
+<td>the reference moves with you; no convergence</td>
+<td>prospect theory (§8), the moving landscape (§15)</td>
+</tr>
+<tr>
+<td><strong>measurement feedback</strong></td>
+<td>probing changes the probed</td>
+<td>scene 7's marginalia; the human example</td>
+</tr>
+</tbody>
+</table></div>
+<p>Naming these is what lets Part VII be mechanical rather than poetic.
+"The rock comes back" is a statement about which feedback regime the
+system is in.</p>
+<p>The key asymmetry, which pays off at §12: <strong>a feedback signal
+that is an error goes silent when the system is right.</strong> Any loop
+driven by error is a loop that has no signal at its own optimum.
+Remember that sentence.</p>
+<header class="part-open" id="part-ii--the-ruler"><span class="pnum">II</span><h2 class="ptitle">The Ruler</h2><span class="prange">§5–9</span></header><p class="part-sub">The circle's geometry. This is where the talk stops being
+generic.</p>
+<h3 id="5-distance-is-a-choice" class="sec"><span class="secnum">5</span><span class="sectext">Distance is a choice</span></h3>
+<p>Unchanged from the old notes' <span class="ref-old">§3.</span> <strong>Change the ruler, change
+the landscape.</strong> The argmin moves when the metric moves; nothing
+in the data says which metric is right.</p>
+<p>Scene 5 already carries this with five super-resolution losses on one
+basin. What follows are three upgrades that make it a claim about
+physics and about brains rather than a slogan.</p>
+<h3 id="6-distance-is-a-sampling-rate" class="sec"><span class="secnum">6</span><span class="sectext">Distance is a sampling rate</span></h3>
+<p class="note note-new"><strong>New. The strongest of the additions, because the science
+carries it.</strong></p>
+<p>The claim:</p>
+<blockquote>
+<p><strong>A metric does not only rank answers. It decides how many
+objects exist.</strong></p>
+</blockquote>
+<p>Two sources separated by less than the sampling scale are one source
+<em>under that ruler</em>. Change the sampling, and the number of things
+in the field changes. This is not an approximation error — it is a
+statement that the ontology of the catalogue is set by the metric,
+before any inference runs.</p>
+<p>The instances are hers, all three verified against manuscript:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>pair</th>
+<th>the distance that changes</th>
+<th>factor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NISP Y_E → JWST/NIRCam F115W</td>
+<td>spatial sampling</td>
+<td>5×</td>
+</tr>
+<tr>
+<td>WISE W1 → Spitzer IRAC Ch1</td>
+<td>spatial sampling</td>
+<td>4.6×</td>
+</tr>
+<tr>
+<td>NIRSpec prism R∼100 → R∼1000</td>
+<td>spectral sampling</td>
+<td>10×</td>
+</tr>
+</tbody>
+</table></div>
+<p>In each, "enhancement" is the claim that the threshold at which two
+things count as distinct can be moved <em>using a prior</em> rather than
+using new photons. Which is exactly scene 8's fourth beat — compression
+run backwards — now stated as a change of metric rather than a change of
+resolution.</p>
+<p><strong>Why this belongs on stage:</strong> it converts "the loss is
+a ruler we chose" from philosophy into a measurement. Nyquist is a
+ruler. It is also a fact.</p>
+<p class="note note-caution"><strong>Caution:</strong> do not say the prior creates information.
+It moves information from where it was measured (the training sky) to
+where it is needed. The ledger must balance, and validation is the
+audit. This is already the deck's line; keep it attached here.</p>
+<p>→ connects to <strong>§7</strong> (the formal version) and
+<strong>§14</strong> (why a finite rate is not optional).</p>
+<h3 id="7-ratedistortion-the-ruler-decides-what-gets-discarded" class="sec"><span class="secnum">7</span><span class="sectext">Rate–distortion: the ruler decides what gets discarded</span></h3>
+<p class="note note-new"><strong>New. This is where Shannon belongs — not at entropy, where he
+is currently implied and unnamed, but here.</strong></p>
+<p>Rate–distortion theory says: given a budget of R bits, the best
+achievable distortion D depends on <em>the distortion measure you
+chose</em>. Fix the rate, change the measure, and the optimal thing to
+throw away changes completely.</p>
+<p>That is scene 5, stated formally. Same network capacity, five
+different losses, five different survivals. The deck already
+<em>shows</em> this. Shannon says it was guaranteed in advance.</p>
+<p>It also gives the old notes' <span class="ref-old">§6</span> (compression) its missing spine. Its
+§6.1 currently distinguishes lossless from lossy and then, correctly,
+says the useful distinction is <em>sufficiency for a question</em>:
+I(T(D);θ) = I(D;θ). Rate–distortion is the same statement with a budget
+attached — sufficiency is the D = 0 corner of a curve that is otherwise
+all trade-off. Real representations live on the curve, never at the
+corner.</p>
+<p><strong>On stage:</strong> one line at most. The idea is
+load-bearing; the name is not. Say "there is a theorem that says which
+information you lose is set by the ruler, not by the compression
+algorithm" and move.</p>
+<h3 id="8-prospect-theory-the-ruler-brains-actually-have" class="sec"><span class="secnum">8</span><span class="sectext">Prospect theory: the ruler brains actually have</span></h3>
+<p class="note note-new"><strong>New. This is the human thread's missing content.</strong></p>
+<p>Everything in the deck's human column so far describes a person
+<em>running</em> the loop. Prospect theory describes the <em>loss
+function they run it with</em>, measured, with numbers. Three findings,
+each of which maps onto something already in the talk:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>prospect theory</th>
+<th>maps onto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>reference dependence</strong> — value is measured from where
+you stand, not in absolute terms</td>
+<td>the origin of the metric is chosen (§5)</td>
+</tr>
+<tr>
+<td><strong>loss aversion</strong> — losses hurt roughly 2× the
+symmetric gain</td>
+<td>the landscape is <em>kinked</em> at your current position</td>
+</tr>
+<tr>
+<td><strong>probability weighting</strong> — small probabilities
+overweighted, moderate ones underweighted</td>
+<td>the probabilities you compute with are chosen, not found (§9)</td>
+</tr>
+</tbody>
+</table></div>
+<p>The second is the interesting one and it is not decoration:</p>
+<blockquote>
+<p><strong>The kink follows the optimizer.</strong> Under
+reference-dependent value, the landscape is not a fixed surface being
+climbed. It is regenerated around wherever the climber is standing.</p>
+</blockquote>
+<p>That is the <em>dynamic universe of the title, derived from the
+inside</em> — not the field moving because the sky moves (appendix A2),
+but the landscape moving because the observer moved. It is a
+positive-feedback loop in the sense of §4, and it is a reason a system
+can fail to converge that has nothing to do with noise, bad data, or a
+wrong model.</p>
+<p class="note note-caution"><strong>Caution, and it matters:</strong> prospect theory is a
+descriptive model of choice under risk, fit to behavioural data. It is
+not a claim about neural implementation and it is not universal across
+cultures or framings. Use it as "here is a measured loss function that
+is not the one physicists assume," which is true, and not as "here is
+how the brain works," which overreaches in exactly the way the old
+notes' §28 already warns about for Bayes.</p>
+<h3 id="9-jaynes-and-prospect-theory-make-the-same-claim" class="sec"><span class="secnum">9</span><span class="sectext">Jaynes and prospect theory make the same claim</span></h3>
+<p class="note note-new"><strong>New — and this is what rescues the Jaynes thread, which does
+not survive on its own.</strong></p>
+<p>Jaynes: the prior is not discovered in the data. You choose it, and
+maximum entropy is a <em>principle for choosing</em> — the distribution
+that commits to nothing beyond your stated constraints.</p>
+<p>Prospect theory: brains also reweight probabilities before computing
+with them. Not by maximum entropy. By some other rule, one that
+overweights the rare.</p>
+<p>Put side by side, the shared claim is:</p>
+<blockquote>
+<p><strong>The probabilities you compute with are chosen. The only
+question is whether you chose them by a stated principle or by an
+unstated one.</strong></p>
+</blockquote>
+<p>That is a genuinely useful sentence and it belongs in the notes,
+because it is the honest bridge between the human column and the
+statistical one. Both systems reweight. One of them writes the rule
+down.</p>
+<p class="note note-caution"><strong>Conflict to resolve, flagged honestly:</strong> the old
+notes' §28 says "do not say <em>maximize entropy</em> for experimental
+design." That caution is correct and must stay — design targets expected
+information gain, not entropy. But it currently reads as a blanket
+warning off MaxEnt. Amend it to distinguish the two uses: MaxEnt is a
+principle for <em>setting a prior</em>; EIG is the criterion for
+<em>choosing an experiment</em>. Conflating them is the error; naming
+both is not.</p>
+<p><strong>On stage:</strong> no. This is a notes-only idea that makes
+the human column defensible if someone pushes.</p>
+<header class="part-open" id="part-iii--the-instruments"><span class="pnum">III</span><h2 class="ptitle">The Instruments</h2><span class="prange">§10–12</span></header><p class="part-sub">What you can measure while standing on the circle — and the one
+thing that tells you to leave it.</p>
+<h3 id="10-the-four-rulers" class="sec"><span class="secnum">10</span><span class="sectext">The four rulers</span></h3>
+<p>Unchanged from the old notes' <span class="ref-old">§8–11</span> and scene 9:</p>
+<blockquote>
+<p><strong>Entropy:</strong> how uncertain am I?
+<strong>Surprise:</strong> how unexpected was this observation?
+<strong>KL:</strong> how much did I learn? <strong>Fisher:</strong>
+where is the hill steep?</p>
+</blockquote>
+<p>Keep the existing cautions verbatim: low entropy is not truth;
+surprise is not information gain; Fisher is local.</p>
+<p>What the next two sections add is a claim about <em>which of these
+four can do something the others cannot</em>.</p>
+<h3 id="11-surprise-is-the-only-signal-that-leaves-the-loop" class="sec"><span class="secnum">11</span><span class="sectext">Surprise is the only signal that leaves the loop</span></h3>
+<p class="note note-new"><strong>New. This is the hinge of the whole document.</strong></p>
+<p>Consider what each instrument can tell you:</p>
+<ul>
+<li><strong>Entropy</strong> measures your uncertainty <em>given</em>
+your model. If the model is wrong, entropy is confidently wrong with it.
+(the old notes' <span class="ref-old">§8</span> already says this.)</li>
+<li><strong>Fisher</strong> measures local sensitivity <em>given</em>
+your model and your parametrisation. Wrong model, wrong curvature.</li>
+<li><strong>KL</strong> measures belief change <em>within</em> a fixed
+hypothesis space.</li>
+<li><strong>Surprise</strong> — −log p(D) — measures how badly reality
+violated the model.</li>
+</ul>
+<p>Three of the four are computed inside the model's own frame and
+therefore cannot detect that the frame is wrong. Surprise is the only
+one that can, because it is the only one whose reference is the
+<em>observation</em> rather than the belief.</p>
+<blockquote>
+<p><strong>The optimizer cannot audit itself. Prediction error is the
+only signal that crosses out of the loop.</strong></p>
+</blockquote>
+<p>This is why §9 currently feels thin — it is written as one of four
+instruments, when it is structurally different from the other three. And
+it is why the fork (the old notes' <span class="ref-old">§13.2</span>, scene 10) exists at all: the
+fork is <em>what you do after a surprise</em>. Without surprise there is
+no fork, because nothing would ever tell you the answer was not good
+enough.</p>
+<p>It is also the honest limit: surprise tells you <em>that</em>
+something is wrong. It does not tell you <em>which</em> of the three
+things is wrong. That diagnosis is not available from inside. See
+§23.</p>
+<p class="note note-caution"><strong>Retain the existing caution and sharpen it:</strong> surprise
+is not information gain. A weird datum can be maximally surprising and
+tell you nothing about θ. The upgrade: surprise is not information
+<em>about the parameter</em>, but it is the only available information
+<em>about the model</em>. Those are different targets, and that is
+precisely why the two quantities come apart.</p>
+<h3 id="12-dopamine-the-brains-implementation-of-11" class="sec"><span class="secnum">12</span><span class="sectext">Dopamine: the brain's implementation of §11</span></h3>
+<p class="note note-new"><strong>New. One line on stage, a paragraph in the
+notes.</strong></p>
+<p>The reward prediction error account: dopaminergic firing tracks the
+<em>difference</em> between received and predicted reward, not reward
+itself. A fully predicted reward produces no signal.</p>
+<p>Three reasons this earns its place, in order of importance:</p>
+<ol type="1">
+<li><strong>It is §11, implemented in wetware.</strong> The brain's
+learning signal is prediction error — the same quantity that is the only
+exit from the loop. The human column and the statistical column converge
+on one variable.</li>
+<li><strong>It is safer ground than the Bayesian-brain claim the old
+notes' §28 forbids.</strong> RPE is a well-supported empirical account
+of a specific signal, not a claim that cognition is Bayesian inference.
+Say the narrow thing.</li>
+<li><strong>It sets up Part VII.</strong> Recall §4's asymmetry: <em>a
+feedback signal that is an error goes silent when the system is
+right.</em> A brain that learns from prediction error has no signal at
+its own optimum. Not a low signal — none. That is the mechanism behind
+everything in §26, and it arrives here without any Sisyphus talk
+attached, which is why it is credible when it returns.</li>
+</ol>
+<p class="note note-caution"><strong>Caution:</strong> RPE is a model of a dopaminergic signal,
+not a theory of motivation, pleasure, or scientific curiosity. Do not
+narrate scientists as dopamine-seeking. The structural point —
+error-driven systems are quiet at their optimum — stands on its own and
+does not need the neuroscience to be load-bearing.</p>
+<header class="part-open" id="part-iv--the-arrow"><span class="pnum">IV</span><h2 class="ptitle">The Arrow</h2><span class="prange">§13–16</span></header><p class="part-sub">Why the circle does not close. Three mechanisms, independent, any
+one of them sufficient.</p>
+<h3 id="13-the-three-reasons" class="sec"><span class="secnum">13</span><span class="sectext">The three reasons</span></h3>
+<p>This section is new as a <em>framing</em>, though its parts are
+scattered through the old notes. Stating them as three independent
+mechanisms is what converts a collection of observations into an
+argument.</p>
+<blockquote>
+<p>The circle does not close because: <strong>it costs something to go
+around</strong> (thermodynamic); <strong>the ground moves while you go
+around</strong> (dynamic); and <strong>arriving changes where you wanted
+to go</strong> (epistemic).</p>
+</blockquote>
+<p>Independence matters. Remove any two and the third still breaks the
+circle. That is why the ending is not sentimental — it is
+overdetermined.</p>
+<h3 id="14-thermodynamic-mutual-information-with-the-question-is-extractable-work" class="sec"><span class="secnum">14</span><span class="sectext">Thermodynamic: mutual information with the question is extractable work</span></h3>
+<p class="note note-new"><strong>New. The most surprising connection in the document, and it
+is an identity, not an analogy.</strong></p>
+<p>The chain:</p>
+<ul>
+<li><strong>Landauer:</strong> erasing one bit of information costs at
+least <em>kT</em> ln 2 of work.</li>
+<li><strong>Szilard / Sagawa–Ueda:</strong> the work you can extract
+from a system using a measurement is bounded by <em>kT</em> × the
+<strong>mutual information</strong> between your representation and the
+system.</li>
+</ul>
+<p>Now put that next to the old notes' <span class="ref-old">§6.1</span>, which is already there. The
+condition for a compression to be sufficient for a question is:</p>
+<pre><code>I(T(D); θ) = I(D; θ)</code></pre>
+<p>The <em>same functional</em> — mutual information between your
+representation and the thing you care about — is simultaneously:</p>
+<ul>
+<li>the epistemic figure of merit (how much of the answer survived
+compression),</li>
+<li>and the thermodynamic one (how much work that representation can buy
+you).</li>
+</ul>
+<p>Which yields the claim in its precise form:</p>
+<blockquote>
+<p><strong>Bits in your representation that carry no mutual information
+with the question yield no extractable work — and still cost to store,
+move, and erase. Useless retained bits are not merely inelegant. They
+are dissipative.</strong></p>
+</blockquote>
+<p>And therefore, closing the loop back to the axiom of §1:</p>
+<blockquote>
+<p><em>Information is always information about a question</em> is not
+only a statement about meaning. It is a statement about energy. A bit
+that is not about your question does not do work.</p>
+</blockquote>
+<p>This also gives compression (old notes <span class="ref-old">§6</span>) a second, independent
+justification. It says we compress because we cannot carry everything
+into every decision — a practical argument. §14 here says the universe
+charges for the alternative — a physical one. Two independent reasons
+for the same station on the circle.</p>
+<p class="note note-caution"><strong>Cautions, and these are not optional — a physicist in that
+room will check:</strong></p>
+<ol type="1">
+<li><em>kT</em> ln 2 at room temperature is ≈ 3 × 10⁻²¹ J. Real compute
+is many orders of magnitude above the Landauer bound, dominated by data
+movement, not erasure. <strong>Do not claim datacenters are near the
+thermodynamic limit.</strong> They are not, and saying so would be the
+one wrong sentence in the talk.</li>
+<li>The honest claim is <em>structural</em>: the same functional governs
+both, and real cost also scales with bits carried — just far above the
+bound. Say "the same quantity appears in both ledgers," not "we are
+paying the Landauer price."</li>
+<li>Sagawa–Ueda requires care about what the demon knows and when. Do
+not derive anything quantitative on stage. This is a notes-level
+connection with a one-sentence stage version if someone asks.</li>
+</ol>
+<h3 id="15-dynamic-the-landscape-moves" class="sec"><span class="secnum">15</span><span class="sectext">Dynamic: the landscape moves</span></h3>
+<p>Unchanged from the old notes' <span class="ref-old">§21</span>, and now with a second source.
+There are two distinct ways the ground moves, and the talk has only been
+telling one:</p>
+<ul>
+<li><strong>Exogenous</strong> — the system itself changes while you
+measure it. A person changes; the field moves (appendix A2's coherent
+9–10 mas); the sky is not static. This is the version the old notes
+have.</li>
+<li><strong>Endogenous</strong> — the landscape is regenerated around
+the optimizer's own position, because value is reference-dependent (§8).
+Nothing external changed. You moved, so the hill did.</li>
+</ul>
+<p>The second is new and it is the more unsettling one, because it
+cannot be fixed by better data. It also connects the human column to the
+title in a way the astrometry column cannot: the source's position sits
+still while you measure it, a person does not — and, per §8, <em>neither
+does the person doing the measuring.</em></p>
+<h3 id="16-epistemic-the-answer-makes-the-question" class="sec"><span class="secnum">16</span><span class="sectext">Epistemic: the answer makes the question</span></h3>
+<p>Unchanged from the old notes' <span class="ref-old">§13.1.</span> Good enough → ask a new question
+→ new loss → new landscape. <strong>New question does not imply new
+data.</strong></p>
+<p>The addition is only to place it correctly: this is the
+<em>third</em> independent reason the circle fails, and it is the one
+the audience will find least threatening, which is why it should come
+last of the three. The first two say the loop is expensive and unstable.
+This one says it is generative. Order them that way.</p>
+<header class="part-open" id="part-v--who-turns-the-crank"><span class="pnum">V</span><h2 class="ptitle">Who Turns the Crank</h2><span class="prange">§17–18</span></header><p class="part-sub">Three systems run this loop. The payload is where they
+differ.</p>
+<h3 id="17-brain-model-institution" class="sec"><span class="secnum">17</span><span class="sectext">Brain, model, institution</span></h3>
+<p>The old notes run the human example and the astrometry example in
+parallel (the old notes' <span class="ref-old">§25</span> table), which is correct and should stay.
+But two columns is one too few and the wrong framing. There are three
+systems running this loop, and the interesting content is not where they
+match — it is <strong>where they differ in what they are permitted to
+change.</strong></p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>brain</strong></th>
+<th><strong>model / AI</strong></th>
+<th><strong>science as institution</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the loss is</td>
+<td>mostly not choosable; reference-dependent (§8)</td>
+<td>chosen by us, explicitly</td>
+<td>negotiated socially, over decades</td>
+</tr>
+<tr>
+<td>data is</td>
+<td>serial, irreversible, one pass</td>
+<td>fixed, re-readable, shuffleable</td>
+<td>archived; re-analysable; the universe is not re-runnable</td>
+</tr>
+<tr>
+<td>can it restart?</td>
+<td>no</td>
+<td>yes — retrain from scratch</td>
+<td>partially; paradigm shifts are expensive</td>
+</tr>
+<tr>
+<td>the learning signal</td>
+<td>prediction error (§12)</td>
+<td>gradient of the chosen loss</td>
+<td>anomaly, disagreement, failed replication</td>
+</tr>
+<tr>
+<td>who audits the loss?</td>
+<td>nobody, from inside</td>
+<td><strong>we do — and that is the danger</strong></td>
+<td>peer review, slowly, and badly</td>
+</tr>
+<tr>
+<td>probing changes the probed?</td>
+<td>yes, always</td>
+<td>no</td>
+<td>sometimes (funding shapes what is measured)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The line this table exists to deliver:</strong> the reason an
+explicitly chosen loss is more dangerous than an implicit one is that it
+is <em>optimizable</em>. A brain with a muddled objective fails gently.
+A model with a crisp wrong objective converges, efficiently, on the
+wrong thing — and reports low uncertainty while doing it (§8's
+"confidently wrong," now with a mechanism).</p>
+<p class="note note-caution"><strong>Caution, extending the old notes' <span class="ref-old">§28</span>:</strong> the claim is
+not that the brain is a model or a model is a brain. It is that all
+three are instances of one abstract loop, and the scientific content is
+in the differences. If the analogy is stated as similarity, it is
+decoration. Stated as <em>a controlled comparison</em>, it is an
+argument.</p>
+<h3 id="18-where-the-foundation-representation-sits" class="sec"><span class="secnum">18</span><span class="sectext">Where the foundation representation sits</span></h3>
+<p>The old notes' <span class="ref-old">§17–20</span> are correct and need no rewriting. What the
+connective map adds is <em>why the foundation idea is forced rather than
+fashionable</em>:</p>
+<ul>
+<li>§16 says new questions arrive continuously and do not require new
+data.</li>
+<li>§6/§7 say every compression is sufficient for some questions and not
+others.</li>
+<li>§14 says rebuilding a compression per question has a real cost.</li>
+</ul>
+<p>Together those three make foundation representations the
+<em>only</em> structurally available answer, not a choice of
+architecture:</p>
+<blockquote>
+<p><strong>If questions keep arriving, and every compression is
+question-specific, and compression is expensive, then you must either
+recompress forever or learn a representation before you know the
+question.</strong></p>
+</blockquote>
+<p>JAISP is that second option, in astronomy. And the Fisher test of the
+old notes' <span class="ref-old">§20</span> — how much information about (x,y) survives at each level
+of the representation — is the honest audit, because it is the one
+number that can say <em>no</em>.</p>
+<p class="note note-new"><strong>The bet, stated plainly:</strong> a foundation representation
+is a wager about questions you have not asked yet. §14 says you cannot
+keep everything. §7 says what you keep is set by a distortion measure.
+So pretraining is the act of choosing a distortion measure for questions
+that do not exist yet. That is the real intellectual content of the
+program, and it is not usually said out loud.</p>
+<header class="part-open" id="part-vi--the-program"><span class="pnum">VI</span><h2 class="ptitle">The Program</h2><span class="prange">§19–21</span></header><p class="part-sub">Where the work sits. Not as illustration — as the instance that
+the rest of the map predicts.</p>
+<h3 id="19-the-arc-as-a-walk-around-the-loop" class="sec"><span class="secnum">19</span><span class="sectext">The arc, as a walk around the loop</span></h3>
+<p>The claim of this part:</p>
+<blockquote>
+<p><strong>The research program went around this loop in the canonical
+order, and each project moved to the next through a specific one of the
+three exits.</strong></p>
+</blockquote>
+<p>That is the reason to be the one giving this talk. Not that the
+philosophy explains the work — that the work traversed the structure, in
+sequence, and the failures were the named failures.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>stage</th>
+<th>where it sits on the map</th>
+<th>which exit moved it on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>pairwise enhancement</strong> — NISP←NIRCam, WISE←IRAC,
+prism←grating</td>
+<td>§6 distance is a sampling rate; §7 the ruler decides what
+survives</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>the ellipticity result</strong> — per-pixel optimal,
+shape-destructive</td>
+<td>§23 you cannot judge a loss with that loss</td>
+<td><strong>wrong ruler</strong> (fork A)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>compression run backwards</strong> — the prior supplies the
+basin</td>
+<td>§14 the ledger; §6 the threshold moved without new photons</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>one model per task does not scale</strong></td>
+<td>§16 questions keep arriving; §18 recompress forever, or learn
+first</td>
+<td><strong>inadequate compression</strong> (fork B)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>JAISP</strong> — Rubin + Euclid pixels → one latent → many
+heads</td>
+<td>§18 the foundation bet</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>astrometry as the first audit</strong> — 50 → 14–17 mas</td>
+<td>§10 Fisher; old notes <span class="ref-old">§20</span></td>
+<td>the test that can say <em>no</em></td>
+</tr>
+</tbody>
+</table></div>
+<p>Read down the last column: <strong>wrong ruler, then inadequate
+compression.</strong> Two of the fork's three branches, in the order the
+fork lists them, discovered by doing the work rather than by reasoning
+about it. The third branch — genuinely missing information — is what
+experimental design and the joint Rubin–Euclid case are about, and it is
+the one still open.</p>
+<p>That is the connective claim, and it is worth stating on stage in one
+sentence: <em>I did not arrive at this structure by thinking about it. I
+arrived at it by running out of road twice, in two different ways, and
+the two ways had names.</em></p>
+<h3 id="20-what-each-result-proves" class="sec"><span class="secnum">20</span><span class="sectext">What each result proves</span></h3>
+<p>Each project is doing a specific job in the argument. If a result is
+on screen without a job, cut it.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>result</th>
+<th>the claim it carries</th>
+<th>where in the map</th>
+<th>scene</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NISP Y_E ← JWST/NIRCam F115W, 5×</strong> (Everetts,
+Hemmati, et al.)</td>
+<td>a metric sets what counts as resolved; a prior can move that
+threshold</td>
+<td>§6</td>
+<td>4 (receipt), 5</td>
+</tr>
+<tr>
+<td><strong>— its ellipticity finding</strong></td>
+<td>superb under one ruler, destructive under another, <strong>and no
+internal metric flagged it</strong></td>
+<td><strong>§23</strong></td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>— neither model meets 10⁻³</strong></td>
+<td>the honest stopping fact; a bar set from outside the
+optimization</td>
+<td>§23, §27</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>WISE W1 ← Spitzer IRAC Ch1, 4.6×</strong> (Rezaee, Hemmati,
+et al.)</td>
+<td>the same claim at a different wavelength and a different sampling —
+it is not a one-instrument trick</td>
+<td>§6</td>
+<td>4 (receipt)</td>
+</tr>
+<tr>
+<td><strong>NIRSpec prism R∼100 → R∼1000</strong> (Haghjoo, Hemmati, et
+al.)</td>
+<td>the resolved/unresolved threshold is <strong>not only
+spatial</strong> — spectral sampling is a distance too; and the path to
+Euclid and Roman grism</td>
+<td>§6</td>
+<td>4 (receipt)</td>
+</tr>
+<tr>
+<td><strong>enhancement = compression run backwards</strong></td>
+<td>data + prior in, structure out; validation is auditing which is
+which</td>
+<td>§14</td>
+<td>8, beat 4</td>
+</tr>
+<tr>
+<td><strong>JAISP: 10 bands → one frozen latent → 5 heads</strong></td>
+<td>one compression, less lossy than any single-task one, because every
+band and both instruments constrain it</td>
+<td>§18, §21</td>
+<td>13, 14</td>
+</tr>
+<tr>
+<td><strong>astrometry: 50 → 14–17 mas</strong></td>
+<td>the shared latent actually transferred the sharper localization —
+measured, not asserted</td>
+<td>§10, §18</td>
+<td>A1</td>
+</tr>
+<tr>
+<td><strong>the concordance field: coherent 9–10 mas</strong></td>
+<td>the landscape moves — a <em>measured</em> instance of §15, not a
+metaphor</td>
+<td>§15</td>
+<td>A2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two things this table makes visible.</p>
+<p><strong>The ellipticity result is doing the heaviest lifting in the
+whole talk</strong>, and it is currently on screen as a caveat in an
+aside. It is the only place where the central philosophical claim — that
+a loss cannot audit itself — is demonstrated with a number, in her own
+data, with a consequence. It should be promoted accordingly. See
+§23.</p>
+<p><strong>The concordance field is the only measured instance of the
+dynamic universe.</strong> Everything else about the moving landscape is
+argued (§15) or borrowed from the human column (§8). The 9–10 mas
+coherent field is the title, measured. It is currently in an appendix,
+out of the spoken route. That may be right for time, but it should be a
+deliberate choice rather than an accident of ordering.</p>
+<h3 id="21-what-jaisp-is-a-bet-on" class="sec"><span class="secnum">21</span><span class="sectext">What JAISP is a bet on</span></h3>
+<p>The deck has one seam, already named in the README: the opening
+anchors on the enhancement family, the program half anchors on JAISP.
+Scene 13 closes it. In the map's terms the seam closes like this:</p>
+<ul>
+<li>Every enhancement was <strong>a distortion measure hand-chosen for a
+known question</strong> — one teacher, one student, one loss, one thing
+worth preserving. §7 says that choice determines what survives. §20's
+ellipticity row says the choice can be wrong in a way the optimization
+cannot see.</li>
+<li><strong>JAISP is the attempt to choose a distortion measure for
+questions that do not exist yet.</strong> §16 says the questions keep
+coming. §14 says you cannot keep everything. §18 says those two together
+leave exactly one move.</li>
+</ul>
+<p>So, stated as a bet rather than as an architecture:</p>
+<blockquote>
+<p><strong>A foundation representation is a wager that information
+useful for the questions you have asked is also useful for the questions
+you have not.</strong></p>
+</blockquote>
+<p>That is a real claim, and it can fail. The failure mode is specific
+and worth naming out loud: pretraining objectives are themselves losses,
+so §23 applies to them too — a latent can be confidently, efficiently
+wrong about what was worth keeping, and nothing inside the pretraining
+will report it.</p>
+<p>Which is why the Fisher audit is not a nice-to-have. It is the only
+part of the program that can return <em>no</em>:</p>
+<blockquote>
+<p><strong>How much information about (x,y) survives at each level of
+the representation?</strong> — Rubin alone, VIS alone, the stems, the
+fused latent, the readout.</p>
+</blockquote>
+<p>The expected ordering (old notes <span class="ref-old">§20</span>) is a hypothesis until measured.
+Say it as a hypothesis. A talk that presents a foundation model as
+self-evidently better, in a room full of people who have watched
+foundation models be oversold, loses the room. A talk that presents it
+as a falsifiable bet with the falsification test already specified does
+not.</p>
+<p class="note note-caution"><strong>The guard, and it matters:</strong> this part must not read
+as <em>my work is the answer to the philosophy.</em> The honest and more
+interesting relation is the reverse — the structure predicted where the
+program would run aground, and it ran aground there. The work is
+evidence that the map is real, not the other way round.</p>
+<header class="part-open" id="part-vii--the-outside"><span class="pnum">VII</span><h2 class="ptitle">The Outside</h2><span class="prange">§22–24</span></header><p class="part-sub">The turn. Everything up to here happens inside the loop.</p>
+<h3 id="22-what-part-vii-is-for" class="sec"><span class="secnum">22</span><span class="sectext">What Part VII is for</span></h3>
+<p>Parts I–VI describe a system that works, and a program that ran it.
+Part VII asks the question the system cannot ask about itself. The
+deck's scene 16 is where this lands.</p>
+<h3 id="23-you-cannot-judge-a-loss-with-that-loss" class="sec"><span class="secnum">23</span><span class="sectext">You cannot judge a loss with that loss</span></h3>
+<p class="note note-new"><strong>New, and load-bearing. The old notes have the branch (§13.2A,
+"maybe the ruler is wrong") but never the claim.</strong></p>
+<p>The argument, in three steps:</p>
+<ol type="1">
+<li>Every quantity the optimizer computes is defined relative to the
+loss. Convergence, residual, "improvement," even the uncertainty — all
+of them presuppose the ruler.</li>
+<li>Therefore no internal quantity can be evidence that the ruler is
+wrong. A converged optimizer under a wrong loss looks exactly like a
+converged optimizer under a right one. (§3: the optimizer only ever sees
+the slope.)</li>
+<li>The only signal not defined relative to the loss is prediction error
+(§11) — and it tells you <em>that</em> something is wrong, never
+<em>which</em> thing.</li>
+</ol>
+<blockquote>
+<p><strong>Convergence of the optimizer is not convergence of
+inquiry.</strong> (Old notes <span class="ref-old">§3</span> — this section is what earns it.)</p>
+<p><strong>The judgment that a loss was the wrong loss is not available
+from inside the optimization. It is always made from somewhere else — a
+new question, a different observer, a later decade.</strong></p>
+</blockquote>
+<p>This is the sentence the whole talk has been walking toward, and note
+what it is <em>not</em>: it is not a claim that objectives are
+arbitrary, or that science is subjective. Losses can be better or worse.
+They just cannot be graded by the process that uses them. Somebody has
+to stand outside and say <em>that is the wrong thing to be
+minimizing</em> — and that person is not doing optimization. They are
+doing inference about the loss. Which is Part I's distinction (§3),
+returning at one level up.</p>
+<p><strong>The demonstration is hers, and it should be named as
+such</strong> (§20, row 2): the NISP diffusion model ties the residual
+network on per-pixel error while pushing ellipticity <em>below even
+bilinear interpolation</em>. Superb under one ruler, destructive under
+another. <strong>No internal metric flagged it.</strong> It took a
+second ruler, brought from outside, chosen by someone who knew what weak
+lensing needs — and neither model meets the 10⁻³ bar, which is the
+honest stopping fact.</p>
+<p>That is not an anecdote supporting a philosophical point. It is the
+point, measured, with a number, in her own data. There is no better
+instance available and the talk should spend its time here rather than
+arguing the claim in the abstract.</p>
+<h3 id="24-the-fork-re-read-from-outside" class="sec"><span class="secnum">24</span><span class="sectext">The fork, re-read from outside</span></h3>
+<p>Old notes <span class="ref-old">§13.2</span>'s three branches — wrong ruler / bad compression /
+missing information — are correct and stay. What changes is the
+reading:</p>
+<p>The fork is not three diagnoses the system chooses between. It is
+<strong>three things surprise cannot distinguish.</strong> Prediction
+error fires identically in all three cases. Choosing among them requires
+exactly the outside judgment of §23.</p>
+<p>That reframes scene 10 from a decision tree into the moment the talk
+admits the loop is not self-sufficient. Same three branches. Different
+meaning.</p>
+<p>Note also the ordering — wrong ruler, bad compression, missing data —
+runs from cheapest to most expensive, and from <em>least</em> to
+<em>most</em> likely to be the answer the field reaches for. The reflex
+is always "more data." It is the third branch, listed third for a
+reason. And per §19, the program hit the first two in that order.</p>
+<header class="part-open" id="part-viii--the-ending"><span class="pnum">VIII</span><h2 class="ptitle">The Ending</h2><span class="prange">§25–28</span></header><p class="part-sub">Mechanism first. The myth last, and only once it has been
+earned.</p>
+<h3 id="25-what-this-part-must-not-do" class="sec"><span class="secnum">25</span><span class="sectext">What this part must not do</span></h3>
+<p>The endings in old notes <span class="ref-old">§22–24</span> are good and stay. What they lack is
+a <em>mechanism</em> — a reason the rock returns that does not depend on
+the myth being apt. Section 26 supplies it. The myth should arrive
+after, as a description of a thing already established, not as the
+establishing move.</p>
+<h3 id="26-a-system-that-extracts-work-from-a-gradient-must-maintain-a-gradient" class="sec"><span class="secnum">26</span><span class="sectext">A system that extracts work from a gradient must maintain a gradient</span></h3>
+<p class="note note-new"><strong>New. This is the mechanical ending.</strong></p>
+<p>The pattern, in four systems that have nothing else in common:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>system</th>
+<th>extracts work from</th>
+<th>goes dead when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>heat engine</td>
+<td>a temperature difference</td>
+<td>thermal equilibrium</td>
+</tr>
+<tr>
+<td>any error-driven learner</td>
+<td>prediction error (§12)</td>
+<td>prediction is perfect</td>
+</tr>
+<tr>
+<td>gradient descent</td>
+<td>the slope</td>
+<td>the gradient vanishes</td>
+</tr>
+<tr>
+<td>science as an activity</td>
+<td>an open question</td>
+<td>the question is answered</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every one of them is a device for converting a difference into work.
+And every one of them has the same property: <strong>it produces nothing
+at its own optimum.</strong></p>
+<p>Which gives the deadpan version of the myth:</p>
+<blockquote>
+<p><strong>A converged optimizer is an idle one. Any system built to run
+on gradients is a system that must keep finding gradients — not as a
+pathology, but as a condition of operating at all.</strong></p>
+</blockquote>
+<p>The rock does not come back because Sisyphus is cursed, or because
+science is tragic, or because we are restless. It comes back because a
+flat landscape is a stopped machine. That is a statement about
+thermodynamics and control, and it happens to describe a working
+life.</p>
+<p class="note note-caution"><strong>Caution:</strong> state this as structure, not as
+consolation. It is not "the journey is the reward" — that is the
+sentimental reading and it is worse than the plain one. The plain one
+is: <strong>error-driven systems are quiet when they are right, so a
+system that wants to keep running must keep being wrong about
+something.</strong> Deliver it flat and let the room do the rest.</p>
+<p><strong>Also do not overclaim the parallel to funding or
+incentives.</strong> The four rows above are structurally analogous;
+they are not the same mechanism, and the science row is the loosest of
+the four. One sentence, no elaboration.</p>
+<h3 id="27-die-on-the-hill-die-on-the-slope--re-derived" class="sec"><span class="secnum">27</span><span class="sectext">Die on the hill, die on the slope — re-derived</span></h3>
+<p>Unchanged from old notes <span class="ref-old">§22</span>, but now these are not two moods. They
+are the two ways a gradient-driven system terminates:</p>
+<ul>
+<li><strong>Die on the hill</strong> — the gradient vanished. Negative
+feedback did its job. The question is answered <em>relative to its
+ruler</em> (§23's caveat applies: it may be the wrong ruler, and you
+will not find out from here). The 10⁻³ lensing bar is the concrete
+version: a stopping condition set from outside.</li>
+<li><strong>Die on the slope</strong> — the gradient did not vanish; the
+observer did. Finite observers inside open-ended inquiry (§13's three
+reasons guarantee the inquiry is open-ended).</li>
+</ul>
+<p>Weinberg stays exactly where the old notes put him, with the existing
+honesty note: <em>half in longing, half in mourning</em> is her phrase
+about reading him, not a quotation.</p>
+<h3 id="28-sisyphus-mechanically" class="sec"><span class="secnum">28</span><span class="sectext">Sisyphus, mechanically</span></h3>
+<p>Old notes <span class="ref-old">§23–24</span> stay. The connective map's contribution is only to
+fix what the final image is <em>doing</em>:</p>
+<p>By this point the audience has been given, in order: a loop (I), a
+ruler that was chosen (II), an instrument that can only tell you
+<em>that</em> you are wrong (III), three independent reasons the loop
+cannot close (IV), three systems that all run it (V), a program that ran
+it and ran aground twice in named ways (VI), and the fact that no one
+inside can grade the objective (VII).</p>
+<p>The myth then has nothing left to prove. It only has to name the
+shape.</p>
+<blockquote>
+<p>Maybe the problem was never that the rock comes back. Maybe the rock
+comes back because we keep finding better questions.</p>
+</blockquote>
+<blockquote>
+<p><strong>One must imagine Sisyphus happy.</strong></p>
+</blockquote>
+<p>The claim of this document is that if Parts I–VII have done their
+work, the last line is a <em>summary</em>, not a flourish. If it still
+feels like a flourish, something above it is underbuilt.</p>
+<header class="part-open is-appendix" id="appendix-a--dependency-order"><span class="pnum">A</span><h2 class="ptitle">Dependency Order</h2><span class="prange">Appendix</span></header>
+<p>Read as: X requires Y. Nothing here should be presented before its
+dependencies.</p>
+<pre class="text"><code>  §1 axiom
+   └─ §2 loop
+       ├─ §3 optimization ⊂ inference ────────────┐
+       ├─ §4 feedback regimes ──────────┐         │
+       │                                │         │
+       ├─ §5 ruler is chosen            │         │
+       │   ├─ §6 ruler = sampling rate  │         │
+       │   ├─ §7 rate–distortion        │         │
+       │   └─ §8 prospect theory ───────┤         │
+       │       └─ §9 chosen priors      │         │
+       │                                │         │
+       ├─ §10 four instruments          │         │
+       │   └─ §11 surprise is the exit &lt;┘         │
+       │       └─ §12 dopamine = §11 in wetware   │
+       │                                          │
+       ├─ §13 three reasons                       │
+       │   ├─ §14 thermodynamic  (needs §1, old §6.1) │
+       │   ├─ §15 dynamic        (needs §8)       │
+       │   └─ §16 epistemic                       │
+       │                                          │
+       ├─ §17 three systems     (needs §8, §12)   │
+       │   └─ §18 foundation rep (needs §7,§14,§16)
+       │                                          │
+       ├─ §19 the arc           (needs §6,§16,§18, and §23 for row 2)
+       │   ├─ §20 what each result proves
+       │   └─ §21 the JAISP bet (needs §7, §18)
+       │                                          │
+       ├─ §23 outside the loop  &lt;─────────────────┘  (needs §3, §11)
+       │   └─ §24 the fork re-read
+       │
+       └─ §26 nonzero gradient  (needs §4, §12)
+           └─ §27 two endings
+               └─ §28 Sisyphus</code></pre>
+<p>Two nodes carry unusual load. <strong>§11</strong> (surprise is the
+only exit) is required by §12, §23 and §24. <strong>§3</strong>
+(optimization is compressed inference) is required by §23 and supplies
+the deck's central image. If either is cut, three later sections lose
+their support.</p>
+<p><strong>One forward reference is unavoidable and should be handled
+deliberately.</strong> §19's arc needs §23 to explain why the
+ellipticity result mattered, but §19 comes first in the reading order.
+Two options: state row 2 of §19 as a puzzle ("the metric said it
+improved; it had not") and resolve it at §23; or move the ellipticity
+demonstration wholly into §23 and leave §19 pointing forward. The first
+is better on stage — it plants a question the audience carries.</p>
+<hr />
+<header class="part-open is-appendix" id="appendix-b--what-changes-in-the-existing-material"><span class="pnum">B</span><h2 class="ptitle">What Changes</h2><span class="prange">Appendix</span></header>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>file / section</th>
+<th>change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Detailed_Notes.md</code> §9 Surprise</td>
+<td>promote — it is not one of four instruments, it is the only exit
+(§11 here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> §13.2A</td>
+<td>currently a branch; add the claim behind it (§23 here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> §28 MaxEnt caution</td>
+<td>amend to distinguish MaxEnt-as-prior from EIG-as-design-criterion
+(§9 here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> §25 two-column table</td>
+<td>add a third column: institution (§17 here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> §6</td>
+<td>add the second, thermodynamic justification (§14 here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> §17–20</td>
+<td>JAISP is present but not positioned as a <em>bet with a
+falsification test</em> (§21 here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> — the whole enhancement family</td>
+<td><strong>absent entirely.</strong> NISP, WISE, NIRSpec, the
+ellipticity result, compression-run-backwards: none of it is in the old
+notes. This is the largest single gap (Part VI here)</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> §27 path</td>
+<td>superseded — it predates the spatial deck's 16-scene route
+entirely</td>
+</tr>
+<tr>
+<td><code>Detailed_Notes.md</code> overall</td>
+<td>it predates the enhancement family, "compression run backwards," the
+five-losses ruler scene, and the JAISP bridge. It has drifted from the
+deck and should be reconciled or explicitly demoted to archive</td>
+</tr>
+<tr>
+<td><code>spatial/js/scenes.js</code> scene 5</td>
+<td>candidate: distance-as-sampling-rate, science-carried (§6 here);
+<strong>promote the ellipticity result from aside to claim</strong>
+(§20, §23 here)</td>
+</tr>
+<tr>
+<td><code>spatial/js/scenes.js</code> scene 9</td>
+<td>candidate: one line that surprise is different in kind (§11
+here)</td>
+</tr>
+<tr>
+<td><code>spatial/js/scenes.js</code> scene 13</td>
+<td>state the JAISP bet as falsifiable, with the Fisher test named (§21
+here)</td>
+</tr>
+<tr>
+<td><code>spatial/js/scenes.js</code> scene 16</td>
+<td>candidate: the outside-the-loop claim (§23 here) and the gradient
+claim (§26 here)</td>
+</tr>
+<tr>
+<td><code>spatial/js/scenes.js</code> appendix A2</td>
+<td>the concordance field is the only <em>measured</em> instance of the
+moving landscape — decide deliberately whether it stays out of the
+spoken route (§20 here)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<header class="part-open is-appendix" id="appendix-c--open-questions"><span class="pnum">C</span><h2 class="ptitle">Open Questions</h2><span class="prange">Appendix</span></header>
+<p>Things this map does not settle, listed so they are not mistaken for
+settled.</p>
+<ol type="1">
+<li><strong>Does Part VII fit in the time?</strong> The outside-the-loop
+claim needs about ninety seconds to land and the current route is
+already 14–16 minutes. It may have to displace something in Part V.</li>
+<li><strong>Is prospect theory stage-worthy or notes-only?</strong> It
+is the human column's only piece of <em>measured</em> content, which
+argues for stage. It is also the furthest from her own work, which
+argues against. Unresolved.</li>
+<li><strong>How much of §14 survives contact with a physicist?</strong>
+The identity is real; the temptation to overclaim is large. Current
+recommendation: notes only, with a prepared one-sentence answer.</li>
+<li><strong>Does the three-systems table (§17) replace the two-column
+table (old notes <span class="ref-old">§25</span>), or sit beside it?</strong> Replacing is cleaner.
+Beside is safer.</li>
+<li><strong>Where does the enhancement family enter?</strong> §19 says
+the arc is the spine of Part VI, but the deck currently introduces the
+papers at scene 4 — before §6 (sampling rate) or §23 (the loss problem)
+exist. Either the receipts move later, or scene 4 plants them explicitly
+as a promise to be cashed.</li>
+<li><strong>Does the ellipticity result carry the weight §23 puts on
+it?</strong> It is the best available demonstration, but it is one
+result, in one paper, on one instrument pair. If someone asks whether
+the general claim rests on a single ellipticity number, the answer
+should be prepared: the claim is structural, the result is an instance,
+and the WISE and prism pairs are where a second instance would come from
+if anyone has looked.</li>
+<li><strong>Is the concordance field in or out of the spoken
+route?</strong> It is the title, measured. It is currently in an
+appendix.</li>
+</ol>
+
+</main>
+</div>
