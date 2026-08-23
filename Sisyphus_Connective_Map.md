@@ -953,6 +953,7 @@ first is better on stage — it plants a question the audience carries.
 | `Detailed_Notes.md` overall | it predates the enhancement family, "compression run backwards," the five-losses ruler scene, and the JAISP bridge. It has drifted from the deck and should be reconciled or explicitly demoted to archive |
 | `spatial/js/scenes.js` scene 5 | candidate: distance-as-sampling-rate, science-carried (§6 here); **promote the ellipticity result from aside to claim** (§20, §23 here) |
 | `spatial/js/scenes.js` scene 9 | candidate: one line that surprise is different in kind (§11 here) |
+| `spatial/js/scenes.js` scene 5 or 9, human aside | candidate: philosophical frameworks as rulers — "you carry rulers too" (Appendix D here) |
 | `spatial/js/scenes.js` scene 13 | state the JAISP bet as falsifiable, with the Fisher test named (§21 here) |
 | `spatial/js/scenes.js` scene 16 | candidate: the outside-the-loop claim (§23 here) and the gradient claim (§26 here) |
 | `spatial/js/scenes.js` appendix A2 | the concordance field is the only *measured* instance of the moving landscape — decide deliberately whether it stays out of the spoken route (§20 here) |
@@ -986,3 +987,104 @@ Things this map does not settle, listed so they are not mistaken for settled.
    instance would come from if anyone has looked.
 7. **Is the concordance field in or out of the spoken route?** It is the title,
    measured. It is currently in an appendix.
+
+---
+
+# APPENDIX D — The philosophical rulers (parking lot, do not lose)
+
+*A private musing and its mapping onto the talk. Not yet in the deck; at most
+one human aside and a Q&A answer. Kept here so it survives.*
+
+## D.1 The original musing, verbatim
+
+> I keep swinging between these thinkings, I sometimes find myself arguing from
+> a rationalist pov, sometimes pure existential and then another day another
+> issue absurd ... is it because I have read books by all these people and they
+> shaped my thinking, or is it because we are in metamodernism and by definition
+> oscilating or is it that these are just axis and one always lives somewhere in
+> this multi-dimensional space ...
+
+And the three candidate explanations, as they were worked out:
+
+1. **Different axes for different problem domains.** Philosophy as an
+   epistemological toolkit, not a choice of tribe. Rationalism is an
+   instrumental/epistemic axis — modeling a system, evaluating consistency.
+   Existentialism is an ethical/agentic axis — where deduction runs out of
+   predictive power and you must own the choice. Absurdism is a
+   humility/baseline axis — where neither logic nor self-authored purpose
+   resolves the dissonance; Camus steps in when reason reaches its boundary.
+   The swing is not inconsistency; it is refusing to use a hammer to turn a
+   screw.
+
+2. **The metamodern condition.** Vermeulen & van den Akker define metamodernism
+   as an oscillation between modernist sincerity / rational hope and postmodern
+   irony / absurd detachment. Being conscious in this era almost demands the
+   internal dialogue: *I know the universe is indifferent (absurd), I can
+   analyze the data rigorously (rational), but I will care deeply and act
+   deliberately anyway (existential/metamodern).*
+
+3. **The palimpsest of what you've read.** Reading deeply installs cognitive
+   schemas — Camus's revolt, Spinoza's geometric order, Sartre's anguish of
+   freedom — that cannot be un-seen. Each new crisis triggers what feels like
+   an erratic swing but is actually a high-dimensional vector search across the
+   philosophy you've internalized, settling on whichever lens offers the most
+   explanatory power or resilience in that moment.
+
+## D.2 Why this is already the talk
+
+The three explanations are three sections of this map, said about a life
+instead of a pipeline:
+
+| the musing | the map | the deck |
+|---|---|---|
+| different frameworks for different problem domains | §5 the ruler is chosen; §23 wrong ruler is fork A | scenes 5, 9, 10 |
+| metamodern oscillation | §2 the loop; §16 the answer makes the question — the rock coming back as the healthy behaviour of an updating system | scenes 3, 16 |
+| vector search across internalized schemas | §18 one representation, interrogated differently per question — books read are pretraining; each crisis is a small head on frozen features | scene 13 |
+
+The closing line already *is* the metamodern move — indifferent universe,
+rigorous analysis, push anyway — landed in six words. **Do not explain it
+beforehand; explaining it kills it.**
+
+## D.3 Staging recommendation
+
+- **At most one human aside**, in scene 5 or 9, along the lines of: *"You carry
+  rulers too. Some days rationalist, some days existentialist, some days
+  absurd — not inconsistency: a different objective for a different
+  question."* It makes the GIPS audience feel the ruler argument on
+  themselves.
+- **The full riff stays in the back pocket** as the spoken answer to the
+  inevitable "so which philosophy do you subscribe to?" question. The
+  hammer-and-screw line and oscillation-as-loop are better delivered live than
+  written on a slide.
+- **Do not** add a metamodernism block or name-drop Vermeulen/Spinoza/Sartre on
+  stage — the deck earns its references (Kahneman, Weinberg, Camus) and this
+  would break register and pace.
+
+## D.4 The Camus passage, in full
+
+The final paragraph of *The Myth of Sisyphus* — the source of the deck's
+closing line, kept here whole:
+
+> "I leave Sisyphus at the foot of the mountain! One always finds one's burden
+> again. But Sisyphus teaches the higher fidelity that negates the gods and
+> raises rocks. He too concludes that all is well. This universe henceforth
+> without a master seems to him neither sterile nor futile. Each atom of that
+> stone, each mineral flake of that night filled mountain, in itself forms a
+> world. The struggle itself toward the heights is enough to fill a man's
+> heart. One must imagine Sisyphus happy."
+
+Notes on use:
+
+- **"Each atom of that stone, each mineral flake of that night filled
+  mountain, in itself forms a world"** — this is the deck's terrain, described
+  by Camus before the deck existed. The whole talk lives inside one mountain
+  drawn at many zoom levels; every scene is a mineral flake that formed a
+  world. If the passage is ever quoted on stage, this is the sentence that
+  earns it, not the famous last one.
+- **"One always finds one's burden again"** is §16 (the answer makes the
+  question) in seven words — the return scene's "maybe the rock comes back
+  because we keep finding better questions" is this line, optimized.
+- The deck deliberately paraphrases the last line as *"One must imagine the
+  optimizer happy"* (scene 16). Keep the swap — quoting Camus verbatim there
+  would un-earn the joke. If the full passage appears anywhere, it is spoken
+  in Q&A or printed in notes, not projected.
