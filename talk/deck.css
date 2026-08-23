@@ -1,0 +1,82 @@
+/* Talk-specific overrides for the cinematic deck. The engine, terrain and
+   core typography are shared with spatial/. */
+
+.titleblock h1 {
+  max-width: 780px;
+}
+
+.aside.lead p {
+  font-size: 28px;
+}
+
+.aside.tight p,
+.callout.tight p {
+  font-size: 19px;
+  line-height: 1.38;
+}
+
+.phrase.big p {
+  font-size: 54px;
+  line-height: 1.12;
+}
+
+.phrase.xl p {
+  font-size: 64px;
+  line-height: 1.06;
+}
+
+.drinkbox {
+  color: var(--human);
+}
+
+.drinkbox svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.drinkbox .inkline {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 7;
+}
+
+.drinkbox .thin {
+  stroke-width: 4.5;
+}
+
+.drinkbox .fill {
+  fill: rgba(138, 87, 71, .14);
+  stroke: currentColor;
+  stroke-width: 4.5;
+}
+
+.drinkbox p {
+  max-width: none;
+  margin-top: 12px;
+  color: var(--human);
+  font-size: 20px;
+  line-height: 1.32;
+  font-style: italic;
+  text-align: center;
+}
+
+.mini-ledger p {
+  font-size: 20px;
+  line-height: 1.36;
+}
+
+.mini-ledger b {
+  font-style: normal;
+}
+
+.answer p {
+  font-size: 220px;
+}
+
+.tb .quiet {
+  color: var(--muted);
+}

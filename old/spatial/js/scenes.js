@@ -13,7 +13,9 @@
      plates  — rasters placed in the world the same way
      steps   — beats. Right arrow advances the beat; at the last one it moves on.
 
-   The route: the myth (1–2); the loop, and two systems that run it (3–4);
+   The route follows the handwritten notes (talk/1–8.png): the GIPS opening
+   and the myth (1–2); the loop — question → ruler → data → compression →
+   inference → answer → good enough? — and three systems that run it (3–4);
    down into the basin (5–6); apart what the answer is made of (7–10); east
    over the crest to the program (11–14); then the endings (15–16).
    Two appendix scenes — astrometry and the moving field — sit after the
@@ -46,9 +48,13 @@
         {},
         {
           notes:
-            'One sentence over the title, before any explanation: data arrive, ' +
-            'we build a model, we decide what better means. Do not gloss it — ' +
-            'the whole talk is this sentence at different magnifications.',
+            'The GIPS framing — land the acronym out loud before anyone ' +
+            'reads it as a typo.',
+        },
+        {
+          notes:
+            'The AI-and-philosophy line, then the promise: Sisyphus, and ' +
+            'all I do (maybe you too) is his story.',
         },
       ],
       text: [
@@ -60,16 +66,19 @@
             '<p class="byline">Shoubaneh Hemmati — Caltech/IPAC</p>',
         },
         {
-          id: 'openline', at: [0.055, 0.585], w: 660, cls: 'aside lead', from: 1,
-          html: '<p>Data arrive. We build a model. Then we must decide what ' +
-            '<em>better</em> means.</p>',
+          id: 'openline', at: [0.055, 0.56], w: 660, cls: 'aside lead', from: 1,
+          html: '<p>Another <em>Greater IPAC Philosophy Symposium</em> talk — ' +
+            'a reflection, not a science talk.</p>',
+        },
+        {
+          id: 'openline2', at: [0.055, 0.685], w: 660, cls: 'aside lead', from: 2,
+          html: '<p>With AI taking more of the technical work, philosophy is ' +
+            'heading back to its prime days.</p>',
         },
       ],
       notes:
         'Open on the drawing. Say nothing about optimization yet. Let them ' +
-        'assume this is the myth: the same rock, the same hill, forever. And land ' +
-        'GIPS out loud — Greater IPAC Philosophy Symposium, not Science — before ' +
-        'anyone decides it is a typo.',
+        'assume this is the myth: the same rock, the same hill, forever.',
     },
 
     /* ================================================ 2 · ENTER THE SLOPE == */
@@ -79,17 +88,34 @@
       camera: { x: 2130, y: -1830, z: 1.5 },
       enter: { dur: 2100 },
       set: { far: 1, rock: 1 },
+      steps: [
+        { notes: 'The myth, one breath.' },
+        { notes: 'The observation the room already senses — let it land.' },
+        { notes: 'The thesis, one line, then move.' },
+      ],
       text: [
         {
-          id: 'slope-phrase', at: [0.055, 0.11], w: 660, cls: 'phrase sm',
-          html: '<p>We are always building models from incomplete information.</p>',
+          id: 'slope-myth', at: [0.055, 0.11], w: 680, cls: 'aside lead', to: 0,
+          html: '<p>Push the boulder up; near the top, it rolls back. ' +
+            'Repeat, for eternity.</p>',
+        },
+        {
+          id: 'slope-phrase', at: [0.055, 0.11], w: 720, cls: 'phrase sm', from: 1,
+          html: '<p>Moving on a hill toward an optimum — that is an ' +
+            'optimization. Ascent or descent.</p>',
+        },
+        {
+          id: 'slope-thesis', at: [0.055, 0.62], w: 680, cls: 'aside lead', from: 2,
+          html: '<p>Data arrive. We build a model of reality from incomplete, ' +
+            'noisy observations. Then we must decide what <em>better</em> ' +
+            'means.</p>',
         },
       ],
       notes:
         'One slow move into the hillside beside him. The drawing dissolves; the ' +
-        'ground stays. This sentence is the thesis; everything after it is the ' +
-        'machinery of taking it seriously. Note the ledge halfway up — we are ' +
-        'going to live there.',
+        'ground stays. Three beats: the myth, the optimization reading of it, ' +
+        'the thesis. Everything after is the machinery of taking the thesis ' +
+        'seriously. Note the ledge halfway up — we are going to live there.',
     },
 
     /* ====================================================== 3 · THE LOOP == */
@@ -103,64 +129,69 @@
         {
           set: { cyc1: 1 }, anim: { roll: 0 },
           notes:
-            'No axes, no equations — still a hillside, now with measurements on ' +
-            'it. Say the loop once, plainly: data, model, objective, update. ' +
-            'Everything in this talk is one lap of it.',
+            'No axes, no equations — still a hillside, now with the lap ' +
+            'marked on it. Say the loop once, plainly: a question, a choice ' +
+            'of what matters — the ruler — then data, compression, ' +
+            'inference, an answer, and the judgment: good enough? Everything ' +
+            'in this talk is one lap of it.',
         },
         {
-          set: { cyc2: 1, ball: 0.92, pusher: 0.92 },
+          set: { cyc2: 1 },
           notes:
-            'The boulder is the current state — of a fit, of a network, of a ' +
-            'belief. Wherever it rests is what we currently think the world is.',
+            'The ruler decides what gets measured at all; the data are ' +
+            'whatever it let through — incomplete and noisy.',
         },
         {
-          set: { cyc3: 1 },
+          set: { cyc3: 1, ball: 0.92, pusher: 0.92 },
           notes:
-            'Better is not given by nature. Downhill is only downhill after we ' +
-            'chose what the height means. That choice is the objective, and it ' +
-            'is ours.',
+            'The boulder is the current belief — of a fit, of a network, of ' +
+            'a person. Compression and inference put it where it rests: ' +
+            'p(world | data), maintained against incomplete, noisy ' +
+            'observations. Wherever it rests is what we currently think the ' +
+            'world is.',
         },
         {
           set: { cyc4: 1 },
           notes:
-            'The step is the easy part; knowing when to stop is not. And when ' +
-            'new data arrive, the lap begins again — that is the rock coming ' +
-            'back, said without the myth.',
+            'An answer comes back — and then the one judgment with no axis ' +
+            'of its own: good enough? If not, the lap begins again. That is ' +
+            'the rock coming back, said without the myth.',
         },
       ],
       text: [
         {
           id: 'cyc-a', at: [0.055, 0.10], w: 470, cls: 'aside lead', to: 0,
-          html: '<p>I never see the thing itself — only a handful of ' +
-            'measurements of it.</p>',
+          html: '<p>Every lap starts with a question — and a choice of what ' +
+            'matters. That choice is the ruler.</p>',
         },
         {
           id: 'cyc-b', at: [0.055, 0.10], w: 470, cls: 'aside lead', from: 1, to: 1,
-          html: '<p>A model is my current guess at what made them.</p>',
+          html: '<p>Through the ruler, data: I never see the thing itself — ' +
+            'only a handful of measurements of it.</p>',
         },
         {
-          id: 'cyc-c', at: [0.055, 0.10], w: 470, cls: 'aside lead', from: 2, to: 2,
-          html: '<p>And <em>better</em> is a choice. Nothing in nature ' +
-            'defines it; I do.</p>',
+          id: 'cyc-c', at: [0.055, 0.10], w: 480, cls: 'aside lead', from: 2, to: 2,
+          html: '<p>Too much to carry, so: compress, infer. A model is my ' +
+            'current guess at what made them — p(world&thinsp;|&thinsp;data).</p>',
         },
         {
           id: 'cyc-d', at: [0.055, 0.10], w: 480, cls: 'aside lead', from: 3,
-          html: '<p>The step is the easy part. Knowing when to stop — ' +
-            'whether the data, the representation, or my ruler ran out — is ' +
-            'the whole difficulty.</p>',
+          html: '<p>An answer. Then the judgment with no axis of its own: ' +
+            '<em>good enough?</em> — and the lap begins again.</p>',
         },
       ],
       notes:
         'The recurring structure, drawn on the ground rather than boxed above ' +
-        'it: data → model → objective → update, and the dashed return to new ' +
-        'data. Four ingredients; the fourth has no axis of its own, which is ' +
-        'why it will take the rest of the talk.',
+        'it: question → what matters (the ruler) → data → compression → ' +
+        'inference → answer → good enough?, and the dashed return to a new ' +
+        'question. Eight stations, four marks; the last one has no axis of ' +
+        'its own, which is why it will take the rest of the talk.',
     },
 
-    /* =================================================== 4 · TWO SYSTEMS == */
+    /* ================================================= 4 · THREE SYSTEMS == */
     {
       id: 'systems',
-      name: 'Two systems',
+      name: 'Three systems',
       camera() { const z = 2.1; return { x: 2200, y: S.anchorY(-1790, 0.62, z), z }; },
       enter: { dur: 1800 },
       set: {
@@ -204,10 +235,28 @@
         },
         {
           notes:
+            'The third runner: science itself, as a community. Paradigm ' +
+            'shifts — Newtonian gravity → general relativity → … — are its ' +
+            'model updates; the next survey is its next observation; ' +
+            'cosmology systematics are its noisy ruler.',
+        },
+        {
+          notes:
             'Say the disclaimer out loud: no claim that the brain minimizes a ' +
-            'loss. The claim is that both face the same questions about ' +
-            'information, representation, objective and stopping — and the ' +
-            'right-hand column is the talk from here on.',
+            'loss. The claim is that all three face the same questions. The ' +
+            'table, spoken, if it helps: the loss is loss-averse biology / a ' +
+            'handcrafted objective / consensus and Occam. The ruler is senses ' +
+            'and attention / sensors and tokenizers / telescopes and ' +
+            'bandpasses. The data are an irreversible sensory stream / ' +
+            're-shuffled batches / archived surveys of a non-re-runnable ' +
+            'universe. The compression is synaptic weights / latent ' +
+            'embeddings / physical laws and cosmological parameters. The ' +
+            'learning signal is dopaminergic prediction error / gradients / ' +
+            'empirical anomalies. Restart? no / yes / partially — paradigm ' +
+            'shifts are slow and expensive. Who audits? evolution / we do, ' +
+            'with our proxy blind spots / peer review, slow and noisy. Same ' +
+            'optimization topology at every scale — and the moment you ' +
+            'answer, the landscape shifts and Sisyphus walks back down.',
         },
         {
           set: { cyc1: 0.12, cyc2: 0.12, cyc3: 0.12, cyc4: 0.12 },
@@ -220,7 +269,7 @@
       ],
       text: [
         {
-          id: 'sysh', at: [0.055, 0.075], w: 700, cls: 'phrase sm', to: 1,
+          id: 'sysh', at: [0.055, 0.075], w: 700, cls: 'phrase sm', to: 2,
           html: '<p>The same loop, at very different scales.</p>',
         },
         {
@@ -244,33 +293,47 @@
             'used?</p>',
         },
         {
-          id: 'sysh2', at: [0.055, 0.075], w: 660, cls: 'phrase sm', from: 2, to: 2,
+          id: 'sys-sci', at: [0.60, 0.21], w: 440, cls: 'aside', from: 2, to: 2,
+          html: '<p><b>A community.</b> Science runs the same lap at the ' +
+            'scale of centuries.</p>' +
+            '<p>Paradigm shifts — Newtonian gravity → general relativity → … ' +
+            '— are its model updates; the next survey is its next ' +
+            'observation.</p>' +
+            '<p>Its ruler: telescopes, bandpasses, spectrographs. Its audit: ' +
+            'peer review and replication — slow, and noisy.</p>',
+        },
+        {
+          id: 'sysh2', at: [0.055, 0.075], w: 960, cls: 'phrase sm', from: 3, to: 3,
           html: '<p>Not the same algorithm. The same questions.</p>',
         },
         {
-          id: 'sys-qs', at: [0.055, 0.53], w: 470, cls: 'aside', from: 2, to: 2,
-          html: '<p>What information do I have? What model of the world? What ' +
-            'counts as better? What did I throw away? When do I stop?</p>',
+          id: 'sys-qs', at: [0.055, 0.53], w: 520, cls: 'aside', from: 3, to: 3,
+          html: '<p>What data do I have — through what ruler? What do I keep ' +
+            '— the compression? What counts as better — the loss? What tells ' +
+            'me I am wrong — the surprise? Can I restart? And who audits the ' +
+            'loop?</p>',
         },
         {
-          id: 'sysh3', at: [0.055, 0.075], w: 660, cls: 'phrase sm', from: 3,
+          id: 'sysh3', at: [0.055, 0.075], w: 660, cls: 'phrase sm', from: 4,
           html: '<p>Many instruments, one sky.</p>',
         },
         {
-          id: 'sys-sky', at: [0.055, 0.53], w: 470, cls: 'aside lead', from: 3,
+          id: 'sys-sky', at: [0.055, 0.53], w: 470, cls: 'aside lead', from: 4,
           html: '<p>Every instrument is a lossy projection of the same ' +
             'reality. Enhancement is inference on the shared sky: information ' +
             'moved from where it was measured to where it is needed.</p>',
         },
       ],
       notes:
-        'One loop, two runners — then the stage. The brain example makes the ' +
-        'abstraction intuitive; the right column is the year of work: one ' +
-        'family of enhancements, imaging and spectral, each an instance of the ' +
-        'same loop. The final beat states the frame the rest of the talk ' +
-        'stands on: many instruments, one sky. 12-minute cut: advance straight ' +
-        'to the receipts beat, give brain and papers twenty seconds together, ' +
-        'skip the "same questions" beat, land on one sky.',
+        'One loop, three runners — a brain, a model, and science itself — ' +
+        'then the stage. The brain example makes the abstraction intuitive; ' +
+        'the receipts are the year of work: one family of enhancements, ' +
+        'imaging and spectral, each an instance of the same loop; the ' +
+        'community column is the biggest lap of all. The final beat states ' +
+        'the frame the rest of the talk stands on: many instruments, one ' +
+        'sky. 12-minute cut: advance straight to the receipts beat, give ' +
+        'brain and papers twenty seconds together, skip the community and ' +
+        '"same questions" beats, land on one sky.',
     },
 
     /* ========================================================= 5 · RULER == */
@@ -408,7 +471,9 @@
           id: 'h6', at: [0.62, 0.085], w: 440, cls: 'aside human', to: 0,
           html: '<p>The same question, about a person you have just met: who ' +
             'they are — reached only through words, tone, promises, behaviour ' +
-            'under stress.</p>',
+            'under stress.</p>' +
+            '<p>And you never walk in blank: a prior over who they are, set ' +
+            'by context and your own history.</p>',
         },
         {
           id: 'h6b', at: [0.62, 0.085], w: 450, cls: 'aside human', from: 1,
@@ -532,10 +597,10 @@
           id: 'r4h', at: [0.115, 0.055], w: 620, cls: 'phrase sm',
           html: '<p>Four rulers, one basin.</p>',
         },
-        { id: 'r4a', at: [0.115, 0.155], w: 740, cls: 'aside', html: '<p><b>Entropy</b> — how uncertain am I?</p>' },
-        { id: 'r4b', at: [0.115, 0.225], w: 740, cls: 'aside', from: 1, html: '<p><b>Surprise</b> — how unexpected was this datum?</p>' },
+        { id: 'r4a', at: [0.115, 0.155], w: 740, cls: 'aside', html: '<p><b>Entropy</b> — the data: how much the raw stream even carries.</p>' },
+        { id: 'r4b', at: [0.115, 0.225], w: 740, cls: 'aside', from: 1, html: '<p><b>Surprise</b> — the learning signal: how unexpected was this datum?</p>' },
         { id: 'r4c', at: [0.115, 0.295], w: 740, cls: 'aside', from: 2, html: '<p><b>Information gain</b> — how much did the bracket close?</p>' },
-        { id: 'r4d', at: [0.115, 0.365], w: 740, cls: 'aside', from: 3, html: '<p><b>Fisher</b> — how steep is the hill where I stand?</p>' },
+        { id: 'r4d', at: [0.115, 0.365], w: 740, cls: 'aside', from: 3, html: '<p><b>Fisher</b> — the ruler: how much of what I measure is about θ.</p>' },
         {
           id: 'h8', at: [0.60, 0.055], w: 420, cls: 'aside human', from: 1,
           html: '<p>A confident first impression can be flatly wrong: low entropy ' +
@@ -545,16 +610,21 @@
         },
       ],
       notes:
-        'Four readings of the same picture. Entropy is the width of the bracket. ' +
-        'Surprise is a datum nothing predicted — and it need not teach you ' +
-        'anything about θ. Information gain is the bracket closing. Fisher is the ' +
-        'curvature that decides how fast it closes: the two dashed parabolas are ' +
-        'the same landscape, flat at one scale and steep at another. Two cautions ' +
-        'to say out loud: low entropy is not truth, and surprise is not gain. ' +
-        'The formulas stay off screen; if asked: s(D) = −log p(D), gain is ' +
-        'D_KL[p(θ|D) ‖ p(θ)], and F ∝ 1/σ². 12-minute cut: narrate entropy ' +
-        'and Fisher only; step through surprise and KL without commentary — ' +
-        'they stay on screen for anyone reading.',
+        'The loop stations, made measurable — say the mapping: entropy ' +
+        'H(X) belongs to the data (raw capacity, mostly noise and ' +
+        'background); Fisher I(θ) belongs to the ruler (how much the chosen ' +
+        'instrument carries about the parameter — and if Fisher is zero in a ' +
+        'wavelength, or a conversational cue, no downstream network or brain ' +
+        'can ever infer it: the ruler was blind); surprise −log p(x) is the ' +
+        'learning signal — prediction error in a brain, loss gradient in a ' +
+        'model, empirical anomaly in a field. Entropy is the width of the ' +
+        'bracket; information gain is the bracket closing; Fisher is the ' +
+        'curvature that decides how fast. Two cautions to say out loud: low ' +
+        'entropy is not truth, and surprise is not gain. The formulas stay ' +
+        'off screen; if asked: s(D) = −log p(D), gain is D_KL[p(θ|D) ‖ ' +
+        'p(θ)], and F ∝ 1/σ². 12-minute cut: narrate entropy and Fisher ' +
+        'only; step through surprise and KL without commentary — they stay ' +
+        'on screen for anyone reading.',
     },
 
     /* ===================================================== 10 · THE FORK == */
@@ -571,8 +641,8 @@
       ],
       text: [
         {
-          id: 'forkh', at: [0.055, 0.07], w: 700, cls: 'phrase sm',
-          html: '<p>Not good enough. Three reasons.</p>',
+          id: 'forkh', at: [0.055, 0.07], w: 980, cls: 'phrase sm',
+          html: '<p>Not good enough. Debug — three places to look.</p>',
         },
         {
           id: 'f1', at: [0.055, 0.20], w: 470, cls: 'aside lead',
@@ -597,11 +667,14 @@
         },
       ],
       notes:
-        'The hill is scenery here — deliberately: the content of this scene is ' +
-        'verbal, so the words take the stage and the fork trails stay small at ' +
-        'the bottom. The three stay side by side because they are alternatives, not stages. ' +
-        'Each trail points where we would actually have to go — and we are about ' +
-        'to take the third one, over the crest.',
+        'This is the 42 branch of the loop: the answer came back and it was ' +
+        'not good enough — so debug the pipeline: the loss, the instrument, ' +
+        'the data, the compression. Every item on that list is one of these ' +
+        'three trails. The hill is scenery here — deliberately: the content ' +
+        'is verbal, so the words take the stage and the fork trails stay ' +
+        'small at the bottom. The three stay side by side because they are ' +
+        'alternatives, not stages. Each trail points where we would actually ' +
+        'have to go — and we are about to take the third one, over the crest.',
     },
 
     /* ========================================== 11 · EXPERIMENTAL DESIGN == */
@@ -786,8 +859,9 @@
         },
         {
           id: 'e1', at: [0.62, 0.045], w: 420, cls: 'aside',
-          html: '<p><b>On the hill.</b> The answer sufficed for the question. ' +
-            'Stop, or ask the next one. The summit was always local to the question.</p>',
+          html: '<p><b>Die on that hilltop.</b> The answer sufficed for the ' +
+            'question — stop there, content. Or let the summit give you a ' +
+            'view of the next mountain. Higher.</p>',
         },
         {
           id: 'e2', at: [0.115, 0.42], w: 430, cls: 'aside',
@@ -840,9 +914,12 @@
       notes:
         'Exactly the opening camera — same hill, same scale, and by now it means ' +
         'something else. Land 6 × 7 as a throwaway, not a reveal. If it needs a ' +
-        'chaser: the hardest landscapes are the ones that moved because you looked. There is no universal loss, no compression sufficient for ' +
-        'every question, and no observer with all the information. The purpose was ' +
-        'never to stop pushing.',
+        'chaser: the system is non-stationary — people adapt, contexts shift, ' +
+        'the universe keeps arriving. Six months later a surprising behaviour ' +
+        'spikes the prediction error, the loss surface warps, and the model ' +
+        'goes back up the mountain. There is no universal loss, no compression ' +
+        'sufficient for every question, and no observer with all the ' +
+        'information. The purpose was never to stop pushing.',
     },
     /* ======================================= A1 · APPENDIX — ASTROMETRY == */
     {

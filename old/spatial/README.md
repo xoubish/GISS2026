@@ -36,8 +36,9 @@ hill is never dressed up as a chart; only the appendix astrometry scene
 earns a calibrated frame.
 
 Every station in the middle of the talk is drawn *on that ground*, not beside
-it. The loop of scene 3 — data → model → objective → update — is pinned to the
-hillside, not boxed above it. The soundings in scene 7 are soundings of this
+it. The loop of scene 3 — question → what matters (the ruler) → data →
+compression → inference → answer → good enough? — is pinned to the hillside,
+not boxed above it. The soundings in scene 7 are soundings of this
 hillside. The compressions in scene 8 are re-drawings of this curve, and the
 residual hairlines are exactly what each summary threw away. The four rulers in
 scene 9 are four readings of this one basin — entropy is the width of the
@@ -47,19 +48,30 @@ numbers in the appendix are real widths on the hill's own θ axis:
 **1 world unit = 2 mas** (`S.MAS` in `art.js`), so 50 mas and 14–17 mas
 are drawn to scale against each other.
 
-## The science goes first
+## The route follows the handwritten notes
 
-The opening no longer runs myth → landscape → philosophy. By scene 3 the
-audience has the whole recurring structure — **data → model → objective →
-update**, drawn on the ground itself: a handful of soundings where the label
-*data* stands, the boulder as the current state, *better* literally downhill,
-and a dashed return arc that closes the loop on *new data*. The fourth
-ingredient — update, **or stop?** — is named there too, because it is the one
-with no axis of its own and it is what the second half of the talk is about.
+The spoken spine is the handwritten script in `../talk/1–8.png`. Scene 1
+carries its opening beats on screen: the GIPS framing (a reflection, not a
+science talk) and the AI-and-philosophy line. Scene 2 retells the myth in one
+breath, then lands the observation that moving on a hill toward an optimum
+*is* an optimization — ascent or descent — and closes on the thesis:
+maintaining a model of reality from incomplete, noisy observations. By scene
+3 the audience has the whole recurring structure — **question → what matters
+(the ruler) → data → compression → inference → answer → good enough?**,
+drawn on the ground itself: the question ringed upslope, a handful of
+soundings where the label *data* stands, the boulder as the current belief
+(*p(world | data)* said on screen), and a dashed return arc that closes the
+loop on a *new question*. The last station — **good enough?** — is named
+there too, because it is the one with no axis of its own and it is what the
+second half of the talk is about.
 
-Scene 4 runs that loop at two scales side by side: a brain (*another drink?*,
-set as the human marginalia) and a model — not one model but the year's family
-of them, each verified against its manuscript: NISP Y_E imaging sharpened with
+Scene 4 runs that loop at three scales: a brain (*another drink?*, set as the
+human marginalia), science as a community (paradigm shifts — Newtonian → GR →
+… — as its model updates, the next survey as its next observation; the notes'
+seven-row comparison — loss, ruler, data, compression, learning signal, can
+it restart?, who audits? — is spoken from the presenter notes and appears on
+screen as the "same questions" beat), and a model — not one model but the
+year's family of them, each verified against its manuscript: NISP Y_E imaging sharpened with
 JWST/NIRCam F115W at 5× finer sampling (Everetts, Hemmati, et al.), WISE W1
 with Spitzer IRAC Ch1 at 4.6× (Rezaee, Hemmati, et al.), and JWST/NIRSpec
 prism spectra sharpened from R ∼ 100 to R ∼ 1000 against grating references
@@ -128,10 +140,10 @@ scenes that *say* things get paper.
 **Use the hill, never narrate it.** The landscape earns its keep when
 something happens on it — the boulder settling at 42, the fork trails, the
 climber, the return — and costs credibility whenever the words point at it
-and explain the mapping. So the terrain labels are single words (*data,
-model, objective, update — then stop?*), the asides never mention boulders or
-downhill, and the metaphor is carried entirely by what the audience watches
-happen.
+and explain the mapping. So the terrain labels stay terse (*question · what
+matters — the ruler · data · compress → infer · answer — good enough? · new
+question*), the asides never mention boulders or downhill, and the metaphor
+is carried entirely by what the audience watches happen.
 
 ## Sisyphus stays on stage
 
@@ -155,21 +167,21 @@ get. It never looks like a picture being scaled.
 
 | | scene | where the camera is |
 |---|---|---|
-| 1 | Sisyphus | the flank, z 0.6 — beat 2 states the thesis in one line |
-| 2 | Enter the slope | into the hillside, z 1.5 |
-| 3 | The loop | the ledge before any axes: data → model → objective → update |
-| 4 | Two systems | pulled back, z 2.1: a brain, the enhancement family, one sky |
+| 1 | Sisyphus | the flank, z 0.6 — the GIPS framing, then the AI/philosophy line |
+| 2 | Enter the slope | into the hillside, z 1.5: the myth, then gradient ascent/descent, then the thesis |
+| 3 | The loop | the ledge before any axes: question → ruler → data → compression → inference → answer → good enough? |
+| 4 | Three systems | pulled back, z 2.1: a brain, the enhancement family, science as a community, one sky |
 | 5 | The ruler | inside the basin — five super-resolution losses, then the human one |
 | 6 | Apparent solution | the boulder settles · **42**, played straight |
 | 7 | Data | the same ledge: soundings, not a curve |
 | 8 | Compression | 15 → 5 (basin lost) → 7 placed (basin back) → run backwards |
-| 9 | Four rulers | entropy · surprise · KL · Fisher, on one basin |
-| 10 | The fork | wrong ruler / bad compression / missing information |
+| 9 | Four rulers | entropy (the data) · surprise (the signal) · KL · Fisher (the ruler), on one basin |
+| 10 | The fork | not good enough → debug: wrong ruler / bad compression / missing information |
 | 11 | Experimental design | up to the crest, where you can see further |
 | 12 | Two instruments | Rubin and *Euclid* VIS sampling the same ground |
 | 13 | One representation | ten bands → one frozen latent → five heads |
 | 14 | JAISP | the architecture plate and the numbers |
-| 15 | Two endings | on the hill · on the slope |
+| 15 | Two endings | die on that hilltop (or the next mountain, higher) · on the slope |
 | 16 | Return | scene 1's camera, the pinball machine — and 6 × 7, thrown away |
 | A1 | Appendix — Astrometry | back to the same basin: 50 → 14–17 mas |
 | A2 | Appendix — The field moves | the concordance field, 9–10 mas, coherent |
@@ -179,7 +191,7 @@ are there for Q&A — jump with `1` `7` and `1` `8` — because someone will ask
 about the coherent 9–10 mas field, and the measured answer deserves better
 than a verbal description.
 
-Roughly 41 beats in the spoken route — comfortable at 14–16 minutes. At 12,
+Roughly 45 beats in the spoken route — comfortable at 15–17 minutes. At 12,
 run **the 12-minute cut** below; the content stays in the deck for questions
 and longer venues.
 
@@ -188,7 +200,8 @@ and longer venues.
 The default drops, also flagged in each scene's presenter notes:
 
 - **Scene 4** — advance straight to the receipts beat: brain and papers get
-  ~20 seconds together, skip the "same questions" beat, land on *one sky*.
+  ~20 seconds together, skip the community and "same questions" beats, land
+  on *one sky*.
 - **Scene 5** — drop the human-ruler beat (Kahneman–Tversky).
 - **Scene 9** — narrate entropy and Fisher only; step through surprise and
   KL silently — they stay on screen for anyone reading.

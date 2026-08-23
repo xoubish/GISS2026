@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sisyphus, Optimizing in a Dynamic Universe</title>
+<link rel="stylesheet" href="../spatial/css/deck.css">
+<link rel="stylesheet" href="deck.css">
+<link rel="preload" href="../spatial/assets/opening.png" as="image">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="inkify" color-interpolation-filters="sRGB"
+          x="0" y="0" width="100%" height="100%">
+    <feColorMatrix type="matrix" values="
+      0 0 0 0 0.078
+      0 0 0 0 0.095
+      0 0 0 0 0.084
+      -0.3333 -0.3333 -0.3333 0 1"/>
+    <feComponentTransfer result="ink">
+      <feFuncA type="linear" slope="1.35" intercept="-0.14"/>
+    </feComponentTransfer>
+    <feComposite in="ink" in2="SourceGraphic" operator="in"/>
+  </filter>
+</svg>
+
+<div id="viewport">
+  <div id="stage">
+    <div id="world">
+      <svg id="art" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+      <div id="plates"></div>
+      <div id="texts"></div>
+    </div>
+
+    <div id="grain"></div>
+    <div id="vignette"></div>
+
+    <div id="dots"></div>
+    <div id="hud"><b id="hud-name">-</b> <span id="hud-num"></span></div>
+
+    <div id="index" class="overlay">
+      <h2>Scenes - press a number, or click</h2>
+      <ol id="index-list"></ol>
+    </div>
+
+    <div id="help" class="overlay">
+      <h2>Keys</h2>
+      <dl>
+        <dt>right / space</dt><dd>next beat or scene</dd>
+        <dt>left</dt><dd>back</dd>
+        <dt>1...9</dt><dd>jump to a scene</dd>
+        <dt>g / esc</dt><dd>scene list</dd>
+        <dt>n</dt><dd>presenter notes</dd>
+        <dt>f</dt><dd>fullscreen</dd>
+        <dt>a</dt><dd>animation on / off</dd>
+        <dt>h</dt><dd>hide the on-screen furniture</dd>
+      </dl>
+    </div>
+
+    <div id="notes"><div class="who">notes</div><p id="notes-body"></p></div>
+  </div>
+</div>
+
+<script src="../spatial/js/terrain.js"></script>
+<script src="../spatial/js/art.js"></script>
+<script src="scenes.js"></script>
+<script src="../spatial/js/engine.js"></script>
+</body>
+</html>
