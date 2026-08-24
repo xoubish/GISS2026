@@ -114,27 +114,26 @@ Built so far:
   `js/engine.js` — the one scene so far that touches the engine.
 
 - **Scene 3 (Why we are Sisyphus)** — Sisyphus seated on the summit (new
-  static `sitfig` layer: cup, bottle), header "Inference & optimization".
-  Three beats: the drink question + inference (p(world | data) on screen —
-  decided), optimization, then the three-column seed table (brain / ML &
-  astro / science itself) in the `.mini-table` style — the seed the big
-  table of scene 7 grows from.
+  static `sitfig` layer: cup, bottle), header "Why We Are Sisyphus".
+  Four beats: the lead claim, the three-column seed table (brain / ML &
+  astro / science itself), then inference and optimization definitions
+  appearing beneath it. The drink example comes first in the brain column
+  to connect the table to the drawing.
 
 - **Scene 4 (The loop)** — the handwritten cycle (4.png) drawn in the sky:
   question → what matters → the ruler → data → compression → inference →
-  answer → good enough?, dashed return. Reveals over three beats
-  (`loop1/2/3` layers), then two branch bullets: not good enough (small
-  "(42)") → debug the pipeline; good enough → die on that hilltop or ask
-  the next question. Sisyphus (`leaner` layer) leans on the frame's right
-  edge, watching.
+  answer → good enough?, dashed return. The full loop is visible from the
+  start, then two branch bullets appear: not good enough (42 ...) → debug
+  the pipeline; good enough → stop or ask the next question. Sisyphus
+  (`leaner` layer) leans in the corner, watching.
 
 - **Scene 5 (Three systems)** — the big seven-row table from talk/5.docx
   (brain / model / science as community), world-anchored in the sky west of
   the loop. Wide view → per-beat camera visits to each row (z 1.8, whole
-  row in frame) → pull-back with the "same optimization topology" closing
-  line. A hazy backdrop range (`tablebg` layer) runs along the bottom with
-  a sharp spike right of the table — Sisyphus hangs off it one-handed,
-  because this scene is difficult. 12-minute cut: walk rows 1, 5, 7 only.
+  row in frame) → quiet pull-back. A hazy backdrop range (`tablebg` layer)
+  runs along the bottom with a sharp spike right of the table — Sisyphus
+  hangs off it one-handed, because this scene is difficult. 12-minute cut:
+  walk rows 1, 5, 7 only.
 
 - **Scene 6 (Information theory)** — terrain-first: the loop's stations
   measured on the basin itself, using the engine's station layers

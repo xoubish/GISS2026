@@ -271,8 +271,10 @@
           camera: { x: 758, y: -2807, z: 1.8 },
           notes:
             'The ruler — biased and bandwidth-limited everywhere. Senses ' +
-            'and attention; sensors, pixel grids, tokenizers; telescopes, ' +
-            'bandpasses, spectrographs.',
+            'and attention extended by instruments; sensors, pixel grids, ' +
+            'tokenizers; telescopes, bandpasses, spectrographs. Gamma rays ' +
+            'become visible to the brain through tools, screens and ' +
+            'conventions.',
         },
         {
           camera: { x: 758, y: -2719, z: 1.8 },
@@ -311,11 +313,9 @@
         {
           camera: { x: 800, y: -2680, z: 0.90 },
           notes:
-            'Pull back. The implementations look completely different, but ' +
-            'every one requires an objective, a bandwidth-limited ruler, a ' +
-            'compressed representation, and a surprise signal when reality ' +
-            'does not match the model. The moment you answer, the landscape ' +
-            'shifts — and Sisyphus walks back down the hill.',
+            'Pull back. Let the table sit as the whole comparison. The ' +
+            'implementations look different; the loop is recognizably the ' +
+            'same.',
         },
       ],
       text: [
@@ -336,7 +336,7 @@
         },
         {
           id: 'ts-r2', at: [0.205, 0.343], w: 860, cls: 'bigtable row',
-          html: '<h6>The ruler</h6><p>Senses &amp; attention mechanisms</p>' +
+          html: '<h6>The ruler</h6><p>Senses, attention &amp; instruments</p>' +
             '<p>Sensors, pixel grids &amp; tokenizers</p><p>Telescopes, ' +
             'bandpasses, spectrographs…</p>',
         },
@@ -370,12 +370,6 @@
           html: '<h6>Who audits the loop?</h6><p>Evolution; hardwired ' +
             'biology</p><p>We do — with all our proxy blind spots</p>' +
             '<p>Peer review &amp; replication (slow and noisy)</p>',
-        },
-        {
-          id: 'ts-close', at: [0.14, 0.875], w: 1200, cls: 'aside lead', from: 8,
-          html: '<p>Different implementations — the same optimization ' +
-            'topology. The moment you answer, the landscape shifts, and ' +
-            'Sisyphus walks back down.</p>',
         },
       ],
       notes:
@@ -1080,7 +1074,6 @@
       ['three-systems', 1],
       ['three-systems', 5],
       ['three-systems', 7],
-      ['three-systems', 8],
 
       ['info', 0],
       ['info', 2],
