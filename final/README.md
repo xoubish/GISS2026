@@ -120,7 +120,52 @@ Built so far:
   (soundings → H(X); Fisher parabolas → I(θ) with the zero-Fisher warning;
   5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
   arrows; pull-back to the climber → expected information gain). Slow
-  descent from scene 5's sky on entry. Formulas inline and small on
-  screen; EIG formula in notes only. 12-minute cut: narrate beats 1, 2, 5.
+  descent from scene 5's sky on entry. Each station carries its
+  diagnostic test (Cramér–Rao for the ruler, I(T(D);θ) vs I(D;θ) for the
+  compression, converged-but-still-surprised for the loss), and a
+  dedicated "finding the bottleneck" beat lights the three fork trails —
+  three checks, cheapest first; "more data" is deliberately the third.
+  Formulas inline and small on screen; EIG formula in notes only.
+  12-minute cut: narrate beats 1, 2, 5 and the bottleneck beat.
 
-Scenes 7–10 (the two examples, philosophy, return) are stubs.
+- **Scene 7 (Example — a person)** — "do I like this new person?" walked
+  through the same drawings scene 6 used, now with human captions (plain
+  ink — rust accent was tried and removed). Two pen figures (`meetfig`
+  layer, `meet` driver) meet across the basin: the observer waves from one
+  rim, the stranger stands on the other, and they walk closer beat by
+  beat — deliberately NOT moving on the duplicate-coffee beat. Stations:
+  the prior you arrive with; the stream's entropy; **distance is
+  resolution** (coarse comb → fine comb); zero-Fisher small talk; the
+  tenth coffee (gain stalls); surprise (sometimes the person moved); good
+  enough? → which encounter teaches most is experimental design about a
+  person. 12-minute cut: beats 2, 3, 6, 7.
+
+- **Scene 8 (Example — JAISP)** — "One foundation, many rulers." Six
+  beats: one sky (the person lesson pointed upward) → the three pairwise
+  receipts (one teacher, one student, one loss per question) → the scaling
+  problem and the foundation move (learn the compression once; every task
+  a small head with its own loss) → the JAISP architecture plate with the
+  numbers (≈9M params, 93/94%, 0.45 mag deeper) → the astrometry proof
+  (50 → 14–17 mas, camera on the basin's θ axis) → the concordance field
+  (dashed displaced ridgeline + coherent arrows, 9–10 mas): the title of
+  the talk, measured. 12-minute cut: receipts get ~20 s; beats 3–5 keep.
+
+- **Scene 9 (Philosophy)** — "The view from here": the deck's highest
+  camera, almost pure sky, the sitter tiny on his summit at the frame's
+  bottom edge. Seven beats, one thought each in large type: every station
+  was a choice (why philosophy) → a relative loss steers an absolute
+  science → the AI as a different kind of scientist ("a brain fails
+  gently; a model fails precisely") → one grammar, different nouns → the
+  tenth coffee at field scale (the same galaxy a thousand times, the same
+  paper nine hundred) → the rulers you carry (rationalist / existentialist
+  / absurdist; oscillation is healthy updating; metamodernism stays in
+  Q&A) → two ways for a question to end (hilltop / slope, Weinberg).
+  12-minute cut: beats 1, 5, 6, 7.
+
+- **Scene 10 (Return)** — scene 1's exact camera, the pinball drawing
+  (Sisyphus takes a break; the ball comes back, and he paid for that),
+  and one line on the second beat: "One must imagine Sisyphus happy."
+  Nothing more — decided.
+
+**All ten scenes are built.** The deck is complete; edits from here are
+polish passes.

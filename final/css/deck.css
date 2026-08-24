@@ -282,8 +282,9 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
    --human to var(--muted) and dropping the rule. */
 .human {
   padding-left: 22px;
-  border-left: 1px solid rgba(138, 87, 71, .32);
+  border-left: 1px solid rgba(160, 90, 60, .38);
 }
+.aside.lead.human p, .aside.lead.human b { color: var(--human); }
 .human p, .human b { color: var(--human); }
 .human p + p { margin-top: 16px; }
 .callout.mid p { text-align: center; }

@@ -446,12 +446,30 @@
             'teach you nothing about θ.',
         },
         {
-          camera() { const z = 1.9; return { x: 2300, y: S.anchorY(-1906, 0.5, z), z }; },
-          set: { climber: 1, here: 1, kl: 0.3, entropy: 0.25, fisher: 0.15, sound: 0.6 },
+          camera: { x: 2255, y: -1839, z: 2.6 },
+          set: {
+            fork1: 1, fork2: 1, fork3: 1,
+            kl: 0.25, entropy: 0.2, surprise: 0.25, sound: 0.5, line: 0.3,
+          },
           notes:
-            'THE NEXT QUESTION. Pull back: the basin we lived in is a dip ' +
-            'on a mountainside. Experimental design is asking, before you ' +
-            'observe: which observation do I expect to teach me the most? ' +
+            'FINDING THE BOTTLENECK — the three trails out of the basin. ' +
+            'Check in order of cost. Still surprised after convergence → ' +
+            'the loss or model: exchange the landscape (left trail). Raw ' +
+            'beats the summary → the compression: re-read the same data ' +
+            '(the trail along the surface). The Cramér–Rao bound itself too ' +
+            'wide → the data: over the crest for more (right trail). Say ' +
+            'the sting: the reflex is always "more data" — it is the third ' +
+            'check, not the first.',
+        },
+        {
+          camera() { const z = 1.9; return { x: 2300, y: S.anchorY(-1906, 0.5, z), z }; },
+          set: {
+            climber: 1, here: 1,
+            fork1: 0.3, fork2: 0.3, fork3: 0.45, kl: 0, surprise: 0, sound: 0.6,
+          },
+          notes:
+            'THE NEXT QUESTION. And if it truly is the data — experimental ' +
+            'design: which observation do I expect to teach me the most? ' +
             'Rank them, buy that one. A little resolution can beat a great ' +
             'many photons. If asked: EIG(d) = E_y D_KL[p(θ|y,d) ‖ p(θ)].',
         },
@@ -472,15 +490,18 @@
           id: 'in-1', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
           html: '<p><b>The data — Shannon entropy, H(X).</b> How much the ' +
             'raw stream can even carry. Enormous — and mostly noise and ' +
-            'background.</p>',
+            'background.</p>' +
+            '<p>Capacity is not knowledge: the question is how much of H ' +
+            'survives the noise floor.</p>',
         },
         {
           id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The ruler — Fisher information, I(θ).</b> How much ' +
             'of what I measure is about θ: the same basin, flat under one ' +
-            'ruler, steep under another.</p>' +
-            '<p>Where Fisher is zero, nothing downstream can ever recover ' +
-            'it. The ruler was blind.</p>',
+            'ruler, steep under another. Where Fisher is zero, nothing ' +
+            'downstream can ever recover it.</p>' +
+            '<p>Its test: the Cramér–Rao bound, 1/I(θ) — the best any ' +
+            'estimator can ever do through this instrument.</p>',
         },
         {
           id: 'in-3', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 3, to: 3,
@@ -491,23 +512,39 @@
         {
           id: 'in-4', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 4, to: 4,
           html: '<p><b>The same budget, placed where the curvature lives</b> ' +
-            '— and the basin comes back. Sampling is a ruler too.</p>',
+            '— and the basin comes back. Sampling is a ruler too.</p>' +
+            '<p>Its test: does T(D) keep what D knew about θ — ' +
+            'I(T(D);&thinsp;θ) against I(D;&thinsp;θ)?</p>',
         },
         {
           id: 'in-5', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 5, to: 5,
           html: '<p><b>The learning signal — surprise, −log p(x).</b> The ' +
             'datum nothing predicted. Prediction error, gradient, anomaly: ' +
-            'the same engine in all three columns.</p>',
+            'the same engine in all three columns.</p>' +
+            '<p>Its test: converged, yet still surprised — residuals with ' +
+            'structure the fit cannot explain. The optimizer is done, and ' +
+            'wrong.</p>',
         },
         {
           id: 'in-6', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 6, to: 6,
           html: '<p><b>The update — information gain, D<sub>KL</sub>.</b> ' +
             'How much did the bracket close?</p>' +
-            '<p>Surprise is not gain — a bizarre datum can teach you ' +
-            'nothing about θ.</p>',
+            '<p>Surprise is not gain — and when each new datum barely moves ' +
+            'the posterior, this data, under this compression, is spent.</p>',
         },
         {
-          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 7,
+          id: 'in-diag', at: [0.05, 0.10], w: 620, cls: 'aside lead', from: 7, to: 7,
+          html: '<p><b>Finding the bottleneck.</b> Three checks, cheapest ' +
+            'first:</p>' +
+            '<p><b>Converged but still surprised?</b> The loss or the model. ' +
+            'Change the ruler.</p>' +
+            '<p><b>Raw data beats your summary?</b> The compression. ' +
+            'Recompress — no new observation needed.</p>' +
+            '<p><b>The Cramér–Rao bound itself too wide?</b> The data. Only ' +
+            'then go buy more.</p>',
+        },
+        {
+          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 8,
           html: '<p><b>The next observation — expected information gain.</b> ' +
             'Rank the observations you could take by what you expect to ' +
             'learn. Buy that one.</p>' +
@@ -527,40 +564,462 @@
     {
       id: 'example-person',
       name: 'Example — a person',
-      camera() { const z = 5.0; return { x: 2185, y: S.anchorY(-1780, 0.58, z), z }; },
-      enter: { dur: 1600 },
-      set: { rock: 0.25 },
+      camera() { const z = 5.0; return { x: 2210, y: S.anchorY(-1782, 0.55, z), z }; },
+      enter: { dur: 1900 },
+      set: { far: 0.6, rock: 0.5, line: 0.35, meetfig: 1, meet: 0.12 },
+      steps: [
+        {
+          notes:
+            'The same ground, retold as a person. The question: do I like ' +
+            'them? Gesture at the resting boulder — the model you arrive ' +
+            'with. Nobody walks in blank: a prior built from every person ' +
+            'before them, context, and yes, stereotype — that is what a ' +
+            'prior is.',
+        },
+        {
+          set: { sound: 1, rock: 0.35, meet: 0.2 }, anim: { meet: 1600 },
+          notes:
+            'The stream: words, tone, timing, what they laugh at, how they ' +
+            'treat the waiter. Enormous entropy — and most of it noise.',
+        },
+        {
+          set: { combR: 1, sound: 0.25, meet: 0.3 }, anim: { meet: 2600 },
+          notes:
+            'Distance is resolution. Across a dinner table you sample ' +
+            'coarsely — job, manners, small talk. "They seem nice" is one ' +
+            'blurred pixel.',
+        },
+        {
+          set: { combE: 1, combR: 0.35, meet: 0.62 }, anim: { meet: 3200 },
+          notes:
+            'Move closer and the sampling gets finer: shared work, a hard ' +
+            'week, a long trip. Kindness separates from politeness — two ' +
+            'sources that were one blur. And the optimization is ' +
+            'constant: every encounter re-fits the model toward the ' +
+            'data. Liking changes with distance because the data does.',
+        },
+        {
+          set: { fisher: 1, combE: 0.3, combR: 0.15 },
+          notes:
+            'Zero-Fisher data: an hour of small talk is pleasant and ' +
+            'carries nothing about the trait you care about. The flat ' +
+            'parabola. No volume of it will measure reliability.',
+        },
+        {
+          set: { entropy: 1, kl: 1, fisher: 0.25 },
+          notes:
+            'Duplicate data: the tenth coffee repeats the ninth. Plenty of ' +
+            'observations, no new information — the bracket stops closing. ' +
+            'More data is not more information.',
+        },
+        {
+          set: { surprise: 1, entropy: 0.3, kl: 0.25, meet: 0.8 }, anim: { meet: 1800 },
+          notes:
+            'Then surprise: something the model never predicted. −log p ' +
+            'spikes and the picture reorganizes. And sometimes it was not ' +
+            'noise — the person moved. People are not stationary; the ' +
+            'landscape shifts while you climb it.',
+        },
+        {
+          set: { entropy: 0.9, surprise: 0.3, meet: 0.95 }, anim: { meet: 2800 },
+          notes:
+            'Good enough? For "another coffee?" — converged long ago. For ' +
+            '"trust them with what matters" — that is a different loss, ' +
+            'and the same person ranks differently under it; no number ' +
+            'of coffees helps; ' +
+            'it needs a different observation entirely: responsibility, ' +
+            'disagreement, stress. Choosing that encounter is experimental ' +
+            'design, about a person — and ethics bound which experiments ' +
+            'you may run.',
+        },
+      ],
+      text: [
+        {
+          id: 'ep-head', at: [0.05, 0.055], w: 720, cls: 'scenehead',
+          html: '<p class="kicker">Example one</p>' +
+            '<p class="scenetitle">A person you just met</p>',
+        },
+        {
+          id: 'ep-0', at: [0.05, 0.195], w: 540, cls: 'aside lead', to: 0,
+          html: '<p><b>Do I like this new person?</b> Nobody walks in ' +
+            'blank: you arrive with a model — a prior built from every ' +
+            'person before them.</p>',
+        },
+        {
+          id: 'ep-1', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 1, to: 1,
+          html: '<p><b>The data.</b> Words, tone, timing, what they laugh ' +
+            'at — an enormous stream, and most of its entropy is noise.</p>',
+        },
+        {
+          id: 'ep-2', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 2, to: 2,
+          html: '<p><b>Distance is resolution.</b> At first you sample ' +
+            'coarsely: job, manners, small talk.</p>' +
+            '<p>“They seem nice” — one blurred pixel.</p>',
+        },
+        {
+          id: 'ep-3', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 3, to: 3,
+          html: '<p><b>Closer, the picture resolves.</b> Finer sampling ' +
+            'separates kindness from politeness — two sources that were ' +
+            'one blur.</p>' +
+            '<p>Liking changes with distance because the data does — and the ' +
+            'fit never stops: every encounter is another step of the ' +
+            'optimization.</p>',
+        },
+        {
+          id: 'ep-4', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 4, to: 4,
+          html: '<p><b>Some data carry nothing.</b> An hour of small talk ' +
+            'is pleasant — and Fisher-blind to what you care about.</p>' +
+            '<p>No amount of it will measure reliability.</p>',
+        },
+        {
+          id: 'ep-5', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 5, to: 5,
+          html: '<p><b>And some data are the same datum again.</b> The ' +
+            'tenth coffee repeats the ninth: plenty of observations, no ' +
+            'new information.</p>' +
+            '<p>The bracket stops closing.</p>',
+        },
+        {
+          id: 'ep-6', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 6, to: 6,
+          html: '<p><b>Then — surprise.</b> Something the model never ' +
+            'predicted: −log p spikes, and the picture reorganizes.</p>' +
+            '<p>Sometimes it wasn’t noise. The person moved.</p>',
+        },
+        {
+          id: 'ep-7', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 7,
+          html: '<p><b>Good enough?</b> For “another coffee?” — converged ' +
+            'long ago. For “trust them with what matters” — a different ' +
+            'loss entirely, and no number of coffees helps.</p>' +
+            '<p>It needs a different observation: which encounter teaches ' +
+            'the most is experimental design, about a person.</p>',
+        },
+      ],
       notes:
-        'STUB. Getting to know someone new, walking the table\'s rows. ' +
-        'Not built yet.',
+        'The clearest scene by design: the audience has already seen every ' +
+        'one of these drawings with statistics captions in scene 6 — now ' +
+        'the same pictures get human captions, in the human accent. That ' +
+        'rhyme is the thesis. 12-minute cut: beats 2, 3, 6, 7.',
     },
 
     /* ================================================ 8 · EXAMPLE — JAISP == */
     {
       id: 'example-jaisp',
       name: 'Example — JAISP',
-      camera: { x: 2350, y: -2400, z: 1.0 },
+      camera() { const z = 2.3; return { x: 2210, y: S.anchorY(-1790, 0.80, z), z }; },
       enter: { dur: 2200 },
-      set: { far: 1, rock: 1 },
+      set: { far: 0.7, rock: 0.6, line: 0.4 },
+      steps: [
+        {
+          notes:
+            'The bridge, in one breath: the person resolved because ' +
+            'different data saw them differently. Point it at the sky — ' +
+            'Rubin, Euclid, WISE, JWST are each a lossy projection of the ' +
+            'same reality, at their own distance and resolution.',
+        },
+        {
+          notes:
+            'The receipts — say one line each, gesture, move on. Everetts+: ' +
+            'Euclid NISP sharpened with what JWST/NIRCam taught, 5× finer ' +
+            'sampling. Rezaee+: WISE with Spitzer, 4.6×. Haghjoo+: JWST ' +
+            'prism spectra to grating resolution, R 100 → 1000. Each one: ' +
+            'one teacher, one student, one loss, one question.',
+        },
+        {
+          notes:
+            'The honest problem: it works, and it does not scale. Every ' +
+            'new question starts again from raw pixels — the compression ' +
+            'cost multiplies with the questions. The general answer: learn ' +
+            'the compression once, before you know the question — a ' +
+            'foundation — and make every task a small head with its own ' +
+            'loss.',
+        },
+        {
+          notes:
+            'JAISP. Ten bands, Rubin and Euclid together, one shared ' +
+            'latent — self-supervised, each band predicted from the other ' +
+            'nine, each instrument at its delivered sampling. About nine ' +
+            'million parameters. Detection on held-out sky: 93% complete, ' +
+            '94% pure against the published VIS catalogue — and 0.45 mag ' +
+            'deeper than one band supports. Say the numbers, not the ' +
+            'architecture; the picture is there so nobody takes them on ' +
+            'faith.',
+        },
+        {
+          camera() { const z = 8.5; return { x: 2202, y: S.anchorY(G(2199.3), 0.42, z), z }; },
+          set: { astro1: 1, astro2: 1, axes: 0.5, line: 1, rock: 0.35 },
+          notes:
+            'The proof, on the θ axis the talk has been walking — drawn to ' +
+            'scale, 1 unit = 2 mas. Raw cross-survey scatter, Rubin against ' +
+            'VIS: about 50 mas. A position head reading the frozen latent: ' +
+            '14–17 mas; injected sources recovered to 19 mas at S/N = 5 — ' +
+            'near the floor the VIS labels themselves set. The latent ' +
+            'carried VIS sharpness to everything tied to it.',
+        },
+        {
+          camera() { const z = 6.5; return { x: 2205, y: S.anchorY(-1780, 0.72, z), z }; },
+          set: { shift: 1, astro1: 0, astro2: 0, axes: 0.2 },
+          anim: { shift: 1600 },
+          notes:
+            'And then better data arrived. Two independently Gaia-anchored ' +
+            'solutions disagree by a coherent 9–10 mas — every arrow points ' +
+            'the same way. That is not scatter; the landscape itself had ' +
+            'moved. Nobody made a mistake. Say it plainly — this is the ' +
+            'title of the talk, measured.',
+        },
+      ],
+      plates: [
+        {
+          src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 2,
+          at: [0.16, 0.46], w: 300,
+          alt: 'Title page: Euclid deep-learning super-resolution of NISP imaging',
+          cap: 'Everetts, Hemmati, et al. — NISP → NIRCam, 5× finer.',
+        },
+        {
+          src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 2,
+          at: [0.44, 0.445], w: 280,
+          alt: 'Title page: enhancing WISE infrared imaging to Spitzer resolution',
+          cap: 'Rezaee, Hemmati, et al. — WISE → Spitzer, 4.6× finer.',
+        },
+        {
+          src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 2,
+          at: [0.71, 0.46], w: 285,
+          alt: 'Title page: physics-informed super-resolution of galaxy spectra',
+          cap: 'Haghjoo, Hemmati, et al. — prism → grating, R 100 → 1000.',
+        },
+        {
+          src: 'assets/jaisp_architecture_crop.png', ar: 550 / 1109, frame: 1,
+          from: 3, to: 3,
+          at: [0.615, 0.42], w: 680,
+          alt: 'JAISP architecture: masked-band pretraining and downstream heads',
+          cap: 'Ten bands → two-stream stems → one shared latent → detection · ' +
+            'astrometry · photometry · shape · redshift — each head its own loss.',
+        },
+        {
+          src: 'assets/astrometry_fig8_crop.png', ar: 525 / 1135, frame: 1,
+          from: 4, to: 4,
+          at: [0.63, 0.46], w: 860,
+          alt: 'Cross-survey offset clouds collapsing from 50 mas to 14-17 mas',
+          cap: 'All 790 ECDFS tiles. Dashed: raw classical centroids. Solid: ' +
+            'head-corrected — the clouds collapse and re-centre. Right: median ' +
+            'offset against S/N.',
+        },
+      ],
+      text: [
+        {
+          id: 'ej-head', at: [0.05, 0.055], w: 760, cls: 'scenehead',
+          html: '<p class="kicker">Example two — JAISP</p>' +
+            '<p class="scenetitle">One foundation, many rulers</p>',
+        },
+        {
+          id: 'ej-0', at: [0.05, 0.24], w: 560, cls: 'aside lead', to: 0,
+          html: '<p><b>The same lesson, pointed at the sky.</b> Rubin, ' +
+            '<em>Euclid</em>, WISE, JWST — every instrument is a lossy ' +
+            'projection of one sky, at its own distance and resolution.</p>',
+        },
+        {
+          id: 'ej-1', at: [0.05, 0.19], w: 540, cls: 'aside lead', from: 1, to: 1,
+          html: '<p><b>We did it pairwise first.</b> One teacher, one ' +
+            'student, one loss per question.</p>',
+        },
+        {
+          id: 'ej-2', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 2, to: 2,
+          html: '<p><b>It works — and it does not scale.</b> Every new ' +
+            'question recompresses the sky from scratch.</p>' +
+            '<p>So learn the compression <b>once</b>: a foundation — and ' +
+            'every task a small head with its own loss.</p>',
+        },
+        {
+          id: 'ej-3', at: [0.05, 0.30], w: 480, cls: 'aside lead', from: 3, to: 3,
+          html: '<p><b>JAISP.</b> Ten bands, one shared latent — ' +
+            'self-supervised, ≈9M parameters.</p>' +
+            '<p>Detection on held-out sky: <b>93% complete, 94% pure</b> — ' +
+            'and <b>0.45 mag deeper</b> than one band supports.</p>',
+        },
+        {
+          id: 'ej-4', at: [0.05, 0.10], w: 460, cls: 'aside lead', from: 4, to: 4,
+          html: '<p><b>One head, its own loss: astrometry.</b> Raw ' +
+            'cross-survey scatter ≈ 50 mas. The head, reading the frozen ' +
+            'latent: <b>14–17 mas</b>.</p>' +
+            '<p>The latent carried VIS sharpness to everything tied to it.</p>',
+        },
+        {
+          id: 'ej-5', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 5,
+          html: '<p><b>Then better data arrived.</b> Two Gaia-anchored ' +
+            'solutions disagree by a coherent <b>9–10 mas</b> — every arrow ' +
+            'the same way.</p>' +
+            '<p>Not scatter. The landscape itself had moved.</p>',
+        },
+      ],
       notes:
-        'STUB. Walking the same rows: the enhancement family (one loss per ' +
-        'question) → cut the compression cost with a foundation → JAISP ' +
-        'astrometry, 50 → 14–17 mas → and the concordance field: new, ' +
-        'better data, and the field had moved. May split into two scenes ' +
-        'when built — flagged. Not built yet.',
+        'The science payoff: pairwise receipts → the foundation bet → the ' +
+        'measured astrometry proof → the concordance field, which is the ' +
+        'title of the talk measured, and the hinge into the philosophy. ' +
+        '12-minute cut: receipts get twenty seconds together; beats 3–5 are ' +
+        'the spine, keep all three.',
     },
 
     /* ==================================================== 9 · PHILOSOPHY == */
     {
       id: 'philosophy',
       name: 'Philosophy',
-      camera: { x: 2760, y: -2150, z: 0.85 },
-      enter: { dur: 2200 },
-      set: { far: 1, rock: 1 },
+      camera: { x: 2450, y: -2860, z: 0.85 },
+      enter: { dur: 3000, ease: 'slow' },
+      set: { far: 0.25, rock: 1, line: 0.8, sitfig: 1 },
+      steps: [
+        {
+          notes:
+            'The long ascent — highest camera of the talk, almost all sky, ' +
+            'the summit a speck at the bottom with him still sitting on ' +
+            'it. Land the claim: every station of the loop was a choice, ' +
+            'and choosing with reasons is philosophy. This is why a ' +
+            'philosophy symposium at IPAC is not a joke.',
+        },
+        {
+          notes:
+            'The loss is relative — negotiated in committee, encoded in ' +
+            'proposals and review panels. Reward a different better and ' +
+            'different missions fly, different papers count: science ' +
+            'climbs a different mountain. The direction of the field is ' +
+            'loss-dependent.',
+        },
+        {
+          notes:
+            'The AI scientist, read off the table\'s rows: it restarts; ' +
+            'its data re-shuffle; its loss is explicit and optimizable. It ' +
+            'will converge, efficiently, on exactly what we asked for — ' +
+            'which is the danger. A brain with a muddled objective fails ' +
+            'gently; a model with a crisp wrong objective converges ' +
+            'precisely. The audit is ours.',
+        },
+        {
+          notes:
+            'One grammar: priors, likelihoods, information, surprise — a ' +
+            'first impression and a cosmology conjugate the same verbs. ' +
+            'Measuring a person is not a metaphor for science; it is the ' +
+            'same inference with different nouns.',
+        },
+        {
+          notes:
+            'The sting — deliver it dry: after ten meetings we hold a ' +
+            'serviceable model of a person and stop. Yet we observe the ' +
+            'same galaxy a thousand times, and write the same paper nine ' +
+            'hundred. When the posterior stops moving and we keep ' +
+            'observing anyway, the loss is speaking — citations, careers, ' +
+            'committees — not the data.',
+        },
+        {
+          notes:
+            'The rulers you carry: rationalist on questions of consistency, ' +
+            'existentialist where deduction runs out and you must own the ' +
+            'choice, absurdist when neither resolves. Not inconsistency — ' +
+            'a different loss for a different question, and the swing ' +
+            'between them is what a healthy updating system looks like. ' +
+            '(If asked about the modern/postmodern oscillation by name: ' +
+            'metamodernism, Vermeulen & van den Akker — keep it for Q&A, ' +
+            'not the slide.)',
+        },
+        {
+          notes:
+            'Two ways for a question to end. Die on the hilltop: the ' +
+            'answer sufficed; the summit was always local to the question. ' +
+            'Die on the slope: the answer keeps improving, the theory ' +
+            'stays incomplete, the experiment outlives you. Weinberg\'s ' +
+            'Dreams of a Final Theory — say "half in longing, half in ' +
+            'mourning" as your phrase about reading him, not as his words.',
+        },
+      ],
+      text: [
+        {
+          id: 'ph-head', at: [0.05, 0.055], w: 760, cls: 'scenehead',
+          html: '<p class="kicker">Philosophy</p>' +
+            '<p class="scenetitle">The view from here</p>',
+        },
+        {
+          id: 'ph-0a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', to: 0,
+          html: '<p>Every station of the loop was a choice.</p>',
+        },
+        {
+          id: 'ph-0b', at: [0.14, 0.42], w: 980, cls: 'aside lead', to: 0,
+          html: '<p>The data we keep, the ruler we trust, the moment we ' +
+            'stop — none of it is given by nature. Choosing with reasons ' +
+            'is philosophy, and science runs on it quietly.</p>',
+        },
+        {
+          id: 'ph-1a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 1, to: 1,
+          html: '<p>A relative loss steers an absolute science.</p>',
+        },
+        {
+          id: 'ph-1b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 1, to: 1,
+          html: '<p><em>Better</em> is negotiated — in panels, proposals, ' +
+            'citations. Reward a different better, and different missions ' +
+            'fly, different papers count: the field climbs a different ' +
+            'mountain.</p>',
+        },
+        {
+          id: 'ph-2a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 2, to: 2,
+          html: '<p>An AI will be a different kind of scientist.</p>',
+        },
+        {
+          id: 'ph-2b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 2, to: 2,
+          html: '<p>It restarts; its data re-shuffle; its loss is explicit ' +
+            '— it will converge, efficiently, on exactly what we asked ' +
+            'for.</p>' +
+            '<p>A brain fails gently. A model fails precisely. The audit ' +
+            'is ours.</p>',
+        },
+        {
+          id: 'ph-3a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 3, to: 3,
+          html: '<p>One grammar, different nouns.</p>',
+        },
+        {
+          id: 'ph-3b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 3, to: 3,
+          html: '<p>Priors, likelihoods, information, surprise: a first ' +
+            'impression and a cosmology conjugate the same verbs. ' +
+            'Measuring a person is not a metaphor for science — it is the ' +
+            'same inference.</p>',
+        },
+        {
+          id: 'ph-4a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 4, to: 4,
+          html: '<p>The tenth coffee, at field scale.</p>',
+        },
+        {
+          id: 'ph-4b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 4, to: 4,
+          html: '<p>Ten meetings, and we hold a serviceable model of a ' +
+            'person. Yet we observe the same galaxy a thousand times — and ' +
+            'write the same paper nine hundred.</p>' +
+            '<p>When the posterior stops moving and we keep observing, the ' +
+            'loss is speaking, not the data.</p>',
+        },
+        {
+          id: 'ph-5a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 5, to: 5,
+          html: '<p>You carry rulers too.</p>',
+        },
+        {
+          id: 'ph-5b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 5, to: 5,
+          html: '<p>Rationalist on some questions, existentialist where ' +
+            'deduction runs out, absurdist when neither resolves.</p>' +
+            '<p>Not inconsistency: a different loss for a different ' +
+            'question — and the oscillation is what an updating system ' +
+            'looks like.</p>',
+        },
+        {
+          id: 'ph-6a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 6,
+          html: '<p>Two ways for a question to end.</p>',
+        },
+        {
+          id: 'ph-6b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 6,
+          html: '<p><b>Die on the hilltop</b> — the answer sufficed; the ' +
+            'summit was always local to the question.</p>' +
+            '<p><b>Die on the slope</b> — the answer keeps improving, the ' +
+            'theory stays incomplete, and the experiment outlives you. ' +
+            'Weinberg’s <em>Dreams of a Final Theory</em>, read half in ' +
+            'longing and half in mourning.</p>',
+        },
+      ],
       notes:
-        'STUB. Existential, rational, absurd — rulers you carry; a ' +
-        'different objective for a different question. Die on the hill, ' +
-        'die on the slope. Not built yet.',
+        'The highest camera of the deck: sky, clouds, one summit tip at the ' +
+        'bottom edge with the sitter still on it. One thought per beat, big ' +
+        'type, nothing drawn — the words take the paper. 12-minute cut: ' +
+        'beats 1, 5, 6 and 7 (choice, the sting, the rulers, the endings).',
     },
 
     /* ======================================================= 10 · RETURN == */
@@ -568,11 +1027,34 @@
       id: 'return',
       name: 'Return',
       camera: { x: 1760, y: -1560, z: 0.60 },
-      enter: { dur: 3000, ease: 'slow' },
+      enter: { dur: 3200, ease: 'slow' },
       set: { far: 1, rock: 1 },
+      plates: [{
+        src: 'assets/closing.png', ar: 1470 / 1524, blend: 1,
+        at: [0.66, 0.52], w: 920,
+        alt: 'Sisyphus takes a break — playing pinball beside the boulder',
+      }],
+      steps: [
+        {
+          notes:
+            'Exactly the opening camera — same hill, same scale, and by now ' +
+            'it means something else. Sisyphus on his break, playing ' +
+            'pinball: the ball comes back, and he paid for that. Let the ' +
+            'drawing sit in silence for a moment.',
+        },
+        {
+          notes: 'The last line. Then stop talking.',
+        },
+      ],
+      text: [
+        {
+          id: 'fin', at: [0.055, 0.46], w: 640, cls: 'phrase', from: 1,
+          html: '<p>One must imagine Sisyphus happy.</p>',
+        },
+      ],
       notes:
-        'STUB. The opening camera again. Sisyphus takes a break, the ball ' +
-        'comes back — one must imagine Sisyphus happy. Not built yet.',
+        'The bookend: scene 1\'s exact camera, the pinball drawing, one ' +
+        'line. Nothing more.',
     },
   ];
 
@@ -588,7 +1070,7 @@
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,
-    mythfig: 0, myth: 0, sitfig: 0,
+    mythfig: 0, myth: 0, sitfig: 0, meetfig: 0, meet: 0,
     loop1: 0, loop2: 0, loop3: 0, leaner: 0, tablebg: 0,
     pusher: 0, climber: 0, climber2: 0,
   };

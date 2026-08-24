@@ -317,6 +317,38 @@
     return g;
   }
 
+  /* Scene 7's greeting: the standing pose with one arm raised toward the
+     person being met. Faces −x; mirror it for the observer.             */
+  function greetFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(-0.13, 0, -0.03, -0.22, 2);      // legs
+    stroke(-0.03, -0.22, 0.0, -0.42, 2);
+    stroke(0.11, 0, 0.04, -0.22, 2);
+    stroke(0.04, -0.22, 0.0, -0.42, 2);
+    stroke(0.0, -0.42, -0.04, -0.78, 3);    // torso
+    stroke(-0.03, -0.70, -0.19, -0.84, 2);  // the raised, greeting arm
+    stroke(-0.01, -0.70, 0.09, -0.48, 2);   // the other, hanging
+    const hd = el('path', { d: ring(-0.08, -0.88, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    return g;
+  }
+
   /* The break (scene 3): Sisyphus seated, facing back down the valley,
      cup raised in one hand, the other arm propping him, a bottle standing
      beside him. Origin is the seat point; the caller puts it on a summit. */
@@ -430,7 +462,7 @@
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
-    'mythfig', 'sitfig', 'pusher', 'climber', 'climber2', 'body'];
+    'mythfig', 'sitfig', 'meetfig', 'pusher', 'climber', 'climber2', 'body'];
 
   /* One world unit of θ at the basin is worth this many milliarcseconds. Set
      once here so her measured numbers can be drawn as real widths on the axis
@@ -642,6 +674,17 @@
       L.sitfig.appendChild(fig);
     })();
 
+    /* ---- the meeting (scene 7): two figures on the basin's rims ------ */
+    (function () {
+      const s = 30;
+      const obs = greetFigure(6002, s);
+      obs.setAttribute('id', 'meet-obs');
+      L.meetfig.appendChild(obs);
+      const per = standFigure(6001, s);
+      per.setAttribute('id', 'meet-per');
+      L.meetfig.appendChild(per);
+    })();
+
     /* ---- the spectator (scene 4): leaning on the frame's left edge,
        mirrored so he faces the loop ---------------------------------- */
     (function () {
@@ -664,6 +707,7 @@
     S.setRuler(0);
     S.setRoll(1);
     S.setMyth(0);
+    S.setMeet(0);
   };
 
   /* ========================================================================
@@ -1124,5 +1168,26 @@
     fig.style.opacity = (1 - swap).toFixed(2);
     stand.style.opacity = swap.toFixed(2);
     S.mythT = T;
+  };
+
+  /* The meeting (scene 7). t 0 → 1 walks the two figures from the basin's
+     opposite rims toward each other; the basin between them is what is
+     still unknown about the other person. They face each other; the
+     observer (mirrored) greets.                                          */
+  S.setMeet = function (t) {
+    const T = Math.max(0, Math.min(1, t));
+    const s = 30;
+    /* Not a beeline: both wander — a few steps this way, a few back —
+       the meander fading as they finally settle near each other. */
+    const xl = 2124 + (2185 - 2124) * T + 18 * S.vnoise(T * 4.6 + 0.7) * (1 - T);
+    const xr = 2292 - (2292 - 2237) * T + 22 * S.vnoise(T * 3.8 + 4.2) * (1 - T);
+    const obs = document.getElementById('meet-obs');
+    const per = document.getElementById('meet-per');
+    if (!obs) return;
+    obs.setAttribute('transform',
+      'translate(' + f2(xl) + ' ' + f2(S.ground(xl)) + ') scale(-' + s + ' ' + s + ')');
+    per.setAttribute('transform',
+      'translate(' + f2(xr) + ' ' + f2(S.ground(xr)) + ') scale(' + s + ')');
+    S.meetT = T;
   };
 })();

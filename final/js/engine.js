@@ -93,10 +93,10 @@
     'approx3', 'entropy', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
     'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'shift', 'here', 'ends',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
-    'mythfig', 'sitfig', 'pusher', 'climber', 'climber2']
+    'mythfig', 'sitfig', 'meetfig', 'pusher', 'climber', 'climber2']
     .map((s) => { const p = s.split(':'); return { layer: p[0], key: p[1] || p[0] }; });
 
-  let lastM = -1, lastRoll = -1, lastMyth = -1;
+  let lastM = -1, lastRoll = -1, lastMyth = -1, lastMeet = -1;
   function paint() {
     const L = S.L;
     L.far.style.opacity = state.far * (lodv.far || 0);
@@ -107,6 +107,7 @@
     if (state.m !== lastM) { lastM = state.m; S.setRuler(state.m); }
     if (state.roll !== lastRoll) { lastRoll = state.roll; S.setRoll(state.roll); }
     if (state.myth !== lastMyth) { lastMyth = state.myth; S.setMyth(state.myth); }
+    if (state.meet !== lastMeet) { lastMeet = state.meet; S.setMeet(state.meet); }
   }
 
   /* --------------------------------------------------------------- tweens -- */
@@ -400,9 +401,11 @@
     layout();
 
     // deep link: #sceneId or #sceneId/step, or ?scene=id&step=n
-    // &bare=1 hides the on-screen furniture (used by the pptx exporter)
+    // &bare=1 hides the on-screen furniture; &notext=1 hides the HTML text
+    // layer (both used by the pptx exporter, which rebuilds text natively)
     const q = new URLSearchParams(location.search);
     if (q.get('bare') === '1') document.body.classList.add('bare');
+    if (q.get('notext') === '1') $('texts').style.display = 'none';
     let id = q.get('scene'), st = +(q.get('step') || 0);
     if (!id && location.hash) {
       const p = location.hash.slice(1).split('/');
