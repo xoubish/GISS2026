@@ -356,7 +356,7 @@ body.bare #hud, body.bare #dots { opacity: 0; }
   font-size: 15px; letter-spacing: .3em; text-transform: uppercase;
   color: var(--muted); font-weight: 400; margin-bottom: 34px;
 }
-.overlay ol { list-style: none; columns: 2; column-gap: 9%; }
+.overlay ol { list-style: none; }
 .overlay li {
   font-size: 26px; line-height: 1.72; color: var(--ink-soft);
   cursor: pointer; break-inside: avoid;
@@ -369,6 +369,33 @@ body.bare #hud, body.bare #dots { opacity: 0; }
 .overlay dl { display: grid; grid-template-columns: 190px 1fr; row-gap: 14px; }
 .overlay dt { font-style: italic; color: var(--muted); font-size: 21px; }
 .overlay dd { font-size: 21px; color: var(--ink-soft); }
+
+#index .index-shell {
+  display: grid;
+  grid-template-columns: minmax(430px, 0.72fr) minmax(360px, 1fr);
+  gap: 8%;
+  align-items: start;
+}
+#index-list {
+  columns: 1;
+  max-width: 620px;
+}
+#index-art {
+  display: block;
+  width: min(100%, 560px);
+  height: auto;
+  margin: -28px 0 0 auto;
+  filter: url(#inkify);
+  opacity: .92;
+}
+
+@media (max-width: 900px) {
+  #index .index-shell { grid-template-columns: 1fr; }
+  #index-art {
+    width: min(82%, 440px);
+    margin: 28px auto 0;
+  }
+}
 
 #notes {
   position: absolute;
