@@ -134,57 +134,63 @@
         {
           notes:
             'He sits on the summit he never reached, cup in hand. Speak ' +
-            'the drink hook — even on a break, the loop runs — the words ' +
-            'stay off screen; the table carries "another drink?" later.',
+            'the claim plainly: almost every decision has his shape — a ' +
+            'guess at the world, then a push toward better.',
+        },
+        {
+          notes:
+            'The seed of the big table: start with the drink because it is ' +
+            'in the drawing, then the person. The same pair runs in a ' +
+            'brain, in ML and astronomy, and in science as a community.',
+        },
+        {
+          notes:
+            'Inference: maintaining a model of reality from incomplete, ' +
+            'noisy observations. This is the guess-at-the-world half.',
         },
         {
           notes:
             'Optimization is the mechanical half: align the model with ' +
-            'the data, descend the error surface.',
-        },
-        {
-          notes:
-            'The seed of the big table: the same pair runs in a brain, in ' +
-            'ML and astronomy, and in science as a community. Gesture at ' +
-            'each column and move — the full table comes later.',
+            'the data, descend the error surface. This is the push toward ' +
+            'better.',
         },
       ],
       text: [
         {
           id: 'why-head', at: [0.05, 0.07], w: 720, cls: 'scenehead',
-          html: '<p class="kicker">Why we are Sisyphus</p>' +
-            '<p class="scenetitle">Inference &amp; optimization</p>',
+          html: '<p class="kicker">Inference &amp; optimization</p>' +
+            '<p class="scenetitle">Why We Are Sisyphus</p>',
         },
         {
-          id: 'why-lead', at: [0.05, 0.24], w: 580, cls: 'aside lead',
+          id: 'why-lead', at: [0.05, 0.24], w: 580, cls: 'aside lead', to: 1,
           html: '<p>Almost every decision we make has his shape: a guess at ' +
             'the world, then a push toward better.</p>',
         },
         {
-          id: 'why-inf', at: [0.05, 0.37], w: 560, cls: 'aside lead',
-          html: '<p><b>Inference</b> — maintaining a model of reality from ' +
-            'incomplete, noisy observations: p(world&thinsp;|&thinsp;data).</p>',
-        },
-        {
-          id: 'why-opt', at: [0.05, 0.51], w: 560, cls: 'aside lead', from: 1,
-          html: '<p><b>Optimization</b> — the mechanical part: align the ' +
-            'model with the data. Descend the error surface.</p>',
-        },
-        {
-          id: 'why-table', at: [0.05, 0.66], w: 760, cls: 'mini-table', from: 2,
+          id: 'why-table', at: [0.05, 0.42], w: 760, cls: 'mini-table', from: 1, to: 1,
           html: '<div class="cols">' +
-            '<div><h5>a brain</h5><p>Do I like this person?</p>' +
-            '<p>Should I have another drink?</p></div>' +
+            '<div><h5>a brain</h5><p>Should I have another drink?</p>' +
+            '<p>Do I like this person?</p></div>' +
             '<div><h5>an AI / model</h5><p>Is this a cat or a dog?</p>' +
             '<p>What is the redshift of this galaxy?</p></div>' +
             '<div><h5>science / astro</h5><p>Reionization — by AGNs or ' +
             'stars?</p><p>General Relativity, or modified gravity?</p></div>' +
             '</div>',
         },
+        {
+          id: 'why-inf', at: [0.05, 0.34], w: 560, cls: 'aside lead', from: 2,
+          html: '<p><b>Inference</b> — maintaining a model of reality from ' +
+            'incomplete, noisy observations: p(world&thinsp;|&thinsp;data).</p>',
+        },
+        {
+          id: 'why-opt', at: [0.05, 0.51], w: 560, cls: 'aside lead', from: 3,
+          html: '<p><b>Optimization</b> — the mechanical part: align the ' +
+            'model with the data. Descend the error surface.</p>',
+        },
       ],
       notes:
         'Sisyphus on his break, and the two words of the talk defined. The ' +
-        'table is the seed the big table (scene 7) grows out of.',
+        'table is the seed the big table (scene 5) grows out of.',
     },
 
     /* ========================================================= 4 · LOOP == */
@@ -1069,7 +1075,7 @@
       ['myth', 2],
 
       ['why-sisyphus', 0],
-      ['why-sisyphus', 2],
+      ['why-sisyphus', 1],
 
       ['loop', 0],
       ['loop', 2],
