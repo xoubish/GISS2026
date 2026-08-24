@@ -100,4 +100,12 @@ Built so far:
   a sharp spike right of the table — Sisyphus hangs off it one-handed,
   because this scene is difficult. 12-minute cut: walk rows 1, 5, 7 only.
 
-Scenes 6–10 (info theory, the two examples, philosophy, return) are stubs.
+- **Scene 6 (Information theory)** — terrain-first: the loop's stations
+  measured on the basin itself, using the engine's station layers
+  (soundings → H(X); Fisher parabolas → I(θ) with the zero-Fisher warning;
+  5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
+  arrows; pull-back to the climber → expected information gain). Slow
+  descent from scene 5's sky on entry. Formulas inline and small on
+  screen; EIG formula in notes only. 12-minute cut: narrate beats 1, 2, 5.
+
+Scenes 7–10 (the two examples, philosophy, return) are stubs.
