@@ -253,6 +253,87 @@
     return g;
   }
 
+  /* Scene 6's Shannon mark: the same pen, holding a speaking-horn to his
+     mouth and facing the channel (−x). Two things the earlier version got
+     wrong are fixed here — a hand actually holds the horn, and the feet sit
+     on the terrain instead of on a flat baseline, which matters because he
+     stands on the basin's rim, not on level ground.
+     `foot(fx)` returns the ground offset, in local units, at local x = fx. */
+  function callFigure(seed, s, foot, horn) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    const ST = 0.13;
+    stroke(-ST, foot(-ST), -0.04, -0.22, 2);        // downhill leg
+    stroke(-0.04, -0.22, 0.0, -0.42, 2);
+    stroke(ST * 0.9, foot(ST * 0.9), 0.05, -0.22, 2); // uphill leg
+    stroke(0.05, -0.22, 0.0, -0.42, 2);
+    stroke(0.0, -0.42, -0.05, -0.78, 3);            // torso, upright
+    stroke(-0.05, -0.735, -0.19, -0.61, 2);         // near arm: elbow forward…
+    stroke(-0.19, -0.61, horn.gx, horn.gy, 2);      // …forearm up to the grip
+    stroke(0.0, -0.715, 0.10, -0.50, 2);            // far arm, hanging
+    const hd = el('path', { d: ring(-0.09, -0.885, 0.105, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    return g;
+  }
+
+  /* A speaking-horn, drawn along the axis from a narrow end at (mx,my) to a
+     bell of half-width r1 at (bx,by), with the sound leaving it as arcs.
+     Returns the group plus the two points the caller needs: where a hand can
+     grip it, and where the channel leaves the bell. */
+  function hornShape(mx, my, bx, by, r0, r1, s, seed) {
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const ax = bx - mx, ay = by - my, L = Math.hypot(ax, ay) || 1;
+    const ux = ax / L, uy = ay / L, nx = -uy, ny = ux;
+    const P = (x, y, k, r) => [x + nx * k * r, y + ny * k * r];
+    const a = P(mx, my, 1, r0), b = P(bx, by, 1, r1);
+    const c = P(mx, my, -1, r0), d = P(bx, by, -1, r1);
+    const pen = (path) => { path.style.strokeWidth = W; g.appendChild(path); };
+    pen(el('path', { d: handLine(a[0], a[1], b[0], b[1], 0.006, seed), class: 'ink' }));
+    pen(el('path', { d: handLine(c[0], c[1], d[0], d[1], 0.006, seed + 1), class: 'ink' }));
+    const bulge = r1 * 0.9;                                  // the bell's lip
+    pen(el('path', {
+      d: 'M' + f2(b[0]) + ' ' + f2(b[1]) + 'Q' + f2(bx + ux * bulge) + ' ' +
+        f2(by + uy * bulge) + ' ' + f2(d[0]) + ' ' + f2(d[1]),
+      class: 'ink',
+    }));
+    for (let i = 1; i <= 3; i++) {                           // sound leaving it
+      const cx = bx + ux * 0.07, cy = by + uy * 0.07;
+      const rr = r1 * 1.1 * (0.5 + i * 0.44), sp = 0.66;
+      const w = el('path', {
+        d: 'M' + f2(cx + nx * rr * sp) + ' ' + f2(cy + ny * rr * sp) +
+          'Q' + f2(cx + ux * rr) + ' ' + f2(cy + uy * rr) + ' ' +
+          f2(cx - nx * rr * sp) + ' ' + f2(cy - ny * rr * sp),
+        class: 'ink',
+      });
+      w.style.strokeWidth = W;
+      w.style.opacity = (0.7 - i * 0.15).toFixed(2);
+      g.appendChild(w);
+    }
+    const t = 0.55, off = r1 * 0.55 + 0.02;                  // grip, underside
+    return {
+      g: g,
+      gx: mx + ax * t - nx * off,
+      gy: my + ay * t - ny * off,
+      bell: [bx, by],
+    };
+  }
+
   /* Scene 4's spectator: leaning back against the right edge of the frame,
      one foot flat on it, arms crossed, watching the loop. The wall is the
      edge of the slide — that is the joke. Faces −x.                       */
@@ -895,29 +976,31 @@
       high.forEach((x, i) => edot(L.entropy, x, S.ground(x), 1.15, 1810 + i));
       txt(L.entropy, 2298, S.ground(2298) - 24, 'high H — scattered', 'sm');
 
-      const baseX = 2374, baseY = S.ground(baseX);
-      const s = 45;
-      const cf = standFigure(1888, s);
+      /* Shannon's framing, as a marginal mark on the basin's right rim: a
+         caller with a horn, and the message leaving it down a dashed
+         channel. Deliberately smaller than the climber of the later beats —
+         this is a gloss, not a character. The channel is drawn in world
+         space, not inside the figure's scaled group, so its dashes stay the
+         same size as every other dashed line in the deck. */
+      const baseX = 2362, baseY = S.ground(baseX);
+      const s = 28;
+      const foot = (fx) =>
+        Math.max(-0.09, Math.min(0.09, (S.ground(baseX + fx * s) - baseY) / s));
+      const hn = hornShape(-0.235, -0.875, -0.55, -0.945, 0.03, 0.098, s, 1890);
+      const cf = callFigure(1888, s, foot, hn);
+      cf.appendChild(hn.g);
       cf.setAttribute('transform', 'translate(' + baseX + ' ' + f2(baseY) + ') scale(' + s + ')');
       L.comm.appendChild(cf);
 
-      const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
-      const c = el('g', { transform: 'translate(' + baseX + ' ' + f2(baseY) + ') scale(' + s + ')' });
-      const cone = el('path', {
-        d: 'M-0.17 -0.86L-0.43 -0.75L-0.43 -0.97Z',
-        class: 'ink',
-      });
-      cone.style.strokeWidth = W;
-      c.appendChild(cone);
-
-      const string = el('path', {
-        d: handLine(-0.43, -0.86, -2.1, -1.15, 0.02, 1889),
-        class: 'ink trail',
-      });
-      string.style.strokeWidth = W;
-      c.appendChild(string);
-      L.comm.appendChild(c);
-      txt(L.comm, baseX - 70, baseY - 55, 'message through a channel', 'sm');
+      const bx0 = baseX + hn.bell[0] * s - 4, by0 = baseY + hn.bell[1] * s;
+      const bx1 = bx0 - 44, by1 = by0 - 8.4;
+      const mx0 = (bx0 + bx1) / 2, my0 = (by0 + by1) / 2 + 3;
+      L.comm.appendChild(el('path', {
+        d: 'M' + f2(bx0) + ' ' + f2(by0) + 'Q' + f2(mx0) + ' ' + f2(my0) + ' ' +
+          f2(bx1) + ' ' + f2(by1),
+        class: 'ink drop',
+      }));
+      txt(L.comm, mx0, my0 - 4.5, 'message through a channel', 'sm');
 
       /* surprise: one datum a long way from anything the model predicts */
       const sx = 2268, sy = S.ground(sx) - 46;
