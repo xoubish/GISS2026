@@ -276,6 +276,18 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
 .aside em, .callout em { font-style: normal; }
 .aside.lead p { font-size: 26px; font-weight: 500; color: var(--ink); }
 .aside.lead b { font-weight: 700; }
+.branch-list ul {
+  margin-left: 1.0em;
+  font-size: 25px;
+  line-height: 1.34;
+  color: var(--ink);
+}
+.branch-list > ul { margin-left: 0; list-style-position: outside; }
+.branch-list ul ul {
+  margin-top: 6px;
+  color: var(--ink-soft);
+}
+.branch-list li + li { margin-top: 4px; }
 
 /* The human thread. Not a second column — a gloss in the margin of the same
    picture, in the one accent this deck allows itself. Make it grey by changing

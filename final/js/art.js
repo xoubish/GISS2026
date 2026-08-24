@@ -685,12 +685,11 @@
       L.meetfig.appendChild(per);
     })();
 
-    /* ---- the spectator (scene 4): leaning on the frame's left edge,
-       mirrored so he faces the loop ---------------------------------- */
+    /* ---- the spectator (scene 4): standing in the corner, watching ---- */
     (function () {
-      const s = 405;
-      const lf = leanFigure(4249, s);
-      lf.setAttribute('transform', 'translate(1640 -2253) scale(-' + s + ' ' + s + ')');
+      const s = 270;
+      const lf = standFigure(4249, s);
+      lf.setAttribute('transform', 'translate(1648 -2253) scale(-' + s + ' ' + s + ')');
       L.leaner.appendChild(lf);
     })();
     const mball = scribbleBall(4244);

@@ -162,12 +162,12 @@
             '<p class="scenetitle">Why We Are Sisyphus</p>',
         },
         {
-          id: 'why-lead', at: [0.05, 0.24], w: 580, cls: 'aside lead', to: 1,
+          id: 'why-lead', at: [0.05, 0.24], w: 580, cls: 'aside lead',
           html: '<p>Almost every decision we make has his shape: a guess at ' +
             'the world, then a push toward better.</p>',
         },
         {
-          id: 'why-table', at: [0.05, 0.42], w: 760, cls: 'mini-table', from: 1, to: 1,
+          id: 'why-table', at: [0.05, 0.42], w: 760, cls: 'mini-table', from: 1,
           html: '<div class="cols">' +
             '<div><h5>a brain</h5><p>Should I have another drink?</p>' +
             '<p>Do I like this person?</p></div>' +
@@ -178,12 +178,12 @@
             '</div>',
         },
         {
-          id: 'why-inf', at: [0.05, 0.34], w: 560, cls: 'aside lead', from: 2,
+          id: 'why-inf', at: [0.05, 0.67], w: 760, cls: 'aside compact', from: 2,
           html: '<p><b>Inference</b> — maintaining a model of reality from ' +
             'incomplete, noisy observations: p(world&thinsp;|&thinsp;data).</p>',
         },
         {
-          id: 'why-opt', at: [0.05, 0.51], w: 560, cls: 'aside lead', from: 3,
+          id: 'why-opt', at: [0.05, 0.78], w: 760, cls: 'aside compact', from: 3,
           html: '<p><b>Optimization</b> — the mechanical part: align the ' +
             'model with the data. Descend the error surface.</p>',
         },
@@ -199,33 +199,28 @@
       name: 'The loop',
       camera: { x: 2400, y: -2698, z: 1.0 },
       enter: { dur: 2200 },
-      set: { far: 0.15, rock: 0.45, line: 0.5, leaner: 1 },
+      set: {
+        far: 0.15, rock: 0.45, line: 0.5, leaner: 1,
+        loop1: 1, loop2: 1, loop3: 1,
+      },
       steps: [
         {
-          set: { loop1: 1 },
           notes:
-            'Every lap starts with a question; the question decides what ' +
-            'matters — and that choice is the ruler.',
-        },
-        {
-          set: { loop2: 1 },
-          notes:
-            'Through the ruler, data. Too much to carry, so compress — ' +
-            'then infer.',
-        },
-        {
-          set: { loop3: 1 },
-          notes:
-            'An answer comes back, and the one judgment with no arrow of ' +
-            'its own: good enough? The dashed line is the lap renewing.',
+            'The full loop is already on screen. Walk it once: question, ' +
+            'what matters, ruler, data, compression, inference, answer, ' +
+            'good enough?',
         },
         {
           notes:
-            'Branch one. The 42 stays small on screen — it pays off later.',
+            'Branch one. Not good enough? The absurd answer, 42, means the ' +
+            'pipeline failed somewhere; debug the ruler, the data, the ' +
+            'compression, the model.',
         },
         {
           notes:
-            'Branch two: die on that hilltop, or ask the next question.',
+            'Branch two. Good enough? Stop, or ask the next question. This ' +
+            'is the whole talk: failure sends you inside the pipeline; ' +
+            'success ends locally or restarts the loop.',
         },
       ],
       text: [
@@ -234,15 +229,15 @@
           html: '<p class="kicker">The loop</p>',
         },
         {
-          id: 'loop-b1', at: [0.25, 0.78], w: 880, cls: 'aside lead', from: 3,
-          html: '<p><b>Not good enough?</b> <span style="font-size:17px;' +
-            'color:var(--muted)">(42)</span> — debug the pipeline: the ' +
-            'ruler, the data, the compression, the model.</p>',
+          id: 'loop-b1', at: [0.24, 0.76], w: 900, cls: 'aside lead branch-list', from: 1,
+          html: '<ul><li><b>Not good enough?</b> 42!' +
+            '<ul><li>debug the pipeline: the ruler, the data, the ' +
+            'compression, ...</li></ul></li></ul>',
         },
         {
-          id: 'loop-b2', at: [0.25, 0.87], w: 880, cls: 'aside lead', from: 4,
-          html: '<p><b>Good enough?</b> Stop — die on that hilltop. Or ask ' +
-            'the next question.</p>',
+          id: 'loop-b2', at: [0.24, 0.86], w: 900, cls: 'aside lead branch-list', from: 2,
+          html: '<ul><li><b>Good Enough?</b>' +
+            '<ul><li>Stop</li><li>or ask the next question</li></ul></li></ul>',
         },
       ],
       notes:
@@ -1078,8 +1073,8 @@
       ['why-sisyphus', 1],
 
       ['loop', 0],
+      ['loop', 1],
       ['loop', 2],
-      ['loop', 4],
 
       ['three-systems', 0],
       ['three-systems', 1],
