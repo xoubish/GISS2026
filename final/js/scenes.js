@@ -263,9 +263,9 @@
         {
           camera: { x: 758, y: -2895, z: 1.8 },
           notes:
-            'The loss. Biology and loss aversion — prospect theory — for ' +
-            'the brain; a handcrafted mathematical loss for the model; ' +
-            'community consensus and Occam’s razor for science.',
+            'The loss. Biology, culture and loss aversion for the brain; ' +
+            'a handcrafted mathematical loss for the model; community ' +
+            'consensus and Occam’s razor for science.',
         },
         {
           camera: { x: 758, y: -2807, z: 1.8 },
@@ -330,8 +330,8 @@
         },
         {
           id: 'ts-r1', at: [0.205, 0.245], w: 860, cls: 'bigtable row',
-          html: '<h6>The loss</h6><p>Biology &amp; loss aversion (prospect ' +
-            'theory)</p><p>Handcrafted mathematical loss</p><p>Community ' +
+          html: '<h6>The loss</h6><p>Biology, culture &amp; loss aversion</p>' +
+            '<p>Handcrafted mathematical loss</p><p>Community ' +
             'consensus &amp; Occam’s razor</p>',
         },
         {
