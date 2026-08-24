@@ -135,9 +135,10 @@ Built so far:
   hangs off it one-handed, because this scene is difficult. 12-minute cut:
   walk rows 1, 5, 7 only.
 
-- **Scene 6 (Information theory)** — terrain-first: the loop's stations
-  measured on the basin itself, using the engine's station layers
-  (soundings → H(X); Fisher parabolas → I(θ) with the zero-Fisher warning;
+- **Scene 6 (Information theory)** — terrain-first: statistics of the
+  loop drawn on the basin itself, using the engine's station layers
+  (soundings → H(X) as a first lossy statistic; Fisher parabolas → I(θ)
+  with the zero-Fisher warning;
   5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
   arrows; pull-back to the climber → expected information gain). Slow
   descent from scene 5's sky on entry. Each station carries its
@@ -145,8 +146,9 @@ Built so far:
   compression, converged-but-still-surprised for the loss), and a
   dedicated "finding the bottleneck" beat lights the three fork trails —
   three checks, cheapest first; "more data" is deliberately the third.
-  Formulas inline and small on screen; EIG formula in notes only.
-  12-minute cut: narrate beats 1, 2, 5 and the bottleneck beat.
+  Formulas inline and small on screen; EIG formula in notes only. The old
+  orientation beat was removed, so the scene opens directly on entropy.
+  12-minute cut: narrate entropy, Fisher, surprise and the bottleneck beat.
 
 - **Scene 7 (Example — a person)** — "do I like this new person?" walked
   through the same drawings scene 6 used, now with human captions (plain

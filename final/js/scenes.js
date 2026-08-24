@@ -382,24 +382,20 @@
     {
       id: 'info',
       name: 'Information theory',
-      camera() { const z = 4.4; return { x: NOTCH, y: S.anchorY(-1782, 0.5, z), z }; },
+      camera() { const z = 4.4; return { x: NOTCH, y: S.anchorY(-1782, 0.62, z), z }; },
       enter: { dur: 2800, ease: 'slow' },
-      set: { far: 0.5, rock: 0.35, line: 0.35, sound: 1, pusher: 0.55, roll: 1 },
+      set: { far: 0.5, rock: 0.35, line: 0.35, sound: 1, roll: 1 },
       steps: [
-        {
-          notes:
-            'The long dive from the sky to the ground — let it land. A ' +
-            'stretch of hillside, and what we actually hold: soundings with ' +
-            'widths, not a curve. Sisyphus stands at the notch. Say the ' +
-            'promise: every station of the loop has a number of its own.',
-        },
         {
           set: { entropy: 1 },
           notes:
-            'THE DATA. Shannon entropy is capacity: how much the raw stream ' +
-            'can even carry. For pixels and photons it is enormous — and ' +
-            'most of it is noise and redundant background. The bracket is ' +
-            'the width of what is still possible.',
+            'Start with Shannon\'s practical question: if observations ' +
+            'arrive as a stream, how unpredictable is the next one? X is ' +
+            'the next observation; p(X) is what your current model expects ' +
+            'to see; entropy H(X) is average surprise. Same family as stat ' +
+            'mech entropy, but this is the message/observation version. ' +
+            'For a decision, entropy is raw variation — not yet useful ' +
+            'information.',
         },
         {
           set: { entropy: 0.35, fisher: 1 },
@@ -471,26 +467,21 @@
       ],
       text: [
         {
-          id: 'in-head', at: [0.05, 0.055], w: 720, cls: 'scenehead', to: 6,
+          id: 'in-head', at: [0.05, 0.055], w: 720, cls: 'scenehead', to: 5,
           html: '<p class="kicker">Information theory</p>' +
-            '<p class="scenetitle">The loop, measured</p>',
+            '<p class="scenetitle">Statistics of the Loop</p>',
         },
         {
-          id: 'in-0', at: [0.05, 0.24], w: 540, cls: 'aside lead', to: 0,
-          html: '<p>Back on the ground. What we actually hold: soundings ' +
-            'with widths — and every station of the loop has a number of ' +
-            'its own.</p>',
+          id: 'in-1', at: [0.05, 0.24], w: 540, cls: 'aside lead', to: 0,
+          html: '<p><b>Shannon’s question: how unpredictable is the next ' +
+            'observation?</b></p>' +
+            '<p>X is the stream of observations. p(X) is what we expect to ' +
+            'see. Entropy, H(X), is average surprise.</p>' +
+            '<p>For a decision, entropy is raw variation — not yet useful ' +
+            'information.</p>',
         },
         {
-          id: 'in-1', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
-          html: '<p><b>The data — Shannon entropy, H(X).</b> How much the ' +
-            'raw stream can even carry. Enormous — and mostly noise and ' +
-            'background.</p>' +
-            '<p>Capacity is not knowledge: the question is how much of H ' +
-            'survives the noise floor.</p>',
-        },
-        {
-          id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 2, to: 2,
+          id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
           html: '<p><b>The ruler — Fisher information, I(θ).</b> How much ' +
             'of what I measure is about θ: the same basin, flat under one ' +
             'ruler, steep under another. Where Fisher is zero, nothing ' +
@@ -499,20 +490,20 @@
             'estimator can ever do through this instrument.</p>',
         },
         {
-          id: 'in-3', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 3, to: 3,
+          id: 'in-3', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The compression — sampling.</b> Five numbers, evenly ' +
             'spaced: the basin is simply not in them.</p>' +
             '<p>Nothing was wrong with the data.</p>',
         },
         {
-          id: 'in-4', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 4, to: 4,
+          id: 'in-4', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 3, to: 3,
           html: '<p><b>The same budget, placed where the curvature lives</b> ' +
             '— and the basin comes back. Sampling is a ruler too.</p>' +
             '<p>Its test: does T(D) keep what D knew about θ — ' +
             'I(T(D);&thinsp;θ) against I(D;&thinsp;θ)?</p>',
         },
         {
-          id: 'in-5', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 5, to: 5,
+          id: 'in-5', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 4, to: 4,
           html: '<p><b>The learning signal — surprise, −log p(x).</b> The ' +
             'datum nothing predicted. Prediction error, gradient, anomaly: ' +
             'the same engine in all three columns.</p>' +
@@ -521,14 +512,14 @@
             'wrong.</p>',
         },
         {
-          id: 'in-6', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 6, to: 6,
+          id: 'in-6', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 5, to: 5,
           html: '<p><b>The update — information gain, D<sub>KL</sub>.</b> ' +
             'How much did the bracket close?</p>' +
             '<p>Surprise is not gain — and when each new datum barely moves ' +
             'the posterior, this data, under this compression, is spent.</p>',
         },
         {
-          id: 'in-diag', at: [0.05, 0.10], w: 620, cls: 'aside lead', from: 7, to: 7,
+          id: 'in-diag', at: [0.05, 0.10], w: 620, cls: 'aside lead', from: 6, to: 6,
           html: '<p><b>Finding the bottleneck.</b> Three checks, cheapest ' +
             'first:</p>' +
             '<p><b>Converged but still surprised?</b> The loss or the model. ' +
@@ -539,7 +530,7 @@
             'then go buy more.</p>',
         },
         {
-          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 8,
+          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 7,
           html: '<p><b>The next observation — expected information gain.</b> ' +
             'Rank the observations you could take by what you expect to ' +
             'learn. Buy that one.</p>' +
@@ -548,11 +539,13 @@
       ],
       notes:
         'The meat, drawn on the hill instead of written: soundings are the ' +
-        'data, brackets are entropy, parabolas are Fisher, knots are the ' +
-        'compression, the loud datum is surprise, the closing arrows are ' +
-        'gain, and the pull-back to the climber is experimental design. ' +
-        '12-minute cut: narrate beats 1, 2 and 5; step through 3, 4, 6 ' +
-        'without commentary; give 7 one sentence while the camera pulls.',
+        'data, clustered versus scattered points are entropy, parabolas ' +
+        'are Fisher, knots are the compression, the loud datum is surprise, ' +
+        'the closing arrows are gain, and the pull-back to the climber is ' +
+        'experimental design. ' +
+        '12-minute cut: narrate entropy, Fisher and surprise; step through ' +
+        'the two compression beats and the update quickly; give the final ' +
+        'two beats one sentence each.',
     },
 
     /* =============================================== 7 · EXAMPLE — PERSON == */
@@ -1076,10 +1069,10 @@
       ['three-systems', 7],
 
       ['info', 0],
-      ['info', 2],
-      ['info', 4],
+      ['info', 1],
+      ['info', 3],
+      ['info', 6],
       ['info', 7],
-      ['info', 8],
 
       ['example-person', 0],
       ['example-person', 2],

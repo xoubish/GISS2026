@@ -879,9 +879,21 @@
     const A_WIDE = 0.0030, A_NARROW = 0.11, RISE = 26;
     const halfWide = Math.sqrt(RISE / A_WIDE), halfNarrow = Math.sqrt(RISE / A_NARROW);
     (function () {
-      bracket(L.entropy, cmin - halfWide, cmin + halfWide, AX.bot - 27, 3.2,
-        'broad — much is still possible', 1301);
-      bracket(L.entropy, cmin - halfNarrow, cmin + halfNarrow, AX.bot - 13, 3.2, null, 1311);
+      const edot = (host, x, y, r, seed) => {
+        host.appendChild(el('circle', { cx: x, cy: y, r: r, class: 'datum' }));
+        host.appendChild(el('path', { d: ring(x, y, r * 1.35, seed), class: 'ink ring' }));
+      };
+
+      /* Entropy as predictability of the next observation: repeated points
+         are low H; scattered points are high H. No brackets here — those read
+         like distances or posterior widths, which belongs to later beats. */
+      const low = [2192, 2196, 2198, 2201, 2203, 2206];
+      low.forEach((x, i) => edot(L.entropy, x, S.ground(x) - 8 + gaussRnd(S.mulberry32(1700 + i)) * 1.0, 1.15, 1710 + i));
+      txt(L.entropy, 2199, S.ground(2199) - 33, 'low H — repeated', 'sm');
+
+      const high = [2244, 2258, 2274, 2298, 2321, 2346];
+      high.forEach((x, i) => edot(L.entropy, x, S.ground(x) - 12 + gaussRnd(S.mulberry32(1800 + i)) * 7.5, 1.15, 1810 + i));
+      txt(L.entropy, 2298, S.ground(2298) - 43, 'high H — scattered', 'sm');
 
       /* surprise: one datum a long way from anything the model predicts */
       const sx = 2268, sy = S.ground(sx) - 46;
