@@ -990,8 +990,13 @@
       }));
       L.tablebg.appendChild(el('path', { d: d, class: 'ink ridge-far' }));
       const gripx = 1398;
-      const hf = hangFigure(4251, 155);
-      hf.setAttribute('transform', 'translate(' + gripx + ' ' + f2(fn(gripx) + 3) + ') scale(155)');
+      const hs = 232.5;
+      const hf = hangFigure(4251, hs);
+      hf.setAttribute('id', 'table-hanger');
+      hf.dataset.x = gripx;
+      hf.dataset.y = f2(fn(gripx) + 3);
+      hf.dataset.s = hs;
+      hf.setAttribute('transform', 'translate(' + gripx + ' ' + hf.dataset.y + ') scale(' + hs + ')');
       L.tablebg.appendChild(hf);
     })();
 
@@ -1188,5 +1193,15 @@
     per.setAttribute('transform',
       'translate(' + f2(xr) + ' ' + f2(S.ground(xr)) + ') scale(' + s + ')');
     S.meetT = T;
+  };
+
+  S.setHang = function (now) {
+    const fig = document.getElementById('table-hanger');
+    if (!fig) return;
+    const x = fig.dataset.x, y = fig.dataset.y, s = fig.dataset.s;
+    const t = (now || performance.now()) / 1000;
+    const a = 4.2 * Math.sin(t * 1.35) + 1.1 * Math.sin(t * 2.6 + 0.8);
+    fig.setAttribute('transform',
+      'translate(' + x + ' ' + y + ') rotate(' + f2(a) + ') scale(' + s + ')');
   };
 })();

@@ -161,6 +161,10 @@
       if (u >= 1) tweens.splice(i, 1); else busy = true;
     }
     if (tweens.length || camTween) paint();
+    if (!instant && S.setHang && state.tablebg > 0.01) {
+      S.setHang(now);
+      busy = true;
+    }
     if (busy) raf = requestAnimationFrame(frame);
   }
 
