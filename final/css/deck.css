@@ -346,7 +346,7 @@ body.bare #hud, body.bare #dots { opacity: 0; }
 
 .overlay {
   position: absolute; inset: 0;
-  background: rgba(236, 242, 229, .97);
+  background: rgba(236, 242, 229, .992);
   display: none;
   padding: 6% 8%;
   overflow: auto;
@@ -372,24 +372,55 @@ body.bare #hud, body.bare #dots { opacity: 0; }
 
 #index .index-shell {
   display: grid;
-  grid-template-columns: minmax(430px, 0.72fr) minmax(360px, 1fr);
-  gap: 8%;
-  align-items: start;
+  grid-template-columns: minmax(430px, 560px) minmax(340px, 470px);
+  gap: clamp(44px, 6vw, 92px);
+  align-items: center;
+  width: min(76%, 1220px);
+  margin: 0 auto;
+}
+#index.overlay {
+  padding: 0;
+  overflow: hidden;
+}
+#index.overlay.on {
+  display: grid;
+  align-content: center;
+}
+#index h2 {
+  width: min(76%, 1220px);
+  margin: 0 auto 24px;
 }
 #index-list {
   columns: 1;
-  max-width: 620px;
+  max-width: 560px;
+}
+#index-list li {
+  font-size: 29px;
+  line-height: 1.54;
+}
+#index-list li span {
+  width: 54px;
+  font-size: 18px;
 }
 #index-art {
   display: block;
-  width: min(100%, 560px);
+  width: min(100%, 500px);
   height: auto;
-  margin: -28px 0 0 auto;
+  margin: 0 0 0 auto;
   filter: url(#inkify);
   opacity: .92;
 }
 
 @media (max-width: 900px) {
+  #index.overlay {
+    padding: 9% 8%;
+    overflow: auto;
+  }
+  #index.overlay.on { display: block; }
+  #index h2,
+  #index .index-shell {
+    width: 100%;
+  }
   #index .index-shell { grid-template-columns: 1fr; }
   #index-art {
     width: min(82%, 440px);

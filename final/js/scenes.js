@@ -99,7 +99,7 @@
       text: [
         {
           id: 'myth-title', at: [0.05, 0.075], w: 640, cls: 'scenehead',
-          html: '<p class="kicker">The myth</p><p class="scenetitle">Sisyphus</p>',
+          html: '<p class="scenetitle">The Myth</p>',
         },
         {
           id: 'myth-1', at: [0.05, 0.21], w: 560, cls: 'aside lead',
@@ -113,8 +113,8 @@
         },
         {
           id: 'myth-3', at: [0.05, 0.54], w: 560, cls: 'aside lead', from: 2,
-          html: '<p><b>Sisyphus is solving an optimization problem.</b></p>' +
-            '<p>(Gradient ascent — or descent, if you flip the landscape.)</p>',
+          html: '<p>Gradient ascent, or descent with a flipped hill: ' +
+            '<b>Sisyphus is solving an optimization problem.</b></p>',
         },
       ],
       notes:
