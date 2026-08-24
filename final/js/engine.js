@@ -255,8 +255,57 @@
 
   /* ============================================================== playback = */
   let si = 0, bi = 0;
+  let routeName = 'full', route = null;
 
   function stepsOf(sc) { return sc.steps && sc.steps.length ? sc.steps : [{}]; }
+
+  function flatBeat(i, k) {
+    let n = 0;
+    for (let j = 0; j < i; j++) n += stepsOf(SCENES[j]).length;
+    return n + k;
+  }
+
+  function buildRoute(name) {
+    if (!name || name === 'full') return null;
+    const raw = S.ROUTES && S.ROUTES[name];
+    if (!raw) return null;
+    const entries = [];
+    raw.forEach((r) => {
+      const id = Array.isArray(r) ? r[0] : r.id;
+      const k = Array.isArray(r) ? r[1] : r.step;
+      const i = typeof id === 'number' ? id : SCENES.findIndex((s) => s.id === id);
+      if (i < 0 || i >= SCENES.length) return;
+      entries.push({ si: i, bi: Math.max(0, Math.min(stepsOf(SCENES[i]).length - 1, k || 0)) });
+    });
+    return entries.length ? entries : null;
+  }
+
+  function routeIndex(i, k) {
+    if (!route) return -1;
+    return route.findIndex((r) => r.si === i && r.bi === k);
+  }
+
+  function routeNextIndex() {
+    if (!route) return -1;
+    const here = routeIndex(si, bi);
+    if (here >= 0) return here < route.length - 1 ? here + 1 : -1;
+    const f = flatBeat(si, bi);
+    return route.findIndex((r) => flatBeat(r.si, r.bi) > f);
+  }
+
+  function routePrevIndex() {
+    if (!route) return -1;
+    const here = routeIndex(si, bi);
+    if (here >= 0) return here > 0 ? here - 1 : -1;
+    const f = flatBeat(si, bi);
+    for (let i = route.length - 1; i >= 0; i--) if (flatBeat(route[i].si, route[i].bi) < f) return i;
+    return -1;
+  }
+
+  function routeFirstInScene(i) {
+    if (!route) return -1;
+    return route.findIndex((r) => r.si === i);
+  }
 
   function setFor(sc, k) {
     const merged = Object.assign({ line: 1 }, S.DEFAULT_SET, sc.set || {});
@@ -304,7 +353,14 @@
 
   function chrome(sc, k, n) {
     $('hud-name').textContent = sc.name;
-    $('hud-num').textContent = (si + 1) + '/' + SCENES.length + (n > 1 ? '  ·  ' + (k + 1) + '/' + n : '');
+    if (route) {
+      const ri = routeIndex(si, k);
+      $('hud-num').textContent =
+        routeName + ' ' + (ri >= 0 ? (ri + 1) : '?') + '/' + route.length +
+        '  ·  scene ' + (si + 1) + '/' + SCENES.length;
+    } else {
+      $('hud-num').textContent = (si + 1) + '/' + SCENES.length + (n > 1 ? '  ·  ' + (k + 1) + '/' + n : '');
+    }
     const dots = $('dots').children;
     for (let i = 0; i < dots.length; i++) dots[i].classList.toggle('on', i <= si);
     const st = stepsOf(sc)[k];
@@ -312,11 +368,21 @@
   }
 
   function next() {
+    if (route) {
+      const ri = routeNextIndex();
+      if (ri >= 0) show(route[ri].si, route[ri].bi);
+      return;
+    }
     const steps = stepsOf(SCENES[si]);
     if (bi < steps.length - 1) show(si, bi + 1);
     else if (si < SCENES.length - 1) show(si + 1, 0);
   }
   function prev() {
+    if (route) {
+      const ri = routePrevIndex();
+      if (ri >= 0) show(route[ri].si, route[ri].bi);
+      return;
+    }
     if (bi > 0) show(si, bi - 1);
     else if (si > 0) show(si - 1, stepsOf(SCENES[si - 1]).length - 1);
   }
@@ -334,8 +400,8 @@
     const k = e.key;
     if (k === 'ArrowRight' || k === ' ' || k === 'PageDown' || k === 'ArrowDown') { next(); e.preventDefault(); }
     else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'ArrowUp') { prev(); e.preventDefault(); }
-    else if (k === 'Home') show(0, 0);
-    else if (k === 'End') show(SCENES.length - 1, 0);
+    else if (k === 'Home') route ? show(route[0].si, route[0].bi) : show(0, 0);
+    else if (k === 'End') route ? show(route[route.length - 1].si, route[route.length - 1].bi) : show(SCENES.length - 1, 0);
     else if (k >= '0' && k <= '9') {
       /* Jump on the first digit, then reinterpret if a second arrives quickly,
          so "7" is instant and "1 4" still reaches scene 14. */
@@ -346,7 +412,9 @@
       const i = (two || +k) - 1;
       if (i >= 0 && i < SCENES.length) {
         document.querySelectorAll('.overlay').forEach((o) => o.classList.remove('on'));
-        show(i, 0);
+        const ri = routeFirstInScene(i);
+        if (ri >= 0) show(route[ri].si, route[ri].bi);
+        else show(i, 0);
       }
     }
     else if (k === 'g' || k === 'G' || k === 'Escape') toggleOverlay('index');
@@ -388,13 +456,24 @@
     buildText();
     buildPlates();
 
+    const q = new URLSearchParams(location.search);
+    routeName = q.get('route') || (q.get('short') === '1' ? 'short' : 'full');
+    route = buildRoute(routeName);
+    if (!route) routeName = 'full';
+    else document.body.dataset.route = routeName;
+
     const dots = $('dots');
     SCENES.forEach(() => dots.appendChild(document.createElement('i')));
     const list = $('index-list');
     SCENES.forEach((sc, i) => {
       const li = document.createElement('li');
       li.innerHTML = '<span>' + (i + 1) + '</span>' + sc.name;
-      li.onclick = () => { toggleOverlay('index'); show(i, 0); };
+      li.onclick = () => {
+        toggleOverlay('index');
+        const ri = routeFirstInScene(i);
+        if (ri >= 0) show(route[ri].si, route[ri].bi);
+        else show(i, 0);
+      };
       list.appendChild(li);
     });
 
@@ -403,7 +482,6 @@
     // deep link: #sceneId or #sceneId/step, or ?scene=id&step=n
     // &bare=1 hides the on-screen furniture; &notext=1 hides the HTML text
     // layer (both used by the pptx exporter, which rebuilds text natively)
-    const q = new URLSearchParams(location.search);
     if (q.get('bare') === '1') document.body.classList.add('bare');
     if (q.get('notext') === '1') $('texts').style.display = 'none';
     let id = q.get('scene'), st = +(q.get('step') || 0);
@@ -411,7 +489,9 @@
       const p = location.hash.slice(1).split('/');
       id = p[0]; st = +(p[1] || 0);
     }
-    const at = Math.max(0, SCENES.findIndex((s) => s.id === id));
+    let at = SCENES.findIndex((s) => s.id === id);
+    if (at < 0 && route) { at = route[0].si; st = route[0].bi; }
+    else at = Math.max(0, at);
     const keep = instant;
     instant = true;
     show(at, st, { force: true });

@@ -1058,6 +1058,52 @@
     },
   ];
 
+  /* A 12-minute route through the strongest beats. The full deck remains
+     available; open index.html?route=short or short.html to follow this path. */
+  S.ROUTES = {
+    short: [
+      ['opening', 0],
+
+      ['myth', 0],
+      ['myth', 1],
+      ['myth', 2],
+
+      ['why-sisyphus', 0],
+      ['why-sisyphus', 2],
+
+      ['loop', 0],
+      ['loop', 2],
+      ['loop', 4],
+
+      ['three-systems', 0],
+      ['three-systems', 1],
+      ['three-systems', 5],
+      ['three-systems', 7],
+      ['three-systems', 8],
+
+      ['info', 0],
+      ['info', 2],
+      ['info', 4],
+      ['info', 7],
+      ['info', 8],
+
+      ['example-person', 0],
+      ['example-person', 2],
+      ['example-person', 6],
+      ['example-person', 7],
+
+      ['example-jaisp', 0],
+      ['example-jaisp', 3],
+      ['example-jaisp', 4],
+      ['example-jaisp', 5],
+
+      ['philosophy', 6],
+
+      ['return', 0],
+      ['return', 1],
+    ],
+  };
+
   /* Fallback values for every animatable layer, so a scene only has to name
      what it changes. (Layer list inherited from the spatial engine; unused
      layers stay dark until a scene lights them.)                            */

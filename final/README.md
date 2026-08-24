@@ -30,6 +30,27 @@ table now).
 | 9 | Philosophy | existential/rational/absurd as rulers you carry; die on the hill / on the slope |
 | 10 | Return | Sisyphus takes a break, the ball comes back, one must imagine Sisyphus happy |
 
+## Short route (12 + 3 minutes — 30 beats)
+
+Open `short.html` or `index.html?route=short`. The short route is a curated
+path through the same scene graph: arrow/space follows the short path, while
+the full deck remains available by opening `index.html` without the route.
+
+The selected beats are:
+
+| scene | beats kept |
+|---|---|
+| Opening | 1 |
+| Myth | all 3 |
+| Why we are Sisyphus | drink/inference; mini-table |
+| The loop | question/ruler; full loop; two branches |
+| Three systems | full table; loss; learning signal; audit; topology close |
+| Information theory | soundings; Fisher/ruler; sampling; bottleneck; expected information gain |
+| Example — a person | prior; distance/resolution; surprise; good enough |
+| Example — JAISP | bridge; architecture; astrometry proof; field moved |
+| Philosophy | two endings |
+| Return | drawing; final line |
+
 ## Decisions on record
 
 - **Palette: alpine slate blue** (chosen 2026-08-23 from five rendered
