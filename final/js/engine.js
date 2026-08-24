@@ -400,7 +400,9 @@
     layout();
 
     // deep link: #sceneId or #sceneId/step, or ?scene=id&step=n
+    // &bare=1 hides the on-screen furniture (used by the pptx exporter)
     const q = new URLSearchParams(location.search);
+    if (q.get('bare') === '1') document.body.classList.add('bare');
     let id = q.get('scene'), st = +(q.get('step') || 0);
     if (!id && location.hash) {
       const p = location.hash.slice(1).split('/');

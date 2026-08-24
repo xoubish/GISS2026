@@ -64,6 +64,21 @@ table now).
 - Scene 10 concordance beat: the question was answered, then new better
   data arrived and the field had moved.
 
+## The PowerPoint is a build artifact
+
+`../Presentation.pptx` is generated, never edited by hand:
+
+```
+final/tools/venv/bin/python final/tools/export_pptx.py
+```
+
+It drives headless Chrome through every scene and beat (`&bare=1` hides
+the hud), captures at 3200×1800, converts to JPEG q90, and writes one
+slide per beat with the presenter notes from scenes.js in the speaker-notes
+field. The deck is the source of truth; re-run after any change. Present
+from the browser when the venue allows (the animations live there), from
+the pptx as the bulletproof fallback.
+
 ## Status
 
 Built so far:
