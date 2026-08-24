@@ -384,7 +384,7 @@
       name: 'Information theory',
       camera() { const z = 4.4; return { x: NOTCH, y: S.anchorY(-1782, 0.62, z), z }; },
       enter: { dur: 2800, ease: 'slow' },
-      set: { far: 0.5, rock: 0.35, line: 0.35, sound: 1, roll: 1 },
+      set: { far: 0.5, rock: 0.35, line: 0.35, roll: 1 },
       steps: [
         {
           set: { entropy: 1 },
@@ -476,7 +476,8 @@
           html: '<p><b>Shannon’s question: how unpredictable is the next ' +
             'observation?</b></p>' +
             '<p>X is the stream of observations. p(X) is what we expect to ' +
-            'see. Entropy, H(X), is average surprise.</p>' +
+            'see. Entropy, H(X), is average surprise:</p>' +
+            '<p>H(X) = E[−log p(X)] = −Σ p(x) log p(x).</p>' +
             '<p>For a decision, entropy is raw variation — not yet useful ' +
             'information.</p>',
         },
