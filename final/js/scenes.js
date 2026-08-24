@@ -229,13 +229,13 @@
           html: '<p class="kicker">The loop</p>',
         },
         {
-          id: 'loop-b1', at: [0.24, 0.76], w: 900, cls: 'aside lead branch-list', from: 1,
-          html: '<ul><li><b>Not good enough?</b> 42!' +
+          id: 'loop-b1', at: [0.24, 0.70], w: 900, cls: 'aside lead branch-list', from: 1,
+          html: '<ul><li><b>Not good enough?</b> 42 ...' +
             '<ul><li>debug the pipeline: the ruler, the data, the ' +
             'compression, ...</li></ul></li></ul>',
         },
         {
-          id: 'loop-b2', at: [0.24, 0.86], w: 900, cls: 'aside lead branch-list', from: 2,
+          id: 'loop-b2', at: [0.24, 0.80], w: 900, cls: 'aside lead branch-list', from: 2,
           html: '<ul><li><b>Good Enough?</b>' +
             '<ul><li>Stop</li><li>or ask the next question</li></ul></li></ul>',
         },

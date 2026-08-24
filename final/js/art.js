@@ -685,11 +685,11 @@
       L.meetfig.appendChild(per);
     })();
 
-    /* ---- the spectator (scene 4): standing in the corner, watching ---- */
+    /* ---- the spectator (scene 4): leaning in the corner, watching ----- */
     (function () {
       const s = 270;
-      const lf = standFigure(4249, s);
-      lf.setAttribute('transform', 'translate(1648 -2253) scale(-' + s + ' ' + s + ')');
+      const lf = leanFigure(4249, s);
+      lf.setAttribute('transform', 'translate(1640 -2253) scale(-' + s + ' ' + s + ')');
       L.leaner.appendChild(lf);
     })();
     const mball = scribbleBall(4244);
@@ -1001,7 +1001,7 @@
        data → compression → inference → answer → good enough? — and a dashed
        return, the lap renewing. Three layers reveal it in three beats.     */
     (function () {
-      const Y0 = -2950, Y1 = -2565, YM = -2757;   // top row, bottom row, sides
+      const Y0 = -2950, Y1 = -2620, YM = -2785;   // top row, bottom row, sides
       function solidArrow(host, x1, y1, x2, y2, seed) {
         host.appendChild(el('path', { d: handLine(x1, y1, x2, y2, 1.2, seed), class: 'ink axis' }));
         const dx = x2 - x1, dy = y2 - y1, m = Math.hypot(dx, dy) || 1;
