@@ -387,7 +387,7 @@
       set: { far: 0.5, rock: 0.35, line: 0.35, roll: 1 },
       steps: [
         {
-          set: { entropy: 1 },
+          set: { entropy: 1, comm: 1 },
           notes:
             'Start with Shannon\'s practical question: if observations ' +
             'arrive as a stream, how unpredictable is the next one? X is ' +
@@ -396,11 +396,12 @@
             'mech entropy, but this is the message/observation version. ' +
             'Low entropy means a dimension is almost constant, so it cannot ' +
             'carry much. High entropy means more possible variation, but ' +
-            'that variation could still be noise. Entropy tells capacity, ' +
-            'not usefulness.',
+            'that variation could still be noise. Entropy tells capacity: ' +
+            'low H gives little room; high H gives room to learn. ' +
+            'Usefulness depends on θ.',
         },
         {
-          set: { entropy: 0.75 },
+          set: { entropy: 0.75, comm: 1 },
           notes:
             'The bridge statistic: mutual information. If entropy asks how ' +
             'much a data dimension can vary, mutual information asks how ' +
@@ -410,7 +411,7 @@
             'channel can be decisive if it tracks θ.',
         },
         {
-          set: { entropy: 0.35, fisher: 1 },
+          set: { entropy: 0.35, fisher: 1, comm: 0 },
           notes:
             'THE RULER. Fisher is about θ, not about volume: the same basin ' +
             'is flat under one ruler and steep under another. And the hard ' +
@@ -490,8 +491,8 @@
             '<p>X is the stream of observations. p(X) is what we expect to ' +
             'see. Entropy, H(X), is average surprise:</p>' +
             '<p>H(X) = E[−log p(X)] = −Σ p(x) log p(x).</p>' +
-            '<p>Low H: almost constant. High H: more possible variation. ' +
-            'But entropy tells capacity, not usefulness.</p>',
+            '<p>Low H: little room. High H: room to learn. Usefulness ' +
+            'depends on θ.</p>',
         },
         {
           id: 'in-mi', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
@@ -1118,7 +1119,7 @@
     humanrule: 0, cands: 0, ball: 0, newland: 0, marks: 0, m: 0, roll: 1,
     sound: 0, cyc1: 0, cyc2: 0, cyc3: 0, cyc4: 0,
     approx1: 0, approx2: 0, approx3: 0,
-    entropy: 0, surprise: 0, kl: 0, fisher: 0,
+    entropy: 0, comm: 0, surprise: 0, kl: 0, fisher: 0,
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,

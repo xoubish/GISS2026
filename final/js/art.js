@@ -458,7 +458,7 @@
   S.LAYERS = ['far', 'gfill', 'hatch0', 'hatch1', 'hatch2', 'hatch3', 'hatch4', 'ridge',
     'newland', 'axes', 'curmark', 'curve', 'ruler', 'humanrule', 'cands',
     'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
-    'approx1', 'approx2', 'approx3', 'entropy', 'surprise', 'kl',
+    'approx1', 'approx2', 'approx3', 'entropy', 'comm', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
@@ -894,6 +894,30 @@
       const high = [2244, 2258, 2274, 2298, 2321, 2346];
       high.forEach((x, i) => edot(L.entropy, x, S.ground(x), 1.15, 1810 + i));
       txt(L.entropy, 2298, S.ground(2298) - 24, 'high H — scattered', 'sm');
+
+      const baseX = 2374, baseY = S.ground(baseX);
+      const s = 45;
+      const cf = standFigure(1888, s);
+      cf.setAttribute('transform', 'translate(' + baseX + ' ' + f2(baseY) + ') scale(' + s + ')');
+      L.comm.appendChild(cf);
+
+      const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+      const c = el('g', { transform: 'translate(' + baseX + ' ' + f2(baseY) + ') scale(' + s + ')' });
+      const cone = el('path', {
+        d: 'M-0.17 -0.86L-0.43 -0.75L-0.43 -0.97Z',
+        class: 'ink',
+      });
+      cone.style.strokeWidth = W;
+      c.appendChild(cone);
+
+      const string = el('path', {
+        d: handLine(-0.43, -0.86, -2.1, -1.15, 0.02, 1889),
+        class: 'ink trail',
+      });
+      string.style.strokeWidth = W;
+      c.appendChild(string);
+      L.comm.appendChild(c);
+      txt(L.comm, baseX - 70, baseY - 55, 'message through a channel', 'sm');
 
       /* surprise: one datum a long way from anything the model predicts */
       const sx = 2268, sy = S.ground(sx) - 46;

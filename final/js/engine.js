@@ -90,7 +90,7 @@
   const PLAIN = ['gfill:rock', 'ridge:line', 'axes', 'curmark', 'curve', 'ruler', 'humanrule',
     'cands', 'newland', 'marks', 'body:ball', 'sound',
     'cyc1', 'cyc2', 'cyc3', 'cyc4', 'approx1', 'approx2',
-    'approx3', 'entropy', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
+    'approx3', 'entropy', 'comm', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
     'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'shift', 'here', 'ends',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
     'mythfig', 'sitfig', 'meetfig', 'pusher', 'climber', 'climber2']

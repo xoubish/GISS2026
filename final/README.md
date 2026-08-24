@@ -141,7 +141,9 @@ Built so far:
   information beat → I(X;θ) as relevance; Fisher parabolas → I(θ) with the
   zero-Fisher warning;
   5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
-  arrows; pull-back to the climber → expected information gain). Slow
+  arrows; pull-back to the climber → expected information gain). A small
+  cone-phone figure (`comm` layer) marks Shannon's communication/channel
+  framing on the entropy and mutual-information beats. Slow
   descent from scene 5's sky on entry. Each station carries its
   diagnostic test (Cramér–Rao for the ruler, I(T(D);θ) vs I(D;θ) for the
   compression, converged-but-still-surprised for the loss), and a
