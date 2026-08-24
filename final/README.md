@@ -53,11 +53,11 @@ The selected beats are:
 
 ## Decisions on record
 
-- **Palette: alpine slate blue** (chosen 2026-08-23 from five rendered
-  candidates) — blue-grey mountains in snow-light, cool paper, dark
-  blue-black ink, rust (`--human: #a05a3c`) as the one warm accent. Lives in
-  `css/deck.css` (variables + stroke classes), `js/art.js` (hill wash, far
-  ridges, clouds), and the `#inkify` matrix in `index.html`.
+- **Palette: dawn moss** (revised 2026-08-24) — warm paper, green hills,
+  teal sky-light, dark pine ink, terracotta (`--human: #d06c4a`) as the
+  human accent. Lives in `css/deck.css` (variables + stroke classes),
+  `js/art.js` (hill wash, far ridges, clouds), and the `#inkify` matrix in
+  `index.html`.
 - **Case rule:** anything the *pen* writes into the drawing (terrain
   labels, the loop's nodes) is lowercase italic, like annotations on a
   sketch; anything typeset in HTML (headers, definitions, bullets) is

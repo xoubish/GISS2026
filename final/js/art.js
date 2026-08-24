@@ -483,13 +483,13 @@
     S.LAYERS.forEach((k) => { L[k] = el('g', { id: 'l-' + k }); svg.appendChild(L[k]); });
     S.L = L;
 
-    /* ---- the wash: a moss gradient under the pen, top-lit under storm --- */
+    /* ---- the wash: a moss gradient under the pen, top-lit by dawn ------- */
     const defs = el('defs');
     const lg = el('linearGradient', {
       id: 'hillgrad', gradientUnits: 'userSpaceOnUse',
       x1: 0, y1: -2650, x2: 0, y2: 400,
     });
-    [[0, '#8aa3b8', 0.42], [0.35, '#6a89a3', 0.52], [1, '#45607a', 0.64]].forEach((st) => {
+    [[0, '#c7dcae', 0.50], [0.35, '#8fb778', 0.58], [1, '#5e8f62', 0.68]].forEach((st) => {
       lg.appendChild(el('stop', { offset: st[0], 'stop-color': st[1], 'stop-opacity': st[2] }));
     });
     defs.appendChild(lg);
@@ -506,7 +506,7 @@
       g.style.opacity = D.o;
       g.appendChild(el('path', {
         d: S.toPath(S.samples(B.x0 + 40, B.x1 - 40, fn, 26), true),
-        fill: '#a8bccb', 'fill-opacity': '0.55', stroke: 'none',
+        fill: '#c5d8bf', 'fill-opacity': '0.55', stroke: 'none',
       }));
       g.appendChild(el('path', { d: S.toPath(S.samples(B.x0 + 40, B.x1 - 40, fn, 26)), class: 'ink ridge-far' }));
       buildHatch(g, B.x0 + 60, B.x1 - 60, 320, D.seed + 5, fn, 4);
@@ -516,13 +516,13 @@
     /* ---- the weather ----------------------------------------------------
        Storm masses with flat undersides, strung along the whole range. They
        live with the far ridges, so close scenes get plain rain-light sky.  */
-    cloud(L.far, -700, -2260, 950, 170, 71, 0.30, '#c2d0da');
-    cloud(L.far, 1350, -2300, 1150, 195, 72, 0.24, '#cdd9e1');
-    cloud(L.far, 3100, -2560, 1300, 205, 73, 0.30, '#b8c8d4');
-    cloud(L.far, 5200, -2380, 1200, 175, 74, 0.20, '#cdd9e1');
-    cloud(L.far, 6900, -2600, 950, 155, 75, 0.27, '#c2d0da');
-    cloud(L.far, 350, -1990, 700, 105, 76, 0.13, '#d8e1e7');
-    cloud(L.far, 4300, -2080, 820, 115, 77, 0.13, '#d8e1e7');
+    cloud(L.far, -700, -2260, 950, 170, 71, 0.26, '#d6e4df');
+    cloud(L.far, 1350, -2300, 1150, 195, 72, 0.22, '#e6ead8');
+    cloud(L.far, 3100, -2560, 1300, 205, 73, 0.26, '#cfdfd6');
+    cloud(L.far, 5200, -2380, 1200, 175, 74, 0.18, '#e8dfca');
+    cloud(L.far, 6900, -2600, 950, 155, 75, 0.24, '#d6e4df');
+    cloud(L.far, 350, -1990, 700, 105, 76, 0.12, '#f0ead8');
+    cloud(L.far, 4300, -2080, 820, 115, 77, 0.12, '#f0ead8');
 
     /* ---- the ground itself, filled — the hills are green now ------------ */
     L.gfill.appendChild(el('path', {
@@ -987,7 +987,7 @@
       pts.forEach((p, i) => { d += (i ? 'L' : 'M') + f2(p[0]) + ' ' + f2(p[1]); });
       L.tablebg.appendChild(el('path', {
         d: d + 'L1750 -2150L-150 -2150Z',
-        fill: '#b9c9d6', 'fill-opacity': '0.5', stroke: 'none',
+        fill: '#d7e8ce', 'fill-opacity': '0.5', stroke: 'none',
       }));
       L.tablebg.appendChild(el('path', { d: d, class: 'ink ridge-far' }));
       const gripx = 1398;

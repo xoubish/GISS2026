@@ -5,13 +5,13 @@
    ========================================================================= */
 
 :root {
-  --paper: #e8ecef;   /* mist above the valley floor */
-  --paper-hi: #f4f6f8;
-  --ink: #1a2026;     /* peat, not soot */
-  --ink-soft: #37424c;
-  --muted: #66727c;
-  --human: #a05a3c;   /* the second hand — heather-rust against the moss */
-  --bar: #0f1418;
+  --paper: #eef4e8;   /* green light on paper, not cold fog */
+  --paper-hi: #fff8e8;
+  --ink: #172016;     /* peat and pine, not soot */
+  --ink-soft: #314237;
+  --muted: #65766a;
+  --human: #d06c4a;   /* the second hand — warm against the moss */
+  --bar: #121812;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Hoefler Text",
     Georgia, "Times New Roman", serif;
 }
@@ -35,9 +35,9 @@ html, body {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(130% 70% at 68% 6%, rgba(90, 120, 150, .22), transparent 58%),
-    radial-gradient(120% 55% at 18% 2%, rgba(75, 105, 135, .20), transparent 55%),
-    linear-gradient(180deg, #9fbcd6 0%, #c2d3e2 30%, #dde4e9 58%, var(--paper) 100%);
+    radial-gradient(115% 70% at 18% 4%, rgba(255, 190, 92, .32), transparent 56%),
+    radial-gradient(120% 65% at 74% 0%, rgba(90, 190, 205, .24), transparent 60%),
+    linear-gradient(180deg, #b9e2df 0%, #d7ebc8 38%, #edf1df 66%, var(--paper) 100%);
 }
 
 #world {
@@ -68,41 +68,41 @@ html, body {
   vector-effect: none;
 }
 
-.ridgeline   { stroke-width: calc(var(--u) * 1.5); stroke: #161d24; }
-.ridge-far   { stroke-width: calc(var(--u) * 1.1); stroke: #8098ab; }
+.ridgeline   { stroke-width: calc(var(--u) * 1.5); stroke: #172016; }
+.ridge-far   { stroke-width: calc(var(--u) * 1.1); stroke: #83a89b; }
 .ridgeline-new {
   stroke-width: calc(var(--u) * 1.5);
-  stroke: #2b3c31;
+  stroke: #3f7b5d;
   stroke-dasharray: calc(var(--u) * 11) calc(var(--u) * 7);
 }
-.hatch       { stroke: #2b3a47; }
-.ball        { stroke-width: calc(var(--u) * 0.9); stroke: #161d24; opacity: .92; }
+.hatch       { stroke: #355044; }
+.ball        { stroke-width: calc(var(--u) * 0.9); stroke: #172016; opacity: .92; }
 
-.gridline    { stroke: #7d8b96; stroke-width: calc(var(--u) * 0.8); opacity: .34; }
-.axis        { stroke: #2c3944; stroke-width: calc(var(--u) * 1.1); }
-.plotted     { stroke: #161d24; stroke-width: calc(var(--u) * 1.7); }
+.gridline    { stroke: #8d9d90; stroke-width: calc(var(--u) * 0.8); opacity: .34; }
+.axis        { stroke: #344b3e; stroke-width: calc(var(--u) * 1.1); }
+.plotted     { stroke: #172016; stroke-width: calc(var(--u) * 1.7); }
 
-.ring        { stroke: #2c3944; stroke-width: calc(var(--u) * 1.1); opacity: .55; }
-.ring.loud   { stroke: #161d24; stroke-width: calc(var(--u) * 1.4); opacity: .9; }
-.drop        { stroke: #566672; stroke-width: calc(var(--u) * 0.9); opacity: .5;
+.ring        { stroke: #344b3e; stroke-width: calc(var(--u) * 1.1); opacity: .55; }
+.ring.loud   { stroke: #172016; stroke-width: calc(var(--u) * 1.4); opacity: .9; }
+.drop        { stroke: #68816f; stroke-width: calc(var(--u) * 0.9); opacity: .5;
                stroke-dasharray: calc(var(--u) * 5) calc(var(--u) * 4); }
-.leader      { stroke: #566672; stroke-width: calc(var(--u) * 1); opacity: .6; }
-.dot         { fill: #161d24; opacity: 0; }
+.leader      { stroke: #68816f; stroke-width: calc(var(--u) * 1); opacity: .6; }
+.dot         { fill: #172016; opacity: 0; }
 
 /* stations: soundings, compressions, rulers, routes, instruments */
-.errbar      { stroke: #3a4752; stroke-width: calc(var(--u) * 0.9); opacity: .75; }
-.datum       { fill: #161d24; opacity: .82; }
-.datum.loud  { fill: none; stroke: #161d24; stroke-width: calc(var(--u) * 1.4); }
-.knot        { fill: none; stroke: #161d24; stroke-width: calc(var(--u) * 1.3); }
-.resid       { stroke: #6b7c8a; stroke-width: calc(var(--u) * 0.8); opacity: .5; }
-.guide       { stroke: #2c3944; stroke-width: calc(var(--u) * 1.1); opacity: .6;
+.errbar      { stroke: #486252; stroke-width: calc(var(--u) * 0.9); opacity: .75; }
+.datum       { fill: #172016; opacity: .82; }
+.datum.loud  { fill: none; stroke: #172016; stroke-width: calc(var(--u) * 1.4); }
+.knot        { fill: none; stroke: #172016; stroke-width: calc(var(--u) * 1.3); }
+.resid       { stroke: #748c7c; stroke-width: calc(var(--u) * 0.8); opacity: .5; }
+.guide       { stroke: #344b3e; stroke-width: calc(var(--u) * 1.1); opacity: .6;
                stroke-dasharray: calc(var(--u) * 8) calc(var(--u) * 6); }
-.trail       { stroke: #2c3944; stroke-width: calc(var(--u) * 1.3); opacity: .7;
+.trail       { stroke: #344b3e; stroke-width: calc(var(--u) * 1.3); opacity: .7;
                stroke-dasharray: calc(var(--u) * 9) calc(var(--u) * 7); }
-.sight       { stroke: #6b7c8a; stroke-width: calc(var(--u) * 0.8); opacity: .42; }
+.sight       { stroke: #748c7c; stroke-width: calc(var(--u) * 0.8); opacity: .42; }
 
 .marker.cand .ring { opacity: .3; }
-.marker.cand.win .ring { opacity: .95; stroke: #161d24;
+.marker.cand.win .ring { opacity: .95; stroke: #172016;
                          stroke-width: calc(var(--u) * 1.5); }
 .marker.cand.win .dot  { opacity: 1; }
 .marker.cand.win .drop { opacity: .8; }
@@ -113,7 +113,7 @@ html, body {
 }
 
 text.glab {
-  fill: #2c3944;
+  fill: #344b3e;
   font-family: var(--serif);
   font-style: italic;
   font-size: calc(var(--u) * 17);
@@ -148,11 +148,11 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
 
 .plate.framed {
   padding: 16px 16px 0;
-  background: #f3f5ee;
-  border: 1px solid rgba(45, 58, 50, .30);
-  box-shadow: 0 10px 34px rgba(22, 32, 26, .18);
+  background: #fff7e8;
+  border: 1px solid rgba(62, 82, 58, .28);
+  box-shadow: 0 10px 34px rgba(36, 54, 32, .16);
 }
-.plate.framed img { border: 1px solid rgba(45, 58, 50, .16); }
+.plate.framed img { border: 1px solid rgba(62, 82, 58, .16); }
 .plate .cap {
   font-size: 17px;
   line-height: 1.4;
@@ -213,7 +213,7 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
 .bigtable { display: grid; grid-template-columns: 150px 1fr 1fr 1fr; gap: 0 22px; }
 .bigtable.head {
   padding-bottom: 8px;
-  border-bottom: 1px solid rgba(55, 66, 76, .34);   /* one continuous rule */
+  border-bottom: 1px solid rgba(70, 91, 62, .34);   /* one continuous rule */
 }
 .bigtable.head h6 {
   font-size: 12px;
@@ -222,7 +222,7 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
   text-transform: uppercase;
   color: var(--muted);
 }
-.bigtable.row { padding-top: 8px; border-top: 1px solid rgba(55, 66, 76, .14); }
+.bigtable.row { padding-top: 8px; border-top: 1px solid rgba(70, 91, 62, .14); }
 .bigtable h6 {
   font-size: 15.5px;
   font-weight: 400;
@@ -247,7 +247,7 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
   color: var(--muted);
   padding-bottom: 8px;
   margin-bottom: 10px;
-  border-bottom: 1px solid rgba(55, 66, 76, .28);
+  border-bottom: 1px solid rgba(70, 91, 62, .28);
 }
 .mini-table .cols p {
   font-size: 19px;
@@ -282,7 +282,7 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
    --human to var(--muted) and dropping the rule. */
 .human {
   padding-left: 22px;
-  border-left: 1px solid rgba(160, 90, 60, .38);
+  border-left: 1px solid rgba(208, 108, 74, .45);
 }
 .aside.lead.human p, .aside.lead.human b { color: var(--human); }
 .human p, .human b { color: var(--human); }
@@ -311,7 +311,7 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
   position: absolute; inset: 0;
   pointer-events: none;
   background: radial-gradient(120% 105% at 50% 46%,
-    transparent 58%, rgba(30, 42, 36, .20) 100%);
+    transparent 60%, rgba(58, 82, 42, .14) 100%);
 }
 
 /* ------------------------------------------------------------------ hud --- */
@@ -346,7 +346,7 @@ body.bare #hud, body.bare #dots { opacity: 0; }
 
 .overlay {
   position: absolute; inset: 0;
-  background: rgba(223, 229, 222, .97);
+  background: rgba(236, 242, 229, .97);
   display: none;
   padding: 6% 8%;
   overflow: auto;
@@ -401,8 +401,8 @@ body.bare #hud, body.bare #dots { opacity: 0; }
   position: absolute;
   left: 0; right: 0; bottom: 0;
   padding: 26px 34px 30px;
-  background: linear-gradient(to top, rgba(223, 229, 222, .98), rgba(223, 229, 222, .86));
-  border-top: 1px solid rgba(62, 74, 66, .22);
+  background: linear-gradient(to top, rgba(236, 242, 229, .98), rgba(236, 242, 229, .86));
+  border-top: 1px solid rgba(70, 91, 62, .22);
   display: none;
 }
 #notes.on { display: block; }
