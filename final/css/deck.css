@@ -5,13 +5,13 @@
    ========================================================================= */
 
 :root {
-  --paper: #dfe5de;   /* mist above the valley floor */
-  --paper-hi: #edf1e9;
-  --ink: #1c221d;     /* peat, not soot */
-  --ink-soft: #38423a;
-  --muted: #66716a;
-  --human: #8a5747;   /* the second hand — heather-rust against the moss */
-  --bar: #101512;
+  --paper: #e8ecef;   /* mist above the valley floor */
+  --paper-hi: #f4f6f8;
+  --ink: #1a2026;     /* peat, not soot */
+  --ink-soft: #37424c;
+  --muted: #66727c;
+  --human: #a05a3c;   /* the second hand — heather-rust against the moss */
+  --bar: #0f1418;
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Hoefler Text",
     Georgia, "Times New Roman", serif;
 }
@@ -35,17 +35,20 @@ html, body {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(130% 70% at 68% 6%, rgba(88, 102, 103, .28), transparent 58%),
-    radial-gradient(120% 55% at 18% 2%, rgba(70, 84, 86, .30), transparent 55%),
-    linear-gradient(180deg, #b6c0bf 0%, #c9d0c9 30%, #dbe1d7 58%, var(--paper) 100%);
+    radial-gradient(130% 70% at 68% 6%, rgba(90, 120, 150, .22), transparent 58%),
+    radial-gradient(120% 55% at 18% 2%, rgba(75, 105, 135, .20), transparent 55%),
+    linear-gradient(180deg, #9fbcd6 0%, #c2d3e2 30%, #dde4e9 58%, var(--paper) 100%);
 }
 
 #world {
   position: absolute;
   left: 0; top: 0;
   transform-origin: 0 0;
-  will-change: transform;
 }
+/* Promote to a GPU layer only while the camera is moving: a permanently
+   composited layer caches a stale rasterization and the text goes soft.
+   At rest the layer drops and glyphs re-rasterize at the final scale.   */
+#world.moving { will-change: transform; }
 
 /* ------------------------------------------------------------------ ink --- */
 #art {
@@ -65,41 +68,41 @@ html, body {
   vector-effect: none;
 }
 
-.ridgeline   { stroke-width: calc(var(--u) * 1.5); stroke: #182019; }
-.ridge-far   { stroke-width: calc(var(--u) * 1.1); stroke: #74857d; }
+.ridgeline   { stroke-width: calc(var(--u) * 1.5); stroke: #161d24; }
+.ridge-far   { stroke-width: calc(var(--u) * 1.1); stroke: #8098ab; }
 .ridgeline-new {
   stroke-width: calc(var(--u) * 1.5);
   stroke: #2b3c31;
   stroke-dasharray: calc(var(--u) * 11) calc(var(--u) * 7);
 }
-.hatch       { stroke: #2a3a2e; }
-.ball        { stroke-width: calc(var(--u) * 0.9); stroke: #182019; opacity: .92; }
+.hatch       { stroke: #2b3a47; }
+.ball        { stroke-width: calc(var(--u) * 0.9); stroke: #161d24; opacity: .92; }
 
-.gridline    { stroke: #7d897f; stroke-width: calc(var(--u) * 0.8); opacity: .34; }
-.axis        { stroke: #2c372f; stroke-width: calc(var(--u) * 1.1); }
-.plotted     { stroke: #182019; stroke-width: calc(var(--u) * 1.7); }
+.gridline    { stroke: #7d8b96; stroke-width: calc(var(--u) * 0.8); opacity: .34; }
+.axis        { stroke: #2c3944; stroke-width: calc(var(--u) * 1.1); }
+.plotted     { stroke: #161d24; stroke-width: calc(var(--u) * 1.7); }
 
-.ring        { stroke: #2c372f; stroke-width: calc(var(--u) * 1.1); opacity: .55; }
-.ring.loud   { stroke: #182019; stroke-width: calc(var(--u) * 1.4); opacity: .9; }
-.drop        { stroke: #57645b; stroke-width: calc(var(--u) * 0.9); opacity: .5;
+.ring        { stroke: #2c3944; stroke-width: calc(var(--u) * 1.1); opacity: .55; }
+.ring.loud   { stroke: #161d24; stroke-width: calc(var(--u) * 1.4); opacity: .9; }
+.drop        { stroke: #566672; stroke-width: calc(var(--u) * 0.9); opacity: .5;
                stroke-dasharray: calc(var(--u) * 5) calc(var(--u) * 4); }
-.leader      { stroke: #57645b; stroke-width: calc(var(--u) * 1); opacity: .6; }
-.dot         { fill: #182019; opacity: 0; }
+.leader      { stroke: #566672; stroke-width: calc(var(--u) * 1); opacity: .6; }
+.dot         { fill: #161d24; opacity: 0; }
 
 /* stations: soundings, compressions, rulers, routes, instruments */
-.errbar      { stroke: #3a453c; stroke-width: calc(var(--u) * 0.9); opacity: .75; }
-.datum       { fill: #182019; opacity: .82; }
-.datum.loud  { fill: none; stroke: #182019; stroke-width: calc(var(--u) * 1.4); }
-.knot        { fill: none; stroke: #182019; stroke-width: calc(var(--u) * 1.3); }
-.resid       { stroke: #6b7a6e; stroke-width: calc(var(--u) * 0.8); opacity: .5; }
-.guide       { stroke: #2c372f; stroke-width: calc(var(--u) * 1.1); opacity: .6;
+.errbar      { stroke: #3a4752; stroke-width: calc(var(--u) * 0.9); opacity: .75; }
+.datum       { fill: #161d24; opacity: .82; }
+.datum.loud  { fill: none; stroke: #161d24; stroke-width: calc(var(--u) * 1.4); }
+.knot        { fill: none; stroke: #161d24; stroke-width: calc(var(--u) * 1.3); }
+.resid       { stroke: #6b7c8a; stroke-width: calc(var(--u) * 0.8); opacity: .5; }
+.guide       { stroke: #2c3944; stroke-width: calc(var(--u) * 1.1); opacity: .6;
                stroke-dasharray: calc(var(--u) * 8) calc(var(--u) * 6); }
-.trail       { stroke: #2c372f; stroke-width: calc(var(--u) * 1.3); opacity: .7;
+.trail       { stroke: #2c3944; stroke-width: calc(var(--u) * 1.3); opacity: .7;
                stroke-dasharray: calc(var(--u) * 9) calc(var(--u) * 7); }
-.sight       { stroke: #6b7a6e; stroke-width: calc(var(--u) * 0.8); opacity: .42; }
+.sight       { stroke: #6b7c8a; stroke-width: calc(var(--u) * 0.8); opacity: .42; }
 
 .marker.cand .ring { opacity: .3; }
-.marker.cand.win .ring { opacity: .95; stroke: #182019;
+.marker.cand.win .ring { opacity: .95; stroke: #161d24;
                          stroke-width: calc(var(--u) * 1.5); }
 .marker.cand.win .dot  { opacity: 1; }
 .marker.cand.win .drop { opacity: .8; }
@@ -110,12 +113,13 @@ html, body {
 }
 
 text.glab {
-  fill: #2c372f;
+  fill: #2c3944;
   font-family: var(--serif);
   font-style: italic;
   font-size: calc(var(--u) * 17);
 }
 text.glab.sm { font-size: calc(var(--u) * 13); }
+text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
 
 /* --------------------------------------------------------------- plates ---
    Rasters living in the world. `.feather` dissolves a drawing into the paper;
@@ -188,6 +192,71 @@ text.glab.sm { font-size: calc(var(--u) * 13); }
   color: var(--ink-soft);
 }
 
+/* Scene headers: a small kicker naming the station of the talk, a big word
+   naming the subject — the title slide's grammar, at scene scale. */
+.scenehead .kicker {
+  font-size: 15px;
+  letter-spacing: .30em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.scenehead .scenetitle {
+  font-size: 52px;
+  line-height: 1.06;
+  color: var(--ink);
+}
+
+/* The big table (scene 5): one header block + one block per row, all
+   world-anchored so the camera can visit each row. No boxes — a hairline
+   under the header, a faint rule over each row. */
+.bigtable { display: grid; grid-template-columns: 150px 1fr 1fr 1fr; gap: 0 22px; }
+.bigtable.head {
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(55, 66, 76, .34);   /* one continuous rule */
+}
+.bigtable.head h6 {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .20em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.bigtable.row { padding-top: 8px; border-top: 1px solid rgba(55, 66, 76, .14); }
+.bigtable h6 {
+  font-size: 15.5px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.bigtable p {
+  font-size: 14.5px;
+  line-height: 1.32;
+  font-style: italic;
+  color: var(--ink);
+}
+
+/* A small columned comparison — no boxes, just muted headers over a
+   hairline. Scene 3's seed of the big table. */
+.mini-table .cols { display: flex; gap: 34px; }
+.mini-table .cols > div { flex: 1 1 0; }
+.mini-table h5 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(55, 66, 76, .28);
+}
+.mini-table .cols p {
+  font-size: 19px;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.mini-table .cols p + p { margin-top: 10px; }
+
 .phrase p {
   font-size: 46px;
   line-height: 1.18;
@@ -205,7 +274,8 @@ text.glab.sm { font-size: calc(var(--u) * 13); }
 .aside p + p { margin-top: 18px; }
 .aside b, .callout b { font-style: normal; font-weight: 400; color: var(--ink); }
 .aside em, .callout em { font-style: normal; }
-.aside.lead p { font-size: 26px; color: var(--ink-soft); }
+.aside.lead p { font-size: 26px; font-weight: 500; color: var(--ink); }
+.aside.lead b { font-weight: 700; }
 
 /* The human thread. Not a second column — a gloss in the margin of the same
    picture, in the one accent this deck allows itself. Make it grey by changing

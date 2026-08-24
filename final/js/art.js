@@ -186,6 +186,196 @@
     host.appendChild(p);
   }
 
+  /* The myth's own pose (scene 2): a climber on a steep face, arms thrown
+     up-forward onto the rock, head tucked behind them. Same pen as
+     pusherFigure; only the posture differs — hands are the highest point,
+     so on the steep flank they are what meets the boulder.               */
+  function mythFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(-0.34, 0, -0.14, -0.20, 2);      // back leg, braced
+    stroke(-0.14, -0.20, 0.02, -0.40, 2);
+    stroke(0.12, 0, 0.06, -0.22, 2);        // front leg, bent
+    stroke(0.06, -0.22, 0.02, -0.40, 2);
+    stroke(0.02, -0.40, 0.34, -0.70, 3);    // torso, driving upward
+    stroke(0.34, -0.70, 0.64, -0.94, 2);    // lower arm, thrown up the face
+    stroke(0.32, -0.72, 0.68, -0.86, 2);    // upper arm
+    const hd = el('path', { d: ring(0.42, -0.76, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    return g;
+  }
+
+  /* The myth's second pose: upright on his feet, facing downhill (−x),
+     watching the boulder go. Swapped in by setMyth the moment it breaks
+     free.                                                                */
+  function standFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(-0.13, 0, -0.03, -0.22, 2);      // downhill leg
+    stroke(-0.03, -0.22, 0.0, -0.42, 2);
+    stroke(0.11, 0, 0.04, -0.22, 2);        // uphill leg
+    stroke(0.04, -0.22, 0.0, -0.42, 2);
+    stroke(0.0, -0.42, -0.04, -0.78, 3);    // torso, upright
+    stroke(-0.04, -0.72, -0.17, -0.50, 2);  // near arm, hanging toward the fall
+    stroke(-0.02, -0.70, 0.09, -0.48, 2);   // far arm
+    const hd = el('path', { d: ring(-0.08, -0.88, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    return g;
+  }
+
+  /* Scene 4's spectator: leaning back against the right edge of the frame,
+     one foot flat on it, arms crossed, watching the loop. The wall is the
+     edge of the slide — that is the joke. Faces −x.                       */
+  function leanFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(-0.24, 0, -0.14, -0.23, 2);      // standing leg, planted well ahead
+    stroke(-0.14, -0.23, -0.06, -0.44, 2);
+    stroke(-0.06, -0.44, -0.11, -0.25, 2);  // wall leg, knee bent
+    stroke(-0.11, -0.25, 0.10, -0.30, 2);   // sole flat on the frame edge
+    stroke(-0.06, -0.44, 0.08, -0.80, 3);   // torso tilted back, shoulders on the wall
+    stroke(0.07, -0.69, -0.07, -0.61, 2);   // arms, crossed on the chest
+    stroke(-0.06, -0.69, 0.08, -0.61, 2);
+    const hd = el('path', { d: ring(0.005, -0.905, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    return g;
+  }
+
+  /* Scene 5's gag: hanging from a peak by both hands, body dangling —
+     because that scene is difficult. Origin is the grip point.           */
+  function hangFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(0.0, 0.01, -0.02, 0.24, 3);      // one straight arm from the tip
+    const hd = el('path', { d: ring(-0.085, 0.26, 0.085, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    stroke(-0.02, 0.26, -0.045, 0.52, 3);   // torso, down the face
+    stroke(-0.03, 0.31, -0.13, 0.48, 2);    // free arm, hanging
+    stroke(-0.045, 0.52, 0.035, 0.60, 2);   // bent leg, knee braced on the rock
+    stroke(0.035, 0.60, -0.005, 0.78, 2);
+    stroke(-0.045, 0.52, -0.10, 0.84, 2);   // the other leg, hanging long
+    return g;
+  }
+
+  /* The break (scene 3): Sisyphus seated, facing back down the valley,
+     cup raised in one hand, the other arm propping him, a bottle standing
+     beside him. Origin is the seat point; the caller puts it on a summit. */
+  function sitFigure(seed, s) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    stroke(0, -0.08, -0.25, -0.22, 2);       // near thigh, knee raised
+    stroke(-0.25, -0.22, -0.33, 0.15, 2);    // near shin, foot down-slope
+    stroke(0, -0.03, -0.18, -0.12, 2);       // far leg, lower and shorter
+    stroke(-0.18, -0.12, -0.24, 0.17, 2);
+    stroke(0, -0.08, 0.06, -0.52, 3);        // torso, easy lean back
+    stroke(0.05, -0.46, -0.10, -0.40, 2);    // cup arm
+    stroke(-0.10, -0.40, -0.13, -0.52, 2);
+    stroke(0.05, -0.42, 0.22, -0.06, 2);     // propping arm
+    const hd = el('path', { d: ring(0.02, -0.64, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    /* Props are small — the figure's hand-jitter would mangle them, so
+       they get a steadier pen of their own. */
+    function prop(x1, y1, x2, y2) {
+      const path = el('path', {
+        d: handLine(x1, y1, x2, y2, 0.004, seed + Math.round((x1 * 7 + y2 * 13) * 991)),
+        class: 'ink',
+      });
+      path.style.strokeWidth = W;
+      path.style.opacity = 0.9;
+      g.appendChild(path);
+    }
+    /* the cup: a small tumbler in his raised hand, open side up */
+    prop(-0.166, -0.61, -0.150, -0.545);   // left wall, tapering in
+    prop(-0.104, -0.61, -0.120, -0.545);   // right wall
+    prop(-0.150, -0.545, -0.120, -0.545);  // base
+    prop(-0.166, -0.61, -0.104, -0.61);    // rim
+    /* the bottle, standing beside him: wide body, shouldered, capped */
+    prop(0.29, 0, 0.29, -0.20);            // body walls
+    prop(0.37, 0, 0.37, -0.20);
+    prop(0.29, 0, 0.37, 0);                // base
+    prop(0.29, -0.20, 0.318, -0.245);      // shoulders
+    prop(0.37, -0.20, 0.342, -0.245);
+    prop(0.318, -0.245, 0.318, -0.29);     // short neck
+    prop(0.342, -0.245, 0.342, -0.29);
+    prop(0.310, -0.29, 0.350, -0.29);      // the cap — flat, not a flame
+    return g;
+  }
+
   /* A static Sisyphus with his own rock, feet on the given ground function. */
   function placePusher(host, fn, x, s, seed) {
     const g = pusherFigure(seed, s);
@@ -239,7 +429,8 @@
     'approx1', 'approx2', 'approx3', 'entropy', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
-    'pusher', 'climber', 'climber2', 'body'];
+    'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
+    'mythfig', 'sitfig', 'pusher', 'climber', 'climber2', 'body'];
 
   /* One world unit of θ at the basin is worth this many milliarcseconds. Set
      once here so her measured numbers can be drawn as real widths on the axis
@@ -266,7 +457,7 @@
       id: 'hillgrad', gradientUnits: 'userSpaceOnUse',
       x1: 0, y1: -2650, x2: 0, y2: 400,
     });
-    [[0, '#7f9478', 0.42], [0.35, '#5f7a63', 0.52], [1, '#3d5347', 0.64]].forEach((st) => {
+    [[0, '#8aa3b8', 0.42], [0.35, '#6a89a3', 0.52], [1, '#45607a', 0.64]].forEach((st) => {
       lg.appendChild(el('stop', { offset: st[0], 'stop-color': st[1], 'stop-opacity': st[2] }));
     });
     defs.appendChild(lg);
@@ -283,7 +474,7 @@
       g.style.opacity = D.o;
       g.appendChild(el('path', {
         d: S.toPath(S.samples(B.x0 + 40, B.x1 - 40, fn, 26), true),
-        fill: '#93a79d', 'fill-opacity': '0.55', stroke: 'none',
+        fill: '#a8bccb', 'fill-opacity': '0.55', stroke: 'none',
       }));
       g.appendChild(el('path', { d: S.toPath(S.samples(B.x0 + 40, B.x1 - 40, fn, 26)), class: 'ink ridge-far' }));
       buildHatch(g, B.x0 + 60, B.x1 - 60, 320, D.seed + 5, fn, 4);
@@ -293,13 +484,13 @@
     /* ---- the weather ----------------------------------------------------
        Storm masses with flat undersides, strung along the whole range. They
        live with the far ridges, so close scenes get plain rain-light sky.  */
-    cloud(L.far, -700, -2260, 950, 170, 71, 0.30, '#76837f');
-    cloud(L.far, 1350, -2300, 1150, 195, 72, 0.24, '#83908c');
-    cloud(L.far, 3100, -2560, 1300, 205, 73, 0.30, '#71807b');
-    cloud(L.far, 5200, -2380, 1200, 175, 74, 0.20, '#83908c');
-    cloud(L.far, 6900, -2600, 950, 155, 75, 0.27, '#76837f');
-    cloud(L.far, 350, -1990, 700, 105, 76, 0.13, '#93a09b');
-    cloud(L.far, 4300, -2080, 820, 115, 77, 0.13, '#93a09b');
+    cloud(L.far, -700, -2260, 950, 170, 71, 0.30, '#c2d0da');
+    cloud(L.far, 1350, -2300, 1150, 195, 72, 0.24, '#cdd9e1');
+    cloud(L.far, 3100, -2560, 1300, 205, 73, 0.30, '#b8c8d4');
+    cloud(L.far, 5200, -2380, 1200, 175, 74, 0.20, '#cdd9e1');
+    cloud(L.far, 6900, -2600, 950, 155, 75, 0.27, '#c2d0da');
+    cloud(L.far, 350, -1990, 700, 105, 76, 0.13, '#d8e1e7');
+    cloud(L.far, 4300, -2080, 820, 115, 77, 0.13, '#d8e1e7');
 
     /* ---- the ground itself, filled — the hills are green now ------------ */
     L.gfill.appendChild(el('path', {
@@ -430,6 +621,40 @@
     placePusher(L.climber, S.ground, 2600, 85, 4001);
     placePusher(L.climber2, S.groundNew, S.NEWMIN.x + 30, 85, 4101);
 
+    /* ---- the myth, animated (scene 2) --------------------------------
+       A slope-scale Sisyphus and his boulder, driven along the hillside by
+       S.setMyth: the climb, then the boulder breaking free and rolling
+       back to the bowl below. Same pen as everything else.               */
+    const MR = 0.42 * 85;
+    const mfig = mythFigure(4243, 85);
+    mfig.setAttribute('id', 'myth-fig');
+    L.mythfig.appendChild(mfig);
+    const mstand = standFigure(4245, 85);
+    mstand.setAttribute('id', 'myth-stand');
+    L.mythfig.appendChild(mstand);
+
+    /* ---- the break (scene 3): seated on the summit ------------------- */
+    (function () {
+      const s = 75, sx = 2884;
+      const fig = sitFigure(4247, s);
+      fig.setAttribute('transform',
+        'translate(' + f2(sx) + ' ' + f2(S.ground(sx)) + ') scale(' + s + ')');
+      L.sitfig.appendChild(fig);
+    })();
+
+    /* ---- the spectator (scene 4): leaning on the frame's left edge,
+       mirrored so he faces the loop ---------------------------------- */
+    (function () {
+      const s = 405;
+      const lf = leanFigure(4249, s);
+      lf.setAttribute('transform', 'translate(1640 -2253) scale(-' + s + ' ' + s + ')');
+      L.leaner.appendChild(lf);
+    })();
+    const mball = scribbleBall(4244);
+    mball.setAttribute('id', 'myth-ball');
+    mball.firstChild.style.strokeWidth = 'calc(var(--u) * ' + (1.0 / MR).toFixed(5) + ')';
+    L.mythfig.appendChild(mball);
+
     /* ---- the boulder ---------------------------------------------------- */
     const b = scribbleBall(31337);
     b.setAttribute('id', 'boulder');
@@ -438,6 +663,7 @@
 
     S.setRuler(0);
     S.setRoll(1);
+    S.setMyth(0);
   };
 
   /* ========================================================================
@@ -698,6 +924,78 @@
       }
     })();
 
+    /* ---- 5 (final deck) · BACKDROP FOR THE TABLE --------------------------
+       A hazy range across the bottom of the table's sky, with one sharp
+       peak right of the table — and Sisyphus hanging off it by both hands,
+       because that scene is difficult. Visible in the wide beats only; the
+       row-zoom frames stay clean text.                                     */
+    (function () {
+      const base = (x) => -2295 + 55 * S.vnoise(x / 190 + 7.7) + 30 * S.vnoise(x / 75 + 3.3);
+      /* the peak is a spike with a steep left face, so a body can hang off it */
+      const bump = (x) => {
+        const s = x < 1398 ? 16 : 80;    // near-vertical cliff on the left
+        return -330 * Math.exp(-Math.pow((x - 1398) / s, 2));
+      };
+      const fn = (x) => base(x) + bump(x);
+      const pts = [];
+      for (let x = -150; x <= 1750; x += 6) pts.push([x, fn(x)]);
+      let d = '';
+      pts.forEach((p, i) => { d += (i ? 'L' : 'M') + f2(p[0]) + ' ' + f2(p[1]); });
+      L.tablebg.appendChild(el('path', {
+        d: d + 'L1750 -2150L-150 -2150Z',
+        fill: '#b9c9d6', 'fill-opacity': '0.5', stroke: 'none',
+      }));
+      L.tablebg.appendChild(el('path', { d: d, class: 'ink ridge-far' }));
+      const gripx = 1398;
+      const hf = hangFigure(4251, 155);
+      hf.setAttribute('transform', 'translate(' + gripx + ' ' + f2(fn(gripx) + 3) + ') scale(155)');
+      L.tablebg.appendChild(hf);
+    })();
+
+    /* ---- 4 (final deck) · THE LOOP, in the sky ---------------------------
+       The full cycle from the handwritten notes, drawn as pen lettering and
+       hand arrows above the range: question → what matters → the ruler →
+       data → compression → inference → answer → good enough? — and a dashed
+       return, the lap renewing. Three layers reveal it in three beats.     */
+    (function () {
+      const Y0 = -2950, Y1 = -2565, YM = -2757;   // top row, bottom row, sides
+      function solidArrow(host, x1, y1, x2, y2, seed) {
+        host.appendChild(el('path', { d: handLine(x1, y1, x2, y2, 1.2, seed), class: 'ink axis' }));
+        const dx = x2 - x1, dy = y2 - y1, m = Math.hypot(dx, dy) || 1;
+        const ux = dx / m, uy = dy / m, s = 9;
+        host.appendChild(el('path', {
+          class: 'ink axis',
+          d: 'M' + f2(x2 - ux * s - uy * s * 0.5) + ' ' + f2(y2 - uy * s + ux * s * 0.5) +
+            'L' + f2(x2) + ' ' + f2(y2) +
+            'L' + f2(x2 - ux * s + uy * s * 0.5) + ' ' + f2(y2 - uy * s - ux * s * 0.5),
+        }));
+      }
+      const T = (h, x, y, s) => {
+        const t = el('text', { x: x, y: y, class: 'glab loop', 'text-anchor': 'middle' });
+        t.textContent = s;
+        h.appendChild(t);
+      };
+      /* beat 1: question → what matters → the ruler */
+      T(L.loop1, 2040, Y0, 'question');
+      T(L.loop1, 2400, Y0, 'what matters');
+      T(L.loop1, 2760, Y0, 'the ruler');
+      solidArrow(L.loop1, 2130, Y0 - 10, 2270, Y0 - 10, 5101);
+      solidArrow(L.loop1, 2535, Y0 - 10, 2665, Y0 - 10, 5102);
+      /* beat 2: down through data → compression → inference */
+      T(L.loop2, 2835, YM, 'data');
+      T(L.loop2, 2760, Y1, 'compression');
+      T(L.loop2, 2400, Y1, 'inference');
+      solidArrow(L.loop2, 2795, Y0 + 20, 2830, YM - 34, 5103);
+      solidArrow(L.loop2, 2830, YM + 22, 2795, Y1 - 38, 5104);
+      solidArrow(L.loop2, 2640, Y1 - 8, 2515, Y1 - 8, 5105);
+      /* beat 3: answer → good enough? → (dashed) a new lap */
+      T(L.loop3, 2040, Y1, 'answer');
+      T(L.loop3, 1970, YM, 'good enough?');
+      solidArrow(L.loop3, 2290, Y1 - 8, 2150, Y1 - 8, 5106);
+      solidArrow(L.loop3, 2005, Y1 - 38, 1978, YM + 24, 5107);
+      trail(L.loop3, [[1978, YM - 36], [2012, Y0 + 34]], 5108);
+    })();
+
     /* ---- 15 · TWO ENDINGS ---------------------------------------------- */
     L.ends.appendChild(el('path', { d: ring(2900, S.ground(2900), 34, 2401), class: 'ink ring loud' }));
     L.ends.appendChild(el('path', { d: ring(2596, S.ground(2596), 34, 2402), class: 'ink ring loud' }));
@@ -767,5 +1065,64 @@
         'translate(' + f2(px) + ' ' + f2(S.ground(px)) + ') scale(4.8)');
     }
     S.rollT = T;
+  };
+
+  /* The myth, as one continuous drive (scene 2). t 0 → 0.78: Sisyphus pushes
+     the boulder up the flank, slowly. t 0.78 → 1: the boulder breaks free
+     near the crest and rolls back down to the bowl below while he stands
+     where the push ended. The beat tween's own easing supplies the
+     acceleration and the settle.                                            */
+  /* Where the boulder rests so the pusher's hands are on the rim and his
+     head stays clear of it — found by sliding it forward from his hands
+     until both hold. Slope-aware, so the pose reads on the gentle start
+     and the steep finish alike.                                            */
+  function mythContact(px, SC, R) {
+    const gy = S.ground(px);
+    const ax = px + 0.66 * SC, ay = gy - 0.90 * SC;   // hands, thrown up the face
+    const hx = px + 0.42 * SC, hy = gy - 0.76 * SC;   // head, tucked behind them
+    for (let bx = px + 0.25 * SC; bx <= px + 1.6 * SC; bx += 2) {
+      const cy = support(bx, R);
+      if (Math.hypot(bx - ax, cy - ay) >= R * 1.02 &&
+          Math.hypot(bx - hx, cy - hy) >= R * 1.34) return bx;
+    }
+    return px + 0.62 * SC;
+  }
+
+  S.setMyth = function (t) {
+    const T = Math.max(0, Math.min(1, t));
+    const SC = 85, R = 0.42 * SC;
+    const PX0 = 2450, PX1 = 2700;          // the climb — toward the 2882 summit,
+                                           // stalling visibly short of it
+    const REST = 2300;                     // the bowl the fall ends in
+    const CLIMB = 0.78;                    // fraction of t spent climbing
+    let px, bx;
+    if (T <= CLIMB) {
+      const u = T / CLIMB;
+      px = PX0 + (PX1 - PX0) * u;
+      bx = mythContact(px, SC, R);
+    } else {
+      const v = (T - CLIMB) / (1 - CLIMB);
+      px = PX1;
+      const BX1 = mythContact(PX1, SC, R);
+      bx = BX1 + (REST - BX1) * Math.pow(v, 1.25);
+    }
+    const rot = ((bx - mythContact(PX0, SC, R)) / R) * (180 / Math.PI);
+    document.getElementById('myth-ball').setAttribute('transform',
+      'translate(' + f2(bx) + ' ' + f2(support(bx, R)) + ') rotate(' + rot.toFixed(1) +
+      ') scale(' + R + ')');
+    /* the instant the boulder breaks free he straightens up, facing after
+       it — standing where his body was, up-slope of the climbing pose's
+       heels, so he does not appear to step back */
+    const sx = px + 0.35 * SC;
+    const swap = T <= CLIMB ? 0 : Math.min(1, (T - CLIMB) / 0.008);
+    const fig = document.getElementById('myth-fig');
+    const stand = document.getElementById('myth-stand');
+    fig.setAttribute('transform',
+      'translate(' + f2(px) + ' ' + f2(S.ground(px)) + ') scale(' + SC + ')');
+    stand.setAttribute('transform',
+      'translate(' + f2(sx) + ' ' + f2(S.ground(sx)) + ') scale(' + SC + ')');
+    fig.style.opacity = (1 - swap).toFixed(2);
+    stand.style.opacity = swap.toFixed(2);
+    S.mythT = T;
   };
 })();

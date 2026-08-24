@@ -92,10 +92,11 @@
     'cyc1', 'cyc2', 'cyc3', 'cyc4', 'approx1', 'approx2',
     'approx3', 'entropy', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
     'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'shift', 'here', 'ends',
-    'pusher', 'climber', 'climber2']
+    'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
+    'mythfig', 'sitfig', 'pusher', 'climber', 'climber2']
     .map((s) => { const p = s.split(':'); return { layer: p[0], key: p[1] || p[0] }; });
 
-  let lastM = -1, lastRoll = -1;
+  let lastM = -1, lastRoll = -1, lastMyth = -1;
   function paint() {
     const L = S.L;
     L.far.style.opacity = state.far * (lodv.far || 0);
@@ -105,6 +106,7 @@
     for (const p of PLAIN) L[p.layer].style.opacity = state[p.key];
     if (state.m !== lastM) { lastM = state.m; S.setRuler(state.m); }
     if (state.roll !== lastRoll) { lastRoll = state.roll; S.setRoll(state.roll); }
+    if (state.myth !== lastMyth) { lastMyth = state.myth; S.setMyth(state.myth); }
   }
 
   /* --------------------------------------------------------------- tweens -- */
@@ -122,6 +124,7 @@
     if (instant || !dur) {
       cam.x = target.x; cam.y = target.y; cam.z = target.z; apply(); return;
     }
+    world.classList.add('moving');
     camTween = { from: from, to: target, t0: performance.now(), dur: dur, ease: ease || 'io' };
     start();
   }
@@ -147,7 +150,8 @@
       const u = Math.min(1, (now - camTween.t0) / camTween.dur);
       stepCam(EASE[camTween.ease](u));
       apply();
-      if (u < 1) busy = true; else camTween = null;
+      if (u < 1) busy = true;
+      else { camTween = null; world.classList.remove('moving'); }
     }
     for (let i = tweens.length - 1; i >= 0; i--) {
       const t = tweens[i];
