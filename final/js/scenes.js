@@ -394,8 +394,10 @@
             'the next observation; p(X) is what your current model expects ' +
             'to see; entropy H(X) is average surprise. Same family as stat ' +
             'mech entropy, but this is the message/observation version. ' +
-            'For a decision, entropy is raw variation — not yet useful ' +
-            'information.',
+            'Low entropy means a dimension is almost constant, so it cannot ' +
+            'carry much. High entropy means more possible variation, but ' +
+            'that variation could still be noise. Entropy tells capacity, ' +
+            'not usefulness.',
         },
         {
           set: { entropy: 0.35, fisher: 1 },
@@ -478,8 +480,8 @@
             '<p>X is the stream of observations. p(X) is what we expect to ' +
             'see. Entropy, H(X), is average surprise:</p>' +
             '<p>H(X) = E[−log p(X)] = −Σ p(x) log p(x).</p>' +
-            '<p>For a decision, entropy is raw variation — not yet useful ' +
-            'information.</p>',
+            '<p>Low H: almost constant. High H: more possible variation. ' +
+            'But entropy tells capacity, not usefulness.</p>',
         },
         {
           id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
