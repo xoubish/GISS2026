@@ -888,12 +888,12 @@
          are low H; scattered points are high H. No brackets here — those read
          like distances or posterior widths, which belongs to later beats. */
       const low = [2192, 2196, 2198, 2201, 2203, 2206];
-      low.forEach((x, i) => edot(L.entropy, x, S.ground(x) - 8 + gaussRnd(S.mulberry32(1700 + i)) * 1.0, 1.15, 1710 + i));
-      txt(L.entropy, 2199, S.ground(2199) - 33, 'low H — repeated', 'sm');
+      low.forEach((x, i) => edot(L.entropy, x, S.ground(x), 1.15, 1710 + i));
+      txt(L.entropy, 2199, S.ground(2199) - 17, 'low H — repeated', 'sm');
 
       const high = [2244, 2258, 2274, 2298, 2321, 2346];
-      high.forEach((x, i) => edot(L.entropy, x, S.ground(x) - 12 + gaussRnd(S.mulberry32(1800 + i)) * 7.5, 1.15, 1810 + i));
-      txt(L.entropy, 2298, S.ground(2298) - 43, 'high H — scattered', 'sm');
+      high.forEach((x, i) => edot(L.entropy, x, S.ground(x), 1.15, 1810 + i));
+      txt(L.entropy, 2298, S.ground(2298) - 24, 'high H — scattered', 'sm');
 
       /* surprise: one datum a long way from anything the model predicts */
       const sx = 2268, sy = S.ground(sx) - 46;

@@ -400,6 +400,16 @@
             'not usefulness.',
         },
         {
+          set: { entropy: 0.75 },
+          notes:
+            'The bridge statistic: mutual information. If entropy asks how ' +
+            'much a data dimension can vary, mutual information asks how ' +
+            'much of that variation is about the thing I care about. ' +
+            'I(X;θ) is relevance: how much observing X reduces uncertainty ' +
+            'about θ. A high-entropy channel can be pure noise; a quieter ' +
+            'channel can be decisive if it tracks θ.',
+        },
+        {
           set: { entropy: 0.35, fisher: 1 },
           notes:
             'THE RULER. Fisher is about θ, not about volume: the same basin ' +
@@ -469,7 +479,7 @@
       ],
       text: [
         {
-          id: 'in-head', at: [0.05, 0.055], w: 720, cls: 'scenehead', to: 5,
+          id: 'in-head', at: [0.05, 0.055], w: 720, cls: 'scenehead', to: 6,
           html: '<p class="kicker">Information theory</p>' +
             '<p class="scenetitle">Statistics of the Loop</p>',
         },
@@ -484,7 +494,13 @@
             'But entropy tells capacity, not usefulness.</p>',
         },
         {
-          id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
+          id: 'in-mi', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
+          html: '<p><b>The decision question — mutual information, I(X;θ).</b></p>' +
+            '<p>How much of X is about θ, the thing I care about?</p>' +
+            '<p>Entropy is capacity. Mutual information is relevance.</p>',
+        },
+        {
+          id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The ruler — Fisher information, I(θ).</b> How much ' +
             'of what I measure is about θ: the same basin, flat under one ' +
             'ruler, steep under another. Where Fisher is zero, nothing ' +
@@ -493,20 +509,20 @@
             'estimator can ever do through this instrument.</p>',
         },
         {
-          id: 'in-3', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 2, to: 2,
+          id: 'in-3', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 3, to: 3,
           html: '<p><b>The compression — sampling.</b> Five numbers, evenly ' +
             'spaced: the basin is simply not in them.</p>' +
             '<p>Nothing was wrong with the data.</p>',
         },
         {
-          id: 'in-4', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 3, to: 3,
+          id: 'in-4', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 4, to: 4,
           html: '<p><b>The same budget, placed where the curvature lives</b> ' +
             '— and the basin comes back. Sampling is a ruler too.</p>' +
             '<p>Its test: does T(D) keep what D knew about θ — ' +
             'I(T(D);&thinsp;θ) against I(D;&thinsp;θ)?</p>',
         },
         {
-          id: 'in-5', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 4, to: 4,
+          id: 'in-5', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 5, to: 5,
           html: '<p><b>The learning signal — surprise, −log p(x).</b> The ' +
             'datum nothing predicted. Prediction error, gradient, anomaly: ' +
             'the same engine in all three columns.</p>' +
@@ -515,14 +531,14 @@
             'wrong.</p>',
         },
         {
-          id: 'in-6', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 5, to: 5,
+          id: 'in-6', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 6, to: 6,
           html: '<p><b>The update — information gain, D<sub>KL</sub>.</b> ' +
             'How much did the bracket close?</p>' +
             '<p>Surprise is not gain — and when each new datum barely moves ' +
             'the posterior, this data, under this compression, is spent.</p>',
         },
         {
-          id: 'in-diag', at: [0.05, 0.10], w: 620, cls: 'aside lead', from: 6, to: 6,
+          id: 'in-diag', at: [0.05, 0.10], w: 620, cls: 'aside lead', from: 7, to: 7,
           html: '<p><b>Finding the bottleneck.</b> Three checks, cheapest ' +
             'first:</p>' +
             '<p><b>Converged but still surprised?</b> The loss or the model. ' +
@@ -533,7 +549,7 @@
             'then go buy more.</p>',
         },
         {
-          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 7,
+          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 8,
           html: '<p><b>The next observation — expected information gain.</b> ' +
             'Rank the observations you could take by what you expect to ' +
             'learn. Buy that one.</p>' +
@@ -545,10 +561,10 @@
         'data, clustered versus scattered points are entropy, parabolas ' +
         'are Fisher, knots are the compression, the loud datum is surprise, ' +
         'the closing arrows are gain, and the pull-back to the climber is ' +
-        'experimental design. ' +
-        '12-minute cut: narrate entropy, Fisher and surprise; step through ' +
-        'the two compression beats and the update quickly; give the final ' +
-        'two beats one sentence each.',
+        'experimental design. Mutual information is an optional bridge beat ' +
+        'between entropy and Fisher. 12-minute cut: narrate entropy, Fisher ' +
+        'and surprise; step through the two compression beats and the update ' +
+        'quickly; give the final two beats one sentence each.',
     },
 
     /* =============================================== 7 · EXAMPLE — PERSON == */
@@ -1072,10 +1088,10 @@
       ['three-systems', 7],
 
       ['info', 0],
-      ['info', 1],
-      ['info', 3],
-      ['info', 6],
+      ['info', 2],
+      ['info', 4],
       ['info', 7],
+      ['info', 8],
 
       ['example-person', 0],
       ['example-person', 2],

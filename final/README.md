@@ -137,8 +137,9 @@ Built so far:
 
 - **Scene 6 (Information theory)** — terrain-first: statistics of the
   loop drawn on the basin itself, using the engine's station layers
-  (soundings → H(X) as a first lossy statistic; Fisher parabolas → I(θ)
-  with the zero-Fisher warning;
+  (clustered/scattered observations → H(X) as capacity; an optional mutual
+  information beat → I(X;θ) as relevance; Fisher parabolas → I(θ) with the
+  zero-Fisher warning;
   5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
   arrows; pull-back to the climber → expected information gain). Slow
   descent from scene 5's sky on entry. Each station carries its
@@ -148,7 +149,8 @@ Built so far:
   three checks, cheapest first; "more data" is deliberately the third.
   Formulas inline and small on screen; EIG formula in notes only. The old
   orientation beat was removed, so the scene opens directly on entropy.
-  12-minute cut: narrate entropy, Fisher, surprise and the bottleneck beat.
+  12-minute cut: narrate entropy, Fisher, surprise and the bottleneck beat;
+  skip mutual information unless there is time.
 
 - **Scene 7 (Example — a person)** — "do I like this new person?" walked
   through the same drawings scene 6 used, now with human captions (plain
