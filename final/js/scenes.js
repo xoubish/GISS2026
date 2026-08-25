@@ -382,12 +382,12 @@
     {
       id: 'info',
       name: 'Information theory',
-      camera() { const z = 4.4; return { x: NOTCH, y: S.anchorY(-1782, 0.62, z), z }; },
+      camera() { const z = 4.4; return { x: NOTCH, y: S.anchorY(-1782, 0.70, z), z }; },
       enter: { dur: 2800, ease: 'slow' },
       set: { far: 0.5, rock: 0.35, line: 0.35, roll: 1 },
       steps: [
         {
-          set: { entropy: 1, comm: 1 },
+          set: { entropy: 1, mi: 1, comm: 1 },
           notes:
             'Start with Shannon\'s practical question: if observations ' +
             'arrive as a stream, how unpredictable is the next one? X is ' +
@@ -398,12 +398,9 @@
             'carry much. High entropy means more possible variation, but ' +
             'that variation could still be noise. Entropy tells capacity: ' +
             'low H gives little room; high H gives room to learn. ' +
-            'Usefulness depends on θ.',
-        },
-        {
-          set: { entropy: 0.75, mi: 1, comm: 1 },
-          notes:
-            'The bridge statistic: mutual information. If entropy asks how ' +
+            'Usefulness depends on θ. ' +
+            'Then, on the same picture, the bridge statistic: mutual ' +
+            'information. If entropy asks how ' +
             'much a data dimension can vary, mutual information asks how ' +
             'much of that variation is about the thing I care about. ' +
             'I(X;θ) is relevance: how much observing X reduces uncertainty ' +
@@ -433,90 +430,64 @@
             'examples are. It is not a claim about Fisher vanishing at one ' +
             'point of an otherwise informative curve, and the Cramér–Rao ' +
             'bound in its simple form is a statement about unbiased ' +
-            'estimators.',
+            'estimators. If someone conflates the two I\'s: mutual ' +
+            'information I(X;θ) takes two arguments and a semicolon — bits ' +
+            'shared between variables; Fisher I(θ) takes one — curvature ' +
+            'of the log-likelihood in θ. Related through the ruler, not ' +
+            'the same quantity.',
         },
         {
-          set: { fisher: 0.3, approx2: 1, line: 0.15, sound: 0.55 },
+          set: { fisher: 0.3, approx2: 0.45, approx3: 1, line: 0.15, sound: 0.55 },
           notes:
-            'THE COMPRESSION, first lesson. Five numbers, evenly spaced — a ' +
-            'perfectly reasonable summary, and the basin is simply not in ' +
-            'it. The ring is where this summary thinks the minimum is. ' +
-            'Nothing was wrong with the data.',
-        },
-        {
-          set: { approx2: 0, approx3: 1 },
-          notes:
-            'Same budget, placed where the curvature lives — and the basin ' +
-            'comes back. No new observation. Sampling is a ruler too: what ' +
-            'you keep decides what exists.',
-        },
-        {
-          set: { approx3: 0.25, surprise: 1, line: 0.35, sound: 1 },
-          notes:
-            'THE LEARNING SIGNAL. One datum, far from anything the model ' +
-            'predicts: −log p(x). Prediction error in a brain, the gradient ' +
-            'in a model, the anomaly in a field — the same engine, across ' +
-            'all three columns of the table.',
-        },
-        {
-          set: { surprise: 0.35, kl: 1, entropy: 0.85 },
-          notes:
-            'THE UPDATE. Information gain is the bracket closing: ' +
-            'D_KL(posterior ‖ prior). Two cautions, out loud: low entropy ' +
-            'is not truth, and surprise is not gain — a bizarre datum can ' +
-            'teach you nothing about θ.',
-        },
-        {
-          camera: { x: 2255, y: -1839, z: 2.6 },
-          set: {
-            fork1: 1, fork2: 1, fork3: 1,
-            kl: 0.25, entropy: 0.2, surprise: 0.25, sound: 0.5, line: 0.3,
-          },
-          notes:
-            'FINDING THE BOTTLENECK — the three trails out of the basin. ' +
-            'Check in order of cost. Still surprised after convergence → ' +
-            'the loss or model: exchange the landscape (left trail). Raw ' +
-            'beats the summary → the compression: re-read the same data ' +
-            '(the trail along the surface). The Cramér–Rao bound itself too ' +
-            'wide → the data: over the crest for more (right trail). Say ' +
-            'the sting: the reflex is always "more data" — it is the third ' +
-            'check, not the first.',
+            'THE COMPRESSION, both lessons on one page. Five numbers, ' +
+            'evenly spaced — a perfectly reasonable summary, and the basin ' +
+            'is simply not in it: the faint curve, its ring where that ' +
+            'summary thinks the minimum is. Nothing was wrong with the ' +
+            'data. Then the same budget, placed where the curvature lives ' +
+            '— the bold curve — and the basin comes back. No new ' +
+            'observation. Sampling is a ruler too: what you keep decides ' +
+            'what exists.',
         },
         {
           camera() { const z = 1.9; return { x: 2300, y: S.anchorY(-1906, 0.5, z), z }; },
           set: {
-            climber: 1, here: 1,
-            fork1: 0.3, fork2: 0.3, fork3: 0.45, kl: 0, surprise: 0, sound: 0.6,
+            fisher: 0, approx2: 0, approx3: 0.2, entropy: 0.25,
+            kl: 1, surprise: 0.35, sound: 0.6, line: 0.3,
+            fork1: 0.35, fork2: 0.5, fork3: 0.75, climber: 1, here: 1,
           },
           notes:
-            'THE NEXT QUESTION. And if it truly is the data — experimental ' +
-            'design: which observation do I expect to teach me the most? ' +
-            'Rank them, buy that one. A little resolution can beat a great ' +
-            'many photons. If asked: EIG(d) = E_y D_KL[p(θ|y,d) ‖ p(θ)]. ' +
-            'Do not oversell the ranking — MacKay 1992 (Neural Computation ' +
-            '4:590), the paper this beat rests on, is mostly about how it ' +
-            'goes wrong. Three points, in order of usefulness. (1) There ' +
-            'is no single "most informative": there are three criteria, ' +
-            'depending on whether you want information about all the ' +
-            'parameters, about the model in a named region of interest, or ' +
-            'about telling two models apart. Choosing the criterion is ' +
-            'another ruler choice — the talk\'s own theme, one level up. ' +
-            '(2) The naive criterion — maximise total information about ' +
-            'the parameters — reduces to "measure where your error bars ' +
-            'are widest", and error bars are widest beyond the edge of the ' +
-            'data, so it sends you off to the edges of the input space to ' +
-            'learn about places you do not care about. The fix is to name ' +
-            'the region of interest first. (3) MacKay\'s own Achilles heel, ' +
-            'his phrase: all of it "estimates the utility of a data point ' +
-            'assuming that the model is correct", and he closes with "the ' +
-            'search for ideal measures of data utility is still open". ' +
-            'That is the bottleneck beat again — ranking observations ' +
-            'presumes you already passed the loss/model check.',
+            'THE CLOSE — one page: the update, the checks, the next ' +
+            'question. The point to land, and the point of the scene: ' +
+            'everything in this loop is measurable — capacity, relevance, ' +
+            'resolution, what a summary kept, how much the posterior ' +
+            'moved — and there is a right way to ask the next question. ' +
+            'Name the idea and move; do not teach the class. The update: ' +
+            'D_KL(posterior ‖ prior), the bracket closing; measurement is ' +
+            'entropy reduction. Cautions: surprise is not gain; low ' +
+            'entropy is not truth — it is a model making many assertions ' +
+            '(Boltzmann: entropy is the log count of micro-states behind ' +
+            'a macro-state; Jaynes: this is inference under constraint — ' +
+            'the update reweights possibilities). The three trails out of ' +
+            'the basin, cheapest first: the loss or model (left trail — ' +
+            'still surprised after convergence), the compression (along ' +
+            'the surface — raw beats the summary), the data (over the ' +
+            'crest — and the reflex is always "more data"; it is the ' +
+            'third check, not the first). Experimental design: EIG(d) = ' +
+            'E_y D_KL[p(θ|y,d) ‖ p(θ)] — rank the observations you could ' +
+            'buy, buy the best; a little resolution can beat a great many ' +
+            'photons. MacKay 1992 (Neural Computation 4:590) if pressed: ' +
+            'there are three criteria (all parameters / a named region / ' +
+            'model comparison), and choosing the criterion is another ' +
+            'ruler choice; the naive criterion sends you to the edges of ' +
+            'the input space, so name the region of interest first; and ' +
+            'all of it assumes the model is correct — "the search for ' +
+            'ideal measures of data utility is still open," which is the ' +
+            'loss/model check again.',
         },
       ],
       text: [
         {
-          id: 'in-head', at: [0.05, 0.055], w: 720, cls: 'scenehead', to: 6,
+          id: 'in-head', at: [0.05, 0.055], w: 720, cls: 'scenehead', to: 2,
           html: '<p class="kicker">Information theory</p>' +
             '<p class="scenetitle">Statistics of the Loop</p>',
         },
@@ -531,78 +502,89 @@
             'depends on θ.</p>',
         },
         {
-          id: 'in-mi', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 1, to: 1,
+          id: 'in-mi', at: [0.60, 0.13], w: 560, cls: 'aside lead', to: 0,
           html: '<p><b>The decision question — mutual information, I(X;θ).</b></p>' +
             '<p>How much of X is about θ, the thing I care about?</p>' +
+            '<p>I(X;θ) = H(X) − H(X|θ).</p>' +
             '<p>Entropy is capacity. Mutual information is relevance.</p>',
         },
         {
-          id: 'in-2', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 2, to: 2,
+          id: 'in-2', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 1, to: 1,
           html: '<p><b>The ruler — Fisher information, I(θ).</b> How much ' +
             'of what I measure is about θ: the same basin, flat under one ' +
-            'ruler, steep under another. Where Fisher is zero, nothing ' +
-            'downstream can ever recover it.</p>' +
-            '<p>Its test: the Cramér–Rao bound, 1/I(θ) — the best any ' +
-            'estimator can ever do through this instrument.</p>',
+            'ruler, steep under another.</p>' +
+            '<p>I(θ) = E[(∂ log p(x|θ)/∂θ)²] — the curvature of the ' +
+            'likelihood; one argument, unlike I(X;θ). The ruler is ' +
+            'p(x|θ) itself: change what the instrument records, and I(θ) ' +
+            'changes with it.</p>',
         },
         {
-          id: 'in-3', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 3, to: 3,
+          id: 'in-2r', at: [0.60, 0.13], w: 560, cls: 'aside lead', from: 1, to: 1,
+          html: '<p><b>Where Fisher is zero, nothing downstream can ever ' +
+            'recover it</b> — no network, no brain, no pipeline. What the ' +
+            'ruler cannot see does not exist for anything after it.</p>' +
+            '<p>Its test: the Cramér–Rao bound. No unbiased estimator can ' +
+            'beat a variance of 1/I(θ) — the best anything can ever do ' +
+            'through this instrument.</p>',
+        },
+        {
+          id: 'in-3', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The compression — sampling.</b> Not Shannon’s ' +
-            'compression: this one is which numbers you keep. Five, ' +
-            'evenly spaced — and the basin is simply not in them.</p>' +
-            '<p>Nothing was wrong with the data.</p>',
+            'compression — his theorem is the floor: no lossless code can ' +
+            'average below H(X); entropy is the log count of ' +
+            'possibilities. This one is lossy: which numbers you keep.</p>' +
+            '<p>Five, evenly spaced — a perfectly reasonable summary, and ' +
+            'the basin is simply not in them (the faint curve). Nothing ' +
+            'was wrong with the data.</p>',
         },
         {
-          id: 'in-4', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 4, to: 4,
+          id: 'in-4', at: [0.60, 0.11], w: 560, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The same budget, placed where the curvature lives</b> ' +
-            '— and the basin comes back. Sampling is a ruler too.</p>' +
-            '<p>Its test: does T(D) keep what D knew about θ — ' +
-            'I(T(D);&thinsp;θ) against I(D;&thinsp;θ)?</p>',
+            '(the bold curve) — and the basin comes back. No new ' +
+            'observation. Sampling is a ruler too: what you keep decides ' +
+            'what exists.</p>' +
+            '<p>The data-processing inequality: I(θ;&thinsp;T(D)) ≤ ' +
+            'I(θ;&thinsp;D). No processing adds information about θ — so ' +
+            'the test of any compression: does T(D) keep what D knew?</p>',
         },
         {
-          id: 'in-5', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 5, to: 5,
-          html: '<p><b>The learning signal — surprise, −log p(x).</b> The ' +
-            'datum nothing predicted. Prediction error, gradient, anomaly: ' +
-            'the same engine in all three columns.</p>' +
-            '<p>Its test: converged, yet still surprised — residuals with ' +
-            'structure the fit cannot explain. The optimizer is done, and ' +
-            'wrong.</p>',
+          id: 'in-close-l', at: [0.05, 0.13], w: 560, cls: 'aside lead', from: 3,
+          html: '<p><b>All of it is measurable.</b> Capacity, relevance, ' +
+            'resolution, what the summary kept, how much the posterior ' +
+            'moved — every station of the loop has a number, and every ' +
+            'number has a test.</p>' +
+            '<p>The update is D<sub>KL</sub>(posterior&thinsp;‖&thinsp;' +
+            'prior) — how much the bracket closed. Surprise is not gain; ' +
+            'low entropy is not truth.</p>',
         },
         {
-          id: 'in-6', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 6, to: 6,
-          html: '<p><b>The update — information gain, D<sub>KL</sub>.</b> ' +
-            'How much did the bracket close?</p>' +
-            '<p>Surprise is not gain — and when each new datum barely moves ' +
-            'the posterior, this data, under this compression, is spent.</p>',
+          id: 'in-close-m', at: [0.44, 0.08], w: 500, cls: 'aside lead', from: 3,
+          html: '<p><b>Not good enough? Don’t guess — check, cheapest ' +
+            'first:</b> the loss or the model (still surprised after ' +
+            'convergence), the compression (raw beats your summary), and ' +
+            'only then the data.</p>' +
+            '<p>“More data” is the third check, not the first.</p>',
         },
         {
-          id: 'in-diag', at: [0.05, 0.10], w: 620, cls: 'aside lead', from: 7, to: 7,
-          html: '<p><b>Finding the bottleneck.</b> Three checks, cheapest ' +
-            'first:</p>' +
-            '<p><b>Converged but still surprised?</b> The loss or the model. ' +
-            'Change the ruler.</p>' +
-            '<p><b>Raw data beats your summary?</b> The compression. ' +
-            'Recompress — no new observation needed.</p>' +
-            '<p><b>The Cramér–Rao bound itself too wide?</b> The data. Only ' +
-            'then go buy more.</p>',
-        },
-        {
-          id: 'in-7', at: [0.05, 0.21], w: 560, cls: 'aside lead', from: 8,
-          html: '<p><b>The next observation — expected information gain.</b> ' +
-            'Rank the observations you could take by what you expect to ' +
-            'learn. Buy that one.</p>' +
-            '<p>A little resolution can beat a great many photons.</p>',
+          id: 'in-close-b', at: [0.05, 0.47], w: 640, cls: 'aside lead', from: 3,
+          html: '<p><b>And there is a right way to ask the next ' +
+            'question:</b> rank the observations you could take by ' +
+            'expected gain, EIG(d) = E<sub>y</sub>&thinsp;D<sub>KL</sub>' +
+            '[&thinsp;p(θ&thinsp;|&thinsp;y, d) ‖ p(θ)&thinsp;], and buy ' +
+            'the best one. A little resolution can beat a great many ' +
+            'photons.</p>',
         },
       ],
       notes:
-        'The meat, drawn on the hill instead of written: soundings are the ' +
-        'data, clustered versus scattered points are entropy, parabolas ' +
-        'are Fisher, knots are the compression, the loud datum is surprise, ' +
-        'the closing arrows are gain, and the pull-back to the climber is ' +
-        'experimental design. Mutual information is an optional bridge beat ' +
-        'between entropy and Fisher. 12-minute cut: narrate entropy, Fisher ' +
-        'and surprise; step through the two compression beats and the update ' +
-        'quickly; give the final two beats one sentence each.',
+        'Four pages, one thesis: everything in the loop is measurable, ' +
+        'and there is a right way to ask the next question — conveyed, ' +
+        'not taught as a stats class. Soundings are the data, clustered ' +
+        'versus scattered points are entropy, parabolas are Fisher, knots ' +
+        'are the compression, and the pull-back to the climber is the ' +
+        'close: update, checks, next observation, one page. Mutual ' +
+        'information shares the entropy page: entropy on the left, ' +
+        'relevance on the right. The scene is already its own 12-minute ' +
+        'cut — four beats, all kept.',
     },
 
     /* =============================================== 7 · EXAMPLE — PERSON == */
@@ -614,51 +596,42 @@
       set: { far: 0.6, rock: 0.5, line: 0.35, meetfig: 1, meet: 0.12 },
       steps: [
         {
+          set: { sound: 1, rock: 0.45, meet: 0.2 }, anim: { meet: 1600 },
           notes:
             'The same ground, retold as a person. The question: do I like ' +
             'them? Gesture at the resting boulder — the model you arrive ' +
             'with. Nobody walks in blank: a prior built from every person ' +
             'before them, context, and yes, stereotype — that is what a ' +
-            'prior is.',
+            'prior is. Then the stream arrives: words, tone, timing, what ' +
+            'they laugh at, how they treat the waiter. Enormous entropy — ' +
+            'and most of it noise.',
         },
         {
-          set: { sound: 1, rock: 0.35, meet: 0.2 }, anim: { meet: 1600 },
+          set: { combR: 0.45, combE: 1, sound: 0.25, meet: 0.62 }, anim: { meet: 3200 },
           notes:
-            'The stream: words, tone, timing, what they laugh at, how they ' +
-            'treat the waiter. Enormous entropy — and most of it noise.',
+            'Distance is resolution — both combs on one page. Across a ' +
+            'dinner table you sample coarsely (the faint comb): job, ' +
+            'manners, small talk; "they seem nice" is one blurred pixel. ' +
+            'Move closer and the sampling gets finer (the bold comb): ' +
+            'shared work, a hard week, a long trip — kindness separates ' +
+            'from politeness, two sources that were one blur. The ' +
+            'optimization is constant: every encounter re-fits the model. ' +
+            'Liking changes with distance because the data does.',
         },
         {
-          set: { combR: 1, sound: 0.25, meet: 0.3 }, anim: { meet: 2600 },
+          set: { fisher: 0.8, entropy: 1, kl: 1, combE: 0.25, combR: 0.1 },
           notes:
-            'Distance is resolution. Across a dinner table you sample ' +
-            'coarsely — job, manners, small talk. "They seem nice" is one ' +
-            'blurred pixel.',
+            'Two ways to learn nothing — and the figures deliberately do ' +
+            'not move here. Zero-Fisher data: an hour of small talk is ' +
+            'pleasant and carries nothing about the trait you care about; ' +
+            'the flat parabola; no volume of it will measure reliability. ' +
+            'And duplicate data: the tenth coffee repeats the ninth — ' +
+            'plenty of observations, no new information, the bracket ' +
+            'stops closing. More data is not more information.',
         },
         {
-          set: { combE: 1, combR: 0.35, meet: 0.62 }, anim: { meet: 3200 },
-          notes:
-            'Move closer and the sampling gets finer: shared work, a hard ' +
-            'week, a long trip. Kindness separates from politeness — two ' +
-            'sources that were one blur. And the optimization is ' +
-            'constant: every encounter re-fits the model toward the ' +
-            'data. Liking changes with distance because the data does.',
-        },
-        {
-          set: { fisher: 1, combE: 0.3, combR: 0.15 },
-          notes:
-            'Zero-Fisher data: an hour of small talk is pleasant and ' +
-            'carries nothing about the trait you care about. The flat ' +
-            'parabola. No volume of it will measure reliability.',
-        },
-        {
-          set: { entropy: 1, kl: 1, fisher: 0.25 },
-          notes:
-            'Duplicate data: the tenth coffee repeats the ninth. Plenty of ' +
-            'observations, no new information — the bracket stops closing. ' +
-            'More data is not more information.',
-        },
-        {
-          set: { surprise: 1, entropy: 0.3, kl: 0.25, meet: 0.8 }, anim: { meet: 1800 },
+          set: { surprise: 1, entropy: 0.3, kl: 0.25, fisher: 0.15, meet: 0.8 },
+          anim: { meet: 1800 },
           notes:
             'Then surprise: something the model never predicted. −log p ' +
             'spikes and the picture reorganizes. And sometimes it was not ' +
@@ -685,52 +658,36 @@
             '<p class="scenetitle">A person you just met</p>',
         },
         {
-          id: 'ep-0', at: [0.05, 0.195], w: 540, cls: 'aside lead', to: 0,
+          id: 'ep-0', at: [0.05, 0.17], w: 540, cls: 'aside lead', to: 0,
           html: '<p><b>Do I like this new person?</b> Nobody walks in ' +
-            'blank: you arrive with a model — a prior built from every ' +
-            'person before them.</p>',
+            'blank: you arrive with a prior built from every person ' +
+            'before them.</p>' +
+            '<p><b>Then the stream:</b> words, tone, timing, what they ' +
+            'laugh at — enormous entropy, most of it noise.</p>',
         },
         {
-          id: 'ep-1', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 1, to: 1,
-          html: '<p><b>The data.</b> Words, tone, timing, what they laugh ' +
-            'at — an enormous stream, and most of its entropy is noise.</p>',
+          id: 'ep-1', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 1, to: 1,
+          html: '<p><b>Distance is resolution.</b> Across a table you ' +
+            'sample coarsely — “they seem nice” is one blurred pixel.</p>' +
+            '<p>Closer, kindness separates from politeness. Liking changes ' +
+            'with distance because the data does.</p>',
         },
         {
-          id: 'ep-2', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 2, to: 2,
-          html: '<p><b>Distance is resolution.</b> At first you sample ' +
-            'coarsely: job, manners, small talk.</p>' +
-            '<p>“They seem nice” — one blurred pixel.</p>',
+          id: 'ep-2', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 2, to: 2,
+          html: '<p><b>Two ways to learn nothing.</b> Small talk is ' +
+            'pleasant — and Fisher-blind: no amount of it measures ' +
+            'reliability.</p>' +
+            '<p>And the tenth coffee repeats the ninth: no new ' +
+            'information — the bracket stops closing.</p>',
         },
         {
-          id: 'ep-3', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 3, to: 3,
-          html: '<p><b>Closer, the picture resolves.</b> Finer sampling ' +
-            'separates kindness from politeness — two sources that were ' +
-            'one blur.</p>' +
-            '<p>Liking changes with distance because the data does — and the ' +
-            'fit never stops: every encounter is another step of the ' +
-            'optimization.</p>',
-        },
-        {
-          id: 'ep-4', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 4, to: 4,
-          html: '<p><b>Some data carry nothing.</b> An hour of small talk ' +
-            'is pleasant — and Fisher-blind to what you care about.</p>' +
-            '<p>No amount of it will measure reliability.</p>',
-        },
-        {
-          id: 'ep-5', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 5, to: 5,
-          html: '<p><b>And some data are the same datum again.</b> The ' +
-            'tenth coffee repeats the ninth: plenty of observations, no ' +
-            'new information.</p>' +
-            '<p>The bracket stops closing.</p>',
-        },
-        {
-          id: 'ep-6', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 6, to: 6,
+          id: 'ep-3', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 3, to: 3,
           html: '<p><b>Then — surprise.</b> Something the model never ' +
             'predicted: −log p spikes, and the picture reorganizes.</p>' +
             '<p>Sometimes it wasn’t noise. The person moved.</p>',
         },
         {
-          id: 'ep-7', at: [0.05, 0.195], w: 540, cls: 'aside lead', from: 7,
+          id: 'ep-4', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 4,
           html: '<p><b>Good enough?</b> For “another coffee?” — converged ' +
             'long ago. For “trust them with what matters” — a different ' +
             'loss entirely, and no number of coffees helps.</p>' +
@@ -741,8 +698,9 @@
       notes:
         'The clearest scene by design: the audience has already seen every ' +
         'one of these drawings with statistics captions in scene 6 — now ' +
-        'the same pictures get human captions, in the human accent. That ' +
-        'rhyme is the thesis. 12-minute cut: beats 2, 3, 6, 7.',
+        'the same pictures get human captions. That rhyme is the thesis, ' +
+        'so no station is re-explained — named and moved past. Five ' +
+        'beats. 12-minute cut: beats 1, 3, 4.',
     },
 
     /* ================================================ 8 · EXAMPLE — JAISP == */
@@ -1149,15 +1107,14 @@
       ['three-systems', 7],
 
       ['info', 0],
+      ['info', 1],
       ['info', 2],
-      ['info', 4],
-      ['info', 7],
-      ['info', 8],
+      ['info', 3],
 
       ['example-person', 0],
-      ['example-person', 2],
-      ['example-person', 6],
-      ['example-person', 7],
+      ['example-person', 1],
+      ['example-person', 3],
+      ['example-person', 4],
 
       ['example-jaisp', 0],
       ['example-jaisp', 3],

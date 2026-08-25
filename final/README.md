@@ -45,8 +45,8 @@ The selected beats are:
 | Why we are Sisyphus | drink/inference; mini-table |
 | The loop | question/ruler; full loop; two branches |
 | Three systems | full table; loss; learning signal; audit; topology close |
-| Information theory | soundings; Fisher/ruler; sampling; bottleneck; expected information gain |
-| Example — a person | prior; distance/resolution; surprise; good enough |
+| Information theory | all four beats: entropy + mutual info; Fisher; sampling; the close (update, checks, next observation) |
+| Example — a person | prior + stream; distance/resolution; surprise; good enough |
 | Example — JAISP | bridge; architecture; astrometry proof; field moved |
 | Philosophy | two endings |
 | Return | drawing; final line |
@@ -147,49 +147,54 @@ Built so far:
   hangs off it one-handed, because this scene is difficult. 12-minute cut:
   walk rows 1, 5, 7 only.
 
-- **Scene 6 (Information theory)** — terrain-first: statistics of the
-  loop drawn on the basin itself, using the engine's station layers
-  (repeated vs scattered readings → H(X) as capacity; an optional mutual
-  information beat → I(X;θ) as relevance; Fisher parabolas → I(θ) with the
-  zero-Fisher warning;
-  5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
-  arrows; pull-back to the climber → expected information gain). The two
-  entropy groups (`entropy` layer) are soundings like any other here —
-  readings of the ground at a place, sitting on the curve, which is what the
-  model expects. The contrast is in **y**: at one place the readings land on
-  top of each other, at the other they scatter. Spread in x would read as
-  "we sampled many θ", a claim about the landscape rather than about the
-  observation stream. Both places are flat ground, so the slope is not doing
-  the scattering. The `mi` layer adds one solid column marking the part
-  of that spread which moves with θ — capacity against relevance, drawn
-  rather than asserted. Shannon's framing is the `comm` layer,
-  drawn whole rather than as one end: two figures on the two rims of the
-  basin, a cone each, and the message crossing the valley between them —
-  arcs leave the speaker's tip, a dashed channel bows over the entropy
-  labels, Sisyphus takes it at his ear. Both cones put their wide end at the
-  head, so the narrow tips face each other and the direction of travel needs
-  no label; the mark carries no words of its own. Slow
-  descent from scene 5's sky on entry. Each station carries its
-  diagnostic test (Cramér–Rao for the ruler, I(T(D);θ) vs I(D;θ) for the
-  compression, converged-but-still-surprised for the loss), and a
-  dedicated "finding the bottleneck" beat lights the three fork trails —
-  three checks, cheapest first; "more data" is deliberately the third.
-  Formulas inline and small on screen; EIG formula in notes only. The old
-  orientation beat was removed, so the scene opens directly on entropy.
-  12-minute cut: narrate entropy, Fisher, surprise and the bottleneck beat;
-  skip mutual information unless there is time.
+- **Scene 6 (Information theory)** — four beats, one thesis (revised
+  2026-08-24): everything in the loop is measurable, and there is a right
+  way to ask the next question — conveyed, not taught as a stats class.
+  Every beat is a full-page spread written in full sentences the speaker
+  reads from the screen — notes are backup, never the only home of a
+  line. The beats: (1) entropy + mutual information — H(X) with its
+  formula on the left, I(X;θ) = H(X) − H(X|θ) on the right, the camera
+  dropped so the rims clear both columns; (2) Fisher — I(θ) with its
+  definition, "the ruler is p(x|θ) itself", and the zero-Fisher warning
+  with Cramér–Rao on the right; (3) the compression — even vs well-placed
+  sampling on one page, the miss faint, the recovery bold, each column
+  naming its curve, Shannon's source-coding floor on the left and the
+  data-processing inequality I(θ;T(D)) ≤ I(θ;D) on the right; (4) the
+  close, at the pulled-back climber camera — "all of it is measurable"
+  with D_KL, the three checks cheapest first ("more data" is the third,
+  not the first — its trail rises over the crest), and the EIG formula as
+  the right way to ask. The surprise beat was cut; its datum ghosts on
+  the closing page and "still surprised after convergence" survives as
+  the first check. Boltzmann, Jaynes, and the MacKay caveats live in the
+  closing beat's notes for Q&A. The two entropy groups (`entropy` layer)
+  are soundings like any other here — readings of the ground at a place;
+  the contrast is in **y**: at one place the readings land on top of each
+  other, at the other they scatter. Spread in x would read as "we sampled
+  many θ". Both places are flat ground, so the slope is not doing the
+  scattering. The `mi` layer adds one solid column marking the part of
+  that spread which moves with θ — capacity against relevance, drawn
+  rather than asserted. Shannon's framing is the `comm` layer, drawn
+  whole: two figures on the two rims, a cone each, the message crossing
+  the valley between them — arcs leave the speaker's tip, a dashed
+  channel bows over the entropy labels, Sisyphus takes it at his ear;
+  the mark carries no words of its own. Slow descent from scene 5's sky
+  on entry. The scene is already its own 12-minute cut — four beats, all
+  kept.
 
 - **Scene 7 (Example — a person)** — "do I like this new person?" walked
   through the same drawings scene 6 used, now with human captions (plain
   ink — rust accent was tried and removed). Two pen figures (`meetfig`
   layer, `meet` driver) meet across the basin: the observer waves from one
   rim, the stranger stands on the other, and they walk closer beat by
-  beat — deliberately NOT moving on the duplicate-coffee beat. Stations:
-  the prior you arrive with; the stream's entropy; **distance is
-  resolution** (coarse comb → fine comb); zero-Fisher small talk; the
-  tenth coffee (gain stalls); surprise (sometimes the person moved); good
-  enough? → which encounter teaches most is experimental design about a
-  person. 12-minute cut: beats 2, 3, 6, 7.
+  beat — deliberately NOT moving on the learn-nothing beat. Five beats
+  (tightened 2026-08-24, from eight — repeats of scene 6 removed):
+  the prior + the stream, one page; **distance is resolution** (coarse and
+  fine comb together, faint and bold); **two ways to learn nothing**
+  (zero-Fisher small talk + the tenth coffee, merged — irrelevance and
+  repetition, one lesson); surprise (sometimes the person moved — kept
+  alone: scene 6 no longer has a surprise beat, and it is the title's
+  idea); good enough? → which encounter teaches most is experimental
+  design about a person. 12-minute cut: beats 1, 3, 4.
 
 - **Scene 8 (Example — JAISP)** — "One foundation, many rulers." Six
   beats: one sky (the person lesson pointed upward) → the three pairwise
