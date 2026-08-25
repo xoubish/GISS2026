@@ -91,7 +91,7 @@
     'cands', 'newland', 'marks', 'body:ball', 'sound',
     'cyc1', 'cyc2', 'cyc3', 'cyc4', 'approx1', 'approx2',
     'approx3', 'entropy', 'mi', 'comm', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
-    'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'shift', 'here', 'ends',
+    'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'jarch', 'iters', 'shift', 'here', 'ends',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
     'mythfig', 'sitfig', 'hatfig', 'meetfig', 'pusher', 'climber', 'climber2']
     .map((s) => { const p = s.split(':'); return { layer: p[0], key: p[1] || p[0] }; });

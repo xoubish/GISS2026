@@ -593,7 +593,7 @@
     'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
     'approx1', 'approx2', 'approx3', 'entropy', 'mi', 'comm', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
-    'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
+    'astro1', 'astro2', 'jarch', 'iters', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
     'mythfig', 'sitfig', 'hatfig', 'meetfig',
     'pusher', 'climber', 'climber2', 'body'];
@@ -1192,11 +1192,126 @@
       }
     })();
 
-    /* ---- A1 · THE ASTROMETRY RESULT (appendix), AS WIDTHS ON THIS AXIS ------------- */
-    bracket(L.astro1, cmin - 50 / (2 * MAS), cmin + 50 / (2 * MAS), AX.bot - 27, 3.2,
-      '≈ 50 mas', 2101);
-    bracket(L.astro2, cmin - 15.5 / (2 * MAS), cmin + 15.5 / (2 * MAS), AX.bot - 13, 3.2,
-      '14 – 17 mas', 2111);
+    /* ---- A1 · THE ASTROMETRY RESULT, AS WIDTHS ON THIS AXIS ----------------
+       The collapse itself, drawn: the raw cross-survey positions as a loose
+       cloud of open readings over the 50 mas bracket, the head-corrected
+       ones as a tight cluster of solid dots over 14–17 mas, one small route
+       between them, the labels hung off to the side so nothing collides.  */
+    (function () {
+      const w50 = 50 / (2 * MAS), w15 = 15.5 / (2 * MAS);
+      const rnd = S.mulberry32(2121);
+      for (let i = 0; i < 12; i++) {
+        const x = cmin + gaussRnd(rnd) * w50 * 0.40;
+        const y = AX.bot - 38.5 + rnd() * 8.0;
+        L.astro1.appendChild(el('circle', {
+          cx: f2(x), cy: f2(y), r: 0.62, class: 'datum loud',
+        }));
+      }
+      bracket(L.astro1, cmin - w50, cmin + w50, AX.bot - 26, 3.2, null, 2101);
+      txt(L.astro1, cmin + w50 + 2, AX.bot - 24.5, '≈ 50 mas', '', 'start');
+      const rnd2 = S.mulberry32(2131);
+      for (let i = 0; i < 10; i++) {
+        const x = cmin + gaussRnd(rnd2) * w15 * 0.40;
+        const y = AX.bot - 16.5 + rnd2() * 3.5;
+        L.astro2.appendChild(el('circle', {
+          cx: f2(x), cy: f2(y), r: 0.55, class: 'datum',
+        }));
+      }
+      bracket(L.astro2, cmin - w15, cmin + w15, AX.bot - 9.5, 3.2, null, 2111);
+      txt(L.astro2, cmin + w15 + 2, AX.bot - 8, '14 – 17 mas', '', 'start');
+      trail(L.astro2, [[cmin - w50 * 0.8, AX.bot - 31], [cmin - w15 - 4.5, AX.bot - 20],
+        [cmin - w15 + 0.5, AX.bot - 15.5]], 2141);
+    })();
+
+    /* ---- A3 · JAISP, IN THIS PEN (scene 8) --------------------------------
+       The architecture drawn instead of pasted: ten band strokes in two
+       instrument stacks, converging into one shared latent, five thin routes
+       out to the heads — each with its own loss. Lives in the sky east of
+       the basin, at the JAISP beat's camera.                                */
+    (function () {
+      const g = L.jarch;
+      /* the ten bands, two stacks */
+      const bx0 = 2168, bx1 = 2206;
+      for (let i = 0; i < 6; i++) {
+        const y = -2014 + i * 15;
+        g.appendChild(el('path', { d: handLine(bx0, y, bx1, y, 0.5, 2401 + i), class: 'ink axis' }));
+      }
+      for (let i = 0; i < 4; i++) {
+        const y = -1912 + i * 15;
+        g.appendChild(el('path', { d: handLine(bx0, y, bx1, y, 0.5, 2411 + i), class: 'ink axis' }));
+      }
+      txt(g, (bx0 + bx1) / 2, -2024, 'rubin — six bands, 0.2″/px', 'sm');
+      txt(g, (bx0 + bx1) / 2, -1922, 'euclid — four bands, 0.1″/px', 'sm');
+      /* convergence into the latent */
+      const LB = { x0: 2300, x1: 2362, y0: -1978, y1: -1908 };
+      const lcy = (LB.y0 + LB.y1) / 2;
+      for (let i = 0; i < 6; i++) {
+        g.appendChild(el('path', {
+          d: handLine(bx1 + 3, -2014 + i * 15, LB.x0 - 2, lcy - 12 + i * 4, 0.6, 2421 + i),
+          class: 'ink leader',
+        }));
+      }
+      for (let i = 0; i < 4; i++) {
+        g.appendChild(el('path', {
+          d: handLine(bx1 + 3, -1912 + i * 15, LB.x0 - 2, lcy + 16 - i * 4, 0.6, 2431 + i),
+          class: 'ink leader',
+        }));
+      }
+      /* the latent box, hand-drawn */
+      g.appendChild(el('path', { d: handLine(LB.x0, LB.y0, LB.x1, LB.y0, 0.7, 2441), class: 'ink axis' }));
+      g.appendChild(el('path', { d: handLine(LB.x1, LB.y0, LB.x1, LB.y1, 0.7, 2442), class: 'ink axis' }));
+      g.appendChild(el('path', { d: handLine(LB.x1, LB.y1, LB.x0, LB.y1, 0.7, 2443), class: 'ink axis' }));
+      g.appendChild(el('path', { d: handLine(LB.x0, LB.y1, LB.x0, LB.y0, 0.7, 2444), class: 'ink axis' }));
+      txt(g, (LB.x0 + LB.x1) / 2, LB.y0 - 8, 'one shared latent');
+      txt(g, (LB.x0 + LB.x1) / 2, LB.y0 - 21, 'each band predicted from the other nine', 'sm');
+      /* frozen, dashed underneath */
+      g.appendChild(el('path', { d: handLine(LB.x0, LB.y1 + 8, LB.x1, LB.y1 + 8, 0.5, 2445), class: 'ink guide' }));
+      txt(g, (LB.x0 + LB.x1) / 2, LB.y1 + 18, 'frozen', 'sm');
+      txt(g, (LB.x0 + LB.x1) / 2, LB.y1 + 32, 'each head its own loss', 'sm');
+      /* the heads, fanned out — kept high so the rising flank stays clear */
+      const HEADS = ['detection', 'astrometry', 'photometry — in prep',
+        'shape — in prep', 'redshift — in prep'];
+      HEADS.forEach((h, i) => {
+        const hy = -2032 + i * 31;
+        trail(g, [[LB.x1 + 4, lcy - 8 + i * 4], [2398, hy]], 2451 + i * 3);
+        txt(g, 2404, hy + 2, h, '', 'start');
+      });
+    })();
+
+    /* ---- A4 · TEN PUSHES TO THE DESIGN (scene 8) ---------------------------
+       The v1–v10 ladder walked on the real flank between the basin and the
+       summit: every abandoned design is a station where the boulder rolled
+       back — the loop's not-good-enough branch, lived — and the turn (v6,
+       predict the actual pixels) is the ring the climb pivots on.           */
+    (function () {
+      const g = L.iters;
+      const gr = (x) => S.ground(x);
+      const ST = [
+        { x: 2445, name: 'v1–2 · contrastive', verdict: 'sky-dominated', fail: 1 },
+        { x: 2520, name: 'v3 · object pairs', verdict: 'no precision', fail: 1 },
+        { x: 2595, name: 'v4–5 · jepa', verdict: 'lost to a simple cnn', fail: 1 },
+        { x: 2672, name: 'v6 · predict the pixels', verdict: 'the turn', turn: 1 },
+        { x: 2745, name: 'v7–8 · mixed resolution', verdict: 'works' },
+        { x: 2812, name: 'v9–10 · production', verdict: 'pixels won', top: 1 },
+      ];
+      ST.forEach((s, i) => {
+        const y = gr(s.x);
+        if (s.turn || s.top) {
+          g.appendChild(el('path', {
+            d: ring(s.x, y - 4, 3.4, 2601 + i), class: 'ink ring' + (s.turn ? ' loud' : ''),
+          }));
+        } else {
+          g.appendChild(el('path', { d: handLine(s.x, y - 7, s.x, y - 1, 0.3, 2601 + i), class: 'ink axis' }));
+        }
+        /* labels hang in the open sky left of the slope, right-aligned */
+        txt(g, s.x - 10, y - 13, s.name, 'sm', 'end');
+        if (s.verdict) txt(g, s.x - 10, y - 5, s.verdict, 'sm', 'end');
+        if (s.fail) {                                   /* the roll back */
+          trail(g, [[s.x - 4, y - 3], [s.x - 26, gr(s.x - 26) - 16],
+            [s.x - 48, gr(s.x - 48) - 2]], 2641 + i * 3);
+        }
+      });
+    })();
 
     /* ---- A2 · THE CONCORDANCE FIELD (appendix) — the ground itself displaced ------- */
     (function () {

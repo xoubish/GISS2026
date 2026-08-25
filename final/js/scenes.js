@@ -18,10 +18,10 @@
      7  example-person a person you just met, walking the table
      8  example-jaisp  enhancement family → foundation bet → JAISP
                        astrometry → the field had moved
-     9  philosophy     brain / AI / science as the loop at scale;
-                       rational/existential/absurd as rulers you carry
+     9  philosophy     three pages: the same picture at three scales;
+                       the rulers we carry (five); the top of the hill
      10 return         Sisyphus takes a break, the ball comes back,
-                       one must imagine Sisyphus happy
+                       one must imagine the optimizer happy
 
    THE GRAMMAR — altitude = abstraction. Concrete things happen on the
    ground (the boulder, 42 settling, soundings, the examples). Abstract
@@ -116,10 +116,6 @@
           html: '<p>Gradient ascent, or descent with a flipped hill: ' +
             '<b>Sisyphus is solving an optimization problem.</b></p>',
         },
-        {
-          id: 'myth-4', at: [0.05, 0.70], w: 560, cls: 'aside lead', from: 2,
-          html: '<p>In a constant optimization loop</p>',
-        },
       ],
       notes:
         'The living pen Sisyphus takes over from the title drawing: the ' +
@@ -158,6 +154,11 @@
             'the data, descend the error surface. This is the push toward ' +
             'better.',
         },
+        {
+          notes:
+            'The cap, and the cue for the next scene: all of it running ' +
+            'in a constant optimization loop.',
+        },
       ],
       text: [
         {
@@ -190,6 +191,10 @@
           id: 'why-opt', at: [0.05, 0.78], w: 760, cls: 'aside compact', from: 3,
           html: '<p><b>Optimization</b> — the mechanical part: align the ' +
             'model with the data. Descend the error surface.</p>',
+        },
+        {
+          id: 'why-loop', at: [0.05, 0.88], w: 760, cls: 'aside lead', from: 4,
+          html: '<p>In a constant optimization loop</p>',
         },
       ],
       notes:
@@ -741,29 +746,48 @@
             'cost multiplies with the questions. The general answer: learn ' +
             'the compression once, before you know the question — a ' +
             'foundation — and make every task a small head with its own ' +
-            'loss.',
+            'loss. And it is cheap enough to say out loud: about 2.5 ' +
+            'GPU-hours, no labels, no catalogues, no simulations. Train ' +
+            'once, encode each field once, measure many times.',
         },
         {
+          set: { jarch: 1 },
           notes:
-            'JAISP. Ten bands, Rubin and Euclid together, one shared ' +
-            'latent — self-supervised, each band predicted from the other ' +
-            'nine, each instrument at its delivered sampling. About nine ' +
-            'million parameters. Detection on held-out sky: 93% complete, ' +
-            '94% pure against the published VIS catalogue — and 0.45 mag ' +
-            'deeper than one band supports. Say the numbers, not the ' +
-            'architecture; the picture is there so nobody takes them on ' +
-            'faith.',
+            'JAISP, drawn in this pen. Ten bands, Rubin and Euclid ' +
+            'together, each instrument at its delivered sampling, one ' +
+            'shared latent — self-supervised, each band predicted from ' +
+            'the other nine. Freeze it; every measurement is a small head ' +
+            'with its own loss. About nine million parameters. Detection ' +
+            'on held-out sky: 93% complete, 94% pure against the published ' +
+            'VIS catalogue — and 0.45 mag deeper than one band supports.',
+        },
+        {
+          camera: { x: 2620, y: -2114, z: 1.6 },
+          set: { jarch: 0, iters: 1, line: 0.8 },
+          notes:
+            'Ten designs to get here — walk the ladder up the flank. ' +
+            'v1–v2 contrastive matching: the features matched the sky, ' +
+            'not the sources. v3 object pairs: no precision. v4–v5 JEPA: ' +
+            'beaten by a simple CNN. Each one is the loop\'s ' +
+            'not-good-enough branch — the boulder rolling back, debug the ' +
+            'ruler, the data, the compression. v6 is the turn: predict ' +
+            'the actual pixels, no shortcut that discards position. ' +
+            'v7–v8 mixed resolution works; v9–v10 is production. We ' +
+            'walked the road, and pixels won.',
         },
         {
           camera() { const z = 8.5; return { x: 2202, y: S.anchorY(G(2199.3), 0.42, z), z }; },
-          set: { astro1: 1, astro2: 1, axes: 0.5, line: 1, rock: 0.35 },
+          set: { astro1: 1, astro2: 1, axes: 0.5, line: 1, rock: 0.35, iters: 0 },
           notes:
             'The proof, on the θ axis the talk has been walking — drawn to ' +
             'scale, 1 unit = 2 mas. Raw cross-survey scatter, Rubin against ' +
-            'VIS: about 50 mas. A position head reading the frozen latent: ' +
-            '14–17 mas; injected sources recovered to 19 mas at S/N = 5 — ' +
-            'near the floor the VIS labels themselves set. The latent ' +
-            'carried VIS sharpness to everything tied to it.',
+            'VIS: about 50 mas — the loose open readings. A position head ' +
+            'reading the frozen latent: 14–17 mas — the tight cluster; ' +
+            'injected sources recovered to 19 mas at S/N = 5, near the ' +
+            'floor the VIS labels themselves set. And the whole stack, on ' +
+            'a second deep field it had never seen, nothing retrained: ' +
+            '93.4/93.1 against 93.3/94.5, positions on the same 12–18 mas ' +
+            'floor. The compression generalizes.',
         },
         {
           camera() { const z = 6.5; return { x: 2205, y: S.anchorY(-1780, 0.72, z), z }; },
@@ -772,51 +796,46 @@
           notes:
             'And then better data arrived. Two independently Gaia-anchored ' +
             'solutions disagree by a coherent 9–10 mas — every arrow points ' +
-            'the same way. That is not scatter; the landscape itself had ' +
-            'moved. Nobody made a mistake. Say it plainly — this is the ' +
-            'title of the talk, measured.',
+            'the same way; about 7 mas of it is shared by all ten bands, ' +
+            'two entirely different fitting methods recover the same ' +
+            'pattern, and a per-source correction absorbs it to about ' +
+            '1.5 mas. That is not scatter; the landscape itself had moved. ' +
+            'Nobody made a mistake. Say it plainly — this is the title of ' +
+            'the talk, measured. (If asked what the next observation ' +
+            'should be: Roman is the natural third stream — one more ' +
+            'encoder branch, three-way agreement maps.)',
         },
       ],
       plates: [
         {
-          src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 2,
+          src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 1,
           at: [0.16, 0.46], w: 300,
           alt: 'Title page: Euclid deep-learning super-resolution of NISP imaging',
           cap: 'Everetts, Hemmati, et al. — NISP → NIRCam, 5× finer.',
         },
         {
-          src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 2,
+          src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 1,
           at: [0.44, 0.445], w: 280,
           alt: 'Title page: enhancing WISE infrared imaging to Spitzer resolution',
           cap: 'Rezaee, Hemmati, et al. — WISE → Spitzer, 4.6× finer.',
         },
         {
-          src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 2,
+          src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 1,
           at: [0.71, 0.46], w: 285,
           alt: 'Title page: physics-informed super-resolution of galaxy spectra',
           cap: 'Haghjoo, Hemmati, et al. — prism → grating, R 100 → 1000.',
         },
         {
-          src: 'assets/jaisp_architecture_crop.png', ar: 550 / 1109, frame: 1,
-          from: 3, to: 3,
-          at: [0.615, 0.42], w: 680,
-          alt: 'JAISP architecture: masked-band pretraining and downstream heads',
-          cap: 'Ten bands → two-stream stems → one shared latent → detection · ' +
-            'astrometry · photometry · shape · redshift — each head its own loss.',
-        },
-        {
           src: 'assets/astrometry_fig8_crop.png', ar: 525 / 1135, frame: 1,
-          from: 4, to: 4,
-          at: [0.63, 0.46], w: 860,
+          from: 5, to: 5,
+          at: [0.80, 0.20], w: 420,
           alt: 'Cross-survey offset clouds collapsing from 50 mas to 14-17 mas',
-          cap: 'All 790 ECDFS tiles. Dashed: raw classical centroids. Solid: ' +
-            'head-corrected — the clouds collapse and re-centre. Right: median ' +
-            'offset against S/N.',
+          cap: 'All 790 ECDFS tiles — the measured collapse.',
         },
       ],
       text: [
         {
-          id: 'ej-head', at: [0.05, 0.055], w: 760, cls: 'scenehead',
+          id: 'ej-head', at: [0.05, 0.055], w: 760, cls: 'scenehead', to: 3,
           html: '<p class="kicker">Example two — JAISP</p>' +
             '<p class="scenetitle">One foundation, many rulers</p>',
         },
@@ -836,7 +855,10 @@
           html: '<p><b>It works — and it does not scale.</b> Every new ' +
             'question recompresses the sky from scratch.</p>' +
             '<p>So learn the compression <b>once</b>: a foundation — and ' +
-            'every task a small head with its own loss.</p>',
+            'every task a small head with its own loss.</p>' +
+            '<p>Priced: <b>≈2.5 GPU-hours</b>, no labels, no catalogues, ' +
+            'no simulations. Train once · encode once · measure many ' +
+            'times.</p>',
         },
         {
           id: 'ej-3', at: [0.05, 0.30], w: 480, cls: 'aside lead', from: 3, to: 3,
@@ -846,14 +868,24 @@
             'and <b>0.45 mag deeper</b> than one band supports.</p>',
         },
         {
-          id: 'ej-4', at: [0.05, 0.10], w: 460, cls: 'aside lead', from: 4, to: 4,
+          id: 'ej-3i', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 4, to: 4,
+          html: '<p><b>Ten designs to get here — the loop, lived.</b></p>' +
+            '<p>Contrastive matching drowned in sky. Object pairing gave ' +
+            'no precision. JEPA lost to a simple CNN.</p>' +
+            '<p>The turn, v6: <b>predict the actual pixels.</b> Features ' +
+            'that look similar aren\'t features that know <em>where</em>.</p>',
+        },
+        {
+          id: 'ej-4', at: [0.05, 0.10], w: 460, cls: 'aside lead', from: 5, to: 5,
           html: '<p><b>One head, its own loss: astrometry.</b> Raw ' +
             'cross-survey scatter ≈ 50 mas. The head, reading the frozen ' +
             'latent: <b>14–17 mas</b>.</p>' +
-            '<p>The latent carried VIS sharpness to everything tied to it.</p>',
+            '<p>The latent carried VIS sharpness to everything tied to it.</p>' +
+            '<p>And on a second field the model never saw — <b>nothing ' +
+            'retrained</b> — the same numbers, the same floor.</p>',
         },
         {
-          id: 'ej-5', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 5,
+          id: 'ej-5', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 6,
           html: '<p><b>Then better data arrived.</b> Two Gaia-anchored ' +
             'solutions disagree by a coherent <b>9–10 mas</b> — every arrow ' +
             'the same way.</p>' +
@@ -861,11 +893,12 @@
         },
       ],
       notes:
-        'The science payoff: pairwise receipts → the foundation bet → the ' +
-        'measured astrometry proof → the concordance field, which is the ' +
-        'title of the talk measured, and the hinge into the philosophy. ' +
-        '12-minute cut: receipts get twenty seconds together; beats 3–5 are ' +
-        'the spine, keep all three.',
+        'The science payoff: pairwise receipts → the foundation bet, ' +
+        'priced → the architecture in this pen → ten pushes to the design ' +
+        '(the loop, lived) → the measured astrometry proof with the ' +
+        'transfer → the concordance field, which is the title of the talk ' +
+        'measured, and the hinge into the philosophy. 12-minute cut: ' +
+        'receipts get twenty seconds together; beats 4–7 are the spine.',
     },
 
     /* ==================================================== 9 · PHILOSOPHY == */
@@ -880,30 +913,49 @@
           notes:
             'The long ascent — highest camera of the talk, almost all sky, ' +
             'him on his summit at the edge of the frame, hat on, head ' +
-            'bowed. Compress the science payoff into one page, one line ' +
-            'per press: the same loop runs at three scales, starting with ' +
-            'the brain.',
+            'bowed. Page one is the bridge from the technical talk: the ' +
+            'same picture at three scales, one line per press. A brain ' +
+            'updates a world model — but its loss is relative: history, ' +
+            'reference points, habit, attachment. (Scene 5\'s bent ruler ' +
+            'was the measurement of this.)',
         },
         {
-          notes: 'The AI model: the same loop, faster, with the loss ' +
-            'written down explicitly.',
+          notes: 'An AI can optimize a different loss — perhaps free of ' +
+            'the human asymmetries — but the loss was still chosen by us.',
         },
         {
-          notes: 'Science as a collective machine: proposals, instruments, ' +
-            'papers, review, repeat — one distributed updating loop.',
+          notes: 'Science does both, collectively: it builds models, uses ' +
+            'them as instruments, and decides when new evidence is worth ' +
+            'changing them.',
         },
         {
           notes:
-            'Land the sting: the next experiment should move the answer, ' +
-            'not just keep the gradient alive.',
+            'The first hinge, plainly: a different optimizer is not ' +
+            'necessarily a different scientist — if it carries our ruler.',
         },
         {
           notes:
-            'The page turns; he broods on. Nature hands you observations; ' +
-            'the ruler you must choose.',
+            'The second hinge: sometimes a good model is not one you keep ' +
+            'updating; it is one you trust enough to use. This page has ' +
+            'now raised the two questions the rest of the ending answers: ' +
+            'who defines better? and must we optimize forever?',
         },
         {
-          notes: 'Rationalist: the ruler for questions of consistency.',
+          notes:
+            'Page two answers the first question, historically. He broods ' +
+            'on. Nature hands you observations; the ruler you must choose.',
+        },
+        {
+          notes: 'Empiricist: when observation itself tells you what is — ' +
+            'read the data and believe your eyes.',
+        },
+        {
+          notes: 'Rationalist: when consistency constrains the answer ' +
+            'before any new datum arrives.',
+        },
+        {
+          notes: 'Pragmatist: when the ruler depends on what you are ' +
+            'trying to do — the loss follows the goal.',
         },
         {
           notes: 'Existentialist: where deduction runs out and you must ' +
@@ -915,84 +967,150 @@
         },
         {
           notes:
-            'The close: not inconsistency — a different loss for a ' +
-            'different question, and the swing between them is what a ' +
-            'healthy updating system looks like. (If asked about the ' +
-            'modern/postmodern oscillation by name: metamodernism, ' +
-            'Vermeulen & van den Akker — keep it for Q&A, not the slide.)',
+            'The close: today we oscillate — not inconsistency, a ' +
+            'different loss for a different question, and the swing ' +
+            'between them is what a healthy updating system looks like. ' +
+            '(If asked about the modern/postmodern oscillation by name: ' +
+            'metamodernism, Vermeulen & van den Akker — keep it for Q&A, ' +
+            'not the slide.)',
+        },
+        {
+          notes:
+            'Page three answers the second question. Keep it sparse and ' +
+            'slow down: we optimize because we want to get somewhere.',
+        },
+        {
+          notes: 'But what if we arrive? Let the question hang before the ' +
+            'next press.',
+        },
+        {
+          notes: 'Weinberg, Dreams of a Final Theory: a final theory — ' +
+            'half in longing, half in mourning.',
+        },
+        {
+          notes:
+            'The ending: die on the summit or die pushing. RESIST ' +
+            'EXPLAINING — the whole talk has taught the room what pushing ' +
+            'and summit mean. Let it sit. Then the final click.',
         },
       ],
       text: [
         {
-          id: 'ph-0a', at: [0.05, 0.055], w: 900, cls: 'scenehead', to: 3,
+          id: 'ph-0a', at: [0.05, 0.055], w: 900, cls: 'scenehead', to: 4,
           html: '<p class="kicker">Philosophy</p>' +
             '<p class="scenetitle">The same picture, at three scales</p>',
         },
         {
-          id: 'ph-0b1', at: [0.14, 0.32], w: 980, cls: 'aside lead branch-list', to: 3,
-          html: '<ul><li>A brain updates a model of the world, then chooses ' +
-            'what <em>better</em> means.</li></ul>',
+          id: 'ph-0b1', at: [0.14, 0.30], w: 980, cls: 'aside lead branch-list', to: 4,
+          html: '<ul><li><b>A brain:</b> updates a world model, but its ' +
+            'loss is relative — shaped by history, reference points, ' +
+            'habit, attachment.</li></ul>',
         },
         {
-          id: 'ph-0b2', at: [0.14, 0.41], w: 980, cls: 'aside lead branch-list',
-          from: 1, to: 3,
-          html: '<ul><li>An AI model does the same thing faster, with an ' +
-            'explicit loss.</li></ul>',
+          id: 'ph-0b2', at: [0.14, 0.415], w: 980, cls: 'aside lead branch-list',
+          from: 1, to: 4,
+          html: '<ul><li><b>An AI:</b> can optimize a different loss, ' +
+            'perhaps without those human asymmetries — but the loss was ' +
+            'still chosen by us.</li></ul>',
         },
         {
-          id: 'ph-0b3', at: [0.14, 0.50], w: 980, cls: 'aside lead branch-list',
-          from: 2, to: 3,
-          html: '<ul><li>Science does it collectively: proposals, ' +
-            'instruments, papers, review, repeat.</li></ul>',
+          id: 'ph-0b3', at: [0.14, 0.53], w: 980, cls: 'aside lead branch-list',
+          from: 2, to: 4,
+          html: '<ul><li><b>Science:</b> does both collectively: it ' +
+            'builds models, uses them as instruments, and decides when ' +
+            'new evidence is worth changing them.</li></ul>',
         },
         {
-          id: 'ph-0b4', at: [0.14, 0.61], w: 980, cls: 'aside lead branch-list',
-          from: 3, to: 3,
-          html: '<ul><li>The next experiment should move the answer, not ' +
-            'just keep the loop alive.</li></ul>',
+          id: 'ph-0b4', at: [0.14, 0.66], w: 980, cls: 'aside lead',
+          from: 3, to: 4,
+          html: '<p>A different optimizer is not necessarily a different ' +
+            'scientist if it carries our ruler.</p>',
         },
         {
-          id: 'ph-1a', at: [0.05, 0.055], w: 900, cls: 'scenehead', from: 4,
+          id: 'ph-0b5', at: [0.14, 0.76], w: 980, cls: 'aside lead',
+          from: 4, to: 4,
+          html: '<p><b>Sometimes a good model is not one you keep ' +
+            'updating. It is one you trust enough to use.</b></p>',
+        },
+        {
+          id: 'ph-1a', at: [0.05, 0.055], w: 900, cls: 'scenehead',
+          from: 5, to: 11,
           html: '<p class="kicker">Philosophy</p>' +
             '<p class="scenetitle">The rulers we carry</p>',
         },
         {
-          id: 'ph-1b1', at: [0.14, 0.32], w: 980, cls: 'aside lead branch-list',
-          from: 4,
-          html: '<ul><li>Nature gives observations; it does not give the ' +
-            'ruler.</li></ul>',
+          id: 'ph-1b1', at: [0.14, 0.30], w: 980, cls: 'aside lead',
+          from: 5, to: 11,
+          html: '<p>Nature gives observations; it does not give the ' +
+            'ruler.</p>',
         },
         {
-          id: 'ph-1b2', at: [0.14, 0.41], w: 980, cls: 'aside lead branch-list',
-          from: 5,
-          html: '<ul><li>Rationalist: when the question is ' +
-            'consistency.</li></ul>',
+          id: 'ph-1b2', at: [0.14, 0.40], w: 980, cls: 'aside lead branch-list',
+          from: 6, to: 11,
+          html: '<ul><li><b>Empiricist:</b> when observation tells us ' +
+            'what is.</li></ul>',
         },
         {
-          id: 'ph-1b3', at: [0.14, 0.50], w: 980, cls: 'aside lead branch-list',
-          from: 6,
-          html: '<ul><li>Existentialist: when deduction runs out and the ' +
-            'choice is ours.</li></ul>',
+          id: 'ph-1b3', at: [0.14, 0.48], w: 980, cls: 'aside lead branch-list',
+          from: 7, to: 11,
+          html: '<ul><li><b>Rationalist:</b> when consistency constrains ' +
+            'the answer.</li></ul>',
         },
         {
-          id: 'ph-1b4', at: [0.14, 0.59], w: 980, cls: 'aside lead branch-list',
-          from: 7,
-          html: '<ul><li>Absurdist: when neither resolves, but the pushing ' +
-            'continues.</li></ul>',
+          id: 'ph-1b4', at: [0.14, 0.56], w: 980, cls: 'aside lead branch-list',
+          from: 8, to: 11,
+          html: '<ul><li><b>Pragmatist:</b> when the ruler depends on ' +
+            'what we are trying to do.</li></ul>',
         },
         {
-          id: 'ph-1b5', at: [0.14, 0.70], w: 980, cls: 'aside lead branch-list',
-          from: 8,
-          html: '<ul><li>Different questions need different ' +
-            'losses.</li></ul>',
+          id: 'ph-1b5', at: [0.14, 0.64], w: 980, cls: 'aside lead branch-list',
+          from: 9, to: 11,
+          html: '<ul><li><b>Existentialist:</b> when deduction runs out ' +
+            'and the choice is ours.</li></ul>',
+        },
+        {
+          id: 'ph-1b6', at: [0.14, 0.72], w: 980, cls: 'aside lead branch-list',
+          from: 10, to: 11,
+          html: '<ul><li><b>Absurdist:</b> when neither resolves, but the ' +
+            'pushing continues.</li></ul>',
+        },
+        {
+          id: 'ph-1b7', at: [0.14, 0.82], w: 980, cls: 'aside lead',
+          from: 11, to: 11,
+          html: '<p><b>Today: we oscillate. Different questions, ' +
+            'different rulers.</b></p>',
+        },
+        {
+          id: 'ph-2a', at: [0.05, 0.055], w: 900, cls: 'scenehead', from: 12,
+          html: '<p class="kicker">Philosophy</p>' +
+            '<p class="scenetitle">The top of the hill</p>',
+        },
+        {
+          id: 'ph-2b1', at: [0.14, 0.30], w: 980, cls: 'aside lead', from: 12,
+          html: '<p>We optimize because we want to get somewhere.</p>',
+        },
+        {
+          id: 'ph-2b2', at: [0.14, 0.40], w: 980, cls: 'aside lead', from: 13,
+          html: '<p><b>But what if we arrive?</b></p>',
+        },
+        {
+          id: 'ph-2b3', at: [0.14, 0.52], w: 980, cls: 'aside lead', from: 14,
+          html: '<p>A final theory: half in longing, half in mourning.</p>' +
+            '<p>— Steven Weinberg</p>',
+        },
+        {
+          id: 'ph-2b4', at: [0.14, 0.70], w: 980, cls: 'aside lead', from: 15,
+          html: '<p>The ending: die on the summit or die pushing</p>',
         },
       ],
       notes:
         'The highest camera of the deck: sky, clouds, one summit at the ' +
         'bottom edge, him brooding on it — hat on, head bowed — through ' +
-        'both pages. Every point on its own press: first the loop at the ' +
-        'scale of brain, AI and science; then the rulers that decide what ' +
-        'counts as better.',
+        'all three pages. Every point on its own press. The arc: who ' +
+        'optimizes (the same picture at three scales) → by what ruler ' +
+        '(the rulers we carry) → do we even want the optimum (the top of ' +
+        'the hill). Then the final slide answers: maybe happiness is ' +
+        'neither failure nor convergence.',
     },
 
     /* ======================================================= 10 · RETURN == */
@@ -1013,14 +1131,17 @@
             'Exactly the opening camera — same hill, same scale, and by now ' +
             'it means something else. Sisyphus on his break, playing ' +
             'pinball: the ball comes back, and he paid for that. The last ' +
-            'line is already on the page — let the drawing sit in silence ' +
-            'for a moment, then read it. Then stop talking.',
+            'line is already on the page — the optimizer, not Sisyphus: ' +
+            'after an entire talk about optimization, he takes a break. ' +
+            'Happiness is neither failure nor convergence. Let the drawing ' +
+            'sit in silence for a moment, then read the line. Then stop ' +
+            'talking.',
         },
       ],
       text: [
         {
           id: 'fin', at: [0.59, 0.70], w: 640, cls: 'phrase',
-          html: '<p>One must imagine Sisyphus happy.</p>',
+          html: '<p>One must imagine the optimizer happy.</p>',
         },
       ],
       notes:
@@ -1065,9 +1186,11 @@
       ['example-jaisp', 3],
       ['example-jaisp', 4],
       ['example-jaisp', 5],
+      ['example-jaisp', 6],
 
-      ['philosophy', 3],
-      ['philosophy', 8],
+      ['philosophy', 4],
+      ['philosophy', 11],
+      ['philosophy', 15],
 
       ['return', 0],
     ],
@@ -1084,7 +1207,7 @@
     entropy: 0, mi: 0, comm: 0, surprise: 0, kl: 0, fisher: 0,
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
-    astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,
+    astro1: 0, astro2: 0, jarch: 0, iters: 0, shift: 0, here: 0, ends: 0,
     mythfig: 0, myth: 0, sitfig: 0, hatfig: 0, meetfig: 0, meet: 0,
     loop1: 0, loop2: 0, loop3: 0, leaner: 0, tablebg: 0,
     pusher: 0, climber: 0, climber2: 0,

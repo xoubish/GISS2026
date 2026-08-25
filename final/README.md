@@ -27,10 +27,10 @@ table now).
 | 6 | Information theory | distance, sampling, entropy/surprise/KL/Fisher, which observation teaches most |
 | 7 | Example — a person | someone you just met, walking the table |
 | 8 | Example — JAISP | enhancement family → foundation bet → astrometry → the field had moved |
-| 9 | Philosophy | brain / AI / science as the loop at scale; rational/existential/absurd as rulers you carry |
-| 10 | Return | Sisyphus takes a break, the ball comes back, one must imagine Sisyphus happy |
+| 9 | Philosophy | three pages: the same picture at three scales; the rulers we carry; the top of the hill |
+| 10 | Return | Sisyphus takes a break, the ball comes back, one must imagine the optimizer happy |
 
-## Short route (12 + 3 minutes — 28 beats)
+## Short route (12 + 3 minutes — 30 beats)
 
 Open `short.html` or `index.html?route=short`. The short route is a curated
 path through the same scene graph: arrow/space follows the short path, while
@@ -47,8 +47,8 @@ The selected beats are:
 | Three systems | full table; loss; learning signal; audit; topology close |
 | Information theory | all four beats: entropy + mutual info; Fisher; sampling; the close (update, checks, next observation) |
 | Example — a person | prior + stream; distance/resolution; surprise; good enough |
-| Example — JAISP | bridge; architecture; astrometry proof; field moved |
-| Philosophy | loop at three scales; rulers we carry |
+| Example — JAISP | bridge; architecture (drawn); ten pushes; astrometry proof; field moved |
+| Philosophy | all three pages, each fully revealed |
 | Return | the one beat (drawing + final line) |
 
 ## Decisions on record
@@ -127,10 +127,12 @@ Built so far:
 
 - **Scene 3 (Why we are Sisyphus)** — Sisyphus seated on the summit (new
   static `sitfig` layer: cup, bottle), header "Why We Are Sisyphus".
-  Four beats: the lead claim, the three-column seed table (brain / ML &
+  Five beats: the lead claim, the three-column seed table (brain / ML &
   astro / science itself), then inference and optimization definitions
-  appearing beneath it. The drink example comes first in the brain column
-  to connect the table to the drawing.
+  appearing beneath it, then the closing line moved here from scene 2
+  (2026-08-25): "In a constant optimization loop" — the cue for scene 4.
+  The drink example comes first in the brain column to connect the table
+  to the drawing.
 
 - **Scene 4 (The loop)** — the handwritten cycle (4.png) drawn in the sky:
   question → what matters → the ruler → data → compression → inference →
@@ -196,37 +198,66 @@ Built so far:
   idea); good enough? → which encounter teaches most is experimental
   design about a person. 12-minute cut: beats 1, 3, 4.
 
-- **Scene 8 (Example — JAISP)** — "One foundation, many rulers." Six
-  beats: one sky (the person lesson pointed upward) → the three pairwise
-  receipts (one teacher, one student, one loss per question) → the scaling
-  problem and the foundation move (learn the compression once; every task
-  a small head with its own loss) → the JAISP architecture plate with the
-  numbers (≈9M params, 93/94%, 0.45 mag deeper) → the astrometry proof
-  (50 → 14–17 mas, camera on the basin's θ axis) → the concordance field
-  (dashed displaced ridgeline + coherent arrows, 9–10 mas): the title of
-  the talk, measured. 12-minute cut: receipts get ~20 s; beats 3–5 keep.
+- **Scene 8 (Example — JAISP)** — "One foundation, many rulers." Seven
+  beats (2026-08-25: rebuilt learning from the Roman-conference deck,
+  `talk/SHemmati_roman2026.pdf`): one sky (the person lesson pointed
+  upward) → the three pairwise receipts (one teacher, one student, one
+  loss per question; the receipts now show on this beat only) → the
+  scaling problem and the foundation move, priced (≈2.5 GPU-hours, no
+  labels/catalogues/simulations; train once · encode once · measure many
+  times) → JAISP with the numbers (≈9M params, 93/94%, 0.45 mag deeper)
+  and the architecture drawn in the deck's own pen (`jarch` layer: ten
+  band strokes in two instrument stacks → one shared latent, frozen →
+  five head routes, each its own loss; the colored paper figure is
+  retired to Q&A) → **ten pushes to the design** (`iters` layer: the
+  v1–v10 ladder walked up the real flank toward the summit — contrastive,
+  object pairs, JEPA each roll back; v6 "predict the pixels" is the loud
+  ring, the turn; v9–10 production at the crest, "pixels won" — the
+  loop's not-good-enough branch, lived) → the astrometry proof on the θ
+  axis, now drawn as the collapse itself (open raw cloud over the ≈50 mas
+  bracket → tight solid cluster over 14–17 mas, labels hung to the side;
+  the paper figure shrunk to a small corner receipt) plus the transfer
+  line (second field, nothing retrained, same numbers) → the concordance
+  field (dashed displaced ridgeline + coherent arrows, 9–10 mas): the
+  title of the talk, measured; notes carry the 7 mas ten-band share, the
+  two-methods check, the 1.5 mas per-source absorption, and Roman as the
+  natural next question. 12-minute cut: receipts get ~20 s; beats 4–7
+  keep.
 
 - **Scene 9 (Philosophy)** — the deck's highest camera, almost pure sky,
   Sisyphus brooding on his summit boulder at the frame's lower right —
   hat on, head bowed, elbows toward the knees (`hatfig` layer, scale 550,
-  about seven times the scene-3 sitter), the same pose through both pages
+  about seven times the scene-3 sitter), the same pose through all pages
   (2026-08-25; a reading pose was tried for page one and cut the same
   day — the camera moved from x 2450 to 2200 to push him toward the
-  edge, clear of the text). Two pages, nine beats — every point arrives
-  on its own keypress. First page: the same loop at three scales — a
-  brain, an AI model, and science as a collective machine; the next
-  experiment should move the answer, not just keep the loop alive.
-  Second page: the rulers we carry — rationalist for consistency,
-  existentialist where deduction runs out, absurdist where neither
-  resolves; different questions need different losses. Metamodernism
-  stays in Q&A. The short route keeps its two stops by landing on each
-  page fully revealed (beats 4 and 9).
+  edge, clear of the text). **Three pages, sixteen beats** (settled
+  2026-08-25: "three philosophy slides before the ending is exactly
+  right — more risks a detour, fewer and the ending has not earned its
+  weight"), every point on its own keypress. The arc: who optimizes →
+  by what ruler → do we even want the optimum. Page one, the bridge
+  from the technical talk — the same picture at three scales: a brain
+  (loss is relative — history, reference points, habit, attachment), an
+  AI (can optimize a different loss, but we chose it), science (does
+  both collectively); then the two hinges: a different optimizer is not
+  necessarily a different scientist if it carries our ruler, and
+  sometimes a good model is one you trust enough to use. Page two, the
+  five rulers: nature gives observations, not the ruler — empiricist,
+  rationalist, pragmatist, existentialist, absurdist; the close: today
+  we oscillate. Page three, sparse — "The top of the hill": we optimize
+  because we want to get somewhere; but what if we arrive?; Weinberg's
+  "a final theory: half in longing, half in mourning"; then one quiet
+  line, small and unbolded (2026-08-25): "The ending: die on the summit
+  or die pushing" — and the notes say resist explaining, let it sit. Metamodernism stays in Q&A. The short route
+  lands on each page fully revealed (beats 5, 12 and 16, 0-indexed 4,
+  11, 15).
 
 - **Scene 10 (Return)** — scene 1's exact camera, one beat (2026-08-25;
   was two). The pinball drawing on the left (Sisyphus takes a break; the
   ball comes back, and he paid for that) and the line at lower right,
-  there from the start — no click: "One must imagine Sisyphus happy."
-  Nothing more — decided.
+  there from the start — no click: "One must imagine **the optimizer**
+  happy" (revised 2026-08-25 from "Sisyphus" — after a whole talk about
+  optimization, he takes a break: happiness is neither failure nor
+  convergence). Nothing more — decided.
 
 **All ten scenes are built.** The deck is complete; edits from here are
 polish passes.
