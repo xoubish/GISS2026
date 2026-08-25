@@ -100,6 +100,14 @@ field. The deck is the source of truth; re-run after any change. Present
 from the browser when the venue allows (the animations live there), from
 the pptx as the bulletproof fallback.
 
+`../Presentation_editable.pptx` is the second build artifact
+(`final/tools/venv/bin/python final/tools/export_editable_pptx.py`): the
+same talk as fully native PowerPoint — real text boxes, native tables, a
+shape-drawn loop, the dawn-moss palette as plain RGB fills — for editing
+text/colors by hand. Content is transcribed from scenes.js by hand inside
+the script, so it does NOT pick up scene edits automatically the way the
+screenshot export does.
+
 ## Status
 
 Built so far:
