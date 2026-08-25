@@ -137,14 +137,19 @@ Built so far:
 
 - **Scene 6 (Information theory)** — terrain-first: statistics of the
   loop drawn on the basin itself, using the engine's station layers
-  (clustered/scattered observations → H(X) as capacity; an optional mutual
+  (repeated vs scattered readings → H(X) as capacity; an optional mutual
   information beat → I(X;θ) as relevance; Fisher parabolas → I(θ) with the
   zero-Fisher warning;
   5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
-  arrows; pull-back to the climber → expected information gain). A small
-  figure with a speaking-horn (`comm` layer) stands on the basin's right
-  rim and calls the message down a dashed channel, marking Shannon's
-  communication framing on the entropy and mutual-information beats. Slow
+  arrows; pull-back to the climber → expected information gain). The two
+  entropy stacks (`entropy` layer) scatter in **y**, like the soundings and
+  the surprise datum, and float clear of the ground: spread in x would read
+  as "we sampled many θ", a claim about the landscape rather than about the
+  observation stream. The `mi` layer adds one solid column marking the part
+  of that spread which moves with θ — capacity against relevance, drawn
+  rather than asserted. A small figure with a listening-horn (`comm` layer)
+  stands on the basin's right rim, the message arriving down a dashed
+  channel; it carries no label of its own. Slow
   descent from scene 5's sky on entry. Each station carries its
   diagnostic test (Cramér–Rao for the ruler, I(T(D);θ) vs I(D;θ) for the
   compression, converged-but-still-surprised for the loss), and a

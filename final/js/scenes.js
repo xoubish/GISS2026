@@ -401,7 +401,7 @@
             'Usefulness depends on θ.',
         },
         {
-          set: { entropy: 0.75, comm: 1 },
+          set: { entropy: 0.75, mi: 1, comm: 1 },
           notes:
             'The bridge statistic: mutual information. If entropy asks how ' +
             'much a data dimension can vary, mutual information asks how ' +
@@ -411,7 +411,7 @@
             'channel can be decisive if it tracks θ.',
         },
         {
-          set: { entropy: 0.35, fisher: 1, comm: 0 },
+          set: { entropy: 0.35, mi: 0, fisher: 1, comm: 0 },
           notes:
             'THE RULER. Fisher is about θ, not about volume: the same basin ' +
             'is flat under one ruler and steep under another. And the hard ' +
@@ -485,23 +485,23 @@
             '<p class="scenetitle">Statistics of the Loop</p>',
         },
         {
-          id: 'in-1', at: [0.05, 0.24], w: 540, cls: 'aside lead', to: 0,
+          id: 'in-1', at: [0.05, 0.21], w: 540, cls: 'aside lead', to: 0,
           html: '<p><b>Shannon’s question: how unpredictable is the next ' +
             'observation?</b></p>' +
-            '<p>X is the stream of observations. p(X) is what we expect to ' +
+            '<p>X is the next observation. p(X) is what we expect to ' +
             'see. Entropy, H(X), is average surprise:</p>' +
             '<p>H(X) = E[−log p(X)] = −Σ p(x) log p(x).</p>' +
             '<p>Low H: little room. High H: room to learn. Usefulness ' +
             'depends on θ.</p>',
         },
         {
-          id: 'in-mi', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 1, to: 1,
+          id: 'in-mi', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 1, to: 1,
           html: '<p><b>The decision question — mutual information, I(X;θ).</b></p>' +
             '<p>How much of X is about θ, the thing I care about?</p>' +
             '<p>Entropy is capacity. Mutual information is relevance.</p>',
         },
         {
-          id: 'in-2', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 2, to: 2,
+          id: 'in-2', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The ruler — Fisher information, I(θ).</b> How much ' +
             'of what I measure is about θ: the same basin, flat under one ' +
             'ruler, steep under another. Where Fisher is zero, nothing ' +
@@ -510,20 +510,21 @@
             'estimator can ever do through this instrument.</p>',
         },
         {
-          id: 'in-3', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 3, to: 3,
-          html: '<p><b>The compression — sampling.</b> Five numbers, evenly ' +
-            'spaced: the basin is simply not in them.</p>' +
+          id: 'in-3', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 3, to: 3,
+          html: '<p><b>The compression — sampling.</b> Not Shannon’s ' +
+            'compression: this one is which numbers you keep. Five, ' +
+            'evenly spaced — and the basin is simply not in them.</p>' +
             '<p>Nothing was wrong with the data.</p>',
         },
         {
-          id: 'in-4', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 4, to: 4,
+          id: 'in-4', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 4, to: 4,
           html: '<p><b>The same budget, placed where the curvature lives</b> ' +
             '— and the basin comes back. Sampling is a ruler too.</p>' +
             '<p>Its test: does T(D) keep what D knew about θ — ' +
             'I(T(D);&thinsp;θ) against I(D;&thinsp;θ)?</p>',
         },
         {
-          id: 'in-5', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 5, to: 5,
+          id: 'in-5', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 5, to: 5,
           html: '<p><b>The learning signal — surprise, −log p(x).</b> The ' +
             'datum nothing predicted. Prediction error, gradient, anomaly: ' +
             'the same engine in all three columns.</p>' +
@@ -532,7 +533,7 @@
             'wrong.</p>',
         },
         {
-          id: 'in-6', at: [0.05, 0.24], w: 540, cls: 'aside lead', from: 6, to: 6,
+          id: 'in-6', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 6, to: 6,
           html: '<p><b>The update — information gain, D<sub>KL</sub>.</b> ' +
             'How much did the bracket close?</p>' +
             '<p>Surprise is not gain — and when each new datum barely moves ' +
@@ -550,7 +551,7 @@
             'then go buy more.</p>',
         },
         {
-          id: 'in-7', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 8,
+          id: 'in-7', at: [0.05, 0.21], w: 560, cls: 'aside lead', from: 8,
           html: '<p><b>The next observation — expected information gain.</b> ' +
             'Rank the observations you could take by what you expect to ' +
             'learn. Buy that one.</p>' +
@@ -1119,7 +1120,7 @@
     humanrule: 0, cands: 0, ball: 0, newland: 0, marks: 0, m: 0, roll: 1,
     sound: 0, cyc1: 0, cyc2: 0, cyc3: 0, cyc4: 0,
     approx1: 0, approx2: 0, approx3: 0,
-    entropy: 0, comm: 0, surprise: 0, kl: 0, fisher: 0,
+    entropy: 0, mi: 0, comm: 0, surprise: 0, kl: 0, fisher: 0,
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,

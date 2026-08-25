@@ -281,8 +281,8 @@
     stroke(ST * 0.9, foot(ST * 0.9), 0.05, -0.22, 2); // uphill leg
     stroke(0.05, -0.22, 0.0, -0.42, 2);
     stroke(0.0, -0.42, -0.05, -0.78, 3);            // torso, upright
-    stroke(-0.05, -0.735, -0.19, -0.61, 2);         // near arm: elbow forward…
-    stroke(-0.19, -0.61, horn.gx, horn.gy, 2);      // …forearm up to the grip
+    stroke(-0.05, -0.735, -0.19, -0.57, 2);         // near arm: elbow dropped…
+    stroke(-0.19, -0.57, horn.gx, horn.gy, 2);      // …forearm up under the horn
     stroke(0.0, -0.715, 0.10, -0.50, 2);            // far arm, hanging
     const hd = el('path', { d: ring(-0.09, -0.885, 0.105, seed + 5), class: 'ink' });
     hd.style.strokeWidth = W;
@@ -291,33 +291,30 @@
     return g;
   }
 
-  /* A speaking-horn, drawn along the axis from a narrow end at (mx,my) to a
-     bell of half-width r1 at (bx,by), with the sound leaving it as arcs.
-     Returns the group plus the two points the caller needs: where a hand can
-     grip it, and where the channel leaves the bell. */
-  function hornShape(mx, my, bx, by, r0, r1, s, seed) {
+  /* A listening-horn: the wide bell cupped at the ear, tapering to a narrow
+     tip that faces the channel, and the sound arriving as arcs beyond the
+     tip. Returns the group plus the two points the caller needs — where a
+     hand can grip it, and where the channel meets the tip. */
+  function hornShape(tx, ty, bx, by, rt, rb, s, seed) {
     const g = el('g');
     const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
-    const ax = bx - mx, ay = by - my, L = Math.hypot(ax, ay) || 1;
+    const ax = bx - tx, ay = by - ty, L = Math.hypot(ax, ay) || 1;
     const ux = ax / L, uy = ay / L, nx = -uy, ny = ux;
     const P = (x, y, k, r) => [x + nx * k * r, y + ny * k * r];
-    const a = P(mx, my, 1, r0), b = P(bx, by, 1, r1);
-    const c = P(mx, my, -1, r0), d = P(bx, by, -1, r1);
+    const a = P(tx, ty, 1, rt), b = P(bx, by, 1, rb);
+    const c = P(tx, ty, -1, rt), d = P(bx, by, -1, rb);
     const pen = (path) => { path.style.strokeWidth = W; g.appendChild(path); };
     pen(el('path', { d: handLine(a[0], a[1], b[0], b[1], 0.006, seed), class: 'ink' }));
     pen(el('path', { d: handLine(c[0], c[1], d[0], d[1], 0.006, seed + 1), class: 'ink' }));
-    const bulge = r1 * 0.9;                                  // the bell's lip
-    pen(el('path', {
-      d: 'M' + f2(b[0]) + ' ' + f2(b[1]) + 'Q' + f2(bx + ux * bulge) + ' ' +
-        f2(by + uy * bulge) + ' ' + f2(d[0]) + ' ' + f2(d[1]),
-      class: 'ink',
-    }));
-    for (let i = 1; i <= 3; i++) {                           // sound leaving it
-      const cx = bx + ux * 0.07, cy = by + uy * 0.07;
-      const rr = r1 * 1.1 * (0.5 + i * 0.44), sp = 0.66;
+    /* No rim arc at the wide end — the head closes the cone, and an arc
+       across it reads as a lens over his face. Only the tip is capped. */
+    pen(el('path', { d: handLine(a[0], a[1], c[0], c[1], 0.004, seed + 2), class: 'ink' }));
+    for (let i = 1; i <= 3; i++) {
+      const cx = tx - ux * 0.05, cy = ty - uy * 0.05;
+      const rr = rb * 0.9 * (0.5 + i * 0.44), sp = 0.66;
       const w = el('path', {
         d: 'M' + f2(cx + nx * rr * sp) + ' ' + f2(cy + ny * rr * sp) +
-          'Q' + f2(cx + ux * rr) + ' ' + f2(cy + uy * rr) + ' ' +
+          'Q' + f2(cx - ux * rr) + ' ' + f2(cy - uy * rr) + ' ' +
           f2(cx - nx * rr * sp) + ' ' + f2(cy - ny * rr * sp),
         class: 'ink',
       });
@@ -325,12 +322,12 @@
       w.style.opacity = (0.7 - i * 0.15).toFixed(2);
       g.appendChild(w);
     }
-    const t = 0.55, off = r1 * 0.55 + 0.02;                  // grip, underside
+    const t = 0.72, off = (rt + (rb - rt) * t) * 0.55 + 0.03;   // grip, underside
     return {
       g: g,
-      gx: mx + ax * t - nx * off,
-      gy: my + ay * t - ny * off,
-      bell: [bx, by],
+      gx: tx + ax * t + nx * off,
+      gy: ty + ay * t + ny * off,
+      tip: [tx, ty],
     };
   }
 
@@ -539,7 +536,7 @@
   S.LAYERS = ['far', 'gfill', 'hatch0', 'hatch1', 'hatch2', 'hatch3', 'hatch4', 'ridge',
     'newland', 'axes', 'curmark', 'curve', 'ruler', 'humanrule', 'cands',
     'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
-    'approx1', 'approx2', 'approx3', 'entropy', 'comm', 'surprise', 'kl',
+    'approx1', 'approx2', 'approx3', 'entropy', 'mi', 'comm', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
@@ -965,42 +962,69 @@
         host.appendChild(el('path', { d: ring(x, y, r * 1.35, seed), class: 'ink ring' }));
       };
 
-      /* Entropy as predictability of the next observation: repeated points
-         are low H; scattered points are high H. No brackets here — those read
-         like distances or posterior widths, which belongs to later beats. */
-      const low = [2192, 2196, 2198, 2201, 2203, 2206];
-      low.forEach((x, i) => edot(L.entropy, x, S.ground(x), 1.15, 1710 + i));
-      txt(L.entropy, 2199, S.ground(2199) - 17, 'low H — repeated', 'sm');
+      /* Entropy as predictability of the next observation: repeated readings
+         against scattered ones, spread in y the way the soundings are. Spread
+         in x would read as "we sampled many θ" — a statement about the
+         landscape, not the one this beat makes — so the stacks are lifted off
+         the ground entirely, like the surprise datum, and their x means
+         nothing. The dashed rule through each is what the model expects.
+         No brackets here; those belong to the later beats. */
+      const H_Y = -1802;
+      const H_LOW = { x: 2238, sig: 2.2 }, H_HIGH = { x: 2308, sig: 7.5 };
+      function stack(host, at, seed0) {
+        const rnd = S.mulberry32(seed0);
+        for (let i = 0; i < 7; i++) {
+          edot(host, at.x + (rnd() - 0.5) * 7, H_Y + gaussRnd(rnd) * at.sig, 1.15, seed0 + 30 + i);
+        }
+        host.appendChild(el('path', {
+          d: handLine(at.x - 9, H_Y, at.x + 9, H_Y, 0.1, seed0 + 9), class: 'ink drop',
+        }));
+        return at.sig * 2.4;
+      }
+      const spLow = stack(L.entropy, H_LOW, 1710);
+      txt(L.entropy, H_LOW.x, H_Y - spLow - 6, 'low H — repeated');
+      const spHigh = stack(L.entropy, H_HIGH, 1810);
+      txt(L.entropy, H_HIGH.x, H_Y - spHigh - 6, 'high H — scattered');
 
-      const high = [2244, 2258, 2274, 2298, 2321, 2346];
-      high.forEach((x, i) => edot(L.entropy, x, S.ground(x), 1.15, 1810 + i));
-      txt(L.entropy, 2298, S.ground(2298) - 24, 'high H — scattered', 'sm');
+      /* Mutual information (the bridge beat): the scatter is the capacity —
+         it is already drawn — so this adds only the part of it that moves
+         with θ. One solid column against the same spread; the words carry
+         the names. */
+      (function () {
+        const bx = H_HIGH.x + 14, half = spHigh * 0.38;
+        L.mi.appendChild(el('path', {
+          d: handLine(bx, H_Y - half, bx, H_Y + half, 0.14, 1860), class: 'ink plotted',
+        }));
+        [-half, half].forEach((dy, i) => L.mi.appendChild(el('path', {
+          d: handLine(bx - 2.2, H_Y + dy, bx + 2.2, H_Y + dy, 0.1, 1862 + i), class: 'ink axis',
+        })));
+        txt(L.mi, bx + 4.5, H_Y + 1.5, 'about θ', '', 'start');
+      })();
 
       /* Shannon's framing, as a marginal mark on the basin's right rim: a
-         caller with a horn, and the message leaving it down a dashed
-         channel. Deliberately smaller than the climber of the later beats —
-         this is a gloss, not a character. The channel is drawn in world
-         space, not inside the figure's scaled group, so its dashes stay the
-         same size as every other dashed line in the deck. */
+         listener with a horn to his ear, and the message arriving down a
+         dashed channel. Deliberately smaller than the climber of the later
+         beats — this is a gloss, not a character, and it carries no label of
+         its own. The channel is drawn in world space, not inside the figure's
+         scaled group, so its dashes stay the same size as every other dashed
+         line in the deck. */
       const baseX = 2362, baseY = S.ground(baseX);
       const s = 28;
       const foot = (fx) =>
         Math.max(-0.09, Math.min(0.09, (S.ground(baseX + fx * s) - baseY) / s));
-      const hn = hornShape(-0.235, -0.875, -0.55, -0.945, 0.03, 0.098, s, 1890);
+      const hn = hornShape(-0.575, -0.945, -0.215, -0.878, 0.026, 0.086, s, 1890);
       const cf = callFigure(1888, s, foot, hn);
       cf.appendChild(hn.g);
       cf.setAttribute('transform', 'translate(' + baseX + ' ' + f2(baseY) + ') scale(' + s + ')');
       L.comm.appendChild(cf);
 
-      const bx0 = baseX + hn.bell[0] * s - 4, by0 = baseY + hn.bell[1] * s;
-      const bx1 = bx0 - 44, by1 = by0 - 8.4;
-      const mx0 = (bx0 + bx1) / 2, my0 = (by0 + by1) / 2 + 3;
+      const bx0 = baseX + hn.tip[0] * s - 3, by0 = baseY + hn.tip[1] * s;
+      const bx1 = bx0 - 46, by1 = by0 - 8.8;
       L.comm.appendChild(el('path', {
-        d: 'M' + f2(bx0) + ' ' + f2(by0) + 'Q' + f2(mx0) + ' ' + f2(my0) + ' ' +
-          f2(bx1) + ' ' + f2(by1),
+        d: 'M' + f2(bx0) + ' ' + f2(by0) + 'Q' + f2((bx0 + bx1) / 2) + ' ' +
+          f2((by0 + by1) / 2 + 3) + ' ' + f2(bx1) + ' ' + f2(by1),
         class: 'ink drop',
       }));
-      txt(L.comm, mx0, my0 - 4.5, 'message through a channel', 'sm');
 
       /* surprise: one datum a long way from anything the model predicts */
       const sx = 2268, sy = S.ground(sx) - 46;
