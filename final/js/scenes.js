@@ -674,38 +674,53 @@
           id: 'ep-0', at: [0.05, 0.17], w: 540, cls: 'aside lead', to: 0,
           html: '<p><b>Do I like this new person?</b> Nobody walks in ' +
             'blank: you arrive with a prior built from every person ' +
-            'before them.</p>' +
-            '<p><b>Then the stream:</b> words, tone, timing, what they ' +
+            'before them.</p>',
+        },
+        {
+          id: 'ep-0b', at: [0.61, 0.17], w: 540, cls: 'aside lead', to: 0,
+          html: '<p><b>Then the stream:</b> words, tone, timing, what they ' +
             'laugh at — enormous entropy, most of it noise.</p>',
         },
         {
           id: 'ep-1', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 1, to: 1,
           html: '<p><b>Distance is resolution.</b> Across a table you ' +
-            'sample coarsely — “they seem nice” is one blurred pixel.</p>' +
-            '<p>Closer, kindness separates from politeness. Liking changes ' +
-            'with distance because the data does.</p>',
+            'sample coarsely — “they seem nice” is one blurred pixel.</p>',
+        },
+        {
+          id: 'ep-1b', at: [0.61, 0.17], w: 540, cls: 'aside lead', from: 1, to: 1,
+          html: '<p>Closer, kindness separates from politeness. Liking ' +
+            'changes with distance because the data does.</p>',
         },
         {
           id: 'ep-2', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>Two ways to learn nothing.</b> Small talk is ' +
             'pleasant — and Fisher-blind: no amount of it measures ' +
-            'reliability.</p>' +
-            '<p>And the tenth coffee repeats the ninth: no new ' +
+            'reliability.</p>',
+        },
+        {
+          id: 'ep-2b', at: [0.61, 0.17], w: 540, cls: 'aside lead', from: 2, to: 2,
+          html: '<p>And the tenth coffee repeats the ninth: no new ' +
             'information — the bracket stops closing.</p>',
         },
         {
           id: 'ep-3', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 3, to: 3,
           html: '<p><b>Then — surprise.</b> Something the model never ' +
-            'predicted: −log p spikes, and the picture reorganizes.</p>' +
-            '<p>Sometimes it wasn’t noise. The person moved.</p>',
+            'predicted: −log p spikes, and the picture reorganizes.</p>',
+        },
+        {
+          id: 'ep-3b', at: [0.61, 0.17], w: 540, cls: 'aside lead', from: 3, to: 3,
+          html: '<p>Sometimes it wasn’t noise. The person moved.</p>',
         },
         {
           id: 'ep-4', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 4,
           html: '<p><b>Good enough?</b> For “another coffee?” — converged ' +
             'long ago. For “trust them with what matters” — a different ' +
-            'loss entirely, and no number of coffees helps.</p>' +
-            '<p>It needs a different observation: which encounter teaches ' +
-            'the most is experimental design, about a person.</p>',
+            'loss entirely, and no number of coffees helps.</p>',
+        },
+        {
+          id: 'ep-4b', at: [0.575, 0.17], w: 540, cls: 'aside lead', from: 4,
+          html: '<p>It needs a different observation: which encounter ' +
+            'teaches the most is experimental design, about a person.</p>',
         },
       ],
       notes:
