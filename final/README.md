@@ -53,11 +53,15 @@ The selected beats are:
 
 ## Decisions on record
 
-- **Palette: dawn moss** (revised 2026-08-24) — warm paper, green hills,
-  teal sky-light, dark pine ink, terracotta (`--human: #d06c4a`) as the
-  human accent. Lives in `css/deck.css` (variables + stroke classes),
-  `js/art.js` (hill wash, far ridges, clouds), and the `#inkify` matrix in
-  `index.html`.
+- **Palette: navy & porcelain** (2026-08-24; supersedes dawn moss, which
+  was brightened and then retired the same day) — classic white paper
+  (`#f5f6f2`), Prussian-navy ink (`#152a42`), light-blue hills and sky in
+  the engraving / ukiyo-e register, white and cream clouds, a soft warm
+  glow kept in the sky's top-left corner, terracotta (`--human: #c2562f`)
+  kept as the warm accent against the blue. Lives in `css/deck.css`
+  (variables + stroke classes + rules/frames), `js/art.js` (hill wash, far
+  ridges, clouds, tablebg), and the `#inkify` matrix in `index.html` (the
+  scanned drawings now render in navy).
 - **Case rule:** anything the *pen* writes into the drawing (terrain
   labels, the loop's nodes) is lowercase italic, like annotations on a
   sketch; anything typeset in HTML (headers, definitions, bullets) is
