@@ -18,8 +18,8 @@
      7  example-person a person you just met, walking the table
      8  example-jaisp  enhancement family → foundation bet → JAISP
                        astrometry → the field had moved
-     9  philosophy     existential/rational/absurd as rulers you carry;
-                       die on the hill, die on the slope
+     9  philosophy     brain / AI / science as the loop at scale;
+                       rational/existential/absurd as rulers you carry
      10 return         Sisyphus takes a break, the ball comes back,
                        one must imagine Sisyphus happy
 
@@ -115,6 +115,10 @@
           id: 'myth-3', at: [0.05, 0.54], w: 560, cls: 'aside lead', from: 2,
           html: '<p>Gradient ascent, or descent with a flipped hill: ' +
             '<b>Sisyphus is solving an optimization problem.</b></p>',
+        },
+        {
+          id: 'myth-4', at: [0.05, 0.70], w: 560, cls: 'aside lead', from: 2,
+          html: '<p>In a constant optimization loop</p>',
         },
       ],
       notes:
@@ -870,201 +874,126 @@
       name: 'Philosophy',
       camera: { x: 2450, y: -2860, z: 0.85 },
       enter: { dur: 3000, ease: 'slow' },
-      set: { far: 0.25, rock: 1, line: 0.8, sitfig: 1 },
+      set: { far: 0.25, rock: 1, line: 0.8, readfig: 1 },
       steps: [
         {
           notes:
             'The long ascent — highest camera of the talk, almost all sky, ' +
-            'the summit a speck at the bottom with him still sitting on ' +
-            'it. Land the claim: every station of the loop was a choice, ' +
-            'and choosing with reasons is philosophy. This is why a ' +
-            'philosophy symposium at IPAC is not a joke.',
+            'him on his summit at the bottom of the frame, reading. ' +
+            'Compress the science payoff into one page, one line per ' +
+            'press: the same loop runs at three scales, starting with the ' +
+            'brain.',
+        },
+        {
+          notes: 'The AI model: the same loop, faster, with the loss ' +
+            'written down explicitly.',
+        },
+        {
+          notes: 'Science as a collective machine: proposals, instruments, ' +
+            'papers, review, repeat — one distributed updating loop.',
         },
         {
           notes:
-            'The loss is relative — negotiated in committee, encoded in ' +
-            'proposals and review panels. Reward a different better and ' +
-            'different missions fly, different papers count: science ' +
-            'climbs a different mountain. The direction of the field is ' +
-            'loss-dependent.',
+            'Land the sting: the next experiment should move the answer, ' +
+            'not just keep the gradient alive.',
+        },
+        {
+          set: { readfig: 0, hatfig: 1 },
+          notes:
+            'The page turns and the book is down — hat on, head bowed. ' +
+            'Nature hands you observations; the ruler you must choose.',
+        },
+        {
+          notes: 'Rationalist: the ruler for questions of consistency.',
+        },
+        {
+          notes: 'Existentialist: where deduction runs out and you must ' +
+            'own the choice.',
+        },
+        {
+          notes: 'Absurdist: when neither resolves — and the pushing ' +
+            'continues anyway.',
         },
         {
           notes:
-            'The AI scientist, read off the table\'s rows: it restarts; ' +
-            'its data re-shuffle; its loss is explicit and optimizable. It ' +
-            'will converge, efficiently, on exactly what we asked for — ' +
-            'which is the danger. A brain with a muddled objective fails ' +
-            'gently; a model with a crisp wrong objective converges ' +
-            'precisely. The audit is ours.',
-        },
-        {
-          notes:
-            'One grammar: priors, likelihoods, information, surprise — a ' +
-            'first impression and a cosmology conjugate the same verbs. ' +
-            'Measuring a person is not a metaphor for science; it is the ' +
-            'same inference with different nouns.',
-        },
-        {
-          notes:
-            'The sting — deliver it dry. First the human half: at some ' +
-            'point we stop updating our model of a friend and keep the ' +
-            'conversations anyway, because easy conversation is its own ' +
-            'reward — low surprise is pleasant, for a brain and for a ' +
-            'field. Then the field-scale half, named for this room: we ' +
-            'know how galaxy mass and star formation relate, and we keep ' +
-            'measuring two more galaxies and adding them to the same ' +
-            'plot. The pipeline exists, the proposal is safe, the paper ' +
-            'is publishable — a reward-shaped account of science, an ' +
-            'economy built on keeping a gradient alive. When the answer ' +
-            'stops moving and we keep observing anyway, the reward is ' +
-            'speaking — citations, careers, committees — not the data. ' +
-            'The information lives where the plot might break: the ' +
-            'outliers, the extreme ends, the structure in the scatter. ' +
-            'One honest out, kept gentle: sometimes the point was never ' +
-            'inference — you keep the coffees for the friendship. That is ' +
-            'the last scene\'s ending, not a bug. The sting is only for ' +
-            'when we call it learning.',
-        },
-        {
-          notes:
-            'The rulers you carry: rationalist on questions of consistency, ' +
-            'existentialist where deduction runs out and you must own the ' +
-            'choice, absurdist when neither resolves. Not inconsistency — ' +
-            'a different loss for a different question, and the swing ' +
-            'between them is what a healthy updating system looks like. ' +
-            '(If asked about the modern/postmodern oscillation by name: ' +
-            'metamodernism, Vermeulen & van den Akker — keep it for Q&A, ' +
-            'not the slide.)',
-        },
-        {
-          camera: { x: 2748, y: -2194, z: 1.7 },
-          set: { ends: 1, climber: 1, line: 1, far: 0.35 },
-          notes:
-            'Two ways for a question to end. Die on the hilltop: the ' +
-            'answer sufficed; the summit was always local to the question. ' +
-            'Die on the slope: the answer keeps improving, the theory ' +
-            'stays incomplete, the experiment outlives you. Weinberg\'s ' +
-            'Dreams of a Final Theory — say "half in longing, half in ' +
-            'mourning" as your phrase about reading him, not as his words. ' +
-            'The camera drops out of the sky here, for the only time in ' +
-            'the scene: both endings are places on this mountain and the ' +
-            'deck already had them drawn. The upper ring is the crest with ' +
-            'the sitter still on it; the lower one is the slope, with ' +
-            'Sisyphus still pushing his rock up it. Let the picture arrive ' +
-            'before you say the two lines.',
+            'The close: not inconsistency — a different loss for a ' +
+            'different question, and the swing between them is what a ' +
+            'healthy updating system looks like. (If asked about the ' +
+            'modern/postmodern oscillation by name: metamodernism, ' +
+            'Vermeulen & van den Akker — keep it for Q&A, not the slide.)',
         },
       ],
       text: [
         {
-          id: 'ph-head', at: [0.05, 0.055], w: 760, cls: 'scenehead',
+          id: 'ph-0a', at: [0.05, 0.055], w: 900, cls: 'scenehead', to: 3,
           html: '<p class="kicker">Philosophy</p>' +
-            '<p class="scenetitle">The view from here</p>',
+            '<p class="scenetitle">The same picture, at three scales</p>',
         },
         {
-          id: 'ph-0a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', to: 0,
-          html: '<p>Every station of the loop was a choice.</p>',
+          id: 'ph-0b1', at: [0.14, 0.32], w: 980, cls: 'aside lead branch-list', to: 3,
+          html: '<ul><li>A brain updates a model of the world, then chooses ' +
+            'what <em>better</em> means.</li></ul>',
         },
         {
-          id: 'ph-0b', at: [0.14, 0.375], w: 980, cls: 'aside lead', to: 0,
-          html: '<p>The data we keep, the ruler we trust, the moment we ' +
-            'stop — none of it is given by nature. Choosing with reasons ' +
-            'is philosophy, and science runs on it quietly.</p>',
+          id: 'ph-0b2', at: [0.14, 0.41], w: 980, cls: 'aside lead branch-list',
+          from: 1, to: 3,
+          html: '<ul><li>An AI model does the same thing faster, with an ' +
+            'explicit loss.</li></ul>',
         },
         {
-          id: 'ph-1a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 1, to: 1,
-          html: '<p>A relative loss steers an absolute science.</p>',
+          id: 'ph-0b3', at: [0.14, 0.50], w: 980, cls: 'aside lead branch-list',
+          from: 2, to: 3,
+          html: '<ul><li>Science does it collectively: proposals, ' +
+            'instruments, papers, review, repeat.</li></ul>',
         },
         {
-          id: 'ph-1b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 1, to: 1,
-          html: '<p><em>Better</em> is negotiated — in panels, proposals, ' +
-            'citations. Reward a different better, and different missions ' +
-            'fly, different papers count: the field climbs a different ' +
-            'mountain.</p>',
+          id: 'ph-0b4', at: [0.14, 0.61], w: 980, cls: 'aside lead branch-list',
+          from: 3, to: 3,
+          html: '<ul><li>The next experiment should move the answer, not ' +
+            'just keep the loop alive.</li></ul>',
         },
         {
-          id: 'ph-2a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 2, to: 2,
-          html: '<p>An AI will be a different kind of scientist.</p>',
+          id: 'ph-1a', at: [0.05, 0.055], w: 900, cls: 'scenehead', from: 4,
+          html: '<p class="kicker">Philosophy</p>' +
+            '<p class="scenetitle">The rulers we carry</p>',
         },
         {
-          id: 'ph-2b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 2, to: 2,
-          html: '<p>It restarts; its data re-shuffle; its loss is explicit ' +
-            '— it will converge, efficiently, on exactly what we asked ' +
-            'for.</p>' +
-            '<p>A brain fails gently. A model fails precisely. The audit ' +
-            'is ours.</p>',
+          id: 'ph-1b1', at: [0.14, 0.32], w: 980, cls: 'aside lead branch-list',
+          from: 4,
+          html: '<ul><li>Nature gives observations; it does not give the ' +
+            'ruler.</li></ul>',
         },
         {
-          id: 'ph-3a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 3, to: 3,
-          html: '<p>One grammar, different nouns.</p>',
+          id: 'ph-1b2', at: [0.14, 0.41], w: 980, cls: 'aside lead branch-list',
+          from: 5,
+          html: '<ul><li>Rationalist: when the question is ' +
+            'consistency.</li></ul>',
         },
         {
-          id: 'ph-3b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 3, to: 3,
-          html: '<p>Priors, likelihoods, information, surprise: a first ' +
-            'impression and a cosmology conjugate the same verbs. ' +
-            'Measuring a person is not a metaphor for science — it is the ' +
-            'same inference.</p>',
+          id: 'ph-1b3', at: [0.14, 0.50], w: 980, cls: 'aside lead branch-list',
+          from: 6,
+          html: '<ul><li>Existentialist: when deduction runs out and the ' +
+            'choice is ours.</li></ul>',
         },
         {
-          id: 'ph-4a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 4, to: 4,
-          html: '<p>The tenth coffee, at field scale.</p>',
+          id: 'ph-1b4', at: [0.14, 0.59], w: 980, cls: 'aside lead branch-list',
+          from: 7,
+          html: '<ul><li>Absurdist: when neither resolves, but the pushing ' +
+            'continues.</li></ul>',
         },
         {
-          id: 'ph-4b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 4, to: 4,
-          html: '<p>At some point we stop updating our model of a friend — ' +
-            'and keep the conversations anyway, because easy conversation ' +
-            'is its own reward.</p>' +
-            '<p>Fields do it too: we know how galaxy mass and star ' +
-            'formation relate — and we keep measuring two more galaxies ' +
-            'and adding them to the same plot.</p>' +
-            '<p>When the answer stops moving and we keep observing, the ' +
-            'reward is speaking, not the data.</p>',
-        },
-        {
-          id: 'ph-5a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 5, to: 5,
-          html: '<p>You carry rulers too.</p>',
-        },
-        {
-          id: 'ph-5b', at: [0.14, 0.375], w: 940, cls: 'mini-table', from: 5, to: 5,
-          html: '<div class="cols">' +
-            '<div><h5>rationalist</h5><p>where the question is one of ' +
-            'consistency</p></div>' +
-            '<div><h5>existentialist</h5><p>where deduction runs out and ' +
-            'the choice is yours to own</p></div>' +
-            '<div><h5>absurdist</h5><p>where neither of them ' +
-            'resolves</p></div>' +
-            '</div>',
-        },
-        {
-          id: 'ph-5c', at: [0.14, 0.60], w: 980, cls: 'aside lead', from: 5, to: 5,
-          html: '<p>Not inconsistency: a different loss for a different ' +
-            'question — and the swing between them is what an updating ' +
-            'system looks like.</p>',
-        },
-        /* This beat leaves the sky, so its words leave the column too and
-           go and stand beside the ring each one names. */
-        {
-          id: 'ph-6a', at: [0.04, 0.05], w: 720, cls: 'phrase sm', from: 6,
-          html: '<p>Two ways for a question to end.</p>',
-        },
-        {
-          id: 'ph-6top', at: [0.73, 0.06], w: 400, cls: 'aside lead', from: 6,
-          html: '<p><b>Die on the hilltop</b> — the answer sufficed; the ' +
-            'summit was always local to the question.</p>',
-        },
-        {
-          id: 'ph-6slope', at: [0.04, 0.44], w: 420, cls: 'aside lead', from: 6,
-          html: '<p><b>Die on the slope</b> — the answer keeps improving, ' +
-            'the theory stays incomplete, and the experiment outlives ' +
-            'you.</p>' +
-            '<p>Weinberg’s <em>Dreams of a Final Theory</em>, read half in ' +
-            'longing and half in mourning.</p>',
+          id: 'ph-1b5', at: [0.14, 0.70], w: 980, cls: 'aside lead branch-list',
+          from: 8,
+          html: '<ul><li>Different questions need different ' +
+            'losses.</li></ul>',
         },
       ],
       notes:
-        'The highest camera of the deck: sky, clouds, one summit tip at the ' +
-        'bottom edge with the sitter still on it. One thought per beat, big ' +
-        'type, nothing drawn — the words take the paper. 12-minute cut: ' +
-        'beats 1, 5, 6 and 7 (choice, the sting, the rulers, the endings).',
+        'The highest camera of the deck: sky, clouds, one summit at the ' +
+        'bottom edge. Two pages, every point on its own press: first the ' +
+        'loop at the scale of brain, AI and science, with him reading on ' +
+        'the summit; then the rulers that decide what counts as better — ' +
+        'the book down, hat on, head bowed.',
     },
 
     /* ======================================================= 10 · RETURN == */
@@ -1076,7 +1005,7 @@
       set: { far: 1, rock: 1 },
       plates: [{
         src: 'assets/closing.png', ar: 1470 / 1524, blend: 1,
-        at: [0.66, 0.52], w: 920,
+        at: [0.34, 0.52], w: 920,
         alt: 'Sisyphus takes a break — playing pinball beside the boulder',
       }],
       steps: [
@@ -1093,7 +1022,7 @@
       ],
       text: [
         {
-          id: 'fin', at: [0.055, 0.46], w: 640, cls: 'phrase', from: 1,
+          id: 'fin', at: [0.59, 0.70], w: 640, cls: 'phrase', from: 1,
           html: '<p>One must imagine Sisyphus happy.</p>',
         },
       ],
@@ -1140,7 +1069,8 @@
       ['example-jaisp', 4],
       ['example-jaisp', 5],
 
-      ['philosophy', 6],
+      ['philosophy', 3],
+      ['philosophy', 8],
 
       ['return', 0],
       ['return', 1],
@@ -1159,7 +1089,7 @@
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,
-    mythfig: 0, myth: 0, sitfig: 0, meetfig: 0, meet: 0,
+    mythfig: 0, myth: 0, sitfig: 0, readfig: 0, hatfig: 0, meetfig: 0, meet: 0,
     loop1: 0, loop2: 0, loop3: 0, leaner: 0, tablebg: 0,
     pusher: 0, climber: 0, climber2: 0,
   };

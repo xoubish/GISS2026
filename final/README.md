@@ -27,10 +27,10 @@ table now).
 | 6 | Information theory | distance, sampling, entropy/surprise/KL/Fisher, which observation teaches most |
 | 7 | Example — a person | someone you just met, walking the table |
 | 8 | Example — JAISP | enhancement family → foundation bet → astrometry → the field had moved |
-| 9 | Philosophy | existential/rational/absurd as rulers you carry; die on the hill / on the slope |
+| 9 | Philosophy | brain / AI / science as the loop at scale; rational/existential/absurd as rulers you carry |
 | 10 | Return | Sisyphus takes a break, the ball comes back, one must imagine Sisyphus happy |
 
-## Short route (12 + 3 minutes — 30 beats)
+## Short route (12 + 3 minutes — 29 beats)
 
 Open `short.html` or `index.html?route=short`. The short route is a curated
 path through the same scene graph: arrow/space follows the short path, while
@@ -48,7 +48,7 @@ The selected beats are:
 | Information theory | all four beats: entropy + mutual info; Fisher; sampling; the close (update, checks, next observation) |
 | Example — a person | prior + stream; distance/resolution; surprise; good enough |
 | Example — JAISP | bridge; architecture; astrometry proof; field moved |
-| Philosophy | two endings |
+| Philosophy | loop at three scales; rulers we carry |
 | Return | drawing; final line |
 
 ## Decisions on record
@@ -206,27 +206,19 @@ Built so far:
   (dashed displaced ridgeline + coherent arrows, 9–10 mas): the title of
   the talk, measured. 12-minute cut: receipts get ~20 s; beats 3–5 keep.
 
-- **Scene 9 (Philosophy)** — "The view from here": the deck's highest
-  camera, almost pure sky, the sitter tiny on his summit at the frame's
-  bottom edge. Seven beats, one thought each in large type: every station
-  was a choice (why philosophy) → a relative loss steers an absolute
-  science → the AI as a different kind of scientist ("a brain fails
-  gently; a model fails precisely") → one grammar, different nouns → the
-  tenth coffee at field scale (revised 2026-08-24: we stop updating our
-  model of a friend and keep the easy conversations anyway; the field
-  knows how galaxy mass and star formation relate and keeps adding two
-  more galaxies to the same plot — the reward speaking, not the data;
-  the reward-shaped-science and gradient-economy notes live in this
-  beat's speaker notes) → the rulers you carry (rationalist / existentialist
-  / absurdist, set as three columns in the mini-table idiom; oscillation
-  is healthy updating; metamodernism stays in Q&A) → two ways for a
-  question to end (hilltop / slope, Weinberg). The last beat is the only
-  one that moves: the camera drops out of the sky to z 1.7 and lights the
-  `ends` layer, two rings that were built long ago and had never been
-  turned on — the crest with the sitter inside it, the slope with
-  Sisyphus still pushing. Its words leave the column and go and stand
-  beside the ring each one names, so the two endings are places on this
-  mountain rather than two lines of type. 12-minute cut: beats 1, 5, 6, 7.
+- **Scene 9 (Philosophy)** — the deck's highest camera, almost pure sky,
+  Sisyphus on his summit boulder at the frame's bottom edge — about three
+  times the scene-3 sitter now, in two new poses (2026-08-25): reading an
+  open book through the first page (`readfig` layer), then hat on, head
+  bowed, brooding through the second (`hatfig`). Two pages, nine beats —
+  every point arrives on its own keypress. First page: the same loop at
+  three scales — a brain, an AI model, and science as a collective
+  machine; the next experiment should move the answer, not just keep the
+  loop alive. Second page (the figures swap here): the rulers we carry —
+  rationalist for consistency, existentialist where deduction runs out,
+  absurdist where neither resolves; different questions need different
+  losses. Metamodernism stays in Q&A. The short route keeps its two stops
+  by landing on each page fully revealed (beats 4 and 9).
 
 - **Scene 10 (Return)** — scene 1's exact camera, the pinball drawing
   (Sisyphus takes a break; the ball comes back, and he paid for that),

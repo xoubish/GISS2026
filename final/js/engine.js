@@ -93,7 +93,7 @@
     'approx3', 'entropy', 'mi', 'comm', 'surprise', 'kl', 'fisher', 'fork1', 'fork2', 'fork3',
     'combR', 'combE', 'combJ', 'latent', 'astro1', 'astro2', 'shift', 'here', 'ends',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
-    'mythfig', 'sitfig', 'meetfig', 'pusher', 'climber', 'climber2']
+    'mythfig', 'sitfig', 'readfig', 'hatfig', 'meetfig', 'pusher', 'climber', 'climber2']
     .map((s) => { const p = s.split(':'); return { layer: p[0], key: p[1] || p[0] }; });
 
   let lastM = -1, lastRoll = -1, lastMyth = -1, lastMeet = -1;
