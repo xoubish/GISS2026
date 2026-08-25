@@ -408,7 +408,17 @@
             'much of that variation is about the thing I care about. ' +
             'I(X;θ) is relevance: how much observing X reduces uncertainty ' +
             'about θ. A high-entropy channel can be pure noise; a quieter ' +
-            'channel can be decisive if it tracks θ.',
+            'channel can be decisive if it tracks θ. Worth knowing, and ' +
+            'worth saying if the room is technical: this is the SAME ' +
+            'quantity as the experimental-design criterion at the end of ' +
+            'the scene — expected information gain about θ from an ' +
+            'observation IS I(θ;Y). The bridge statistic here and the ' +
+            'buying rule there are one thing seen twice. Also: "capacity" ' +
+            'is loose. In Shannon\'s own vocabulary channel capacity is a ' +
+            'MAXIMISED mutual information, not an entropy, so an ' +
+            'information theorist may object to H being called capacity. ' +
+            'Fall back on: entropy is how much the reading can vary, ' +
+            'mutual information is how much of that variation is about θ.',
         },
         {
           set: { entropy: 0.35, mi: 0, fisher: 1, comm: 0 },
@@ -416,7 +426,14 @@
             'THE RULER. Fisher is about θ, not about volume: the same basin ' +
             'is flat under one ruler and steep under another. And the hard ' +
             'sentence: where Fisher is zero — a wavelength, a conversational ' +
-            'cue — no network and no brain downstream can ever recover it.',
+            'cue — no network and no brain downstream can ever recover it. ' +
+            'If pressed, be precise about which zero is meant: the claim is ' +
+            'airtight for a direction the likelihood does not depend on at ' +
+            'all (the band you never observed), which is the case the ' +
+            'examples are. It is not a claim about Fisher vanishing at one ' +
+            'point of an otherwise informative curve, and the Cramér–Rao ' +
+            'bound in its simple form is a statement about unbiased ' +
+            'estimators.',
         },
         {
           set: { fisher: 0.3, approx2: 1, line: 0.15, sound: 0.55 },
@@ -475,7 +492,26 @@
             'THE NEXT QUESTION. And if it truly is the data — experimental ' +
             'design: which observation do I expect to teach me the most? ' +
             'Rank them, buy that one. A little resolution can beat a great ' +
-            'many photons. If asked: EIG(d) = E_y D_KL[p(θ|y,d) ‖ p(θ)].',
+            'many photons. If asked: EIG(d) = E_y D_KL[p(θ|y,d) ‖ p(θ)]. ' +
+            'Do not oversell the ranking — MacKay 1992 (Neural Computation ' +
+            '4:590), the paper this beat rests on, is mostly about how it ' +
+            'goes wrong. Three points, in order of usefulness. (1) There ' +
+            'is no single "most informative": there are three criteria, ' +
+            'depending on whether you want information about all the ' +
+            'parameters, about the model in a named region of interest, or ' +
+            'about telling two models apart. Choosing the criterion is ' +
+            'another ruler choice — the talk\'s own theme, one level up. ' +
+            '(2) The naive criterion — maximise total information about ' +
+            'the parameters — reduces to "measure where your error bars ' +
+            'are widest", and error bars are widest beyond the edge of the ' +
+            'data, so it sends you off to the edges of the input space to ' +
+            'learn about places you do not care about. The fix is to name ' +
+            'the region of interest first. (3) MacKay\'s own Achilles heel, ' +
+            'his phrase: all of it "estimates the utility of a data point ' +
+            'assuming that the model is correct", and he closes with "the ' +
+            'search for ideal measures of data utility is still open". ' +
+            'That is the bottleneck beat again — ranking observations ' +
+            'presumes you already passed the loss/model check.',
         },
       ],
       text: [

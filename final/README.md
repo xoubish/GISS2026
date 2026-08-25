@@ -142,14 +142,21 @@ Built so far:
   zero-Fisher warning;
   5-knot vs 7-knot sampling; the surprise datum → −log p(x); KL closing
   arrows; pull-back to the climber → expected information gain). The two
-  entropy stacks (`entropy` layer) scatter in **y**, like the soundings and
-  the surprise datum, and float clear of the ground: spread in x would read
-  as "we sampled many θ", a claim about the landscape rather than about the
-  observation stream. The `mi` layer adds one solid column marking the part
+  entropy groups (`entropy` layer) are soundings like any other here —
+  readings of the ground at a place, sitting on the curve, which is what the
+  model expects. The contrast is in **y**: at one place the readings land on
+  top of each other, at the other they scatter. Spread in x would read as
+  "we sampled many θ", a claim about the landscape rather than about the
+  observation stream. Both places are flat ground, so the slope is not doing
+  the scattering. The `mi` layer adds one solid column marking the part
   of that spread which moves with θ — capacity against relevance, drawn
-  rather than asserted. A small figure with a listening-horn (`comm` layer)
-  stands on the basin's right rim, the message arriving down a dashed
-  channel; it carries no label of its own. Slow
+  rather than asserted. Shannon's framing is the `comm` layer,
+  drawn whole rather than as one end: two figures on the two rims of the
+  basin, a cone each, and the message crossing the valley between them —
+  arcs leave the speaker's tip, a dashed channel bows over the entropy
+  labels, Sisyphus takes it at his ear. Both cones put their wide end at the
+  head, so the narrow tips face each other and the direction of travel needs
+  no label; the mark carries no words of its own. Slow
   descent from scene 5's sky on entry. Each station carries its
   diagnostic test (Cramér–Rao for the ruler, I(T(D);θ) vs I(D;θ) for the
   compression, converged-but-still-surprised for the loss), and a
