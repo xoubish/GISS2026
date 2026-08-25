@@ -963,13 +963,21 @@
             'not the slide.)',
         },
         {
+          camera: { x: 2748, y: -2194, z: 1.7 },
+          set: { ends: 1, climber: 1, line: 1, far: 0.35 },
           notes:
             'Two ways for a question to end. Die on the hilltop: the ' +
             'answer sufficed; the summit was always local to the question. ' +
             'Die on the slope: the answer keeps improving, the theory ' +
             'stays incomplete, the experiment outlives you. Weinberg\'s ' +
             'Dreams of a Final Theory — say "half in longing, half in ' +
-            'mourning" as your phrase about reading him, not as his words.',
+            'mourning" as your phrase about reading him, not as his words. ' +
+            'The camera drops out of the sky here, for the only time in ' +
+            'the scene: both endings are places on this mountain and the ' +
+            'deck already had them drawn. The upper ring is the crest with ' +
+            'the sitter still on it; the lower one is the slope, with ' +
+            'Sisyphus still pushing his rock up it. Let the picture arrive ' +
+            'before you say the two lines.',
         },
       ],
       text: [
@@ -983,7 +991,7 @@
           html: '<p>Every station of the loop was a choice.</p>',
         },
         {
-          id: 'ph-0b', at: [0.14, 0.42], w: 980, cls: 'aside lead', to: 0,
+          id: 'ph-0b', at: [0.14, 0.375], w: 980, cls: 'aside lead', to: 0,
           html: '<p>The data we keep, the ruler we trust, the moment we ' +
             'stop — none of it is given by nature. Choosing with reasons ' +
             'is philosophy, and science runs on it quietly.</p>',
@@ -993,7 +1001,7 @@
           html: '<p>A relative loss steers an absolute science.</p>',
         },
         {
-          id: 'ph-1b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 1, to: 1,
+          id: 'ph-1b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 1, to: 1,
           html: '<p><em>Better</em> is negotiated — in panels, proposals, ' +
             'citations. Reward a different better, and different missions ' +
             'fly, different papers count: the field climbs a different ' +
@@ -1004,7 +1012,7 @@
           html: '<p>An AI will be a different kind of scientist.</p>',
         },
         {
-          id: 'ph-2b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 2, to: 2,
+          id: 'ph-2b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 2, to: 2,
           html: '<p>It restarts; its data re-shuffle; its loss is explicit ' +
             '— it will converge, efficiently, on exactly what we asked ' +
             'for.</p>' +
@@ -1016,7 +1024,7 @@
           html: '<p>One grammar, different nouns.</p>',
         },
         {
-          id: 'ph-3b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 3, to: 3,
+          id: 'ph-3b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 3, to: 3,
           html: '<p>Priors, likelihoods, information, surprise: a first ' +
             'impression and a cosmology conjugate the same verbs. ' +
             'Measuring a person is not a metaphor for science — it is the ' +
@@ -1027,7 +1035,7 @@
           html: '<p>The tenth coffee, at field scale.</p>',
         },
         {
-          id: 'ph-4b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 4, to: 4,
+          id: 'ph-4b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 4, to: 4,
           html: '<p>Ten meetings, and we hold a serviceable model of a ' +
             'person. Yet we observe the same galaxy a thousand times — and ' +
             'write the same paper nine hundred.</p>' +
@@ -1039,24 +1047,39 @@
           html: '<p>You carry rulers too.</p>',
         },
         {
-          id: 'ph-5b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 5, to: 5,
-          html: '<p>Rationalist on some questions, existentialist where ' +
-            'deduction runs out, absurdist when neither resolves.</p>' +
-            '<p>Not inconsistency: a different loss for a different ' +
-            'question — and the oscillation is what an updating system ' +
-            'looks like.</p>',
+          id: 'ph-5b', at: [0.14, 0.375], w: 940, cls: 'mini-table', from: 5, to: 5,
+          html: '<div class="cols">' +
+            '<div><h5>rationalist</h5><p>where the question is one of ' +
+            'consistency</p></div>' +
+            '<div><h5>existentialist</h5><p>where deduction runs out and ' +
+            'the choice is yours to own</p></div>' +
+            '<div><h5>absurdist</h5><p>where neither of them ' +
+            'resolves</p></div>' +
+            '</div>',
         },
         {
-          id: 'ph-6a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 6,
+          id: 'ph-5c', at: [0.14, 0.60], w: 980, cls: 'aside lead', from: 5, to: 5,
+          html: '<p>Not inconsistency: a different loss for a different ' +
+            'question — and the swing between them is what an updating ' +
+            'system looks like.</p>',
+        },
+        /* This beat leaves the sky, so its words leave the column too and
+           go and stand beside the ring each one names. */
+        {
+          id: 'ph-6a', at: [0.04, 0.05], w: 720, cls: 'phrase sm', from: 6,
           html: '<p>Two ways for a question to end.</p>',
         },
         {
-          id: 'ph-6b', at: [0.14, 0.42], w: 980, cls: 'aside lead', from: 6,
+          id: 'ph-6top', at: [0.73, 0.06], w: 400, cls: 'aside lead', from: 6,
           html: '<p><b>Die on the hilltop</b> — the answer sufficed; the ' +
-            'summit was always local to the question.</p>' +
-            '<p><b>Die on the slope</b> — the answer keeps improving, the ' +
-            'theory stays incomplete, and the experiment outlives you. ' +
-            'Weinberg’s <em>Dreams of a Final Theory</em>, read half in ' +
+            'summit was always local to the question.</p>',
+        },
+        {
+          id: 'ph-6slope', at: [0.04, 0.44], w: 420, cls: 'aside lead', from: 6,
+          html: '<p><b>Die on the slope</b> — the answer keeps improving, ' +
+            'the theory stays incomplete, and the experiment outlives ' +
+            'you.</p>' +
+            '<p>Weinberg’s <em>Dreams of a Final Theory</em>, read half in ' +
             'longing and half in mourning.</p>',
         },
       ],

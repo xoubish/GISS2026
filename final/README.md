@@ -197,9 +197,15 @@ Built so far:
   gently; a model fails precisely") → one grammar, different nouns → the
   tenth coffee at field scale (the same galaxy a thousand times, the same
   paper nine hundred) → the rulers you carry (rationalist / existentialist
-  / absurdist; oscillation is healthy updating; metamodernism stays in
-  Q&A) → two ways for a question to end (hilltop / slope, Weinberg).
-  12-minute cut: beats 1, 5, 6, 7.
+  / absurdist, set as three columns in the mini-table idiom; oscillation
+  is healthy updating; metamodernism stays in Q&A) → two ways for a
+  question to end (hilltop / slope, Weinberg). The last beat is the only
+  one that moves: the camera drops out of the sky to z 1.7 and lights the
+  `ends` layer, two rings that were built long ago and had never been
+  turned on — the crest with the sitter inside it, the slope with
+  Sisyphus still pushing. Its words leave the column and go and stand
+  beside the ring each one names, so the two endings are places on this
+  mountain rather than two lines of type. 12-minute cut: beats 1, 5, 6, 7.
 
 - **Scene 10 (Return)** — scene 1's exact camera, the pinball drawing
   (Sisyphus takes a break; the ball comes back, and he paid for that),

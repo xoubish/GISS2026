@@ -1227,9 +1227,16 @@
       trail(L.loop3, [[1978, YM - 36], [2012, Y0 + 34]], 5108);
     })();
 
-    /* ---- 15 · TWO ENDINGS ---------------------------------------------- */
-    L.ends.appendChild(el('path', { d: ring(2900, S.ground(2900), 34, 2401), class: 'ink ring loud' }));
-    L.ends.appendChild(el('path', { d: ring(2596, S.ground(2596), 34, 2402), class: 'ink ring loud' }));
+    /* ---- 15 · TWO ENDINGS (scene 9's last beat) -------------------------
+       The crest, with the sitter still on it, and the slope, with Sisyphus
+       still pushing. Both rings are lifted off the ground and widened so
+       they enclose the figure rather than circling its feet.              */
+    L.ends.appendChild(el('path', {
+      d: ring(2886, S.ground(2886) - 22, 42, 2401), class: 'ink ring loud',
+    }));
+    L.ends.appendChild(el('path', {
+      d: ring(2604, S.ground(2604) - 34, 48, 2402), class: 'ink ring loud',
+    }));
   }
 
   /* ===================================================== live redrawing === */
