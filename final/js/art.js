@@ -493,60 +493,8 @@
     return g;
   }
 
-  /* Philosophy, first page (scene 9): the same seat, but the cup is gone —
-     he reads. Knees drawn up, an open book held in both hands, head tipped
-     toward the page. Origin is the seat point, facing −x like the sitter. */
-  function readFigure(seed, s) {
-    const rnd = S.mulberry32(seed);
-    const g = el('g');
-    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
-    const j = (v) => v + (rnd() - 0.5) * 0.03;
-    function stroke(x1, y1, x2, y2, passes) {
-      for (let p = 0; p < passes; p++) {
-        const path = el('path', {
-          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
-          class: 'ink',
-        });
-        path.style.strokeWidth = W;
-        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
-        g.appendChild(path);
-      }
-    }
-    stroke(0, -0.08, -0.25, -0.24, 2);       // near thigh, knees drawn up
-    stroke(-0.25, -0.24, -0.31, 0.14, 2);    // near shin, foot down-slope
-    stroke(0, -0.03, -0.19, -0.15, 2);       // far leg, lower and shorter
-    stroke(-0.19, -0.15, -0.25, 0.16, 2);
-    stroke(0, -0.08, 0.02, -0.56, 3);        // torso, settled but awake
-    stroke(0.02, -0.50, -0.185, -0.43, 2);   // near arm, down to the spine
-    stroke(0.005, -0.475, -0.175, -0.415, 2); // far arm, under it
-    const hd = el('path', { d: ring(-0.05, -0.645, 0.10, seed + 5), class: 'ink' });
-    hd.style.strokeWidth = W;
-    hd.style.opacity = 0.9;
-    g.appendChild(hd);
-    /* The book gets a steadier, slightly heavier pen than the body, so the
-       V of the open pages reads from the deck's highest camera. */
-    const W2 = 'calc(var(--u) * ' + (1.6 / s).toFixed(5) + ')';
-    function prop(x1, y1, x2, y2) {
-      const path = el('path', {
-        d: handLine(x1, y1, x2, y2, 0.004, seed + Math.round((x1 * 7 + y2 * 13) * 991)),
-        class: 'ink',
-      });
-      path.style.strokeWidth = W2;
-      path.style.opacity = 0.9;
-      g.appendChild(path);
-    }
-    /* an open book held out front: spine at the hands, covers up and out
-       in a V, a second pair of lines inside for the pages */
-    prop(-0.210, -0.440, -0.340, -0.535);    // left cover
-    prop(-0.210, -0.440, -0.080, -0.525);    // right cover
-    prop(-0.208, -0.455, -0.300, -0.522);    // left page
-    prop(-0.208, -0.455, -0.118, -0.516);    // right page
-    prop(-0.210, -0.440, -0.210, -0.412);    // the spine, dropped to the hands
-    return g;
-  }
-
-  /* Philosophy, second page (scene 9): the book is down. Hat on, head bowed,
-     elbows toward the knees — the brooding pose. Same seat, same pen. */
+  /* Philosophy (scene 9), both pages: hat on, head bowed, elbows toward
+     the knees — the brooding pose. Origin is the seat point, facing −x. */
   function broodFigure(seed, s) {
     const rnd = S.mulberry32(seed);
     const g = el('g');
@@ -647,7 +595,7 @@
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
-    'mythfig', 'sitfig', 'readfig', 'hatfig', 'meetfig',
+    'mythfig', 'sitfig', 'hatfig', 'meetfig',
     'pusher', 'climber', 'climber2', 'body'];
 
   /* One world unit of θ at the basin is worth this many milliarcseconds. Set
@@ -860,16 +808,12 @@
       L.sitfig.appendChild(fig);
     })();
 
-    /* ---- philosophy (scene 9): the reader and the brooder -------------
+    /* ---- philosophy (scene 9): the brooder -----------------------------
        The same summit as the break, but the camera is far above it now, so
-       both poses are drawn about three times the sitter's size to keep him
-       present at the bottom of an almost-empty frame. One lit per page.   */
+       the pose is drawn well past the sitter's size to keep him present at
+       the bottom of an almost-empty frame. Both pages light the same one. */
     (function () {
-      const s = 220, sx = 2884, gy = S.ground(sx);
-      const rf = readFigure(4251, s);
-      rf.setAttribute('transform',
-        'translate(' + f2(sx) + ' ' + f2(gy) + ') scale(' + s + ')');
-      L.readfig.appendChild(rf);
+      const s = 550, sx = 2884, gy = S.ground(sx);
       const bf = broodFigure(4253, s);
       bf.setAttribute('transform',
         'translate(' + f2(sx) + ' ' + f2(gy) + ') scale(' + s + ')');

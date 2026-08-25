@@ -872,17 +872,17 @@
     {
       id: 'philosophy',
       name: 'Philosophy',
-      camera: { x: 2450, y: -2860, z: 0.85 },
+      camera: { x: 2200, y: -2860, z: 0.85 },
       enter: { dur: 3000, ease: 'slow' },
-      set: { far: 0.25, rock: 1, line: 0.8, readfig: 1 },
+      set: { far: 0.25, rock: 1, line: 0.8, hatfig: 1 },
       steps: [
         {
           notes:
             'The long ascent — highest camera of the talk, almost all sky, ' +
-            'him on his summit at the bottom of the frame, reading. ' +
-            'Compress the science payoff into one page, one line per ' +
-            'press: the same loop runs at three scales, starting with the ' +
-            'brain.',
+            'him on his summit at the edge of the frame, hat on, head ' +
+            'bowed. Compress the science payoff into one page, one line ' +
+            'per press: the same loop runs at three scales, starting with ' +
+            'the brain.',
         },
         {
           notes: 'The AI model: the same loop, faster, with the loss ' +
@@ -898,10 +898,9 @@
             'not just keep the gradient alive.',
         },
         {
-          set: { readfig: 0, hatfig: 1 },
           notes:
-            'The page turns and the book is down — hat on, head bowed. ' +
-            'Nature hands you observations; the ruler you must choose.',
+            'The page turns; he broods on. Nature hands you observations; ' +
+            'the ruler you must choose.',
         },
         {
           notes: 'Rationalist: the ruler for questions of consistency.',
@@ -990,10 +989,10 @@
       ],
       notes:
         'The highest camera of the deck: sky, clouds, one summit at the ' +
-        'bottom edge. Two pages, every point on its own press: first the ' +
-        'loop at the scale of brain, AI and science, with him reading on ' +
-        'the summit; then the rulers that decide what counts as better — ' +
-        'the book down, hat on, head bowed.',
+        'bottom edge, him brooding on it — hat on, head bowed — through ' +
+        'both pages. Every point on its own press: first the loop at the ' +
+        'scale of brain, AI and science; then the rulers that decide what ' +
+        'counts as better.',
     },
 
     /* ======================================================= 10 · RETURN == */
@@ -1013,16 +1012,14 @@
           notes:
             'Exactly the opening camera — same hill, same scale, and by now ' +
             'it means something else. Sisyphus on his break, playing ' +
-            'pinball: the ball comes back, and he paid for that. Let the ' +
-            'drawing sit in silence for a moment.',
-        },
-        {
-          notes: 'The last line. Then stop talking.',
+            'pinball: the ball comes back, and he paid for that. The last ' +
+            'line is already on the page — let the drawing sit in silence ' +
+            'for a moment, then read it. Then stop talking.',
         },
       ],
       text: [
         {
-          id: 'fin', at: [0.59, 0.70], w: 640, cls: 'phrase', from: 1,
+          id: 'fin', at: [0.59, 0.70], w: 640, cls: 'phrase',
           html: '<p>One must imagine Sisyphus happy.</p>',
         },
       ],
@@ -1073,7 +1070,6 @@
       ['philosophy', 8],
 
       ['return', 0],
-      ['return', 1],
     ],
   };
 
@@ -1089,7 +1085,7 @@
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, shift: 0, here: 0, ends: 0,
-    mythfig: 0, myth: 0, sitfig: 0, readfig: 0, hatfig: 0, meetfig: 0, meet: 0,
+    mythfig: 0, myth: 0, sitfig: 0, hatfig: 0, meetfig: 0, meet: 0,
     loop1: 0, loop2: 0, loop3: 0, leaner: 0, tablebg: 0,
     pusher: 0, climber: 0, climber2: 0,
   };

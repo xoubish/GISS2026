@@ -30,7 +30,7 @@ table now).
 | 9 | Philosophy | brain / AI / science as the loop at scale; rational/existential/absurd as rulers you carry |
 | 10 | Return | Sisyphus takes a break, the ball comes back, one must imagine Sisyphus happy |
 
-## Short route (12 + 3 minutes — 29 beats)
+## Short route (12 + 3 minutes — 28 beats)
 
 Open `short.html` or `index.html?route=short`. The short route is a curated
 path through the same scene graph: arrow/space follows the short path, while
@@ -49,7 +49,7 @@ The selected beats are:
 | Example — a person | prior + stream; distance/resolution; surprise; good enough |
 | Example — JAISP | bridge; architecture; astrometry proof; field moved |
 | Philosophy | loop at three scales; rulers we carry |
-| Return | drawing; final line |
+| Return | the one beat (drawing + final line) |
 
 ## Decisions on record
 
@@ -207,22 +207,25 @@ Built so far:
   the talk, measured. 12-minute cut: receipts get ~20 s; beats 3–5 keep.
 
 - **Scene 9 (Philosophy)** — the deck's highest camera, almost pure sky,
-  Sisyphus on his summit boulder at the frame's bottom edge — about three
-  times the scene-3 sitter now, in two new poses (2026-08-25): reading an
-  open book through the first page (`readfig` layer), then hat on, head
-  bowed, brooding through the second (`hatfig`). Two pages, nine beats —
-  every point arrives on its own keypress. First page: the same loop at
-  three scales — a brain, an AI model, and science as a collective
-  machine; the next experiment should move the answer, not just keep the
-  loop alive. Second page (the figures swap here): the rulers we carry —
-  rationalist for consistency, existentialist where deduction runs out,
-  absurdist where neither resolves; different questions need different
-  losses. Metamodernism stays in Q&A. The short route keeps its two stops
-  by landing on each page fully revealed (beats 4 and 9).
+  Sisyphus brooding on his summit boulder at the frame's lower right —
+  hat on, head bowed, elbows toward the knees (`hatfig` layer, scale 550,
+  about seven times the scene-3 sitter), the same pose through both pages
+  (2026-08-25; a reading pose was tried for page one and cut the same
+  day — the camera moved from x 2450 to 2200 to push him toward the
+  edge, clear of the text). Two pages, nine beats — every point arrives
+  on its own keypress. First page: the same loop at three scales — a
+  brain, an AI model, and science as a collective machine; the next
+  experiment should move the answer, not just keep the loop alive.
+  Second page: the rulers we carry — rationalist for consistency,
+  existentialist where deduction runs out, absurdist where neither
+  resolves; different questions need different losses. Metamodernism
+  stays in Q&A. The short route keeps its two stops by landing on each
+  page fully revealed (beats 4 and 9).
 
-- **Scene 10 (Return)** — scene 1's exact camera, the pinball drawing
-  (Sisyphus takes a break; the ball comes back, and he paid for that),
-  and one line on the second beat: "One must imagine Sisyphus happy."
+- **Scene 10 (Return)** — scene 1's exact camera, one beat (2026-08-25;
+  was two). The pinball drawing on the left (Sisyphus takes a break; the
+  ball comes back, and he paid for that) and the line at lower right,
+  there from the start — no click: "One must imagine Sisyphus happy."
   Nothing more — decided.
 
 **All ten scenes are built.** The deck is complete; edits from here are
