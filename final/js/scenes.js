@@ -648,7 +648,11 @@
             'it needs a different observation entirely: responsibility, ' +
             'disagreement, stress. Choosing that encounter is experimental ' +
             'design, about a person — and ethics bound which experiments ' +
-            'you may run.',
+            'you may run. One aside if it lands: at some point the coffees ' +
+            'stop being measurements — you keep them because they are ' +
+            'easy, and that is fine as long as you do not call it ' +
+            'learning. The field-scale version waits in the philosophy ' +
+            'scene.',
         },
       ],
       text: [
@@ -902,12 +906,24 @@
         },
         {
           notes:
-            'The sting — deliver it dry: after ten meetings we hold a ' +
-            'serviceable model of a person and stop. Yet we observe the ' +
-            'same galaxy a thousand times, and write the same paper nine ' +
-            'hundred. When the posterior stops moving and we keep ' +
-            'observing anyway, the loss is speaking — citations, careers, ' +
-            'committees — not the data.',
+            'The sting — deliver it dry. First the human half: at some ' +
+            'point we stop updating our model of a friend and keep the ' +
+            'conversations anyway, because easy conversation is its own ' +
+            'reward — low surprise is pleasant, for a brain and for a ' +
+            'field. Then the field-scale half, named for this room: we ' +
+            'know how galaxy mass and star formation relate, and we keep ' +
+            'measuring two more galaxies and adding them to the same ' +
+            'plot. The pipeline exists, the proposal is safe, the paper ' +
+            'is publishable — a reward-shaped account of science, an ' +
+            'economy built on keeping a gradient alive. When the answer ' +
+            'stops moving and we keep observing anyway, the reward is ' +
+            'speaking — citations, careers, committees — not the data. ' +
+            'The information lives where the plot might break: the ' +
+            'outliers, the extreme ends, the structure in the scatter. ' +
+            'One honest out, kept gentle: sometimes the point was never ' +
+            'inference — you keep the coffees for the friendship. That is ' +
+            'the last scene\'s ending, not a bug. The sting is only for ' +
+            'when we call it learning.',
         },
         {
           notes:
@@ -994,11 +1010,14 @@
         },
         {
           id: 'ph-4b', at: [0.14, 0.375], w: 980, cls: 'aside lead', from: 4, to: 4,
-          html: '<p>Ten meetings, and we hold a serviceable model of a ' +
-            'person. Yet we observe the same galaxy a thousand times — and ' +
-            'write the same paper nine hundred.</p>' +
-            '<p>When the posterior stops moving and we keep observing, the ' +
-            'loss is speaking, not the data.</p>',
+          html: '<p>At some point we stop updating our model of a friend — ' +
+            'and keep the conversations anyway, because easy conversation ' +
+            'is its own reward.</p>' +
+            '<p>Fields do it too: we know how galaxy mass and star ' +
+            'formation relate — and we keep measuring two more galaxies ' +
+            'and adding them to the same plot.</p>' +
+            '<p>When the answer stops moving and we keep observing, the ' +
+            'reward is speaking, not the data.</p>',
         },
         {
           id: 'ph-5a', at: [0.14, 0.28], w: 1080, cls: 'phrase sm', from: 5, to: 5,

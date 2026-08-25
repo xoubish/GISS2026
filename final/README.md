@@ -212,8 +212,12 @@ Built so far:
   was a choice (why philosophy) → a relative loss steers an absolute
   science → the AI as a different kind of scientist ("a brain fails
   gently; a model fails precisely") → one grammar, different nouns → the
-  tenth coffee at field scale (the same galaxy a thousand times, the same
-  paper nine hundred) → the rulers you carry (rationalist / existentialist
+  tenth coffee at field scale (revised 2026-08-24: we stop updating our
+  model of a friend and keep the easy conversations anyway; the field
+  knows how galaxy mass and star formation relate and keeps adding two
+  more galaxies to the same plot — the reward speaking, not the data;
+  the reward-shaped-science and gradient-economy notes live in this
+  beat's speaker notes) → the rulers you carry (rationalist / existentialist
   / absurdist, set as three columns in the mini-table idiom; oscillation
   is healthy updating; metamodernism stays in Q&A) → two ways for a
   question to end (hilltop / slope, Weinberg). The last beat is the only
