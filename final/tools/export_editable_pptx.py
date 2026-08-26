@@ -455,12 +455,11 @@ def info_slide(head_runs, body_paras, notes, first=False):
 info_slide(
     [('Shannon’s question: how unpredictable is the next observation?',
       {'bold': True})],
-    [[('X is the next observation. p(X) is what we expect to see. Entropy, '
-       'H(X), is average surprise:', {})],
+    [[('X is the next observation; p(X) is what we expect. Entropy, '
+       'H(X), is the average surprise:', {})],
      [('H(X) = E[−log p(X)] = −Σ p(x) log p(x)', {'upright': True,
                                                   'color': INK_SOFT})],
-     [('Low H: little room. High H: room to learn. Usefulness depends '
-       'on θ.', {})]],
+     [('Low H: predictable. High H: more uncertainty.', {})]],
     notes=(
         'Start with Shannon’s practical question: if observations arrive as '
         'a stream, how unpredictable is the next one? X is the next '
@@ -469,17 +468,20 @@ info_slide(
         'entropy, but this is the message/observation version. Low entropy '
         'means a dimension is almost constant, so it cannot carry much. '
         'High entropy means more possible variation, but that variation '
-        'could still be noise. Entropy tells capacity: low H gives little '
-        'room; high H gives room to learn. Usefulness depends on θ.\n\n'
+        'could still be noise — unpredictable is not the same as useful, '
+        'which is the hinge into the mutual-information slide.\n\n'
         'Scene note (12-minute cut): narrate entropy, Fisher and surprise; '
         'step through the two compression beats and the update quickly; '
         'give the final two beats one sentence each.'),
     first=True)
 
 info_slide(
-    [('The decision question — mutual information, I(X;θ).', {'bold': True})],
-    [[('How much of X is about θ, the thing I care about?', {})],
-     [('Entropy is capacity. Mutual information is relevance.', {})]],
+    [('But unpredictable is not necessarily useful.', {'bold': True})],
+    [[('Mutual information, I(X;θ): how much does X tell us about θ, the '
+       'thing we care about?', {})],
+     [('I(X;θ) = H(X) − H(X|θ)', {'upright': True, 'color': INK_SOFT})],
+     [('Entropy is surprise. Mutual information is relevant surprise.',
+       {})]],
     notes=(
         'The bridge statistic: mutual information. If entropy asks how much '
         'a data dimension can vary, mutual information asks how much of '
@@ -489,19 +491,25 @@ info_slide(
         'decisive if it tracks θ. Worth saying if the room is technical: '
         'this is the SAME quantity as the experimental-design criterion at '
         'the end of the scene — expected information gain about θ from an '
-        'observation IS I(θ;Y). Also: “capacity” is loose — in Shannon’s '
-        'vocabulary channel capacity is a maximised mutual information, not '
-        'an entropy. Fall back on: entropy is how much the reading can '
-        'vary, mutual information is how much of that variation is about '
-        'θ.'))
+        'observation IS I(θ;Y). Do not call H “capacity” out loud — in '
+        'Shannon’s vocabulary channel capacity is a maximised mutual '
+        'information, not an entropy. Say instead: entropy is how much the '
+        'reading can vary, mutual information is how much of that variation '
+        'is about θ.'))
 
 info_slide(
     [('The ruler — Fisher information, I(θ).', {'bold': True}),
-     (' How much of what I measure is about θ: the same basin, flat under '
-      'one ruler, steep under another. Where Fisher is zero, nothing '
-      'downstream can ever recover it.', {})],
-    [[('Its test: the Cramér–Rao bound, 1/I(θ) — the best any estimator can '
-       'ever do through this instrument.', {})]],
+     (' How sensitive are the measurements to a change in θ?', {})],
+    [[('I(θ) = E[(∂ log p(x|θ)/∂θ)²]', {'upright': True,
+                                        'color': INK_SOFT})],
+     [('Large I: a small change in θ is visible. Small I: different values '
+       'of θ look nearly the same.', {})],
+     [('Where Fisher is zero, nothing downstream can recover the '
+       'information — no model, no brain, no pipeline. What the ruler '
+       'cannot see does not exist for anything after it.', {})],
+     [('Change what the instrument records, and you change the ruler.',
+       {})],
+     [('Fisher tells us the finest distinction this ruler can make.', {})]],
     notes=(
         'THE RULER. Fisher is about θ, not about volume: the same basin is '
         'flat under one ruler and steep under another. And the hard '
@@ -511,29 +519,44 @@ info_slide(
         'airtight for a direction the likelihood does not depend on at all '
         '(the band you never observed), which is the case the examples '
         'are. It is not a claim about Fisher vanishing at one point of an '
-        'otherwise informative curve, and the Cramér–Rao bound in its '
-        'simple form is a statement about unbiased estimators.'))
+        'otherwise informative curve. Cramér–Rao is off the screen on '
+        'purpose — if someone asks for the bound it is Var(θ̂) ≥ 1/I(θ) '
+        'for UNBIASED estimators, and that caveat is the reason it is not '
+        'up there: biased estimators can and do beat it, shrinkage being '
+        'the everyday example. If asked whether '
+        'Fisher is sensitivity or curvature: both — the score-squared form '
+        'equals −E[∂² log p/∂θ²] under the usual regularity conditions, '
+        'and the curvature reading is the one the basin picture draws.'))
 
 info_slide(
-    [('The compression — sampling.', {'bold': True}),
-     (' Not Shannon’s compression: this one is which numbers you keep. '
-      'Five, evenly spaced — and the basin is simply not in them.', {})],
-    [[('Nothing was wrong with the data.', {})]],
+    [('The compression — what you keep.', {'bold': True})],
+    [[('Five evenly spaced samples can be a perfectly reasonable summary — '
+       'and still miss the basin entirely.', {})],
+     [('Nothing was wrong with the data. The information was lost in the '
+       'summary.', {})]],
     notes=(
         'THE COMPRESSION, first lesson. Five numbers, evenly spaced — a '
         'perfectly reasonable summary, and the basin is simply not in it. '
-        'The ring is where this summary thinks the minimum is. Nothing was '
-        'wrong with the data.'))
+        'Name the curves out loud: faint is the even sampling that missed, '
+        'its ring where that summary thinks the minimum is. Nothing was '
+        'wrong with the data. Not printed any more, worth saying if the '
+        'room is technical: this is NOT Shannon’s compression — his '
+        'source-coding theorem is a floor on lossless codes, no code '
+        'averaging below H(X), while this one is lossy.'))
 
 info_slide(
-    [('The same budget, placed where the curvature lives', {'bold': True}),
-     (' — and the basin comes back. Sampling is a ruler too.', {})],
-    [[('Its test: does T(D) keep what D knew about θ — I(T(D); θ) against '
-       'I(D; θ)?', {})]],
+    [('Put the same budget where the curvature is, and the basin comes '
+      'back.', {'bold': True})],
+    [[('Compression is a ruler too: what you keep determines what can '
+       'still be seen.', {})],
+     [('I(θ; T(D)) ≤ I(θ; D)', {'upright': True, 'color': INK_SOFT})],
+     [('Processing cannot create information about θ.', {})],
+     [('The test of a summary is simple: did it keep what the data knew?',
+       {})]],
     notes=(
-        'Same budget, placed where the curvature lives — and the basin '
-        'comes back. No new observation. Sampling is a ruler too: what you '
-        'keep decides what exists.'))
+        'Same budget, placed where the curvature lives — the bold curve — '
+        'and the basin comes back. No new observation, which is the point: '
+        'the recovery cost nothing but placement.'))
 
 info_slide(
     [('The learning signal — surprise, −log p(x).', {'bold': True}),
@@ -548,12 +571,12 @@ info_slide(
         'three columns of the table.'))
 
 info_slide(
-    [('The update — information gain, D', {'bold': True}),
-     ('KL', {'bold': True, 'sub': True}),
-     ('.', {'bold': True}),
-     (' How much did the bracket close?', {})],
-    [[('Surprise is not gain — and when each new datum barely moves the '
-       'posterior, this data, under this compression, is spent.', {})]],
+    [('Every part of the loop can be tested.', {'bold': True})],
+    [[('Did the ruler resolve it? Did the compression keep it? Did the '
+       'posterior actually move?', {})],
+     [('D_KL(posterior ‖ prior)', {'upright': True, 'color': INK_SOFT})],
+     [('measures how much our beliefs changed — not whether they changed '
+       'in the right direction.', {})]],
     notes=(
         'THE UPDATE. Information gain is the bracket closing: '
         'D_KL(posterior ‖ prior). Two cautions, out loud: low entropy is '
@@ -561,28 +584,12 @@ info_slide(
         'you nothing about θ.'))
 
 info_slide(
-    [('Finding the bottleneck.', {'bold': True}),
-     (' Three checks, cheapest first:', {})],
-    [[('Converged but still surprised?', {'bold': True}),
-      (' The loss or the model. Change the ruler.', {})],
-     [('Raw data beats your summary?', {'bold': True}),
-      (' The compression. Recompress — no new observation needed.', {})],
-     [('The Cramér–Rao bound itself too wide?', {'bold': True}),
-      (' The data. Only then go buy more.', {})]],
-    notes=(
-        'FINDING THE BOTTLENECK — the three trails out of the basin. Check '
-        'in order of cost. Still surprised after convergence → the loss or '
-        'model: exchange the landscape. Raw beats the summary → the '
-        'compression: re-read the same data. The Cramér–Rao bound itself '
-        'too wide → the data: over the crest for more. Say the sting: the '
-        'reflex is always “more data” — it is the third check, not the '
-        'first.'))
-
-info_slide(
-    [('The next observation — expected information gain.', {'bold': True}),
-     (' Rank the observations you could take by what you expect to learn. '
-      'Buy that one.', {})],
-    [[('A little resolution can beat a great many photons.', {})]],
+    [('The next question should maximize expected information gain.',
+      {'bold': True})],
+    [[('EIG(d) = E_y [ D_KL( p(θ|y,d) ‖ p(θ) ) ]', {'upright': True,
+                                                    'color': INK_SOFT})],
+     [('Choose the observation expected to change what we know most.',
+       {})]],
     notes=(
         'THE NEXT QUESTION. And if it truly is the data — experimental '
         'design: which observation do I expect to teach me the most? Rank '
@@ -600,6 +607,22 @@ info_slide(
         '“estimates the utility of a data point assuming that the model is '
         'correct”, and he closes with “the search for ideal measures of '
         'data utility is still open” — the bottleneck beat again.'))
+
+info_slide(
+    [('Not good enough? Debug the loop before asking for more data.',
+      {'bold': True})],
+    [[('Check: loss / model → ruler → compression → data', {})],
+     [('“More data” is the last check, not the first.', {})]],
+    notes=(
+        'FINDING THE BOTTLENECK. Check in order of cost. Still surprised '
+        'after convergence → the loss or model: exchange the landscape. '
+        'Did the ruler resolve θ at all → change the instrument. Raw beats '
+        'the summary → the compression: re-read the same data, no new '
+        'observation needed. Only then the data, over the crest. Say the '
+        'sting: the reflex is always “more data” — it is the last check, '
+        'not the first. In the deck the basin has three trails drawn (loss '
+        'or model, compression, data); the ruler check is screen text with '
+        'no trail of its own.'))
 
 # ---------------------------------------------------- 7 · EXAMPLE — PERSON
 PERSON_KICK = 'Example one · A person you just met'
@@ -689,26 +712,17 @@ person_slide(
         'More data is not more information.'))
 
 person_slide(
-    [('Then — surprise.', {'bold': True}),
-     (' Something the model never predicted: −log p spikes, and the picture '
-      'reorganizes.', {})],
-    [[('Sometimes it wasn’t noise. The person moved.', {})]],
-    notes=(
-        'Then surprise: something the model never predicted. −log p spikes '
-        'and the picture reorganizes. And sometimes it was not noise — the '
-        'person moved. People are not stationary; the landscape shifts '
-        'while you climb it.'))
-
-person_slide(
     [('Good enough?', {'bold': True}),
      (' For “another coffee?” — converged long ago. For “trust them with '
-      'what matters” — a different loss entirely, and no number of coffees '
+      'passing the ball near the goal” — a different loss entirely, and no '
+      'number of coffees '
       'helps.', {})],
     [[('It needs a different observation: which encounter teaches the most '
        'is experimental design, about a person.', {})]],
     notes=(
         'Good enough? For “another coffee?” — converged long ago. For '
-        '“trust them with what matters” — that is a different loss, and '
+        '“trust them with passing the ball near the goal” — that is a '
+        'different loss, and '
         'the same person ranks differently under it; no number of coffees '
         'helps; it needs a different observation entirely: responsibility, '
         'disagreement, stress. Choosing that encounter is experimental '

@@ -405,9 +405,8 @@
             'mech entropy, but this is the message/observation version. ' +
             'Low entropy means a dimension is almost constant, so it cannot ' +
             'carry much. High entropy means more possible variation, but ' +
-            'that variation could still be noise. Entropy tells capacity: ' +
-            'low H gives little room; high H gives room to learn. ' +
-            'Usefulness depends on θ. ' +
+            'that variation could still be noise — unpredictable is not ' +
+            'the same as useful, which is the hinge into the right side. ' +
             'Then, on the same picture, the bridge statistic: mutual ' +
             'information. If entropy asks how ' +
             'much a data dimension can vary, mutual information asks how ' +
@@ -419,12 +418,13 @@
             'quantity as the experimental-design criterion at the end of ' +
             'the scene — expected information gain about θ from an ' +
             'observation IS I(θ;Y). The bridge statistic here and the ' +
-            'buying rule there are one thing seen twice. Also: "capacity" ' +
-            'is loose. In Shannon\'s own vocabulary channel capacity is a ' +
-            'MAXIMISED mutual information, not an entropy, so an ' +
-            'information theorist may object to H being called capacity. ' +
-            'Fall back on: entropy is how much the reading can vary, ' +
-            'mutual information is how much of that variation is about θ.',
+            'buying rule there are one thing seen twice. Do not call H ' +
+            '"capacity" out loud — in Shannon\'s own vocabulary channel ' +
+            'capacity is a MAXIMISED mutual information, not an entropy, ' +
+            'and an information theorist will say so. The screen no longer ' +
+            'uses the word; say instead that entropy is how much the ' +
+            'reading can vary and mutual information is how much of that ' +
+            'variation is about θ.',
         },
         {
           set: { entropy: 0.35, entlbl: 0, mi: 0, fisher: 1, comm: 0 },
@@ -437,9 +437,18 @@
             'airtight for a direction the likelihood does not depend on at ' +
             'all (the band you never observed), which is the case the ' +
             'examples are. It is not a claim about Fisher vanishing at one ' +
-            'point of an otherwise informative curve, and the Cramér–Rao ' +
-            'bound in its simple form is a statement about unbiased ' +
-            'estimators. If someone conflates the two I\'s: mutual ' +
+            'point of an otherwise informative curve. Cramér–Rao is off ' +
+            'the screen on purpose — if someone asks for the bound it is ' +
+            'Var(θ̂) ≥ 1/I(θ) FOR UNBIASED ESTIMATORS, and that caveat is ' +
+            'the reason it is not up there: biased estimators can and do ' +
+            'beat it — shrinkage is the everyday example, and the ' +
+            'enhancement networks are exactly that case. ' +
+            'If asked whether Fisher is sensitivity or curvature: both — ' +
+            'the score-squared form on the screen equals the expected ' +
+            'curvature of the log-likelihood, −E[∂² log p/∂θ²], under the ' +
+            'usual regularity conditions; the curvature reading is the one ' +
+            'the basin picture draws. If someone conflates the two I\'s: ' +
+            'mutual ' +
             'information I(X;θ) takes two arguments and a semicolon — bits ' +
             'shared between variables; Fisher I(θ) takes one — curvature ' +
             'of the log-likelihood in θ. Related through the ruler, not ' +
@@ -455,7 +464,15 @@
             'data. Then the same budget, placed where the curvature lives ' +
             '— the bold curve — and the basin comes back. No new ' +
             'observation. The compression is a ruler too: what you keep ' +
-            'decides what exists.',
+            'decides what exists. Two things that are no longer printed: ' +
+            '(1) name the two curves out loud — faint is the even ' +
+            'sampling that missed, with its ring where that summary ' +
+            'thinks the minimum is; bold is the recovery. (2) This is NOT ' +
+            'Shannon\'s compression. His source-coding theorem is a floor ' +
+            'on LOSSLESS codes — no code averages below H(X) — while this ' +
+            'is lossy: which numbers you keep. Say it if the room is ' +
+            'technical, since "compression" two beats after entropy ' +
+            'invites the confusion.',
         },
         {
           camera() { const z = 1.9; return { x: 2300, y: S.anchorY(-1906, 0.5, z), z }; },
@@ -476,12 +493,14 @@
             'entropy is not truth — it is a model making many assertions ' +
             '(Boltzmann: entropy is the log count of micro-states behind ' +
             'a macro-state; Jaynes: this is inference under constraint — ' +
-            'the update reweights possibilities). The three trails out of ' +
-            'the basin, cheapest first: the loss or model (left trail — ' +
-            'still surprised after convergence), the compression (along ' +
-            'the surface — raw beats the summary), the data (over the ' +
-            'crest — and the reflex is always "more data"; it is the ' +
-            'third check, not the first). Experimental design: EIG(d) = ' +
+            'the update reweights possibilities). The checks, cheapest ' +
+            'first: the loss or model (left trail — still surprised after ' +
+            'convergence), the ruler (did it resolve θ at all — this one ' +
+            'has NO trail in the drawing, it is the screen text only), ' +
+            'the compression (along the surface — raw beats the summary), ' +
+            'the data (over the crest — and the reflex is always "more ' +
+            'data"; it is the last check, not the first). Experimental ' +
+            'design: EIG(d) = ' +
             'E_y D_KL[p(θ|y,d) ‖ p(θ)] — rank the observations you could ' +
             'buy, buy the best; a little resolution can beat a great many ' +
             'photons. MacKay 1992 (Neural Computation 4:590) if pressed: ' +
@@ -501,87 +520,93 @@
             '<p class="scenetitle">Statistics of the Loop</p>',
         },
         {
+          /* the close moves the camera, and text is world-anchored at the
+             beat it first appears (engine.js placeText), so the header is
+             re-issued here to sit correctly under the new camera. */
+          id: 'in-head2', at: [0.05, 0.055], w: 720, cls: 'scenehead', from: 3,
+          html: '<p class="kicker">Information theory</p>' +
+            '<p class="scenetitle">Statistics of the Loop</p>',
+        },
+        {
           id: 'in-1', at: [0.05, 0.21], w: 540, cls: 'aside lead', to: 0,
           html: '<p><b>Shannon’s question: how unpredictable is the next ' +
             'observation?</b></p>' +
-            '<p>X is the next observation. p(X) is what we expect to ' +
-            'see. Entropy, H(X), is average surprise:</p>' +
+            '<p>X is the next observation; p(X) is what we expect. ' +
+            'Entropy, H(X), is the average surprise:</p>' +
             '<p>H(X) = E[−log p(X)] = −Σ p(x) log p(x).</p>' +
-            '<p>Low H: little room. High H: room to learn. Usefulness ' +
-            'depends on θ.</p>',
+            '<p>Low H: predictable. High H: more uncertainty.</p>',
         },
         {
           id: 'in-mi', at: [0.60, 0.13], w: 560, cls: 'aside lead', to: 0,
-          html: '<p><b>The decision question — mutual information, I(X;θ).</b></p>' +
-            '<p>How much of X is about θ, the thing I care about?</p>' +
+          html: '<p><b>But unpredictable is not necessarily useful.</b></p>' +
+            '<p>Mutual information, I(X;θ): how much does X tell us ' +
+            'about θ, the thing we care about?</p>' +
             '<p>I(X;θ) = H(X) − H(X|θ).</p>' +
-            '<p>Entropy is capacity. Mutual information is relevance.</p>',
+            '<p>Entropy is surprise. Mutual information is relevant ' +
+            'surprise.</p>',
         },
         {
           id: 'in-2', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 1, to: 1,
-          html: '<p><b>The ruler — Fisher information, I(θ).</b> How much ' +
-            'of what I measure is about θ: the same basin, flat under one ' +
-            'ruler, steep under another.</p>' +
-            '<p>I(θ) = E[(∂ log p(x|θ)/∂θ)²] — the curvature of the ' +
-            'likelihood; one argument, unlike I(X;θ). The ruler is ' +
-            'p(x|θ) itself: change what the instrument records, and I(θ) ' +
-            'changes with it.</p>',
+          html: '<p><b>The ruler — Fisher information, I(θ).</b> How ' +
+            'sensitive are the measurements to a change in θ?</p>' +
+            '<p>I(θ) = E[(∂ log p(x|θ)/∂θ)²]</p>' +
+            '<p>Large I: a small change in θ is visible. Small I: ' +
+            'different values of θ look nearly the same.</p>',
         },
         {
           id: 'in-2r', at: [0.60, 0.13], w: 560, cls: 'aside lead', from: 1, to: 1,
-          html: '<p><b>Where Fisher is zero, nothing downstream can ever ' +
-            'recover it</b> — no network, no brain, no pipeline. What the ' +
-            'ruler cannot see does not exist for anything after it.</p>' +
-            '<p>Its test: the Cramér–Rao bound. No unbiased estimator can ' +
-            'beat a variance of 1/I(θ) — the best anything can ever do ' +
-            'through this instrument.</p>',
+          html: '<p><b>Where Fisher is zero, nothing downstream can ' +
+            'recover the information</b> — no model, no brain, no ' +
+            'pipeline. What the ruler cannot see does not exist for ' +
+            'anything after it.</p>' +
+            '<p>Change what the instrument records, and you change the ' +
+            'ruler.</p>' +
+            '<p>Fisher tells us the finest distinction this ruler can ' +
+            'make.</p>',
         },
         {
           id: 'in-3', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 2, to: 2,
-          html: '<p><b>The compression — what you keep.</b> Not Shannon’s ' +
-            'compression — his theorem is the floor: no lossless code can ' +
-            'average below H(X); entropy is the log count of ' +
-            'possibilities. This one is lossy: which numbers you keep.</p>' +
-            '<p>Five, evenly spaced — a perfectly reasonable summary, and ' +
-            'the basin is simply not in them (the faint curve). Nothing ' +
-            'was wrong with the data.</p>',
+          html: '<p><b>The compression — what you keep.</b></p>' +
+            '<p>Five evenly spaced samples can be a perfectly reasonable ' +
+            'summary — and still miss the basin entirely.</p>' +
+            '<p>Nothing was wrong with the data. The information was lost ' +
+            'in the summary.</p>',
         },
         {
           id: 'in-4', at: [0.60, 0.11], w: 560, cls: 'aside lead', from: 2, to: 2,
-          html: '<p><b>The same budget, placed where the curvature lives</b> ' +
-            '(the bold curve) — and the basin comes back. No new ' +
-            'observation. The compression is a ruler too: what you keep ' +
-            'decides what exists.</p>' +
-            '<p>The data-processing inequality: I(θ;&thinsp;T(D)) ≤ ' +
-            'I(θ;&thinsp;D). No processing adds information about θ — so ' +
-            'the test of any compression: does T(D) keep what D knew?</p>',
+          html: '<p><b>Put the same budget where the curvature is, and ' +
+            'the basin comes back.</b></p>' +
+            '<p>Compression is a ruler too: what you keep determines what ' +
+            'can still be seen.</p>' +
+            '<p>I(θ;&thinsp;T(D)) ≤ I(θ;&thinsp;D)</p>' +
+            '<p>Processing cannot create information about θ.</p>' +
+            '<p>The test of a summary is simple: did it keep what the data ' +
+            'knew?</p>',
         },
         {
-          id: 'in-close-l', at: [0.05, 0.13], w: 560, cls: 'aside lead', from: 3,
-          html: '<p><b>All of it is measurable.</b> Capacity, relevance, ' +
-            'resolution, what the summary kept, how much the posterior ' +
-            'moved — every station of the loop has a number, and every ' +
-            'number has a test.</p>' +
-            '<p>The update is D<sub>KL</sub>(posterior&thinsp;‖&thinsp;' +
-            'prior) — how much the bracket closed. Surprise is not gain; ' +
-            'low entropy is not truth.</p>',
+          id: 'in-close-l', at: [0.05, 0.21], w: 560, cls: 'aside lead', from: 3,
+          html: '<p><b>Every part of the loop can be tested.</b></p>' +
+            '<p>Did the ruler resolve it? Did the compression keep it? ' +
+            'Did the posterior actually move?</p>' +
+            '<p>D<sub>KL</sub>(posterior&thinsp;‖&thinsp;prior)</p>' +
+            '<p>measures how much our beliefs changed — not whether they ' +
+            'changed in the right direction.</p>',
         },
         {
-          id: 'in-close-m', at: [0.44, 0.08], w: 500, cls: 'aside lead', from: 3,
-          html: '<p><b>Not good enough? Don’t guess — check, cheapest ' +
-            'first:</b> the loss or the model (still surprised after ' +
-            'convergence), the compression (raw beats your summary), and ' +
-            'only then the data.</p>' +
-            '<p>“More data” is the third check, not the first.</p>',
+          id: 'in-close-m', at: [0.685, 0.60], w: 460, cls: 'aside lead', from: 3,
+          html: '<p><b>Not good enough? Debug the loop before asking for ' +
+            'more data.</b></p>' +
+            '<p>Check:<br>loss / model → ruler → compression → data</p>' +
+            '<p>“More data” is the last check, not the first.</p>',
         },
         {
-          id: 'in-close-b', at: [0.05, 0.47], w: 640, cls: 'aside lead', from: 3,
-          html: '<p><b>And there is a right way to ask the next ' +
-            'question:</b> rank the observations you could take by ' +
-            'expected gain, EIG(d) = E<sub>y</sub>&thinsp;D<sub>KL</sub>' +
-            '[&thinsp;p(θ&thinsp;|&thinsp;y, d) ‖ p(θ)&thinsp;], and buy ' +
-            'the best one. A little resolution can beat a great many ' +
-            'photons.</p>',
+          id: 'in-close-b', at: [0.545, 0.155], w: 460, cls: 'aside lead', from: 3,
+          html: '<p><b>The next question should maximize expected ' +
+            'information gain.</b></p>' +
+            '<p>EIG(d) = E<sub>y</sub>&thinsp;[&thinsp;D<sub>KL</sub>' +
+            '(&thinsp;p(θ&thinsp;|&thinsp;y, d) ‖ p(θ)&thinsp;)&thinsp;]</p>' +
+            '<p>Choose the observation expected to change what we know ' +
+            'most.</p>',
         },
       ],
       notes:
@@ -639,19 +664,12 @@
             'stops closing. More data is not more information.',
         },
         {
-          set: { surprise: 1, entropy: 0.3, entlbl: 0.3, kl: 0.25, fisher: 0.15, meet: 0.8 },
-          anim: { meet: 1800 },
-          notes:
-            'Then surprise: something the model never predicted. −log p ' +
-            'spikes and the picture reorganizes. And sometimes it was not ' +
-            'noise — the person moved. People are not stationary; the ' +
-            'landscape shifts while you climb it.',
-        },
-        {
-          set: { entropy: 0.9, entlbl: 0.9, surprise: 0.3, meet: 0.95 }, anim: { meet: 2800 },
+          set: { entropy: 0.9, entlbl: 0.9, surprise: 0.3, kl: 0.25, fisher: 0.15, meet: 0.95 },
+          anim: { meet: 2800 },
           notes:
             'Good enough? For "another coffee?" — converged long ago. For ' +
-            '"trust them with what matters" — that is a different loss, ' +
+            '"trust them with passing the ball near the goal" — that is a ' +
+            'different loss, ' +
             'and the same person ranks differently under it; no number ' +
             'of coffees helps; ' +
             'it needs a different observation entirely: responsibility, ' +
@@ -703,22 +721,14 @@
             'information — the bracket stops closing.</p>',
         },
         {
-          id: 'ep-3', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 3, to: 3,
-          html: '<p><b>Then — surprise.</b> Something the model never ' +
-            'predicted: −log p spikes, and the picture reorganizes.</p>',
-        },
-        {
-          id: 'ep-3b', at: [0.61, 0.17], w: 540, cls: 'aside lead', from: 3, to: 3,
-          html: '<p>Sometimes it wasn’t noise. The person moved.</p>',
-        },
-        {
-          id: 'ep-4', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 4,
+          id: 'ep-4', at: [0.05, 0.17], w: 540, cls: 'aside lead', from: 3,
           html: '<p><b>Good enough?</b> For “another coffee?” — converged ' +
-            'long ago. For “trust them with what matters” — a different ' +
+            'long ago. For “trust them with passing the ball near the goal” ' +
+            '— a different ' +
             'loss entirely, and no number of coffees helps.</p>',
         },
         {
-          id: 'ep-4b', at: [0.575, 0.17], w: 540, cls: 'aside lead', from: 4,
+          id: 'ep-4b', at: [0.575, 0.17], w: 540, cls: 'aside lead', from: 3,
           html: '<p>It needs a different observation: which encounter ' +
             'teaches the most is experimental design, about a person.</p>',
         },
@@ -727,8 +737,10 @@
         'The clearest scene by design: the audience has already seen every ' +
         'one of these drawings with statistics captions in scene 6 — now ' +
         'the same pictures get human captions. That rhyme is the thesis, ' +
-        'so no station is re-explained — named and moved past. Five ' +
-        'beats. 12-minute cut: beats 1, 3, 4.',
+        'so no station is re-explained — named and moved past. Four ' +
+        'beats (2026-08-25: the surprise beat was cut for time — its ' +
+        'idea returns at field scale in scene 8, where the concordance ' +
+        'moved). 12-minute cut: beats 1, 2, 4.',
     },
 
     /* ================================================ 8 · EXAMPLE — JAISP == */
@@ -1195,7 +1207,6 @@
       ['example-person', 0],
       ['example-person', 1],
       ['example-person', 3],
-      ['example-person', 4],
 
       ['example-jaisp', 0],
       ['example-jaisp', 3],
