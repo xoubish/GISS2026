@@ -790,8 +790,8 @@
             'VIS catalogue — and 0.45 mag deeper than one band supports.',
         },
         {
-          camera: { x: 2620, y: -2114, z: 1.6 },
-          set: { jarch: 0, iters: 1, line: 0.8 },
+          camera: { x: 2578, y: -2112, z: 1.16 },
+          set: { jarch: 0, iters: 1, line: 0.8, gazer: 1 },
           notes:
             'Ten designs to get here — walk the ladder up the flank. ' +
             'v1–v2 contrastive matching: the features matched the sky, ' +
@@ -826,7 +826,7 @@
         {
           /* the paper the ladder ends at, sat on the flank it climbs */
           src: 'assets/paper.png', ar: 956 / 1204, frame: 1, from: 3, to: 3,
-          at: [0.80, 0.705], w: 330,
+          at: [0.795, 0.695], w: 390,
           alt: 'Title page: a joint Rubin–Euclid foundation model for '
             + 'cross-instrument source detection and astrometry',
           cap: 'The joint Rubin–Euclid foundation model.',
@@ -1190,7 +1190,7 @@
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, jarch: 0, iters: 0, shift: 0, here: 0, ends: 0,
-    mythfig: 0, myth: 0, sitfig: 0, hatfig: 0, meetfig: 0, meet: 0,
+    mythfig: 0, myth: 0, sitfig: 0, hatfig: 0, meetfig: 0, meet: 0, gazer: 0,
     loop1: 0, loop2: 0, loop3: 0, leaner: 0, tablebg: 0,
     pusher: 0, climber: 0, climber2: 0,
   };

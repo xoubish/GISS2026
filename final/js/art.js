@@ -434,6 +434,66 @@
     return g;
   }
 
+  /* The foot of the climb (scene 8): standing at the bottom of the flank,
+     one hand up at the brow against the sky, head tipped back, reading how
+     far the ten designs go. Faces right, into the slope. Origin is the feet. */
+  function shadeFigure(seed, s, hat) {
+    const rnd = S.mulberry32(seed);
+    const g = el('g');
+    const W = 'calc(var(--u) * ' + (1.15 / s).toFixed(5) + ')';
+    const j = (v) => v + (rnd() - 0.5) * 0.03;
+    function stroke(x1, y1, x2, y2, passes) {
+      for (let p = 0; p < passes; p++) {
+        const path = el('path', {
+          d: handLine(j(x1), j(y1), j(x2), j(y2), 0.014, seed + p * 17 + Math.round((x1 + y2) * 991)),
+          class: 'ink',
+        });
+        path.style.strokeWidth = W;
+        path.style.opacity = (0.9 - p * 0.3).toFixed(2);
+        g.appendChild(path);
+      }
+    }
+    /* pusherFigure's posture — braced back leg, torso thrown forward, both
+       arms up onto the rock — with every joint jittered off this figure's own
+       seed, so a party of them does not read as one drawing stamped four
+       times. Faces +x, into the slope. */
+    const brace = 0.06 * (rnd() - 0.5);       // how wide the back leg is set
+    const lean = 0.06 * (rnd() - 0.5);        // how hard the torso is thrown
+    const lo = 0.05 * (rnd() - 0.5);          // lower arm, where it lands
+    const up = 0.05 * (rnd() - 0.5);          // upper arm
+    const hx = 0.40 + lean, hy = -0.85 - 0.03 * rnd();
+    stroke(-0.34 - brace, 0, -0.16, -0.22, 2);     // back leg, braced
+    stroke(-0.16, -0.22, 0.0, -0.42, 2);
+    stroke(0.10 + brace, 0, 0.05, -0.24, 2);       // front leg
+    stroke(0.05, -0.24, 0.0, -0.42, 2);
+    stroke(0.0, -0.42, 0.30 + lean, -0.72, 3);     // torso, leaning hard
+    stroke(0.30 + lean, -0.71, 0.58 + lo, -0.50 + lo, 2);   // lower arm
+    stroke(0.28 + lean, -0.74, 0.60 + up, -0.62 + up, 2);   // upper arm
+    const hd = el('path', { d: ring(hx, hy, 0.10, seed + 5), class: 'ink' });
+    hd.style.strokeWidth = W;
+    hd.style.opacity = 0.9;
+    g.appendChild(hd);
+    /* The philosophy brooder's hat, steadier pen — brim and a low trapezoid
+       crown, mirrored to face +x and hung off this figure's head. Exactly one
+       of the party wears it. */
+    if (!hat) return g;
+    function prop(x1, y1, x2, y2) {
+      const path = el('path', {
+        d: handLine(hx + x1, hy + y1, hx + x2, hy + y2, 0.004,
+          seed + Math.round((x1 * 7 + y2 * 13) * 991)),
+        class: 'ink',
+      });
+      path.style.strokeWidth = W;
+      path.style.opacity = 0.9;
+      g.appendChild(path);
+    }
+    prop(0.155, 0.020, -0.115, -0.055);    // the brim, down over the eyes
+    prop(0.095, -0.005, 0.115, -0.095);    // crown, front wall
+    prop(-0.035, -0.043, -0.010, -0.133);  // crown, back wall
+    prop(0.115, -0.095, -0.010, -0.133);   // crown, flat top
+    return g;
+  }
+
   /* The break (scene 3): Sisyphus seated, facing back down the valley,
      cup raised in one hand, the other arm propping him, a bottle standing
      beside him. Origin is the seat point; the caller puts it on a summit. */
@@ -595,7 +655,7 @@
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'jarch', 'iters', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
-    'mythfig', 'sitfig', 'hatfig', 'meetfig',
+    'mythfig', 'sitfig', 'hatfig', 'meetfig', 'gazer',
     'pusher', 'climber', 'climber2', 'body'];
 
   /* One world unit of θ at the basin is worth this many milliarcseconds. Set
@@ -829,6 +889,37 @@
       const per = standFigure(6001, s);
       per.setAttribute('id', 'meet-per');
       L.meetfig.appendChild(per);
+    })();
+
+    /* ---- the foot of the climb (scene 8): sizing up ten designs ------- */
+    (function () {
+      /* Not one Sisyphus but the whole collaboration — everybody gets to
+         climb it again. Drawn back-to-front so the nearest overlaps. */
+      /* Spacing matters more than it looks: the ground climbs about 0.75
+         per unit here, so at a spacing near 0.57 * scale each figure's head
+         lands exactly on the next one's hip. Stay well past 0.74 * scale and
+         every head sits in clear sky. */
+      const PARTY = [
+        { x: 2079, s: 82, hat: 0, seed: 6014 },
+        { x: 2155, s: 88, hat: 0, seed: 6013 },
+        { x: 2231, s: 92, hat: 1, seed: 6012 },   // the one with the hat
+        { x: 2307, s: 78, hat: 0, seed: 6011 },   // at the front, on the rock
+      ];
+      PARTY.forEach((p) => {
+        const gf = shadeFigure(p.seed, p.s, p.hat);
+        gf.setAttribute('transform',
+          'translate(' + f2(p.x) + ' ' + f2(S.ground(p.x)) + ') scale(' + p.s + ')');
+        L.gazer.appendChild(gf);
+      });
+      /* one rock between them, sized and placed off the front pusher by the
+         same relation placePusher uses, so his hands actually meet it */
+      const ld = PARTY[PARTY.length - 1];
+      const br = 0.40 * ld.s, bx = ld.x + 0.62 * ld.s + br * 0.65;
+      const ball = scribbleBall(6019);
+      ball.firstChild.style.strokeWidth = 'calc(var(--u) * ' + (1.0 / br).toFixed(5) + ')';
+      ball.setAttribute('transform', 'translate(' + f2(bx) + ' ' +
+        f2(S.ground(bx) - br * 0.85) + ') scale(' + br + ')');
+      L.gazer.appendChild(ball);
     })();
 
     /* ---- the spectator (scene 4): leaning in the corner, watching ----- */
