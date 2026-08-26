@@ -751,38 +751,43 @@ s = blank_slide(prs, notes=(
     'NISP sharpened with what JWST/NIRCam taught, 5× finer sampling. '
     'Rezaee+: WISE with Spitzer, 4.6×. Haghjoo+: JWST prism spectra to '
     'grating resolution, R 100 → 1000. Each one: one teacher, one student, '
-    'one loss, one question.'))
+    'one loss, one question. In the deck this is the same page as the '
+    'previous slide: the lesson line stays up and the receipts arrive '
+    'underneath it on a click.'))
 kicker(s, JAISP_KICK)
 tf = textbox(s, 0.73, 1.35, 10.5)
-lead(tf, [('We did it pairwise first.', {'bold': True}),
-          (' One teacher, one student, one loss per question.', {})],
-     size=19, first=True)
+lead(tf, [('The same lesson, pointed at the sky.', {'bold': True}),
+          (' Rubin, Euclid, WISE, JWST — every instrument is a lossy '
+           'projection of one sky, at its own distance and resolution.',
+           {})], size=19, first=True)
 caps = ['Everetts, Hemmati, et al. — NISP → NIRCam, 5× finer.',
         'Rezaee, Hemmati, et al. — WISE → Spitzer, 4.6× finer.',
         'Haghjoo, Hemmati, et al. — prism → grating, R 100 → 1000.']
-for i, (img, cap) in enumerate(zip(
-        ['paper_nisp.png', 'paper_wise.png', 'paper_spectra.png'], caps)):
-    x = 0.73 + i * 4.15
-    _, w, h = picture(s, os.path.join(ASSETS, img), x, 2.5, w=3.8,
-                      border=True)
-    caption(s, cap, x, 2.5 + h + 0.12, 3.8)
+# one height for all three, so the row reads as three of the same thing;
+# widths follow from each paper's aspect ratio, and the row is centred.
+PAPER_H, PAPER_GAP = 2.1, 0.55
+sizes = [(img, PAPER_H * Image.open(os.path.join(ASSETS, img)).size[0]
+          / Image.open(os.path.join(ASSETS, img)).size[1])
+         for img in ('paper_nisp.png', 'paper_wise.png', 'paper_spectra.png')]
+row_w = sum(w for _, w in sizes) + PAPER_GAP * (len(sizes) - 1)
+row_x = (EMW - row_w) / 2
+x = row_x
+for (img, w), cap in zip(sizes, caps):
+    picture(s, os.path.join(ASSETS, img), x, 2.5, h=PAPER_H, border=True)
+    caption(s, cap, x, 2.5 + PAPER_H + 0.12, w)
+    x += w + PAPER_GAP
+tf = textbox(s, row_x, 2.5 + PAPER_H + 1.0, row_w)
+para(tf, [('Combining rulers, one loss per paper.', {'bold': True})],
+     size=19, align=2, first=True)          # PP_ALIGN.CENTER
 
 s = blank_slide(prs, notes=(
-    'The honest problem: it works, and it does not scale. Every new '
-    'question starts again from raw pixels — the compression cost '
-    'multiplies with the questions. The general answer: learn the '
-    'compression once, before you know the question — a foundation — and '
-    'make every task a small head with its own loss.'))
-kicker(s, JAISP_KICK)
-tf = textbox(s, 0.73, 1.6, 9.2)
-lead(tf, [('It works — and it does not scale.', {'bold': True}),
-          (' Every new question recompresses the sky from scratch.', {})],
-     size=19, first=True, after=14)
-lead(tf, [('So learn the compression ', {}), ('once', {'bold': True}),
-          (': a foundation — and every task a small head with its own '
-           'loss.', {})], size=17)
-
-s = blank_slide(prs, notes=(
+    'Carry the pivot in one spoken sentence — the scaling slide that used '
+    'to make it was cut for time (2026-08-25): pairwise works and does not '
+    'scale, because every new question recompresses the sky from scratch; '
+    'so learn the compression ONCE, before you know the question, and make '
+    'every task a small head with its own loss. The price, if there is '
+    'room: about 2.5 GPU-hours, no labels, no catalogues, no simulations. '
+    'Then the drawing. '
     'JAISP. Ten bands, Rubin and Euclid together, one shared latent — '
     'self-supervised, each band predicted from the other nine, each '
     'instrument at its delivered sampling. About nine million parameters. '
@@ -804,42 +809,6 @@ _, w, h = picture(s, os.path.join(ASSETS, 'jaisp_architecture_crop.png'),
 caption(s, 'Ten bands → two-stream stems → one shared latent → detection · '
         'astrometry · photometry · shape · redshift — each head its own '
         'loss.', 5.7, 1.5 + h + 0.14, 7.0)
-
-s = blank_slide(prs, notes=(
-    'The proof, on the θ axis the talk has been walking — drawn to scale, '
-    '1 unit = 2 mas. Raw cross-survey scatter, Rubin against VIS: about 50 '
-    'mas. A position head reading the frozen latent: 14–17 mas; injected '
-    'sources recovered to 19 mas at S/N = 5 — near the floor the VIS '
-    'labels themselves set. The latent carried VIS sharpness to '
-    'everything tied to it.'))
-kicker(s, JAISP_KICK)
-tf = textbox(s, 0.73, 1.6, 4.6)
-lead(tf, [('One head, its own loss: astrometry.', {'bold': True}),
-          (' Raw cross-survey scatter ≈ 50 mas. The head, reading the '
-           'frozen latent: ', {}), ('14–17 mas', {'bold': True}),
-          ('.', {})], size=17, first=True, after=14)
-lead(tf, 'The latent carried VIS sharpness to everything tied to it.',
-     size=17)
-_, w, h = picture(s, os.path.join(ASSETS, 'astrometry_fig8_crop.png'),
-                  5.6, 1.55, w=7.2, border=True)
-caption(s, 'All 790 ECDFS tiles. Dashed: raw classical centroids. Solid: '
-        'head-corrected — the clouds collapse and re-centre. Right: median '
-        'offset against S/N.', 5.6, 1.55 + h + 0.14, 7.2)
-
-s = blank_slide(prs, notes=(
-    'And then better data arrived. Two independently Gaia-anchored '
-    'solutions disagree by a coherent 9–10 mas — every arrow points the '
-    'same way. That is not scatter; the landscape itself had moved. '
-    'Nobody made a mistake. Say it plainly — this is the title of the '
-    'talk, measured.'))
-kicker(s, JAISP_KICK)
-tf = textbox(s, 0.73, 1.6, 9.4)
-lead(tf, [('Then better data arrived.', {'bold': True}),
-          (' Two Gaia-anchored solutions disagree by a coherent ', {}),
-          ('9–10 mas', {'bold': True}),
-          (' — every arrow the same way.', {})], size=19, first=True,
-     after=14)
-lead(tf, 'Not scatter. The landscape itself had moved.', size=19)
 
 # ---------------------------------------------------------- 9 · PHILOSOPHY
 PHIL_KICK = 'Philosophy · The view from here'

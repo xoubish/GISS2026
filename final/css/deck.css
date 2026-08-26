@@ -298,6 +298,7 @@ text.glab.loop { font-size: calc(var(--u) * 30); fill: var(--ink); }
   border-left: 1px solid rgba(194, 86, 47, .5);
 }
 .aside.lead.human p, .aside.lead.human b { color: var(--human); }
+.aside.mid p { text-align: center; }
 .human p, .human b { color: var(--human); }
 .human p + p { margin-top: 16px; }
 .callout.mid p { text-align: center; }

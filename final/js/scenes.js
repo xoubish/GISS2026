@@ -746,7 +746,7 @@
     /* ================================================ 8 · EXAMPLE — JAISP == */
     {
       id: 'example-jaisp',
-      name: 'Example — JAISP',
+      name: 'Example — the sky',
       camera() { const z = 2.3; return { x: 2210, y: S.anchorY(-1790, 0.80, z), z }; },
       enter: { dur: 2200 },
       set: { far: 0.7, rock: 0.6, line: 0.4 },
@@ -756,30 +756,31 @@
             'The bridge, in one breath: the person resolved because ' +
             'different data saw them differently. Point it at the sky — ' +
             'Rubin, Euclid, WISE, JWST are each a lossy projection of the ' +
-            'same reality, at their own distance and resolution.',
+            'same reality, at their own distance and resolution. This ' +
+            'line stays up through the next click: the receipts arrive ' +
+            'underneath it, on the same page.',
         },
         {
           notes:
-            'The receipts — say one line each, gesture, move on. Everetts+: ' +
+            'The receipts, added under the same line — say one each, ' +
+            'gesture, move on. Everetts+: ' +
             'Euclid NISP sharpened with what JWST/NIRCam taught, 5× finer ' +
             'sampling. Rezaee+: WISE with Spitzer, 4.6×. Haghjoo+: JWST ' +
             'prism spectra to grating resolution, R 100 → 1000. Each one: ' +
             'one teacher, one student, one loss, one question.',
         },
         {
-          notes:
-            'The honest problem: it works, and it does not scale. Every ' +
-            'new question starts again from raw pixels — the compression ' +
-            'cost multiplies with the questions. The general answer: learn ' +
-            'the compression once, before you know the question — a ' +
-            'foundation — and make every task a small head with its own ' +
-            'loss. And it is cheap enough to say out loud: about 2.5 ' +
-            'GPU-hours, no labels, no catalogues, no simulations. Train ' +
-            'once, encode each field once, measure many times.',
-        },
-        {
           set: { jarch: 1 },
           notes:
+            'Carry the pivot in one spoken sentence — the scaling beat ' +
+            'that used to make it was cut for time (2026-08-25): pairwise ' +
+            'works and does not scale, because every new question ' +
+            'recompresses the sky from scratch; so learn the compression ' +
+            'ONCE, before you know the question, and make every task a ' +
+            'small head with its own loss. The price, if there is room: ' +
+            'about 2.5 GPU-hours, no labels, no catalogues, no ' +
+            'simulations — train once, encode each field once, measure ' +
+            'many times. Then the drawing. ' +
             'JAISP, drawn in this pen. Ten bands, Rubin and Euclid ' +
             'together, each instrument at its delivered sampling, one ' +
             'shared latent — self-supervised, each band predicted from ' +
@@ -802,130 +803,87 @@
             'v7–v8 mixed resolution works; v9–v10 is production. We ' +
             'walked the road, and pixels won.',
         },
-        {
-          camera() { const z = 8.5; return { x: 2202, y: S.anchorY(G(2199.3), 0.42, z), z }; },
-          set: { astro1: 1, astro2: 1, axes: 0.5, line: 1, rock: 0.35, iters: 0 },
-          notes:
-            'The proof, on the θ axis the talk has been walking — drawn to ' +
-            'scale, 1 unit = 2 mas. Raw cross-survey scatter, Rubin against ' +
-            'VIS: about 50 mas — the loose open readings. A position head ' +
-            'reading the frozen latent: 14–17 mas — the tight cluster; ' +
-            'injected sources recovered to 19 mas at S/N = 5, near the ' +
-            'floor the VIS labels themselves set. And the whole stack, on ' +
-            'a second deep field it had never seen, nothing retrained: ' +
-            '93.4/93.1 against 93.3/94.5, positions on the same 12–18 mas ' +
-            'floor. The compression generalizes.',
-        },
-        {
-          camera() { const z = 6.5; return { x: 2205, y: S.anchorY(-1780, 0.72, z), z }; },
-          set: { shift: 1, astro1: 0, astro2: 0, axes: 0.2 },
-          anim: { shift: 1600 },
-          notes:
-            'And then better data arrived. Two independently Gaia-anchored ' +
-            'solutions disagree by a coherent 9–10 mas — every arrow points ' +
-            'the same way; about 7 mas of it is shared by all ten bands, ' +
-            'two entirely different fitting methods recover the same ' +
-            'pattern, and a per-source correction absorbs it to about ' +
-            '1.5 mas. That is not scatter; the landscape itself had moved. ' +
-            'Nobody made a mistake. Say it plainly — this is the title of ' +
-            'the talk, measured. (If asked what the next observation ' +
-            'should be: Roman is the natural third stream — one more ' +
-            'encoder branch, three-way agreement maps.)',
-        },
       ],
       plates: [
         {
           src: 'assets/paper_nisp.png', ar: 728 / 1198, frame: 1, from: 1, to: 1,
-          at: [0.16, 0.46], w: 300,
+          at: [0.300, 0.45], w: 346,
           alt: 'Title page: Euclid deep-learning super-resolution of NISP imaging',
           cap: 'Everetts, Hemmati, et al. — NISP → NIRCam, 5× finer.',
         },
         {
           src: 'assets/paper_wise.png', ar: 1272 / 1608, frame: 1, from: 1, to: 1,
-          at: [0.44, 0.445], w: 280,
+          at: [0.525, 0.45], w: 265,
           alt: 'Title page: enhancing WISE infrared imaging to Spitzer resolution',
           cap: 'Rezaee, Hemmati, et al. — WISE → Spitzer, 4.6× finer.',
         },
         {
           src: 'assets/paper_spectra.png', ar: 1226 / 1546, frame: 1, from: 1, to: 1,
-          at: [0.71, 0.46], w: 285,
+          at: [0.725, 0.45], w: 265,
           alt: 'Title page: physics-informed super-resolution of galaxy spectra',
           cap: 'Haghjoo, Hemmati, et al. — prism → grating, R 100 → 1000.',
         },
         {
-          src: 'assets/astrometry_fig8_crop.png', ar: 525 / 1135, frame: 1,
-          from: 5, to: 5,
-          at: [0.80, 0.20], w: 420,
-          alt: 'Cross-survey offset clouds collapsing from 50 mas to 14-17 mas',
-          cap: 'All 790 ECDFS tiles — the measured collapse.',
+          /* the paper the ladder ends at, sat on the flank it climbs */
+          src: 'assets/paper.png', ar: 956 / 1204, frame: 1, from: 3, to: 3,
+          at: [0.80, 0.705], w: 330,
+          alt: 'Title page: a joint Rubin–Euclid foundation model for '
+            + 'cross-instrument source detection and astrometry',
+          cap: 'The joint Rubin–Euclid foundation model.',
         },
       ],
       text: [
         {
-          id: 'ej-head', at: [0.05, 0.055], w: 760, cls: 'scenehead', to: 3,
+          id: 'ej-head', at: [0.05, 0.055], w: 760, cls: 'scenehead', to: 2,
           html: '<p class="kicker">Example two — JAISP</p>' +
             '<p class="scenetitle">One foundation, many rulers</p>',
         },
         {
-          id: 'ej-0', at: [0.05, 0.24], w: 560, cls: 'aside lead', to: 0,
+          id: 'ej-0', at: [0.05, 0.17], w: 720, cls: 'aside lead', to: 1,
           html: '<p><b>The same lesson, pointed at the sky.</b> Rubin, ' +
             '<em>Euclid</em>, WISE, JWST — every instrument is a lossy ' +
             'projection of one sky, at its own distance and resolution.</p>',
         },
         {
-          id: 'ej-1', at: [0.05, 0.19], w: 540, cls: 'aside lead', from: 1, to: 1,
-          html: '<p><b>We did it pairwise first.</b> One teacher, one ' +
-            'student, one loss per question.</p>',
+          id: 'ej-1', at: [0.19, 0.685], w: 990, cls: 'aside lead mid', from: 1, to: 1,
+          html: '<p><b>Combining rulers, one loss per paper.</b></p>',
         },
         {
-          id: 'ej-2', at: [0.05, 0.24], w: 560, cls: 'aside lead', from: 2, to: 2,
-          html: '<p><b>It works — and it does not scale.</b> Every new ' +
-            'question recompresses the sky from scratch.</p>' +
-            '<p>So learn the compression <b>once</b>: a foundation — and ' +
-            'every task a small head with its own loss.</p>' +
-            '<p>Priced: <b>≈2.5 GPU-hours</b>, no labels, no catalogues, ' +
-            'no simulations. Train once · encode once · measure many ' +
-            'times.</p>',
-        },
-        {
-          id: 'ej-3', at: [0.05, 0.30], w: 480, cls: 'aside lead', from: 3, to: 3,
+          id: 'ej-3', at: [0.05, 0.30], w: 480, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>JAISP.</b> Ten bands, one shared latent — ' +
             'self-supervised, ≈9M parameters.</p>' +
             '<p>Detection on held-out sky: <b>93% complete, 94% pure</b> — ' +
             'and <b>0.45 mag deeper</b> than one band supports.</p>',
         },
         {
-          id: 'ej-3i', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 4, to: 4,
+          id: 'ej-3i', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 3,
           html: '<p><b>Ten designs to get here — the loop, lived.</b></p>' +
             '<p>Contrastive matching drowned in sky. Object pairing gave ' +
             'no precision. JEPA lost to a simple CNN.</p>' +
             '<p>The turn, v6: <b>predict the actual pixels.</b> Features ' +
             'that look similar aren\'t features that know <em>where</em>.</p>',
         },
-        {
-          id: 'ej-4', at: [0.05, 0.10], w: 460, cls: 'aside lead', from: 5, to: 5,
-          html: '<p><b>One head, its own loss: astrometry.</b> Raw ' +
-            'cross-survey scatter ≈ 50 mas. The head, reading the frozen ' +
-            'latent: <b>14–17 mas</b>.</p>' +
-            '<p>The latent carried VIS sharpness to everything tied to it.</p>' +
-            '<p>And on a second field the model never saw — <b>nothing ' +
-            'retrained</b> — the same numbers, the same floor.</p>',
-        },
-        {
-          id: 'ej-5', at: [0.05, 0.10], w: 500, cls: 'aside lead', from: 6,
-          html: '<p><b>Then better data arrived.</b> Two Gaia-anchored ' +
-            'solutions disagree by a coherent <b>9–10 mas</b> — every arrow ' +
-            'the same way.</p>' +
-            '<p>Not scatter. The landscape itself had moved.</p>',
-        },
       ],
       notes:
-        'The science payoff: pairwise receipts → the foundation bet, ' +
-        'priced → the architecture in this pen → ten pushes to the design ' +
-        '(the loop, lived) → the measured astrometry proof with the ' +
-        'transfer → the concordance field, which is the title of the talk ' +
-        'measured, and the hinge into the philosophy. 12-minute cut: ' +
-        'receipts get twenty seconds together; beats 4–7 are the spine.',
+        'The science payoff, cut hard for time (2026-08-25) to four ' +
+        'beats: the lesson pointed at the sky → the three pairwise ' +
+        'receipts on the same page → the architecture in this pen with ' +
+        'the numbers → ten pushes to the design (the loop, lived), ' +
+        'ending on the paper itself. WHAT WENT, and where it lives now: ' +
+        'the foundation pivot and its ≈2.5 GPU-hour price are a spoken ' +
+        'sentence in the architecture beat\'s notes; the measured ' +
+        'astrometry proof (50 → 14–17 mas, the second field with nothing ' +
+        'retrained) and the concordance field (a coherent 9–10 mas, the ' +
+        'title of the talk measured) are OUT of the deck — Q&A only. ' +
+        'That means the scene now ends on a paper rather than on a ' +
+        'measurement, and the hinge into the philosophy is no longer ' +
+        '"the landscape itself had moved"; scene 9 has to open that ' +
+        'door on its own. Back pocket for Q&A: 93/94% on held-out sky, ' +
+        '0.45 mag deeper, 14–17 mas positions, 19 mas injected at ' +
+        'S/N = 5, 93.4/93.1 on a second field with nothing retrained, ' +
+        '9–10 mas coherent offset with ~7 mas shared across all ten ' +
+        'bands and ~1.5 mas after a per-source correction, and Roman as ' +
+        'the natural third stream.',
     },
 
     /* ==================================================== 9 · PHILOSOPHY == */
@@ -1209,10 +1167,8 @@
       ['example-person', 3],
 
       ['example-jaisp', 0],
+      ['example-jaisp', 2],
       ['example-jaisp', 3],
-      ['example-jaisp', 4],
-      ['example-jaisp', 5],
-      ['example-jaisp', 6],
 
       ['philosophy', 4],
       ['philosophy', 11],

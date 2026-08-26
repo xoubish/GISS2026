@@ -1269,8 +1269,8 @@
       txt(g, (LB.x0 + LB.x1) / 2, LB.y1 + 18, 'frozen', 'sm');
       txt(g, (LB.x0 + LB.x1) / 2, LB.y1 + 32, 'each head its own loss', 'sm');
       /* the heads, fanned out — kept high so the rising flank stays clear */
-      const HEADS = ['detection', 'astrometry', 'photometry — in prep',
-        'shape — in prep', 'redshift — in prep'];
+      const HEADS = ['detection', 'astrometry', 'photometry',
+        'shape', 'redshift'];
       HEADS.forEach((h, i) => {
         const hy = -2032 + i * 31;
         trail(g, [[LB.x1 + 4, lcy - 8 + i * 4], [2398, hy]], 2451 + i * 3);
