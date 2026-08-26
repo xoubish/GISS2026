@@ -396,7 +396,7 @@
       set: { far: 0.5, rock: 0.35, line: 0.35, roll: 1 },
       steps: [
         {
-          set: { entropy: 1, mi: 1, comm: 1 },
+          set: { entropy: 1, entlbl: 1, mi: 1, comm: 1 },
           notes:
             'Start with Shannon\'s practical question: if observations ' +
             'arrive as a stream, how unpredictable is the next one? X is ' +
@@ -427,7 +427,7 @@
             'mutual information is how much of that variation is about θ.',
         },
         {
-          set: { entropy: 0.35, mi: 0, fisher: 1, comm: 0 },
+          set: { entropy: 0.35, entlbl: 0, mi: 0, fisher: 1, comm: 0 },
           notes:
             'THE RULER. Fisher is about θ, not about volume: the same basin ' +
             'is flat under one ruler and steep under another. And the hard ' +
@@ -454,8 +454,8 @@
             'summary thinks the minimum is. Nothing was wrong with the ' +
             'data. Then the same budget, placed where the curvature lives ' +
             '— the bold curve — and the basin comes back. No new ' +
-            'observation. Sampling is a ruler too: what you keep decides ' +
-            'what exists.',
+            'observation. The compression is a ruler too: what you keep ' +
+            'decides what exists.',
         },
         {
           camera() { const z = 1.9; return { x: 2300, y: S.anchorY(-1906, 0.5, z), z }; },
@@ -538,7 +538,7 @@
         },
         {
           id: 'in-3', at: [0.05, 0.21], w: 540, cls: 'aside lead', from: 2, to: 2,
-          html: '<p><b>The compression — sampling.</b> Not Shannon’s ' +
+          html: '<p><b>The compression — what you keep.</b> Not Shannon’s ' +
             'compression — his theorem is the floor: no lossless code can ' +
             'average below H(X); entropy is the log count of ' +
             'possibilities. This one is lossy: which numbers you keep.</p>' +
@@ -550,8 +550,8 @@
           id: 'in-4', at: [0.60, 0.11], w: 560, cls: 'aside lead', from: 2, to: 2,
           html: '<p><b>The same budget, placed where the curvature lives</b> ' +
             '(the bold curve) — and the basin comes back. No new ' +
-            'observation. Sampling is a ruler too: what you keep decides ' +
-            'what exists.</p>' +
+            'observation. The compression is a ruler too: what you keep ' +
+            'decides what exists.</p>' +
             '<p>The data-processing inequality: I(θ;&thinsp;T(D)) ≤ ' +
             'I(θ;&thinsp;D). No processing adds information about θ — so ' +
             'the test of any compression: does T(D) keep what D knew?</p>',
@@ -628,7 +628,7 @@
             'Liking changes with distance because the data does.',
         },
         {
-          set: { fisher: 0.8, entropy: 1, kl: 1, combE: 0.25, combR: 0.1 },
+          set: { fisher: 0.8, entropy: 1, entlbl: 1, kl: 1, combE: 0.25, combR: 0.1 },
           notes:
             'Two ways to learn nothing — and the figures deliberately do ' +
             'not move here. Zero-Fisher data: an hour of small talk is ' +
@@ -639,7 +639,7 @@
             'stops closing. More data is not more information.',
         },
         {
-          set: { surprise: 1, entropy: 0.3, kl: 0.25, fisher: 0.15, meet: 0.8 },
+          set: { surprise: 1, entropy: 0.3, entlbl: 0.3, kl: 0.25, fisher: 0.15, meet: 0.8 },
           anim: { meet: 1800 },
           notes:
             'Then surprise: something the model never predicted. −log p ' +
@@ -648,7 +648,7 @@
             'landscape shifts while you climb it.',
         },
         {
-          set: { entropy: 0.9, surprise: 0.3, meet: 0.95 }, anim: { meet: 2800 },
+          set: { entropy: 0.9, entlbl: 0.9, surprise: 0.3, meet: 0.95 }, anim: { meet: 2800 },
           notes:
             'Good enough? For "another coffee?" — converged long ago. For ' +
             '"trust them with what matters" — that is a different loss, ' +
@@ -1219,7 +1219,7 @@
     humanrule: 0, cands: 0, ball: 0, newland: 0, marks: 0, m: 0, roll: 1,
     sound: 0, cyc1: 0, cyc2: 0, cyc3: 0, cyc4: 0,
     approx1: 0, approx2: 0, approx3: 0,
-    entropy: 0, mi: 0, comm: 0, surprise: 0, kl: 0, fisher: 0,
+    entropy: 0, entlbl: 0, mi: 0, comm: 0, surprise: 0, kl: 0, fisher: 0,
     fork1: 0, fork2: 0, fork3: 0,
     combR: 0, combE: 0, combJ: 0, latent: 0,
     astro1: 0, astro2: 0, jarch: 0, iters: 0, shift: 0, here: 0, ends: 0,

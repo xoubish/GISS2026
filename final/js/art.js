@@ -591,7 +591,7 @@
   S.LAYERS = ['far', 'gfill', 'hatch0', 'hatch1', 'hatch2', 'hatch3', 'hatch4', 'ridge',
     'newland', 'axes', 'curmark', 'curve', 'ruler', 'humanrule', 'cands',
     'sound', 'cyc1', 'cyc2', 'cyc3', 'cyc4',
-    'approx1', 'approx2', 'approx3', 'entropy', 'mi', 'comm', 'surprise', 'kl',
+    'approx1', 'approx2', 'approx3', 'entropy', 'entlbl', 'mi', 'comm', 'surprise', 'kl',
     'fisher', 'fork1', 'fork2', 'fork3', 'combR', 'combE', 'combJ', 'latent',
     'astro1', 'astro2', 'jarch', 'iters', 'shift', 'here', 'ends', 'marks',
     'tablebg', 'loop1', 'loop2', 'loop3', 'leaner',
@@ -1059,7 +1059,7 @@
             class: 'ink guide',
           }));
         });
-        txt(L.entropy, H_LOW.x, cy - H_LOW.half * 1.6 - 8, 'low H — repeated');
+        txt(L.entlbl, H_LOW.x, cy - H_LOW.half * 1.6 - 8, 'low H — repeated');
       })();
 
       const HI = (function () {
@@ -1076,7 +1076,7 @@
           d: handLine(H_HIGH.x0 - pad, y0 - m * pad, H_HIGH.x1 + pad, y1 + m * pad, 0.12, 1860),
           class: 'ink axis',
         }));
-        txt(L.entropy, (H_HIGH.x0 + H_HIGH.x1) / 2, Math.min(y0, y1) - 14, 'high H — scattered');
+        txt(L.entlbl, (H_HIGH.x0 + H_HIGH.x1) / 2, Math.min(y0, y1) - 14, 'high H — scattered');
         return { y0: y0, y1: y1 };
       })();
 
